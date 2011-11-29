@@ -96,6 +96,11 @@ package playtiLib.utils.core
 					result[prop.@name] = toInstance( obj[prop.@name] );
 				}
 			}
+			
+			if (result is String) {
+				result = obj;
+			}
+			
 			if (result is Array)
 				for each (var element:* in obj)
 					(result as Array).push(toInstance(element));

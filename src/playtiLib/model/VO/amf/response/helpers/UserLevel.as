@@ -10,6 +10,7 @@ package playtiLib.model.VO.amf.response.helpers
 		public var nextLevelExperience:Number;
 		public var prevLevelExperience:Number;
 		public var coinsGiftAmount:Number;
+		public var lobbySkin : String;
 		
 		public function UserLevel()
 		{
