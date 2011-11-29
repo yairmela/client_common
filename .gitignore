@@ -1,0 +1,16 @@
+*Thumbs.db
+.DS_Store
+
+.project
+
+.metadata
+.actionScriptProperties
+.flexProperties
+.settings
+.fxpProperties
+.flexLibProperties
+
+bin-debug
+bin-release
+bin/*
+asdoc-output
