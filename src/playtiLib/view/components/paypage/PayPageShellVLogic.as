@@ -35,12 +35,12 @@ package playtiLib.view.components.paypage
 		 * @param event
 		 * 
 		 */		
-		override public function centerPopup( event:Event=null ):void {
+		override public function centerPopup():void {
 			
-			var page:DisplayObject 		= event.currentTarget as DisplayObject;
-			page.removeEventListener( Event.ADDED, centerPopup );
-			addition_popup_display.x 	= -page.width/2;
-			addition_popup_display.y 	= -page.height/2;
+//			var page:DisplayObject 		= event.currentTarget as DisplayObject;
+//			page.removeEventListener( Event.ADDED, centerPopup );
+//			addition_popup_display.x 	= -page.width/2;
+//			addition_popup_display.y 	= -page.height/2;
 			setPosition( addition_popup_display.stage.stageWidth / 2, addition_popup_display.stage.stageHeight / 2 );
 		}
 		
