@@ -26,7 +26,9 @@ package playtiLib.model.VO.social
 		public var coupon:Coupon;
 		public var today_receivers_ids:String
 		
-		public function SocialPostVO( user_sn_id:String, image_to_post:DisplayObject, descreiption:String, title:String, image_path:String, event_type:int )	{
+		public var addition_object:Object;
+		
+		public function SocialPostVO( user_sn_id:String=null, image_to_post:DisplayObject=null, descreiption:String=null, title:String=null, image_path:String=null, event_type:int=0 )	{
 			
 			this.user_sn_id 	= user_sn_id;
 			this.image_to_post 	= image_to_post;
