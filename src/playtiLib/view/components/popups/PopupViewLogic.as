@@ -131,7 +131,7 @@ package playtiLib.view.components.popups
 		/**
 		 * Sets the position of the popup display object to the center of the stage.
 		 */
-		public function centerPopup( event:Event=null ):void {
+		public function centerPopup():void {
 			
 			var stage_width:Number = isNaN( POPUPS_CENTER_TO_WIDTH ) ? popup_content.stage.stageWidth : POPUPS_CENTER_TO_WIDTH;
 			var stage_height:Number = isNaN( POPUPS_CENTER_TO_HEIGHT ) ? popup_content.stage.stageHeight : POPUPS_CENTER_TO_HEIGHT;

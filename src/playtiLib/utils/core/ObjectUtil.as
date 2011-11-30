@@ -86,6 +86,10 @@ package playtiLib.utils.core
 		}
 		
 		public static function toInstance( obj:* ):* {
+			if(!obj) {
+				return null;
+			}
+			
 			var info:XML = describeType(obj);
 			var clazz:Class = getDefinitionByName(convertFullyQualifiedName(info.@name)) as Class;
 			var result:* = new clazz();

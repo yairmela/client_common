@@ -11,6 +11,7 @@ package playtiLib.controller.commands.coupons {
 	import playtiLib.model.VO.amf.request.CouponRequest;
 	import playtiLib.model.VO.amf.response.CouponMessage;
 	import playtiLib.model.VO.social.SocialPostVO;
+	import playtiLib.model.proxies.config.DisplaySettingsProxy;
 	import playtiLib.utils.data.DataCapsule;
 	import playtiLib.utils.data.DataCapsuleFactory;
 
@@ -50,6 +51,8 @@ package playtiLib.controller.commands.coupons {
 			//add today receivers to the postVO object
 			postVo.today_receivers_ids = receivers_proxy.today_receivers;
 			ExternalInterface.call( 'sendCoupon', postVo );
+			
+			( facade.retrieveProxy( DisplaySettingsProxy.NAME ) as DisplaySettingsProxy ).fullscreen = false;
 		}
 	}
 }
