@@ -1,10 +1,12 @@
 package playtiLib.view.mediators.popups
 {
 	import flash.display.Sprite;
+	import flash.display.Stage;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	
 	import org.puremvc.as3.interfaces.INotification;
+	
 	import playtiLib.config.notifications.GeneralAppNotifications;
 	import playtiLib.model.VO.popup.PopupDoActionVO;
 	import playtiLib.model.proxies.popup.ActivePopupsProxy;
@@ -12,6 +14,7 @@ package playtiLib.view.mediators.popups
 	import playtiLib.view.components.btns.ButtonSimple;
 	import playtiLib.view.components.popups.PopupViewLogic;
 	import playtiLib.view.mediators.UIMediator;
+
 	/**
 	 * Holds do and close (VO) objects, a PopupViewLogic object, a boolean modal_mode var and a sprite object (modal_background). Sets mouseEvent listeners 
 	 * for all the buttons, can auto-center the popup, can draw a black screen behind the popup (on registration). It also handles the do and close
@@ -37,7 +40,7 @@ package playtiLib.view.mediators.popups
 			this.close_action_vo 	= closeActionVO;
 			registerCloseDoListeners();
 			if( autoCenter_mode )
-				popup_logic.content.addEventListener( Event.ADDED_TO_STAGE, popup_logic.centerPopup, false, 0, true );
+				popup_logic.content.addEventListener( Event.ADDED_TO_STAGE, onAddedToStage, false, 0, true );
 		}
 		/**
 		 *  Sends notification ADD_CHILD_TO_ROOT, make sure the active popups proxy is registered
@@ -47,7 +50,7 @@ package playtiLib.view.mediators.popups
 		override public function onRegister():void {
 			
 			if( modal_mode ) {
-				modal_background = drawModalBG( new Sprite, 2800, 2800 );
+				modal_background = drawModalBG( new Sprite, 1, 1 );
 				sendNotification( GeneralAppNotifications.ADD_CHILD_TO_ROOT, modal_background );
 			}
 			//make sure the active popups proxy is registered
@@ -55,7 +58,12 @@ package playtiLib.view.mediators.popups
 				facade.registerProxy( new ActivePopupsProxy );
 			//add popup to active list
 			( facade.retrieveProxy( ActivePopupsProxy.NAME ) as ActivePopupsProxy ).addPopup( this );
-			super.onRegister();
+			super.onRegister();			
+		}
+		
+		protected function onAddedToStage( event : Event ) : void {
+			
+			centerPopup();
 		}
 		/**
 		 * Adds event listeners to all the close and do buttons. 
@@ -135,7 +143,7 @@ package playtiLib.view.mediators.popups
 			
 			switch( notification.getName() ) {
 				case GeneralAppNotifications.FULLSCREEN_MODE:
-					popup_logic.centerPopup();
+					centerPopup();
 					break;
 			}
 		}
@@ -155,6 +163,19 @@ package playtiLib.view.mediators.popups
 				drawRect( 0,0,width,height );
 			}
 			return shape;
+		}
+		
+		private function centerPopup() : void
+		{
+			popup_logic.centerPopup();
+			
+			if(modal_background) {
+				var stage : Stage = popup_logic.content.stage;
+				modal_background.width = stage.stageWidth;
+				modal_background.height = stage.stageHeight;
+				modal_background.x = -(modal_background.width - PopupViewLogic.POPUPS_CENTER_TO_WIDTH) / 2;
+				modal_background.y = -(modal_background.height - PopupViewLogic.POPUPS_CENTER_TO_HEIGHT) / 2;
+			}
 		}
 		/**
 		 * Overrides the parent's function and adds it some functionality include
