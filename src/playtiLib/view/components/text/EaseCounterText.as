@@ -10,7 +10,7 @@ package playtiLib.view.components.text
 	
 	public class EaseCounterText implements IViewLogic	{
 		
-		private var text_con_mc:MovieClip;
+		protected var text_con_mc:MovieClip;
 		private var counter_txt:TextField;
 		
 		private var ease_count:int;
