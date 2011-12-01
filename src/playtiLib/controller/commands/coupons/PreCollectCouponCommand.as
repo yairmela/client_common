@@ -24,7 +24,7 @@ package playtiLib.controller.commands.coupons
 			}
 			
 			switch( ( notification.getBody() as Coupon ).giftTypeId ){
-				case CouponSystemConfig.MONEY_GIFT_TYPE:
+				case CouponSystemConfig.GIFT_TYPE_COINS:
 					sendNotification( GeneralAppNotifications.COLLECT_COUPON_COMMAND );
 					break;
 			}

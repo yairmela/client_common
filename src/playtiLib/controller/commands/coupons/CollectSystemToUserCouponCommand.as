@@ -63,7 +63,7 @@ package playtiLib.controller.commands.coupons
 			var doAction:PopupDoActionVO;
 			var closeAction:PopupDoActionVO;
 			switch ( coupon_validation_data.giftTypeId ) {
-				case CouponSystemConfig.MONEY_GIFT_TYPE: //Money
+				case CouponSystemConfig.GIFT_TYPE_COINS: //Money
 					user_proxy.updateUser({balance:Number( coupon_validation_data.giftTypeValue )}, false );
 					doAction = new PopupDoActionVO([GeneralAppNotifications.USER_DATA_READY],null,null,[true] );
 					closeAction = new PopupDoActionVO([GeneralAppNotifications.USER_DATA_READY],null,null,[true] );

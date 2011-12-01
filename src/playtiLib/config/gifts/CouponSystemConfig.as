@@ -31,19 +31,11 @@ package playtiLib.config.gifts
 		public static const STATUS_SOME_COUPONS_CANT_BE_COLLECTED:int 		= 10002;
 		public static const STATUS_SOME_COUPONS_ALREADY_COLLECTED:int 		= 10003;
 		public static const COUPON_SYSTEM_UNAVIABLE:int 					= 10004;
-		//TODO: clean non playtilib events
-		public static const EVENT_LEVEL_UP:int 								= 1;
-		public static const EVENT_SIGNIFICANT_WIN_5:int 					= 103;
-//		public static const EVENT_FREE_SPINS_FINISHED:int	 				= 3;
-		public static const EVENT_BONUS_FINISHED:int 						= 4;
-		public static const EVENT_MEGA_BONUS_SHARED:int 					= 9;
+
 		public static const EVENT_COINS_GIFT:int 							= 5;//'coins';
 		public static const EVENT_COINS_RE_GIFT:int 						= 6;//'coins_recip';
-		public static const NUMBER_OF_SCATTER_SHARE_LUCK_GIFT_ALOWED:int 	= 10;
-		
-		public static const MONEY_GIFT_TYPE:int 							= 1;
+		public static const GIFT_TYPE_COINS:int 							= 1;
 		public static const NO_ERROR_COUPON:int 							= 0;
-		public static const COINS_COUPON_TYPE:int 							= 1;
 		//gcp
 		public static const SEND_BACK_BTN:String							= 'send_back_btn';
 		public static const COLLECT_COUPON_BTN:String						= 'collect_coupon_btn';
