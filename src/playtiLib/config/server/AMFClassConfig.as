@@ -3,16 +3,11 @@ package playtiLib.config.server
 	import flash.net.registerClassAlias;
 	
 	import mx.collections.ArrayCollection;
-	import mx.core.mx_internal;
-	import mx.logging.Log;
-	import mx.logging.targets.TraceTarget;
 	import mx.messaging.config.ConfigMap;
-	import mx.messaging.config.LoaderConfig;
 	import mx.messaging.messages.*;
 	import mx.rpc.*;
 	import mx.utils.ObjectProxy;
 	
-	import playtiLib.model.VO.amf.cheat.CheatType;
 	import playtiLib.model.VO.amf.request.*;
 	import playtiLib.model.VO.amf.response.*;
 	import playtiLib.model.VO.amf.response.helpers.*;
