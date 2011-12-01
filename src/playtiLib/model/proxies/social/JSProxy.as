@@ -45,6 +45,7 @@ package playtiLib.model.proxies.social {
 				ExternalInterface.addCallback('publishCancel', publishCancel);
 				ExternalInterface.addCallback('FBGetRequestCallback', FBGetRequestCallback);
 				ExternalInterface.addCallback("onExternalTrackerEvent", trackMenu);
+				ExternalInterface.addCallback("acceptSurpriseGiftCoupon", acceptSurpriseGiftCoupon);
 			} catch (e:Error){
 			}
 		}
@@ -162,6 +163,11 @@ package playtiLib.model.proxies.social {
 		
 		private function showInviteFriends():void {
 			sendNotification(GeneralAppNotifications.SOCIAL_INVITE_FRIENDS);
+		}
+		
+		
+		private function acceptSurpriseGiftCoupon(...params):void {
+			sendNotification(GeneralAppNotifications.SOCIAL_ACCEPT_SURPRISE_GIFT);
 		}
 		
 		private function sendGiftsApproved(response:Object):void {
