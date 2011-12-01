@@ -17,7 +17,7 @@ package playtiLib.controller.commands.coupons
 			var coupon:Coupon = ( facade.retrieveProxy( SelectedCouponProxy.NAME ) as SelectedCouponProxy ).coupon;
 			
 			switch ( coupon.giftTypeId ){
-				case CouponSystemConfig.MONEY_GIFT_TYPE:
+				case CouponSystemConfig.GIFT_TYPE_COINS:
 					user_proxy.user_status.balanceInCoins += Number( giftTypeValue ) ;
 					user_proxy.updateUser( user_proxy.user_status );
 					break;

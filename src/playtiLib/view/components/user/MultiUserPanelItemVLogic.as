@@ -72,6 +72,9 @@ package playtiLib.view.components.user
 			//check if the userSocialInfo is loaded and if not dispatch event to proxy
 			if( user && !user.userSocialInfo.isReady ){
 				user.userSocialInfo.addEventListener( GeneralAppNotifications.USER_SOCIAL_INFO_READY, onUserSocialReady );
+				person_mc['name_txt'].text = "";
+				person_mc['score_txt'].text = "";
+				person_mc['level'].text = "";
 			}
 		}
 		

@@ -27,7 +27,7 @@ package playtiLib.controller.commands.coupons
 			new_gift.gift_type 			= int( notification.getType() );
 			
 			var publish_event_type:int = -1;
-			publish_event_type = new_gift.gift_type == CouponSystemConfig.MONEY_GIFT_TYPE ?	
+			publish_event_type = new_gift.gift_type == CouponSystemConfig.GIFT_TYPE_COINS ?	
 					( gift_data.pre_gift ? 	CouponSystemConfig.EVENT_COINS_RE_GIFT : CouponSystemConfig.EVENT_COINS_GIFT ) : 
 					new_gift.gift_type;
 			
