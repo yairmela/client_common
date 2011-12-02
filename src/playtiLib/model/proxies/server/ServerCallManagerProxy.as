@@ -36,6 +36,7 @@ package playtiLib.model.proxies.server
 		
 		private var waiting_for_relogin_calls:Array = [];//will host server call vo that recived errors
 		private var is_relogin_send:Boolean;
+		public var verifyAcceptSurpriseGift:Boolean = false;
 		
 		public function ServerCallManagerProxy() {
 			

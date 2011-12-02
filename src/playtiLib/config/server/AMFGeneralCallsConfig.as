@@ -56,7 +56,7 @@ package playtiLib.config.server
 		public static const CREATE_SYSTEM_TO_USER_COUPON:DataCallConfig = new DataCallConfig( LOBBY_SERVICE, CREATE_EVENT_COUPON, false, new CreateEventCouponRequest );
 		public static const SEND_USER_TO_USER_COUPON:DataCallConfig 	= new DataCallConfig( LOBBY_SERVICE, SEND_COUPON, false, new CouponRequest );
 		public static const GET_AND_VALIDATE_COUPONS:DataCallConfig 	= new DataCallConfig( LOBBY_SERVICE, GET_VALIDATE_COUPONS, false, new CouponRequest );				
-		public static const ACCEPT_SURPRISE_GIFT:DataCallConfig 		= new DataCallConfig( LOBBY_SERVICE, ACCEPT_SURPRISE_GIFT_COMMAND, false, new ClientRequest );
+		public static const ACCEPT_SURPRISE_GIFT:DataCallConfig 		= new DataCallConfig( LOBBY_SERVICE, ACCEPT_SURPRISE_GIFT_COMMAND );
 		
 		public static const TODAY_RECEIVERS:DataCallConfig 				= new DataCallConfig( LOBBY_SERVICE, GET_TODAY_RECEIVERS, false, new ClientRequest );
 		public static const LOCALIZATION:ContentDataCallConfig 			= new ContentDataCallConfig( LOCALIZATION_SERVICE, GET_LOCALIZATION_COMMAND ,false, new LocalizationRequest());
