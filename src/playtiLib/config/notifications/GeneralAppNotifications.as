@@ -151,7 +151,7 @@ package playtiLib.config.notifications
 		public static const CREATE_EVENT_COUPON_COMMAND:String 		= 'create_event_coupon_command';
 		public static const SHARE_EVENT_COUPON_COMMAND:String 		= 'share_event_coupon_command';
 		
-		public static const GOTO_GAME_TAB 							= 'goto_game_tab';
+		public static const GOTO_GAME_TAB:String					= 'goto_game_tab';
 		
 		//tasks
 		public static const GET_TASKS_COMMAND:String				= 'get_tasks_command';
