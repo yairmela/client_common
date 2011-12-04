@@ -35,7 +35,7 @@ package playtiLib.model.proxies.coupon
 						//return true for coupon that its token doesn't appear in the current tokens
 						return tokens.indexOf( element.couponToken ) < 0;
 					});
-				data = coupons.concat( list );
+				data = list.concat( coupons );
 			}
 			sendNotification( GeneralAppNotifications.USER_COUPON_DATA_READY, coupons.length );
 		}

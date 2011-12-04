@@ -109,7 +109,7 @@ package playtiLib.utils.time
 			return new Date( Date.parse( dateString ) );
 		}
 		
-		public static function getDaysBetweenDates(date1:int,date2:int):int
+		public static function getDaysBetweenDates(date1:Number,date2:Number):int
 		{
 			var oneDay:Number = 1000 * 60 * 60 * 24;
 //			var date1Milliseconds:Number = Number( date1 );

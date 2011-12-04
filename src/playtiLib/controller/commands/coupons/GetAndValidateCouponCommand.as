@@ -66,13 +66,10 @@ package playtiLib.controller.commands.coupons
 						return ( element.errorCode == 0 );
 					} );
 			}
-				//filter out same sender on same day coupons
-				if( validCoupons.length > 1 )
-					validCoupons = filterOutSameSender( validCoupons );
-				if( validCoupons.length > 0 ){
-				//insert sender and message to every coupon
+			//filter out same sender on same day coupons
+			if( validCoupons.length > 1 ){
+				validCoupons = filterOutSameSender( validCoupons );
 			}
-			
 			if( !facade.hasProxy( UserCouponProxy.NAME ) ) {
 				//first load in this session, if there is a req id in the flash vars, force open the GCP
 				facade.registerProxy( new UserCouponProxy( validCoupons ) );
@@ -94,8 +91,7 @@ package playtiLib.controller.commands.coupons
 					afterThisCoupon = afterThisCoupon.filter(//filter out only users from same sn id to check if any
 						function( firstCoupon:Coupon, ...args ):Boolean {
 							var test:Boolean = TimeUtil.getDaysBetweenDates(firstCoupon.createdTs, coupon.createdTs) == 0;
-							return firstCoupon.senderSnId == coupon.senderSnId && 
-							TimeUtil.getDaysBetweenDates(firstCoupon.createdTs, coupon.createdTs) == 0
+							return firstCoupon.senderSnId == coupon.senderSnId && TimeUtil.getDaysBetweenDates(firstCoupon.createdTs, coupon.createdTs) == 0
 						});
 					//check if current coupon is prefered upon the first one
 					if( afterThisCoupon.length > 0 && isInRequestIds( coupon.couponToken ) ) {
