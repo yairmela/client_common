@@ -20,6 +20,7 @@ package playtiLib.view.components.popups
 		private var close_btn:ButtonSimple;
 		public var reload_btn:ButtonSimple;
 		
+		
 		public function SystemMsgPopupViewLogic( sys_msg:SystemMsgVO, popup_mc_name:String )	{
 			
 			super( popup_mc_name );
