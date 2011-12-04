@@ -2,6 +2,7 @@ package playtiLib.view.mediators.gift
 {
 	import flash.events.Event;
 	import flash.events.MouseEvent;
+	import flash.external.ExternalInterface;
 	
 	import playtiLib.config.notifications.GeneralAppNotifications;
 	import playtiLib.model.VO.gift.ChooseGift;
@@ -10,7 +11,7 @@ package playtiLib.view.mediators.gift
 	import playtiLib.view.components.gift.ChooseGiftsViewLogic;
 	import playtiLib.view.mediators.popups.PopupMediator;
 	 
-	public class ChooseGiftPopupMediator extends PopupMediator	{
+	public class ChooseGiftPopupMediator extends PopupMediator {
 		
 		public static const NAME:String = 'ChooseGiftPopupMediator';
 		
@@ -18,9 +19,9 @@ package playtiLib.view.mediators.gift
 		private var default_friend_sn_uid:String;
 		private var pre_gift:Gift;
 		
-		public function ChooseGiftPopupMediator( default_friend_sn_uid:String="0", pre_gift:Gift = null, doAction:PopupDoActionVO=null )	{
+		public function ChooseGiftPopupMediator( default_friend_sn_uid:String="0", pre_gift:Gift = null, doAction:PopupDoActionVO=null, closeAction:PopupDoActionVO=null ) {
 			
-			super( NAME, new ChooseGiftsViewLogic() );
+			super( NAME, new ChooseGiftsViewLogic(), doAction, closeAction );
 			send_gift_vlogic = viewComponent as ChooseGiftsViewLogic;
 			
 			this.default_friend_sn_uid = default_friend_sn_uid;

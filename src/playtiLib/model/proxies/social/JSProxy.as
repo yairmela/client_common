@@ -1,6 +1,9 @@
 package playtiLib.model.proxies.social {
 
 	import flash.external.ExternalInterface;
+	import playtiLib.config.server.ServerConfig;
+	import playtiLib.model.proxies.server.AMFServerCallManagerProxy;
+	import playtiLib.model.proxies.server.ServerCallManagerProxy;
 	
 	import org.puremvc.as3.patterns.proxy.Proxy;
 	
@@ -45,6 +48,7 @@ package playtiLib.model.proxies.social {
 				ExternalInterface.addCallback('publishCancel', publishCancel);
 				ExternalInterface.addCallback('FBGetRequestCallback', FBGetRequestCallback);
 				ExternalInterface.addCallback("onExternalTrackerEvent", trackMenu);
+				ExternalInterface.addCallback("acceptSurpriseGiftCoupon", acceptSurpriseGiftCoupon);
 			} catch (e:Error){
 			}
 		}
@@ -162,6 +166,17 @@ package playtiLib.model.proxies.social {
 		
 		private function showInviteFriends():void {
 			sendNotification(GeneralAppNotifications.SOCIAL_INVITE_FRIENDS);
+		}
+		
+		
+		private function acceptSurpriseGiftCoupon(...params):void {
+			var serverCallManager:ServerCallManagerProxy = facade.retrieveProxy(ServerCallManagerProxy.NAME) as ServerCallManagerProxy;
+			if (serverCallManager) {
+				serverCallManager.verifyAcceptSurpriseGift = true;
+				if (ServerConfig.session_info) {
+					sendNotification(GeneralAppNotifications.SOCIAL_ACCEPT_SURPRISE_GIFT);	
+				}
+			}			
 		}
 		
 		private function sendGiftsApproved(response:Object):void {

@@ -2,6 +2,7 @@ package playtiLib.controller.commands.social
 {
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.command.SimpleCommand;
+	import playtiLib.controller.commands.social.fb.FBAcceptSurpriseGift;
 	
 	import playtiLib.config.notifications.GeneralAppNotifications;
 	import playtiLib.config.social.SocialCallsConfig;
@@ -85,6 +86,7 @@ package playtiLib.controller.commands.social
 					facade.registerCommand( GeneralAppNotifications.REQUEST_DATA_RECEIVED, FBHandleRequestCommand);
 					facade.registerCommand( GeneralAppNotifications.SOCIAL_LIKE_APP, FBLikeCommand);
 					facade.registerCommand( GeneralAppNotifications.SOCIAL_LIKE_APP_CALLBACK, FBLikeCommand);
+					facade.registerCommand( GeneralAppNotifications.SOCIAL_ACCEPT_SURPRISE_GIFT, FBAcceptSurpriseGift);
 					break;
 
 				case SocialConfig.MM:

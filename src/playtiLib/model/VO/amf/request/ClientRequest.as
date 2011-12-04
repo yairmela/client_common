@@ -1,7 +1,5 @@
 package playtiLib.model.VO.amf.request
-{
-	import playtiLib.model.VO.amf.cheat.CheatType;
-
+{	
 	public class ClientRequest
 	{
 		public var sessionInfo:SessionInfo;

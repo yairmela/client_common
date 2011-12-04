@@ -75,8 +75,9 @@ package playtiLib.controller.commands.user
 			if ( like_data_holder.length > 0 ){
 				user_profile.like = 1;
 			}else{
-				user_profile.like = 2;
+				user_profile.like = 0;
 			}
+			
 			Logger.log( "Like " + user_profile.like );
 			
 			var friends_holder:Object = data_capsule.getDataHolder( SocialCallsConfig.SOCIAL_APP_FRIENDS_IDS ).data;

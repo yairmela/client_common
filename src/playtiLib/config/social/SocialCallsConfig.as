@@ -19,7 +19,8 @@ package playtiLib.config.social
 		private static const SOCIAL_FRIENDS_INFO:DataCallConfig 	= new StipulatedConverToStringCallConfigVO( ServerModulesConfig.SOCIAL, SOCIAL_FRIENDS_COMMAND_NAME, true, null, SocialUsersListVO, new DataStipulationVO('uids', SOCIAL_FRIENDS));
 		
 		public static const LIKE_APP_COMMAND_NAME:String = 'like_app_command_name';
-		public static const LIKE_APP:DataCallConfig = new DataCallConfig( ServerModulesConfig.SOCIAL, LIKE_APP_COMMAND_NAME, false, {} );
+		public static const LIKE_APP:DataCallConfig = new DataCallConfig( ServerModulesConfig.SOCIAL, LIKE_APP_COMMAND_NAME, false, { } );		
+
 		
 		// social friends with installed application
 		public static const SOCIAL_APP_FRIENDS_IDS_COMMAND_NAME:String 	= 'social_app_friends_command_name';

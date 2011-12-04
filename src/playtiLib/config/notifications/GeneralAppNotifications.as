@@ -42,6 +42,8 @@ package playtiLib.config.notifications
 		public static const SOCIAL_LIKE_APP_CALLBACK:String 		= 'social_like_app_callback';
 		public static const SET_PAUSE_POPUP_WITH_LOADING:String 	= 'set_pause_popup_with_loading';
 		public static const SET_SOCIAL_BANNERS:String 				= 'social_set_banners';
+		public static const SOCIAL_ACCEPT_SURPRISE_GIFT:String		= 'social_accept_surprise_gift';
+		
 		//full screen
 		public static const FULLSCREEN_MODE:String 					= 'fullscreen_mode';
 
@@ -148,6 +150,8 @@ package playtiLib.config.notifications
 		public static const SEND_COUPON_TO_FAKE_USERS:String 		= 'send_coupon_to_fake_users';
 		public static const CREATE_EVENT_COUPON_COMMAND:String 		= 'create_event_coupon_command';
 		public static const SHARE_EVENT_COUPON_COMMAND:String 		= 'share_event_coupon_command';
+		
+		public static const GOTO_GAME_TAB:String					= 'goto_game_tab';
 		
 		//tasks
 		public static const GET_TASKS_COMMAND:String				= 'get_tasks_command';

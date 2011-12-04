@@ -34,6 +34,7 @@ package playtiLib.config.server
 		private static const CREATE_EVENT_COUPON:String 				= 'createEventCoupon';
 		private static const SEND_COUPON:String 						= 'sendCoupon';
 		private static const GET_VALIDATE_COUPONS:String 				= 'getValidateUserCoupons';
+		private static const ACCEPT_SURPRISE_GIFT_COMMAND:String 		= 'activateEngagementGift';
 		
 		private static const GET_TODAY_RECEIVERS:String 				= 'getTodayRecievers';
 		//private static const UPDATE_CLIENT_TASK_STATUS_COMMAND:String 	= 'updateClientTaskStatus';
@@ -54,7 +55,8 @@ package playtiLib.config.server
 		public static const CREATE_USER_COUPON:DataCallConfig 			= new DataCallConfig( LOBBY_SERVICE, CREATE_COUPON, false, new CouponRequest );
 		public static const CREATE_SYSTEM_TO_USER_COUPON:DataCallConfig = new DataCallConfig( LOBBY_SERVICE, CREATE_EVENT_COUPON, false, new CreateEventCouponRequest );
 		public static const SEND_USER_TO_USER_COUPON:DataCallConfig 	= new DataCallConfig( LOBBY_SERVICE, SEND_COUPON, false, new CouponRequest );
-		public static const GET_AND_VALIDATE_COUPONS:DataCallConfig 	= new DataCallConfig( LOBBY_SERVICE, GET_VALIDATE_COUPONS, false, new CouponRequest );
+		public static const GET_AND_VALIDATE_COUPONS:DataCallConfig 	= new DataCallConfig( LOBBY_SERVICE, GET_VALIDATE_COUPONS, false, new CouponRequest );				
+		public static const ACCEPT_SURPRISE_GIFT:DataCallConfig 		= new DataCallConfig( LOBBY_SERVICE, ACCEPT_SURPRISE_GIFT_COMMAND );
 		
 		public static const TODAY_RECEIVERS:DataCallConfig 				= new DataCallConfig( LOBBY_SERVICE, GET_TODAY_RECEIVERS, false, new ClientRequest );
 		public static const LOCALIZATION:ContentDataCallConfig 			= new ContentDataCallConfig( LOCALIZATION_SERVICE, GET_LOCALIZATION_COMMAND ,false, new LocalizationRequest());
