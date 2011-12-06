@@ -96,8 +96,9 @@ package playtiLib.view.components.user
 		 * 
 		 */		
 		protected function panelClickHandler( event:MouseEvent ):void {
+			var userSocialInfo:UserSocialInfo = (user && user.userSocialInfo)? user.userSocialInfo : null;
 			
-			dispatchEvent( new EventTrans( EventTrans.DATA, user.userSocialInfo ) );
+			dispatchEvent( new EventTrans( EventTrans.DATA, userSocialInfo) );
 		}
 		
 		public function update():void {
