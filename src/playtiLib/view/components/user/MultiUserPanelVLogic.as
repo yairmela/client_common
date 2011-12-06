@@ -16,7 +16,7 @@ package playtiLib.view.components.user
 	public class MultiUserPanelVLogic extends EventDispatcher implements IViewLogic	{
 		
 		public var on_scrolled_num:int 			= 5;
-		public var scrolled_panel_padding:int 	= 72;
+		public var scrolled_panel_padding:int;
 		
 		private var panel_mc:MovieClip;
 		public var userItemClass:Class 			= MultiUserPanelItemVLogic;
@@ -36,6 +36,7 @@ package playtiLib.view.components.user
 		
 		private var isVertical:Boolean;
 		private var player_id:String;
+		private var index:int;
 		/**
 		 * The constructor of this class. It add (mouse CLICK) listeners to the buttons and
 		 * sets the scroll content area  
@@ -49,6 +50,8 @@ package playtiLib.view.components.user
 			if( user_item_class != null )
 				userItemClass = user_item_class;
 			this.isVertical = isVertical;
+			index = 1;
+			scrolled_panel_padding = isVertical ? 72 : 32;
 			with( panel_mc ) {
 				//set the scroll content area
 				scrolled_contnent_mc = getChildByName("content") as MovieClip
@@ -131,7 +134,7 @@ package playtiLib.view.components.user
 					start_index = scrolled_index + on_scrolled_num;
 					end_index = start_index + 1;
 					slots_move_num = 1;
-					first_panel_start_x = -scrolled_panel_padding;
+					first_panel_start_x = isVertical ? -scrolled_panel_padding : scrolled_panel_padding* 7;
 					scrolled_index += slots_move_num;
 					break;
 				case right_one_btn:
@@ -178,8 +181,13 @@ package playtiLib.view.components.user
 
 		private function insertUserItemPanels( new_users:Array, start_x:int=0 ):void {
 			
+			start_x = !isVertical && start_x == 0 ? -64:start_x;
 			new_users = new_users.reverse();
 			for each( var user:User in new_users ) {
+				if(user){
+					user.position = index;	
+				}
+				index++;
 				if( user && !user.userSocialInfo.isReady ){
 					dispatchEvent( new EventTrans( GeneralAppNotifications.LOAD_USER_SOCIAL_INFO_EVENT, user.userSocialInfo.sn_id, true ) );
 				}
