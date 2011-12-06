@@ -257,7 +257,7 @@ package playtiLib.view.components.user
 					}
 				}else{
 					userItem.content.y = userItem.desiredY;
-					if( userItem.content.y < 0 || 
+					if( userItem.content.y < -62 || 
 						userItem.content.y >= on_scrolled_num*scrolled_panel_padding ) {
 						for_removal.push( userItem );
 					}
