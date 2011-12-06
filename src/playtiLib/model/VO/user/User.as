@@ -10,6 +10,7 @@ package playtiLib.model.VO.user
 		public var userStatus:RestrictedUserStatus;
 		public var userLevel:RestrictedUserLevel;
 		public var userSocialInfo:UserSocialInfo;
+		public var position:int;
 		
 		public function User()
 		{
