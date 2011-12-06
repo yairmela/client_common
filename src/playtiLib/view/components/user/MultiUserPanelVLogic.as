@@ -34,6 +34,7 @@ package playtiLib.view.components.user
 		private var scrolled_index:int = 0;
 		private var scrolled_users_data:Array;
 		
+		private var isVertical:Boolean;
 		private var player_id:String;
 		/**
 		 * The constructor of this class. It add (mouse CLICK) listeners to the buttons and
@@ -42,11 +43,12 @@ package playtiLib.view.components.user
 		 * @param user_item_class
 		 * 
 		 */		
-		public function MultiUserPanelVLogic( panel_mc:MovieClip, user_item_class:Class = null ){
+		public function MultiUserPanelVLogic( panel_mc:MovieClip, user_item_class:Class = null, isVertical:Boolean=true ){
 			
 			this.panel_mc = panel_mc;
 			if( user_item_class != null )
 				userItemClass = user_item_class;
+			this.isVertical = isVertical;
 			with( panel_mc ) {
 				//set the scroll content area
 				scrolled_contnent_mc = getChildByName("content") as MovieClip
@@ -190,9 +192,13 @@ package playtiLib.view.components.user
 					   movie.mouseEnabled 	= false;
 				   }
 				userItem.addEventListener( EventTrans.DATA, dispatchEvent, false, 0, true );
-				
-				scrolled_contnent_mc.addChild( userItem.content ).x = start_x;
-				start_x += scrolled_panel_padding;
+				if( isVertical ){
+					scrolled_contnent_mc.addChild( userItem.content ).x = start_x;
+					start_x += scrolled_panel_padding;
+				}else{
+					scrolled_contnent_mc.addChild( userItem.content ).y = start_x;
+					start_x += scrolled_panel_padding;
+				}
 				panels_in_scrolled.push( userItem );
 			}
 		}
@@ -206,7 +212,11 @@ package playtiLib.view.components.user
 			
 			setScrollBtnsAvilability( true );
 			for each( var userItem:MultiUserPanelItemVLogic in panels_in_scrolled ) {
-				userItem.desiredX = userItem.content.x + number_of_slots * scrolled_panel_padding;
+				if(isVertical){
+					userItem.desiredX = userItem.content.x + number_of_slots * scrolled_panel_padding;
+				}else{
+					userItem.desiredY = userItem.content.y + number_of_slots * scrolled_panel_padding;
+				}
 			}
 			scrolled_contnent_mc.addEventListener( Event.ENTER_FRAME, updateUserItemPanels );
 		}
@@ -219,7 +229,7 @@ package playtiLib.view.components.user
 			
 			var last_move_step:Boolean;
 			for each( var userItem:MultiUserPanelItemVLogic in panels_in_scrolled ) {
-				last_move_step = Math.abs( userItem.desiredX - userItem.content.x ) < .2 || last_move_step;
+				last_move_step = isVertical ? Math.abs( userItem.desiredX - userItem.content.x ) < .2 || last_move_step :Math.abs( userItem.desiredY - userItem.content.y ) < .2 || last_move_step ;
 				userItem.update();
 			}
 			if( last_move_step )
@@ -231,10 +241,18 @@ package playtiLib.view.components.user
 			scrolled_contnent_mc.removeEventListener( Event.ENTER_FRAME, updateUserItemPanels );
 			var for_removal:Array = [];
 			for each( var userItem:MultiUserPanelItemVLogic in panels_in_scrolled ) {
-				userItem.content.x = userItem.desiredX;
-				if( userItem.content.x < 0 || 
-					userItem.content.x >= on_scrolled_num*scrolled_panel_padding ) {
-					for_removal.push( userItem );
+				if(isVertical){
+					userItem.content.x = userItem.desiredX;
+					if( userItem.content.x < 0 || 
+						userItem.content.x >= on_scrolled_num*scrolled_panel_padding ) {
+						for_removal.push( userItem );
+					}
+				}else{
+					userItem.content.y = userItem.desiredY;
+					if( userItem.content.y < 0 || 
+						userItem.content.y >= on_scrolled_num*scrolled_panel_padding ) {
+						for_removal.push( userItem );
+					}
 				}
 			}
 			for each( userItem in for_removal ) {
@@ -276,7 +294,12 @@ package playtiLib.view.components.user
 		public function forceItemsOffsetMove( value:Number ):void {
 			
 			for each( var userItem:MultiUserPanelItemVLogic in panels_in_scrolled ) {
-				userItem.content.x += value;
+				if(isVertical){
+					userItem.content.x += value;
+				}
+				else{
+					userItem.content.y += value;
+				}
 			}
 		}
 		

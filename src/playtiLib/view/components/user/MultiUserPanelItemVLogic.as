@@ -32,6 +32,7 @@ package playtiLib.view.components.user
 		protected var person_mc:MovieClip;
 		protected var user_photo_loader:Loader;
 		public var desiredX:Number;
+		public var desiredY:Number;
 		
 		public function MultiUserPanelItemVLogic( user:User, additional_item_mc:MovieClip = null, user_panel_item:String = 'multi_users_panel_item' )	{
 			
@@ -104,6 +105,7 @@ package playtiLib.view.components.user
 		public function update():void {
 			
 			content.x += ( desiredX-content.x ) * .35;
+			content.y += ( desiredY-content.y ) * .35;
 		}
 		
 		public function get content():DisplayObject	{
