@@ -57,7 +57,7 @@ package playtiLib.model.proxies.coupon
 					return coupon.couponToken != couponToken;
 				});
 			
-			sendNotification( GeneralAppNotifications.USER_COUPON_DATA_READY, coupons.length );
+//			sendNotification( GeneralAppNotifications.USER_COUPON_DATA_READY, coupons.length );
 		}
 	}
 }

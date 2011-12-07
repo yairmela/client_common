@@ -27,7 +27,7 @@ package playtiLib.view.components.popups
 			this.sys_msg = sys_msg;
 			
 			title_txt = popup_mc['title'] as TextField;
-			title_txt.text = sys_msg.title;
+			title_txt.text = sys_msg.title ? sys_msg.title : "" ;
 			
 			description_txt = popup_mc['body'] as TextField;
 			description_txt.text = sys_msg.description;

@@ -46,6 +46,7 @@ package playtiLib.view.components.gift
 				gift_mc.gotoAndStop(  'gift_' + String( ( coupon as Coupon ).giftTypeId ) );
 				mask_mc.width =  gift_mc.width;
 				content_con_mc.addChild( gift_mc );
+				(gift_mc.gift.bg as MovieClip).enabled = false;
 				list.GetListWindow().AddItem( gift_mc.gift.bg ).data = coupon;
 				gift_mc.gift.bg.count = i;
 				

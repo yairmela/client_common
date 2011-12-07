@@ -29,12 +29,15 @@ package playtiLib.view.mediators.gift
 		public static const NAME:String = 'giftcollectionPopupMediator';
 		private var popupVLogic:GiftCollectionViewLogic;
 		private var _forceUpdate:Boolean;
+		private var _closeBtn:PopupDoActionVO;
 		
 		public function GiftCollectionPopupMediator( popupViewLogic:PopupViewLogic, forceUpdate:Boolean = false )	{
 			
-			super( NAME, popupViewLogic );
-			_forceUpdate = forceUpdate;
-			popupVLogic = popupViewLogic as GiftCollectionViewLogic;
+			
+			super( NAME, popupViewLogic );	
+			
+			_forceUpdate 	= forceUpdate;
+			popupVLogic 	= popupViewLogic as GiftCollectionViewLogic;
 		}
 		
 		override public function onRegister():void { 
@@ -46,6 +49,7 @@ package playtiLib.view.mediators.gift
 			if( _forceUpdate ){
 				getUsersSocialInfoAndInsertToGCP();
 			}
+			
 }
 		
 		private function registerListeners():void {
