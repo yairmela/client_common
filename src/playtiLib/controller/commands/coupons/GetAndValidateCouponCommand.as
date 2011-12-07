@@ -90,7 +90,6 @@ package playtiLib.controller.commands.coupons
 					var afterThisCoupon:Array = arr.slice(index+1,arr.length);
 					afterThisCoupon = afterThisCoupon.filter(//filter out only users from same sn id to check if any
 						function( firstCoupon:Coupon, ...args ):Boolean {
-							var test:Boolean = TimeUtil.getDaysBetweenDates(firstCoupon.createdTs, coupon.createdTs) == 0;
 							return firstCoupon.senderSnId == coupon.senderSnId && TimeUtil.getDaysBetweenDates(firstCoupon.createdTs, coupon.createdTs) == 0
 						});
 					//check if current coupon is prefered upon the first one

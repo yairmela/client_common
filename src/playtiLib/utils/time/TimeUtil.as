@@ -111,12 +111,14 @@ package playtiLib.utils.time
 		
 		public static function getDaysBetweenDates(date1:Number,date2:Number):int
 		{
-			var oneDay:Number = 1000 * 60 * 60 * 24;
+//			date1 *= 1000
+//			date2 *= 1000
+			var oneDay:Number =  60 * 60 * 24;
 //			var date1Milliseconds:Number = Number( date1 );
 //			var date2Milliseconds:Number = Number( date2 );
-			var date:Date = new Date();
-			date.setMilliseconds(date1);
-			date.getDate();
+			var date:Date = new Date(date1*1000);
+//			date.setSeconds();
+//			date.getDate();
 			var differenceMilliseconds:Number = Math.abs(date1 - date2);
 			return Math.round(differenceMilliseconds/oneDay);
 		}
