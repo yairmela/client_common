@@ -30,6 +30,7 @@ package playtiLib.model.proxies.user
 		
 		public static const NAME:String = 'UserProxy';
 		private var user_social_info:UserSocialInfo;
+		public var isFirstLogin:Boolean = false;
 		
 		public function UserProxy( user_id:String ){
 			super( NAME, [AMFGeneralCallsConfig.USER_INFO] );
@@ -96,6 +97,14 @@ package playtiLib.model.proxies.user
 		public function get userSocialInfo():UserSocialInfo {
 			
 			return user_social_info;
+		}
+		 
+		public function set firstLogin(value:Boolean):void {
+			isFirstLogin = value;
+		}
+		
+		public function get firstLogin():Boolean {
+			return isFirstLogin;
 		}
 		
 		/**
