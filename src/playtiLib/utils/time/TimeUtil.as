@@ -10,13 +10,13 @@ package playtiLib.utils.time
 		 * @param millis        milliseconds
 		 * @return              clock string format
 		 */
-		public static function msToClockString( millis:Number, skipHour:Boolean=false ): String {
+		public static function msToClockString( millis:Number, skipHour:Boolean=false, minutesOneDigit:Boolean = false ): String {
 			
 			var str: String 	= '';//fillZeroes(String(millis % 1000), 3);
 			var remain: Number 	= uint( millis / 1000 );
 			str 			   += fillZeroes( String( remain % 60 ), 2 );
 			remain 				= uint( remain / 60 );
-			str 				= fillZeroes( String( remain % 60 ), 2 ) + ":" + str;
+			str 				= fillZeroes( String( remain % 60 ), (minutesOneDigit)?1:2 ) + ":" + str;
 			if( !skipHour )
 				str = fillZeroes( String( uint( remain / 60 ) ), 2 ) + ":" + str;
 			
