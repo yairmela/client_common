@@ -156,7 +156,7 @@ package playtiLib.view.mediators.popups
 		 * 
 		 */		
 		private function drawModalBG( shape:Sprite, width:int, height:int ):Sprite {
-			
+			shape.name = 'mcModalBG';
 			with( shape.graphics ) {
 				clear();
 				beginFill( 0,.5 );
