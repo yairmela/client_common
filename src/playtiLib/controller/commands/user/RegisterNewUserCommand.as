@@ -42,9 +42,8 @@ package playtiLib.controller.commands.user
 	 * @see playtiLib.model.proxies.user.UserProxy
 	 * @see playtiLib.utils.data.DataCapsule
 	 */
-	public class RegisterNewUserCommand extends SimpleCommand{
-		
-		private var user_profile:UserSocialInfo;
+	public class RegisterNewUserCommand extends SimpleCommand{		
+
 
 		override public function execute( notification:INotification ):void{
 			
@@ -69,16 +68,17 @@ package playtiLib.controller.commands.user
 			data_capsule.removeEventListener( Event.COMPLETE, registerResult );
 			
 			var response:ClientResponse = data_capsule.getDataHolderByIndex( 0 ).server_response as ClientResponse;
-			ServerConfig.session_info = ( response.result as LoginMessage ).sessionInfo;
+			
 			
 			switch( response.service.errorCode ) {// TODO: needs to add cases for server response code
 				case ServerCallConfig.SRC_SUCCESS:
-					sendNotification( GeneralAppNotifications.SERVER_LOGIN_COMPLETE );
-					sendNotification( GeneralAppNotifications.UPDATE_USER_INFO );
-					if( ExternalInterface.available )
-						ExternalInterface.call( 'loginComplete', true );
+					ServerConfig.session_info = ( response.result as LoginMessage ).sessionInfo;
 					trackAppRegistered();
-					trackUserInfo();
+					sendNotification( GeneralAppNotifications.SERVER_LOGIN_COMPLETE );					
+					sendNotification( GeneralAppNotifications.UPDATE_USER_INFO );
+					userProxy.firstLogin = true;
+					if( ExternalInterface.available )
+						ExternalInterface.call( 'loginComplete', true );									
 					break;
 				default:
 					Logger.log( "ERROR REGISTRATION NOT SUCCESS responseCode = " + response.service.errorCode ); 
@@ -87,9 +87,9 @@ package playtiLib.controller.commands.user
 			}
 		}
 		
-		private function get appConfigProxy():AppConfigProxy {
+		private function get userProxy():UserProxy {
 			
-			return facade.retrieveProxy( AppConfigProxy.NAME ) as AppConfigProxy;
+			return ( facade.retrieveProxy( UserProxy.NAME ) as UserProxy );
 		}
 		
 		private function get flash_vars():FlashVarsVO {
@@ -101,30 +101,6 @@ package playtiLib.controller.commands.user
 			
 			sendNotification(GeneralAppNotifications.TRACK, null, GeneralStatistics.APP_REGISTERED);
 		}
-		/**
-		 * :oads all the info of the user's frinds by data capsule and addEventListener to COMPLETE loading. 
-		 * 
-		 */
-		private function trackUserInfo():void{
-			
-			var data_capsule:DataCapsule = DataCapsuleFactory.getDataCapsule( [SocialCallsConfig.ALL_SOCIAL_FRIENDS_INFO] );
-			data_capsule.addEventListener( Event.COMPLETE, onFriendsInfoReady );
-			data_capsule.loadData();
-		}
-		/**
-		 * Called when the data of the friends is ready. It tracks the user's friends info.
-		 * @param event
-		 * 
-		 */
-		private function onFriendsInfoReady( event:Event ):void{
-			
-			var data_capsule:DataCapsule = event.currentTarget as DataCapsule;
-			data_capsule.removeEventListener( Event.COMPLETE, onFriendsInfoReady );
 
-			var friends_list:Array = ( data_capsule.getDataHolderByIndex(0).data as Array );
-			//TODO: delete this line
-		//	var country_id:String = (facade.retrieveProxy(FlashVarsProxy.NAME) as FlashVarsProxy).flash_vars.countryId;
-			sendNotification(GeneralAppNotifications.TRACK, {friends_count: friends_list.length}, GeneralStatistics.USER_INFO);
-		}
 	}
 }

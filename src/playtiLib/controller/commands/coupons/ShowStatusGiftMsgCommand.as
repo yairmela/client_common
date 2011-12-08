@@ -70,7 +70,7 @@ package playtiLib.controller.commands.coupons
 				case CouponSystemConfig.COUPON_SYSTEM_UNAVIABLE:	
 					systemMsgVO.popup_name_mc = GeneralDialogsConfig.POPUP_GIFTS_ARE_NOT_AVAILABLE;
 					systemMsgVO.description = TextLib.lib.retrive( 'coupon.coupon_system_unaviable.desc' ) as String;
-//					systemMsgVO.description = TextLib.lib.retrive( 'coupon.coupon_system_unaviable.title' ) as String;
+					systemMsgVO.title = TextLib.lib.retrive( 'coupon.coupon_system_unaviable.title' ) as String;
 					sendNotification( GeneralAppNotifications.SYSTEM_MSG_POPUP, systemMsgVO );
 					break;
 			}
