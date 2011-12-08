@@ -26,9 +26,12 @@ package playtiLib.controller.commands.social.fb
 		
 		private function onGiftDataReady( event:Event ):void{			
 			var giftDataHolder:Object = ( event.target as DataCapsule ).getDataHolderByIndex(0).data;
-			var coupon:Coupon = giftDataHolder.coupon as Coupon;
-			var couponCreated:Boolean = coupon || coupon.couponId;
-			ExternalInterface.call( 'setSurpiseGiftStatus', couponCreated);
+			if (giftDataHolder.hasOwnProperty('coupon')) {
+				var coupon:Coupon = giftDataHolder.coupon as Coupon;
+				var couponCreated:Boolean = coupon || coupon.couponId;
+				ExternalInterface.call( 'setSurpiseGiftStatus', couponCreated);
+			}
+
 		}
 		
 	}
