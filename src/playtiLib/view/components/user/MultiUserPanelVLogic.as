@@ -42,7 +42,6 @@ package playtiLib.view.components.user
 		 * sets the scroll content area  
 		 * @param panel_mc
 		 * @param user_item_class
-		 * 
 		 */		
 		public function MultiUserPanelVLogic( panel_mc:MovieClip, user_item_class:Class = null, isHorizontal:Boolean=true ){
 			
