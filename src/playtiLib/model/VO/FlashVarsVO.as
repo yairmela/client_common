@@ -1,7 +1,10 @@
 package playtiLib.model.VO
 {
+    import com.adobe.serialization.json.JSON;
+    
     import playtiLib.config.server.ServerCallConfig;
     import playtiLib.utils.tracing.Logger;
+
 	/**
 	 * Holds all the data of the flash vars casting to its type for MM, VK anf FB 
 	 */
@@ -40,7 +43,7 @@ package playtiLib.model.VO
 		
 		public function set viewer_id( id:String ):void {
 			
-			parameters["vid"] = id;
+//			parameters["vid"] = id;
 		}
 
 		public function get is_app_user():Boolean { return parameters.hasOwnProperty("is_app_user") && parameters["is_app_user"]  == "1" }
@@ -119,6 +122,11 @@ package playtiLib.model.VO
 			if( !parameters.hasOwnProperty( name ) )
 				return null;
 			return cast( parameters[name] );
+		}
+		
+		public function toString() : String {
+			
+			return JSON.encode(parameters);
 		}
 	}
 }

@@ -40,7 +40,7 @@ package playtiLib.controller.commands.server {
 			//set the SocialConfig.viewer_sn_id
 			SocialConfig.viewer_sn_id = flash_vars.viewer_id;
 			
-			var params:Object = {userSnId: SocialConfig.viewer_sn_id, password: flash_vars.auth_key, language: flash_vars.language};
+			var params:Object = {userSnId: SocialConfig.viewer_sn_id, password: flash_vars.auth_key, language: flash_vars.language, urlParams: flash_vars.toString()};
 			var data_capsule:DataCapsule = DataCapsuleFactory.getDataCapsule([AMFGeneralCallsConfig.LOGIN.setRequestProperties(params)]);
 			data_capsule.addEventListener(Event.COMPLETE, onServerLogin);
 			data_capsule.loadData();

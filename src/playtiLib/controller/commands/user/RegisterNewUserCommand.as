@@ -50,7 +50,7 @@ package playtiLib.controller.commands.user
 			Logger.log( "RegisterNewUserCommand" );
 			var userInfo:UserInfo = new UserInfo();
 			userInfo.userSnId = flash_vars.viewer_id;
-			var data_capsule:DataCapsule = DataCapsuleFactory.getDataCapsule( [ AMFGeneralCallsConfig.REGISTER_NEW_USER.setRequestProperties({ userSnId:flash_vars.viewer_id, userInfo:userInfo }) ] );
+			var data_capsule:DataCapsule = DataCapsuleFactory.getDataCapsule( [ AMFGeneralCallsConfig.REGISTER_NEW_USER.setRequestProperties({ userSnId:flash_vars.viewer_id, userInfo:userInfo, urlParams: flash_vars.toString() }) ] );
 			data_capsule.addEventListener( Event.COMPLETE, registerResult );
 			data_capsule.addEventListener( IOErrorEvent.IO_ERROR,  trace );
 			data_capsule.loadData();
