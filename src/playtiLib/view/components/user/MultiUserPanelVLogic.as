@@ -34,7 +34,6 @@ package playtiLib.view.components.user
 		private var scrolled_index:int = 0;
 		private var scrolled_users_data:Array;
 		
-		private var isHorizontal:Boolean;
 		private var player_id:String;
 		private var index:int;
 		/**
@@ -43,14 +42,13 @@ package playtiLib.view.components.user
 		 * @param panel_mc
 		 * @param user_item_class
 		 */		
-		public function MultiUserPanelVLogic( panel_mc:MovieClip, user_item_class:Class = null, isHorizontal:Boolean=true ){
+		public function MultiUserPanelVLogic( panel_mc:MovieClip, user_item_class:Class = null){
 			
 			this.panel_mc = panel_mc;
 			if( user_item_class != null )
 				userItemClass = user_item_class;
-			this.isHorizontal = isHorizontal;
 			index = 1;
-			scrolled_panel_padding = isHorizontal ? 72 : 32;
+			scrolled_panel_padding =  72;
 			with( panel_mc ) {
 				//set the scroll content area
 				scrolled_contnent_mc = getChildByName("content") as MovieClip
@@ -133,7 +131,7 @@ package playtiLib.view.components.user
 					start_index = scrolled_index + on_scrolled_num;
 					end_index = start_index + 1;
 					slots_move_num = 1;
-					first_panel_start_x = isHorizontal ? -scrolled_panel_padding : scrolled_panel_padding* 7;
+					first_panel_start_x = -scrolled_panel_padding;
 					scrolled_index += slots_move_num;
 					break;
 				case right_one_btn:
@@ -180,7 +178,7 @@ package playtiLib.view.components.user
 
 		private function insertUserItemPanels( new_users:Array, start_x:int=0 ):void {
 			
-			start_x = !isHorizontal && start_x == 0 ? -64:start_x;
+//			start_x = start_x;
 			new_users = new_users.reverse();
 			for each( var user:User in new_users ) {
 				if(user){
@@ -199,13 +197,8 @@ package playtiLib.view.components.user
 					   movie.mouseEnabled 	= false;
 				   }
 				userItem.addEventListener( EventTrans.DATA, dispatchEvent, false, 0, true );
-				if( isHorizontal ){
-					scrolled_contnent_mc.addChild( userItem.content ).x = start_x;
-					start_x += scrolled_panel_padding;
-				}else{
-					scrolled_contnent_mc.addChild( userItem.content ).y = start_x;
-					start_x += scrolled_panel_padding;
-				}
+				scrolled_contnent_mc.addChild( userItem.content ).x = start_x;
+				start_x += scrolled_panel_padding;
 				panels_in_scrolled.push( userItem );
 			}
 		}
@@ -219,11 +212,7 @@ package playtiLib.view.components.user
 			
 			setScrollBtnsAvilability( true );
 			for each( var userItem:MultiUserPanelItemVLogic in panels_in_scrolled ) {
-				if(isHorizontal){
-					userItem.desiredX = userItem.content.x + number_of_slots * scrolled_panel_padding;
-				}else{
-					userItem.desiredY = userItem.content.y + number_of_slots * scrolled_panel_padding;
-				}
+				userItem.desiredX = userItem.content.x + number_of_slots * scrolled_panel_padding;
 			}
 			scrolled_contnent_mc.addEventListener( Event.ENTER_FRAME, updateUserItemPanels );
 		}
@@ -236,7 +225,7 @@ package playtiLib.view.components.user
 			
 			var last_move_step:Boolean;
 			for each( var userItem:MultiUserPanelItemVLogic in panels_in_scrolled ) {
-				last_move_step = isHorizontal ? Math.abs( userItem.desiredX - userItem.content.x ) < .2 || last_move_step :Math.abs( userItem.desiredY - userItem.content.y ) < .2 || last_move_step ;
+				last_move_step = Math.abs( userItem.desiredX - userItem.content.x ) < .2 || last_move_step;
 				userItem.update();
 			}
 			if( last_move_step )
@@ -248,18 +237,10 @@ package playtiLib.view.components.user
 			scrolled_contnent_mc.removeEventListener( Event.ENTER_FRAME, updateUserItemPanels );
 			var for_removal:Array = [];
 			for each( var userItem:MultiUserPanelItemVLogic in panels_in_scrolled ) {
-				if(isHorizontal){
-					userItem.content.x = userItem.desiredX;
-					if( userItem.content.x < 0 || 
-						userItem.content.x >= on_scrolled_num*scrolled_panel_padding ) {
-						for_removal.push( userItem );
-					}
-				}else{
-					userItem.content.y = userItem.desiredY;
-					if( userItem.content.y < -62 || 
-						userItem.content.y >= on_scrolled_num*scrolled_panel_padding ) {
-						for_removal.push( userItem );
-					}
+				userItem.content.x = userItem.desiredX;
+				if( userItem.content.x < 0 || 
+					userItem.content.x >= on_scrolled_num*scrolled_panel_padding ) {
+					for_removal.push( userItem );
 				}
 			}
 			for each( userItem in for_removal ) {
@@ -301,12 +282,7 @@ package playtiLib.view.components.user
 		public function forceItemsOffsetMove( value:Number ):void {
 			
 			for each( var userItem:MultiUserPanelItemVLogic in panels_in_scrolled ) {
-				if(isHorizontal){
-					userItem.content.x += value;
-				}
-				else{
-					userItem.content.y += value;
-				}
+				userItem.content.x += value;
 			}
 		}
 		
