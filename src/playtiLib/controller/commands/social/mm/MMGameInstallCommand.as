@@ -40,7 +40,7 @@ package playtiLib.controller.commands.social.mm
 		private function updateLoginStatus( response:Object ):void {
 			
 			flashVarsProxy.flash_vars.viewer_id = response[0].uid;
-			flashVarsProxy.flash_vars.parameters['viewer_id'] = response[0].uid;
+		//	flashVarsProxy.flash_vars.parameters['viewer_id'] = response[0].uid;
 			SocialCallsConfig.SOCIAL_APP_FRIENDS_IDS.request_params.user_id = response[0].uid;
 			sendNotification( GeneralAppNotifications.SOCIAL_INSTALL_APPROVED );
 		}

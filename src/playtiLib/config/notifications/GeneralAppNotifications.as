@@ -143,7 +143,7 @@ package playtiLib.config.notifications
 		public static const USER_COUPON_DATA_READY:String 			= 'user_coupons_data_ready';
 		public static const TODAY_RECEIVERS_READY:String 			= 'today_receivers_ready';
 		public static const CLEANUP_COUPONS_COMMAND:String 			= 'clean_up_coupons_command';
-		public static const SYSTEM_TO_USER_COUPON_COLLECTION:String = 'collect_system_to_user_coupon';
+		public static const SYSTEM_TO_USER_COUPON_COLLECTION:String = 'collect_system_to_user_coupon_collection';
 		public static const GET_TODAY_RECEIVERS_COMMAND:String 		= 'get_today_receivers_command';
 		public static const OPEN_SYSTEM_TO_USER_POPUP:String 		= 'open_system_to_user_popup';
 		public static const UPDATE_TODAY_RECEIVERS:String 			= 'update_today_receivers';

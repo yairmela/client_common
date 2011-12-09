@@ -14,9 +14,7 @@ package playtiLib.controller.commands.social.fb
 	public class FBAcceptSurpriseGift extends SimpleCommand 
 	{
 		
-		override public function execute( notification:INotification ):void {
-			
-			sendNotification( GeneralAppNotifications.FULLSCREEN_MODE,false );
+		override public function execute( notification:INotification ):void {			
 		
 			var callConfig:DataCallConfig = AMFGeneralCallsConfig.ACCEPT_SURPRISE_GIFT;
 			var capsule:DataCapsule = DataCapsuleFactory.getDataCapsule([callConfig]);
@@ -26,10 +24,15 @@ package playtiLib.controller.commands.social.fb
 		
 		private function onGiftDataReady( event:Event ):void{			
 			var giftDataHolder:Object = ( event.target as DataCapsule ).getDataHolderByIndex(0).data;
-			if (giftDataHolder.hasOwnProperty('coupon')) {
+			if (giftDataHolder && giftDataHolder.hasOwnProperty('coupon')) {
 				var coupon:Coupon = giftDataHolder.coupon as Coupon;
-				var couponCreated:Boolean = coupon || coupon.couponId;
-				ExternalInterface.call( 'setSurpiseGiftStatus', couponCreated);
+				if (coupon && coupon.couponToken) {
+					sendNotification(GeneralAppNotifications.COLLECT_SYSTEM_TO_USER_COUPON, coupon.couponToken);
+				}
+				
+				ExternalInterface.call( 'setSurpiseGiftStatus', true);
+			}else {
+				ExternalInterface.call( 'setSurpiseGiftStatus', false);
 			}
 
 		}

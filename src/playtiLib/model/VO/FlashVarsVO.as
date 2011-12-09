@@ -10,7 +10,8 @@ package playtiLib.model.VO
 	 */
 	public class FlashVarsVO {
 		
-		public var parameters:Object;
+		private var params:Object;
+		private var resourceCacheIds:Object;
 		
 		public function get assets_server_path():String {
 			
@@ -19,7 +20,8 @@ package playtiLib.model.VO
 
 		public function get api_url():String { 		return getCastedProperty( "api_url", String ); }
 		public function get api_id():String { 		return getCastedProperty( "api_id", String );}
-		public function set api_id( id:String ):void { parameters["api_id"] = id }
+		public function get app_id():String { 		return getCastedProperty( "app_id", String );}
+		public function set api_id( id:String ):void { params["api_id"] = id }
 
 		public function get is_like_app():Boolean {
 			
@@ -43,11 +45,11 @@ package playtiLib.model.VO
 		
 		public function set viewer_id( id:String ):void {
 			
-//			parameters["vid"] = id;
+//			params["vid"] = id;
 		}
 
-		public function get is_app_user():Boolean { return parameters.hasOwnProperty("is_app_user") && parameters["is_app_user"]  == "1" }
-		public function set is_app_user( value:Boolean ):void { parameters["is_app_user"]  = value?"1":"0" }
+		public function get is_app_user():Boolean { return params.hasOwnProperty("is_app_user") && params["is_app_user"]  == "1" }
+		public function set is_app_user( value:Boolean ):void { params["is_app_user"]  = value?"1":"0" }
 
 		public function get viewer_type():int { return getCastedProperty( "viewer_type", int ) }
 		public function get auth_key():String { return getCastedProperty( "auth_key", String ) }
@@ -56,10 +58,11 @@ package playtiLib.model.VO
 		public function get api_result():String { return getCastedProperty( "api_result", String ) }
 
 		public function get api_settings():int { return getCastedProperty( "api_settings", int ) }
-		public function set api_settings( id:int ):void { parameters["api_settings"] = id }
+		public function set api_settings( id:int ):void { params["api_settings"] = id }
 
 		public function get couponsExpiredDays():int { return getCastedProperty( "coupons_expired_days", int ) }
 		public function get serverDate():String { return getCastedProperty( "server_date", String ) }
+		public function get serverPath():String { return getCastedProperty( "server_path", String ) }
 		//instalation url params***********************************
 
 		//MM
@@ -77,18 +80,18 @@ package playtiLib.model.VO
 		//login
 		public function get ch():String {			return getCastedProperty( "ch", String );}
 		public function get et():String {			return getCastedProperty( "et", String );}
-		public function set et( value:String ):void {	parameters["et"] = value; }
+		public function set et( value:String ):void {	params["et"] = value; }
 		public function get crt():String {			return getCastedProperty( "crt", String );}
-		public function set crt( value:String ):void { parameters["crt"] = value; }
+		public function set crt( value:String ):void { params["crt"] = value; }
 		public function get pid():String {			return getCastedProperty( "pid", String );}
-		public function set pid( value:String ):void { parameters["pid"] = value; }
+		public function set pid( value:String ):void { params["pid"] = value; }
 		public function get src():String {			return getCastedProperty( "src", String );}
 		public function get iid():String {			return getCastedProperty( "iid", String );}
 		public function get request_ids():String {	return getCastedProperty( "request_ids", String );}
-		public function set request_ids(request_ids:String):void {	parameters["request_ids"] = request_ids;}
+		public function set request_ids(request_ids:String):void {	params["request_ids"] = request_ids;}
 
 		public function get coupon_token():String {	return getCastedProperty( "coupon_token", String );	}
-		public function set coupon_token(coupon_token:String):void {parameters["coupon_token"] = coupon_token;}
+		public function set coupon_token(coupon_token:String):void {params["coupon_token"] = coupon_token;}
 		//VK
 		public function get referrer():String {		return getCastedProperty( "referrer", String );	}
 		public function get poster_id():String{		return getCastedProperty( "poster_id", String );}
@@ -96,7 +99,7 @@ package playtiLib.model.VO
 		public function get user_id():String {		return getCastedProperty( "user_id", String );}
 		public function get group_id():int { return getCastedProperty( "group_id", int ); }
 
-		public function set post_id( value:String ):void { parameters["post_id"] = value; }
+		public function set post_id( value:String ):void { params["post_id"] = value; }
 		//******************************************************
 
 		public function get gift_token():String {
@@ -107,26 +110,31 @@ package playtiLib.model.VO
 			}
 			return  token;
 		}
-		public function set gift_token( value:String ):void { parameters["gift_token"] = value; }
+		public function set gift_token( value:String ):void { params["gift_token"] = value; }
 
-		public function FlashVarsVO( parameters:Object ){
+		public function FlashVarsVO( params:Object ){
 			
-			this.parameters = parameters;
-			for( var i:String in parameters ){
-				Logger.log( "FlashVarsVO ['"+i+"'] = " + parameters[i] );
+			this.params = params;
+			resourceCacheIds = JSON.decode(params.res_cache_id);
+			for( var i:String in params ){
+				Logger.log( "FlashVarsVO ['"+i+"'] = " + params[i] );
 			}
 		}
 
+		public function getResourceCacheId(id:String):String {			
+			return resourceCacheIds[id] as String;
+		}
+		
 		protected function getCastedProperty( name:String, cast:Class ):* {
 			
-			if( !parameters.hasOwnProperty( name ) )
+			if( !params.hasOwnProperty( name ) )
 				return null;
-			return cast( parameters[name] );
+			return cast( params[name] );
 		}
 		
 		public function toString() : String {
 			
-			return JSON.encode(parameters);
+			return JSON.encode(params);
 		}
 	}
 }

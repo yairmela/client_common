@@ -169,14 +169,8 @@ package playtiLib.model.proxies.social {
 		}
 		
 		
-		private function acceptSurpriseGiftCoupon(...params):void {
-			var serverCallManager:ServerCallManagerProxy = facade.retrieveProxy(ServerCallManagerProxy.NAME) as ServerCallManagerProxy;
-			if (serverCallManager) {
-				serverCallManager.verifyAcceptSurpriseGift = true;
-				if (ServerConfig.session_info) {
-					sendNotification(GeneralAppNotifications.SOCIAL_ACCEPT_SURPRISE_GIFT);	
-				}
-			}			
+		private function acceptSurpriseGiftCoupon():void {			
+			sendNotification(GeneralAppNotifications.SOCIAL_ACCEPT_SURPRISE_GIFT);	
 		}
 		
 		private function sendGiftsApproved(response:Object):void {

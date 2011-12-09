@@ -24,9 +24,9 @@ package playtiLib.controller.commands.coupons
 		override public function execute ( notification:INotification ):void{
 			
 			var coupon_token:String = notification.getBody() as String;
-			var dataCapsule:DataCapsule = DataCapsuleFactory.getDataCapsule( [AMFGeneralCallsConfig.ACCEPT_USER_COUPON.setRequestProperties( coupon_token ) ] );
+			var dataCapsule:DataCapsule = DataCapsuleFactory.getDataCapsule( [AMFGeneralCallsConfig.ACCEPT_USER_COUPON.setRequestProperties( {couponToken:coupon_token} ) ] );
 			dataCapsule.addEventListener( Event.COMPLETE, onDataReady );
-			dataCapsule.loadData();
+			dataCapsule.loadData();			
 		} 
 		
 		public function onDataReady( event:Event ):void{
