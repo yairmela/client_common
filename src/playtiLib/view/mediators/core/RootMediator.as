@@ -17,7 +17,7 @@ package playtiLib.view.mediators.core
 		
 		public static const NAME:String = 'CoreMediator';
 
-		private var root_view:Sprite;
+		protected var root_view:Sprite;
 
 		public function RootMediator( root:Sprite )	{
 			
