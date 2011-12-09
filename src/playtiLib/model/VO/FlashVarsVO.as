@@ -117,8 +117,9 @@ package playtiLib.model.VO
 			this.params = params;
 			
 			resourceCacheIds = {};
+			
 			if( params.hasOwnProperty("res_cache_id") ) {
-				JSON.decode(params["res_cache_id"])
+				resourceCacheIds = JSON.decode(params["res_cache_id"])
 			}
 			
 			for( var i:String in params ){
