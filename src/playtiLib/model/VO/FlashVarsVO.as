@@ -115,7 +115,12 @@ package playtiLib.model.VO
 		public function FlashVarsVO( params:Object ){
 			
 			this.params = params;
-			resourceCacheIds = JSON.decode(params.res_cache_id);
+			
+			resourceCacheIds = {};
+			if( params.hasOwnProperty("res_cache_id") ) {
+				JSON.decode(params["res_cache_id"])
+			}
+			
 			for( var i:String in params ){
 				Logger.log( "FlashVarsVO ['"+i+"'] = " + params[i] );
 			}
