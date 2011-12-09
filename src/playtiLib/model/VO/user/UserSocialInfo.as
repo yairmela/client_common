@@ -56,7 +56,7 @@ package playtiLib.model.VO.user
 
 		public var email:String;
 		
-		public var is_gift_sent:Boolean;
+//		public var is_gift_sent:Boolean;
 		
 		public function UserSocialInfo(){
 			
