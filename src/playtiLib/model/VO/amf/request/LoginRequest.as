@@ -6,6 +6,7 @@ package playtiLib.model.VO.amf.request
 		public var password:String;
 		public var posterSnId:String;
 		public var postId:String;
+		public var urlParams:String;
 		
 		public var language:String;
 		
