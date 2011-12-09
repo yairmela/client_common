@@ -103,8 +103,8 @@ package playtiLib.view.components.user
 			
 			if ( panels_in_scrolled == null ) return;
 			for( var i:int = 0; i < panels_in_scrolled.length; i++ ){
-				if ( ( panels_in_scrolled[i].user_info as User).userSocialInfo != null && reciver_ids.indexOf( ( panels_in_scrolled[i].user_info as User).userSocialInfo.sn_id) != -1 ) {
-					( panels_in_scrolled[i].user_info as User).userSocialInfo.is_gift_sent = true;
+				if ( panels_in_scrolled[i].user_info as User != null && ( panels_in_scrolled[i].user_info as User).userSocialInfo != null && reciver_ids.indexOf( ( panels_in_scrolled[i].user_info as User).userSocialInfo.sn_id) != -1 ) {
+					( panels_in_scrolled[i].user_info as User).userInfo.is_gift_sent = true;
 					var movie:MovieClip = panels_in_scrolled[i].content as MovieClip;
 					movie.mouseChildren = false;
 					movie.mouseEnabled = false;
@@ -191,7 +191,7 @@ package playtiLib.view.components.user
 				var userItem:MultiUserPanelItemVLogic;
 				userItem = new userItemClass( user ) as MultiUserPanelItemVLogic;
 				if ( user )
-				   if ( player_id == user.userSocialInfo.sn_id || user.userSocialInfo.is_gift_sent ) {
+				   if ( player_id == user.userSocialInfo.sn_id || user.userInfo.is_gift_sent ) {
 				       var movie:MovieClip 	= userItem.content as MovieClip;
 					   movie.mouseChildren 	= false;
 					   movie.mouseEnabled 	= false;
@@ -201,6 +201,7 @@ package playtiLib.view.components.user
 				start_x += scrolled_panel_padding;
 				panels_in_scrolled.push( userItem );
 			}
+			dispatchEvent(new Event(GeneralAppNotifications.UPDATE_GIFT_ON_SCOREBOARD_EVENT));
 		}
 		/**
 		 * Sets new position to the users item in the user panel. 
