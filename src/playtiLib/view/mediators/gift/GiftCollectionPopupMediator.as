@@ -175,7 +175,9 @@ package playtiLib.view.mediators.gift
 					}
 					break;
 				case GeneralAppNotifications.USER_COUPON_DATA_READY:
-					getUsersSocialInfoAndInsertToGCP();
+					if( notification.getType() != 'removeCoupon' ){
+						getUsersSocialInfoAndInsertToGCP();
+					}
 					break;
 				default:
 					throw Error( 'Unknow notification' );
