@@ -30,10 +30,12 @@ package playtiLib.model.proxies.user
 			var missingUserSocialInfoList:Array = new Array();
 			var dataCapsule:DataCapsule;
 			for each( var id:String in ids ){
-				if( userSocialInfoList[id] == null ){
+				if( userSocialInfoList[id] == null || !( userSocialInfoList[id] as UserSocialInfo ).isReady ){
 					missingUserSocialInfoList.push( id );
-					userSocialInfoList[id] = new UserSocialInfo();
-					( userSocialInfoList[id] as UserSocialInfo ).sn_id = id;
+					if( userSocialInfoList[id] == null ){
+						userSocialInfoList[id] = new UserSocialInfo();
+						( userSocialInfoList[id] as UserSocialInfo ).sn_id = id;
+					}
 				}
 				returnUserSocialInfoList.push( userSocialInfoList[id] );
 			}
