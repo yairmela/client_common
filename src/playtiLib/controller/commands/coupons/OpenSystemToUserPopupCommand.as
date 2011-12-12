@@ -21,7 +21,7 @@ package playtiLib.controller.commands.coupons
 			var closeAction:PopupDoActionVO;
 			switch( couponMessage.coupon.giftTypeId ){
 				case CouponSystemConfig.GIFT_TYPE_COINS:
-					user_proxy.user_status.balanceInCoins += Number( couponMessage.giftTypeValue ) ;
+					user_proxy.user_status.balanceInCoins += Number( couponMessage.coupon.giftTypeValue ) ;
 					doAction = new PopupDoActionVO([GeneralAppNotifications.USER_DATA_READY],null,null,[true]);
 					closeAction = doAction;
 					break;
