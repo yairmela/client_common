@@ -182,7 +182,7 @@ package playtiLib.view.components.user
 			new_users = new_users.reverse();
 			for each( var user:User in new_users ) {
 				if(user){
-					user.position = index;	
+					user.userPositionInLeaderBoard = index;	
 				}
 				index++;
 				if( user && !user.userSocialInfo.isReady ){
