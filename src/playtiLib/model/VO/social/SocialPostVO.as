@@ -47,6 +47,7 @@ package playtiLib.model.VO.social
 
 			if( num_params.length == 1 ) {
 				params["num"] = String(num_params[0]);
+				params["game_name"] = String(num_params[0]);
 			}	else {
 				for( var i : int = 0; i < num_params.length; i++ ) {
 					params["num"+i] = String(num_params[i]);
