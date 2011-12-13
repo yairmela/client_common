@@ -27,7 +27,7 @@ package playtiLib.controller.commands.social.fb
 			if (giftDataHolder && giftDataHolder.hasOwnProperty('coupon')) {
 				var coupon:Coupon = giftDataHolder.coupon as Coupon;
 				if (coupon && coupon.couponToken) {
-					sendNotification(GeneralAppNotifications.COLLECT_SYSTEM_TO_USER_COUPON, coupon.couponToken);
+					sendNotification(GeneralAppNotifications.SYSTEM_TO_USER_COUPON_COLLECTION, coupon.couponToken);
 				}
 				
 				ExternalInterface.call( 'setSurpiseGiftStatus', true);

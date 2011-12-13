@@ -47,9 +47,13 @@ package playtiLib.controller.commands.coupons
 			var couponMessage:CouponMessage = dataCapsule.getDataHolderByIndex(0).data as CouponMessage;
 			var result:ClientResponse = dataCapsule.getDataHolderByIndex(0).server_response as ClientResponse;
 			if ( result.service.errorCode != CouponSystemConfig.NO_ERROR_COUPON ){
-				couponMessage.coupon.errorCode = result.service.errorCode;
-				sendNotification( GeneralAppNotifications.CLEANUP_COUPONS_COMMAND, [couponMessage.coupon], GeneralAppNotifications.COLLECT_COUPON_COMMAND );
-			}else{
+				if( couponMessage && couponMessage.coupon ){
+					couponMessage.coupon.errorCode =  result.service.errorCode;
+					sendNotification( GeneralAppNotifications.CLEANUP_COUPONS_COMMAND, [couponMessage.coupon], GeneralAppNotifications.COLLECT_COUPON_COMMAND );
+				}else{
+					sendNotification( GeneralAppNotifications.SHOW_STATUS_GIFT_MSG, result.service.errorCode );	
+				}
+			}else{ 
 				sendNotification( GeneralAppNotifications.AFTER_COLLECT_COUPON_COMMAND, this.notification.getBody(), couponMessage.coupon.giftTypeValue );
 				fb_request_proxy.removeCouponRequest( couponMessage.coupon.couponToken );
 				coupon_proxy.removeCoupon( couponMessage.coupon.couponToken );

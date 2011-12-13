@@ -51,6 +51,13 @@ package playtiLib.view.components.gift
 				gift_mc.gift.bg.count = i;
 				
 				i++;
+				if( i == gifts.length){
+					gift_mc = GraphicsWarehouseList.getAsset( 'mc_gifts_con' ) as MovieClip;
+					content_con_mc.addChild( gift_mc );
+					(gift_mc.gift.bg as MovieClip).enabled = false;
+					gift_mc.alpha = 0;
+					list.GetListWindow().AddItem( gift_mc.gift.bg ).data = new Coupon();
+				}
 			}
 		}
 		

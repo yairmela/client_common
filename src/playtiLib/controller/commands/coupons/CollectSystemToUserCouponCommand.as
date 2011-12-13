@@ -23,10 +23,10 @@ package playtiLib.controller.commands.coupons
 		//need to be override at game's class
 		override public function execute ( notification:INotification ):void{
 			
-			var coupon_token:String = notification.getBody() as String;
-			var dataCapsule:DataCapsule = DataCapsuleFactory.getDataCapsule( [AMFGeneralCallsConfig.ACCEPT_USER_COUPON.setRequestProperties( {couponToken:coupon_token} ) ] );
-			dataCapsule.addEventListener( Event.COMPLETE, onDataReady );
-			dataCapsule.loadData();			
+//			var coupon_token:String = notification.getBody() as String;
+//			var dataCapsule:DataCapsule = DataCapsuleFactory.getDataCapsule( [AMFGeneralCallsConfig.ACCEPT_USER_COUPON.setRequestProperties( {couponToken:coupon_token} ) ] );
+//			dataCapsule.addEventListener( Event.COMPLETE, onDataReady );
+//			dataCapsule.loadData();			
 		} 
 		
 		public function onDataReady( event:Event ):void{

@@ -38,7 +38,6 @@ package playtiLib.view.components.gift
 			
 			if( preloader_mc && preloader_mc.parent )
 				preloader_mc.parent.removeChild( preloader_mc );
-			
 			gifts_list.insertGifts( coupons );
 			gifts_list.list.GetListWindow().currentItemIndex = 0;
 			

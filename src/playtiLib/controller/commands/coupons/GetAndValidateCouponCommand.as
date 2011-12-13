@@ -42,7 +42,7 @@ package playtiLib.controller.commands.coupons
 			dataCapsule.addEventListener( Event.COMPLETE, onDataReady );
 			dataCapsule.loadData();
 		}
-		
+		 
 		private function onDataReady( event:Event ):void {
 			
 			var dataCapsule:DataCapsule = event.currentTarget as DataCapsule;

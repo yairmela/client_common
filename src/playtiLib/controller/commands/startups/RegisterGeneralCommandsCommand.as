@@ -8,7 +8,6 @@ package playtiLib.controller.commands.startups
 	import playtiLib.controller.commands.coupons.ChooseGiftCompleteCommand;
 	import playtiLib.controller.commands.coupons.CleanupCouponsCommand;
 	import playtiLib.controller.commands.coupons.CollectCouponCommand;
-	import playtiLib.controller.commands.coupons.CollectSystemToUserCouponCommand;
 	import playtiLib.controller.commands.coupons.CreateCouponCommand;
 	import playtiLib.controller.commands.coupons.CreateEventCouponCommand;
 	import playtiLib.controller.commands.coupons.GetAndValidateCouponCommand;
@@ -59,7 +58,6 @@ package playtiLib.controller.commands.startups
 			facade.registerCommand( GeneralAppNotifications.OPEN_POPUP, OpenPopupCommand );
 			facade.registerCommand( GeneralAppNotifications.SHOW_STATUS_GIFT_MSG, ShowStatusGiftMsgCommand );
 			//coupons
-			facade.registerCommand( GeneralAppNotifications.COLLECT_SYSTEM_TO_USER_COUPON, CollectSystemToUserCouponCommand );
 			facade.registerCommand( GeneralAppNotifications.CHOOSE_GIFT_COMPLETE, ChooseGiftCompleteCommand );
 			facade.registerCommand( GeneralAppNotifications.REJECT_COUPON, RejectCouponCommand );
 			facade.registerCommand( GeneralAppNotifications.OPEN_GIFT_COLLECTION_POPUP, OpenGiftCollectionPopupCommand );
