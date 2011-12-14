@@ -51,7 +51,7 @@ package playtiLib.view.components.gift
 				gift_mc.gift.bg.count = i;
 				
 				i++;
-				if( i == gifts.length){
+				if( i == gifts.length && i > 5){
 					gift_mc = GraphicsWarehouseList.getAsset( 'mc_gifts_con' ) as MovieClip;
 					content_con_mc.addChild( gift_mc );
 					(gift_mc.gift.bg as MovieClip).enabled = false;
