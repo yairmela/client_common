@@ -36,7 +36,7 @@ package playtiLib.controller.commands.coupons
 				gift_mc, 
 				TextLib.lib.retrive( 'wall_posts.gifts.gift_' + new_gift.gift_type + '.desc' ), 
 				TextLib.lib.retrive( 'wall_posts.gifts.gift_' + new_gift.gift_type + '.title' ), 
-				ServerConfig.ASSETS_SERVER_IP + 'res/walls/gifts/gift_'+new_gift.gift_type + '.png', publish_event_type);
+				ServerConfig.ASSETS_SERVER_IP + 'core/img/gifts/gift_'+new_gift.gift_type + '.png', publish_event_type);
 			post_vo.is_gift = true;
 			post_vo.gift_type = new_gift.gift_type;
 			

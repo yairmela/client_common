@@ -12,6 +12,7 @@ package playtiLib.controller.commands.coupons
 	import playtiLib.model.VO.popup.PopupDoActionVO;
 	import playtiLib.model.proxies.user.UserProxy;
 	import playtiLib.view.mediators.gift.ChooseGiftPopupMediator;
+	
 
 	/**
 	 * This class has two options: 1. open chooseGiftPopupMediator and then the user will choose gift type or 2. sends CHOOSE_GIFT_COMPLETE - 
