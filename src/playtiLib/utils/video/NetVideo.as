@@ -52,7 +52,9 @@ package playtiLib.utils.video {
 			video.attachNetStream(stream);
 			addChild(video);
 			
-			stream.play(video_url)
+			stream.play(video_url);
+			
+			dispatchEvent( new Event(Event.INIT) );
 		}
 		
 		private function StreamOnMetaData(item:Object):void {
