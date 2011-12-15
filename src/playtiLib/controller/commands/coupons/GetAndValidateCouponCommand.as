@@ -84,8 +84,9 @@ package playtiLib.controller.commands.coupons
 			
 			//adding to array the coupons that already in userCouponProxy
 			if(  facade.hasProxy( UserCouponProxy.NAME ) ){
-				coupons.concat( coupon_proxy.coupons );
+				coupons =  coupons.concat( coupon_proxy.coupons );
 			}
+			
 			//this array will contain swaps to be done after the filter proccess
 			//it will determin according to the request_ids we got in flash vars
 			var swapSameSenderCoupons:Array = [];
