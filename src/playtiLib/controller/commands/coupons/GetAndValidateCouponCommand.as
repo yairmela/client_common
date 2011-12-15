@@ -67,7 +67,7 @@ package playtiLib.controller.commands.coupons
 					} );
 			}
 			//filter out same sender on same day coupons
-			if( validCoupons.length > 1 ){
+			if( validCoupons.length > 0 ){
 				validCoupons = filterOutSameSender( validCoupons );
 			}
 			if( !facade.hasProxy( UserCouponProxy.NAME ) ) {
@@ -81,6 +81,11 @@ package playtiLib.controller.commands.coupons
 		}
 		//filter out the duplicated coupons ( same sender && same day )
 		private function filterOutSameSender( coupons:Array ):Array{
+			
+			//adding to array the coupons that already in userCouponProxy
+			if(  facade.hasProxy( UserCouponProxy.NAME ) ){
+				coupons.concat( coupon_proxy.coupons );
+			}
 			//this array will contain swaps to be done after the filter proccess
 			//it will determin according to the request_ids we got in flash vars
 			var swapSameSenderCoupons:Array = [];
