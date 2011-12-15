@@ -38,11 +38,14 @@ package playtiLib.view.components.text
 			origin_target_pos = new Point( tool_tip_mc.x, tool_tip_mc.y );
 			
 			origin_parent.removeChild( tool_tip_mc );
+			root_view = master_mc.stage;
+			
 			master_mc.addEventListener( Event.ADDED_TO_STAGE, onAddToStage, false, 0, true );
 			master_mc.addEventListener( MouseEvent.ROLL_OVER, onMasterRollEvent, false, 0, true );
 			master_mc.addEventListener( MouseEvent.MOUSE_DOWN, onMasterRollEvent, false, 0, true );
 	//		master_mc.addEventListener (MouseEvent.MOUSE_OUT, onMasterRollEvent, false, 0, true );
 			master_mc.addEventListener( MouseEvent.ROLL_OUT, onMasterRollEvent, false, 0, true );
+			
 		}
 		/**
 		 * Sets new text to it's texts fields. Gets the fields key and the text that should be inside. 
