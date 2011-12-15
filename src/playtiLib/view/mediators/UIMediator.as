@@ -11,8 +11,7 @@ package playtiLib.view.mediators
 	public class UIMediator extends Mediator {
 		
 		protected var add_at_bottom:Boolean;
-		
-		
+				
 		public function UIMediator( mediatorName:String=null, viewComponent:Object=null, add_at_bottom:Boolean=false ){
 			
 			super( mediatorName, viewComponent );
