@@ -140,7 +140,7 @@ package playtiLib.view.components.btns {
 		
 		public function get value():Number {
 			
-			return (slider_btn.content[target_variable_name] / track[target_range_name]);
+			return slider_btn.content[target_variable_name] / (track[target_range_name]-slider_btn.content.height);
 		}
 		
 		/**
