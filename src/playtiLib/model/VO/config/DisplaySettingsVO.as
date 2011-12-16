@@ -8,7 +8,6 @@ package playtiLib.model.VO.config
 	public class DisplaySettingsVO{
 		
 		public var fullscreen : Boolean = false;
-		public var fullscreen_size:Point;
-		
+		public var fullscreen_size:Point;		
 	}
 }
