@@ -66,6 +66,8 @@ package playtiLib.model.VO.amf.response.helpers
 		/** The dailyBonusCounter */
 		public var dailyBonusCounter:int;
 		
+		public var lastMegaBonusTs:Number;
+		
 		public function UserInfo()
 		{
 		}
