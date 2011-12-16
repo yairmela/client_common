@@ -30,7 +30,6 @@ package playtiLib.view.components.list
 			scroll_attached = new Object();
 			
 			view_port = content.getChildByName(VIEWPORT_NAME);
-			view_port.height +=40;
 			if( !view_port ) {
 				throw new Error( "Child \"" + VIEWPORT_NAME + "\" was not found." );
 				
