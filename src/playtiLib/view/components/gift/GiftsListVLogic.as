@@ -49,7 +49,6 @@ package playtiLib.view.components.gift
 				(gift_mc.gift.bg as MovieClip).enabled = false;
 				list.GetListWindow().AddItem( gift_mc.gift.bg ).data = coupon;
 				gift_mc.gift.bg.count = i;
-				
 				i++;
 			}
 		}

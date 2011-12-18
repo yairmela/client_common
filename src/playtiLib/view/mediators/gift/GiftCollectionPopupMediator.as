@@ -33,7 +33,6 @@ package playtiLib.view.mediators.gift
 		
 		public function GiftCollectionPopupMediator( popupViewLogic:PopupViewLogic, forceUpdate:Boolean = false )	{
 			
-			
 			super( NAME, popupViewLogic );	
 			
 			_forceUpdate 	= forceUpdate;
@@ -49,8 +48,7 @@ package playtiLib.view.mediators.gift
 			if( _forceUpdate ){
 				getUsersSocialInfoAndInsertToGCP();
 			}
-			
-}
+		}
 		
 		private function registerListeners():void {
 			
@@ -61,6 +59,56 @@ package playtiLib.view.mediators.gift
 			
 		}
 		
+		override public function listNotificationInterests():Array {
+			
+			return [GeneralAppNotifications.COUPON_REMOVED,
+				GeneralAppNotifications.REJECT_COUPON_CONFIRM,
+				GeneralAppNotifications.REJECT_COUPON_CANCEL,
+				GeneralAppNotifications.COUPON_COLLECTED,
+				GeneralAppNotifications.USER_COUPON_DATA_READY,
+				GeneralAppNotifications.TODAY_RECEIVERS_READY];
+		} 
+		
+		override public function handleNotification( notification:INotification ):void {
+			
+			var gift_mc:MovieClip;
+			switch( notification.getName() ) {
+				case GeneralAppNotifications.COUPON_REMOVED:
+					if( !userCouponProxy.coupons.length ){
+						closePopup();
+					}
+					break;
+				case GeneralAppNotifications.COUPON_COLLECTED:
+					if( !userCouponProxy.coupons.length ){
+						closePopup();
+					}else{
+						popupVLogic.onCouponCollect( notification.getBody() as Coupon );
+					}
+					break;
+				case GeneralAppNotifications.REJECT_COUPON_CONFIRM:
+					popupVLogic.onRejectConfirm( notification.getBody() );
+					break;
+				case GeneralAppNotifications.REJECT_COUPON_CANCEL:
+					var target:Object = notification.getBody();
+					target.enabled = true;;
+					break;
+				case GeneralAppNotifications.TODAY_RECEIVERS_READY:
+					var recievers_ids:String = notification.getBody() as String;
+					if ( recievers_ids!= null && recievers_ids.length > 0 ){
+						popupVLogic.updateGiftBack(recievers_ids);
+					}
+					break;
+				case GeneralAppNotifications.USER_COUPON_DATA_READY:
+					if( notification.getType() != 'removeCoupon' ){
+						getUsersSocialInfoAndInsertToGCP();
+					}
+					break;
+				default:
+					throw Error( 'Unknow notification' );
+					break;
+			}
+		}
+		
 		private function get userCouponProxy():UserCouponProxy{
 			
 			return facade.retrieveProxy( UserCouponProxy.NAME ) as UserCouponProxy;
@@ -68,48 +116,27 @@ package playtiLib.view.mediators.gift
 
 		private function giftBackHandler( event:EventTrans ):void {
 			
-			var gift_mc:MovieClip 		= ( ( ( event.data) as MouseEvent ).currentTarget as ButtonSimple ).content.parent as MovieClip;
-			var coupon:Coupon 	 		= popupVLogic.listWindow.GetItem( gift_mc.bg.count ).data as Coupon;
-			var chooseGift:ChooseGift 	= new ChooseGift();
-			chooseGift.friend_uid 		= coupon.senderSnId;
-			
-			var pre_gift:Gift	 		= new Gift();
-			pre_gift.sender_sn_id 		= coupon.senderSnId;
-			pre_gift.gift_type 			= coupon.giftTypeId;
-			chooseGift.pre_gift 		= pre_gift;			
-			sendNotification( GeneralAppNotifications.OPEN_SEND_GIFT_POPUP, chooseGift );
+			sendNotification( GeneralAppNotifications.OPEN_SEND_GIFT_POPUP, event.data as ChooseGift );
 		}
 		
 		private function collectHandler( event:EventTrans ):void {
 			
-			( ( event.data) as MouseEvent ).currentTarget.enabled = false;
-			var gift_mc:MovieClip 								= ( ( ( event.data) as MouseEvent ).target as ButtonSimple ).content.parent as MovieClip;
-			var coupon:Coupon 									= popupVLogic.listWindow.GetItem( gift_mc.bg.count ).data as Coupon;
-			
-			gift_mc.gift_back_preloader.visible 				= true;
-			gift_mc.collect_preloader.visible 					= true;
-			gift_mc.reject_preloader.visible 					= true;
-			
-			var gift_mc_loop:MovieClip;
-			for(var i:int=0; i< popupVLogic.listWindow.length; i++) {
-				gift_mc_loop = popupVLogic.listWindow.GetItem(i).content.parent as MovieClip;
-				gift_mc_loop.btn_collect.enabled = false;
-				gift_mc_loop.btn_gift_back.removeEventListener( MouseEvent.CLICK, giftBackHandler );
-				gift_mc_loop.btn_collect.removeEventListener( MouseEvent.CLICK, collectHandler );
-				gift_mc_loop.btn_remove.removeEventListener( MouseEvent.CLICK, removeHandler );
-			}
-			sendNotification( GeneralAppNotifications.PRE_COLLECT_COUPON_COMMAND, coupon );
+			sendNotification( GeneralAppNotifications.PRE_COLLECT_COUPON_COMMAND, event.data as Coupon );
 		}
 		
 		private function removeHandler( event:EventTrans ):void {
 			
-			var target_obj:Object =  ( ( event.data) as MouseEvent ).currentTarget;
-			sendNotification( GeneralAppNotifications.OPEN_POPUP,
-				new PopupMediator( "pop_up_reject_confirm", 
-					new PopupViewLogic( "pop_up_reject_confirm" ), 
-					new PopupDoActionVO( [GeneralAppNotifications.REJECT_COUPON_CONFIRM],[target_obj],null,[true] ),
-					new PopupDoActionVO( [GeneralAppNotifications.REJECT_COUPON_CANCEL],[target_obj],null,[true] ) ),
-				OpenPopupCommand.FORCE_OPEN );
+			if( ( event.data as MouseEvent ) != null ){
+				var target_obj:Object =  ( ( event.data) as MouseEvent ).currentTarget;
+				sendNotification( GeneralAppNotifications.OPEN_POPUP,
+					new PopupMediator( "pop_up_reject_confirm", 
+						new PopupViewLogic( "pop_up_reject_confirm" ), 
+						new PopupDoActionVO( [GeneralAppNotifications.REJECT_COUPON_CONFIRM],[target_obj],null,[true] ),
+						new PopupDoActionVO( [GeneralAppNotifications.REJECT_COUPON_CANCEL],[target_obj],null,[true] ) ),
+					OpenPopupCommand.FORCE_OPEN );
+			}else if( event.data as Coupon != null ){
+				sendNotification( GeneralAppNotifications.REJECT_COUPON, event.data as Coupon );
+			}
 		}
 		
 		private function sendGiftHandler( event:EventTrans ):void {
@@ -134,66 +161,6 @@ package playtiLib.view.mediators.gift
 			}
 		}
 
-		private function onRejectConfirm( target_obj:Object ):void{
-			
-			var gift_mc:MovieClip;
-			( target_obj as ButtonSimple ).enabled 	= false;
-			gift_mc 								= ( target_obj as ButtonSimple ).content.parent as MovieClip;
-			var rejectCoupon:Coupon 				= popupVLogic.listWindow.GetItem( gift_mc.bg.count ).data as Coupon;
-			gift_mc.btn_collect.visible 			= false;
-			gift_mc.btn_gift_back.visible 			= false;
-			sendNotification( GeneralAppNotifications.REJECT_COUPON, rejectCoupon );
-		}
-		
-		override public function handleNotification( notification:INotification ):void {
-			
-			var gift_mc:MovieClip;
-			switch( notification.getName() ) {
-				case GeneralAppNotifications.COUPON_REMOVED:
-					if( !userCouponProxy.coupons.length ){
-						closePopup();
-					}
-					break;
-				case GeneralAppNotifications.COUPON_COLLECTED:
-					if( !userCouponProxy.coupons.length ){
-						closePopup();
-					}else{
-						popupVLogic.onCouponCollect( notification.getBody() as Coupon );
-					}
-					break;
-				case GeneralAppNotifications.REJECT_COUPON_CONFIRM:
-					onRejectConfirm( notification.getBody() );
-					break;
-				case GeneralAppNotifications.REJECT_COUPON_CANCEL:
-					var target:Object = notification.getBody();
-					target.enabled = true;;
-					break;
-				case GeneralAppNotifications.TODAY_RECEIVERS_READY:
-					var recievers_ids:String = notification.getBody() as String;
-					if ( recievers_ids!= null && recievers_ids.length > 0 ){
-						popupVLogic.updateGiftBack(recievers_ids);
-					}
-					break;
-				case GeneralAppNotifications.USER_COUPON_DATA_READY:
-					if( notification.getType() != 'removeCoupon' ){
-						getUsersSocialInfoAndInsertToGCP();
-					}
-					break;
-				default:
-					throw Error( 'Unknow notification' );
-					break;
-			}
-		}
-		
-		override public function listNotificationInterests():Array {
-			
-			return [GeneralAppNotifications.COUPON_REMOVED,
-				GeneralAppNotifications.REJECT_COUPON_CONFIRM,
-				GeneralAppNotifications.REJECT_COUPON_CANCEL,
-				GeneralAppNotifications.COUPON_COLLECTED,
-				GeneralAppNotifications.USER_COUPON_DATA_READY,
-				GeneralAppNotifications.TODAY_RECEIVERS_READY];
-		} 
 		public function get user_proxy():UserProxy {
 			return facade.retrieveProxy( UserProxy.NAME ) as UserProxy;
 		}
