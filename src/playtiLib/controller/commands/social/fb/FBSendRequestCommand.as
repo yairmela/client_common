@@ -18,13 +18,10 @@ package playtiLib.controller.commands.social.fb
 	 * @see playtiLib.model.proxies.config.DisplaySettingsProxy
 	 */
 	public class FBSendRequestCommand extends CouponCommand	{
-		
-		
-		
+		 
 		override public function execute( notification:INotification ):void {
 			
 			var postVO:SocialPostVO;
-//			( facade.retrieveProxy( DisplaySettingsProxy.NAME ) as DisplaySettingsProxy ).fullscreen = false; 
 			postVO = notification.getBody() as SocialPostVO;
 			//add today receivers to the postVO object
 			postVO.today_receivers_ids = receivers_proxy.today_receivers;

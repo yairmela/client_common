@@ -25,6 +25,7 @@ package playtiLib.config.gifts
 		public static const STATUS_UNKNOWN_COUPON:int 						= 1001;
 		public static const STATUS_REMOVED_COUPON:int						= 1002;
 		public static const STATUS_COUPON_SENT_BY_MYSELF:int 				= 1010;
+		public static const COUPON_IS_NOT_AVAILABLE_NOW:int					= 1011;		
 		//cliet side error cods
 		public static const STATUS_COUPON_CANT_BE_COLLECTED:int 			= 10000;
 		public static const STATUS_INACCEPTABLE_COUPON:int 					= 10001;

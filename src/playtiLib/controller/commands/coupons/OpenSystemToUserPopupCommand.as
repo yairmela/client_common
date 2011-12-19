@@ -7,8 +7,10 @@ package playtiLib.controller.commands.coupons
 	import playtiLib.config.notifications.GeneralAppNotifications;
 	import playtiLib.model.VO.amf.response.CouponMessage;
 	import playtiLib.model.VO.popup.PopupDoActionVO;
+	import playtiLib.view.components.popups.EngagementBarVLogic;
 	import playtiLib.view.components.popups.PopupViewLogic;
 	import playtiLib.view.mediators.popups.PopupMediator;
+
 	/**
 	 * Opens the popup that represent the system to user coupon (should be extended in the game's classes)
 	 */
@@ -19,6 +21,8 @@ package playtiLib.controller.commands.coupons
 			var couponMessage:CouponMessage = notification.getBody() as CouponMessage;
 			var doAction:PopupDoActionVO;
 			var closeAction:PopupDoActionVO;
+			var is_coupon_from_eng_bar:Boolean = notification.getType() == 'true' ? true : false; 
+			
 			switch( couponMessage.coupon.giftTypeId ){
 				case CouponSystemConfig.GIFT_TYPE_COINS:
 					user_proxy.user_status.balanceInCoins += Number( couponMessage.coupon.giftTypeValue ) ;
@@ -26,10 +30,17 @@ package playtiLib.controller.commands.coupons
 					closeAction = doAction;
 					break;
 			}
-			sendNotification(GeneralAppNotifications.OPEN_POPUP,
-				new PopupMediator( GeneralDialogsConfig.POPUP_GIFT_REDEEMED, 
-					new PopupViewLogic(GeneralDialogsConfig.POPUP_GIFT_REDEEMED), 
-					doAction, closeAction));
+			if( !is_coupon_from_eng_bar ){
+				sendNotification(GeneralAppNotifications.OPEN_POPUP,
+					new PopupMediator( GeneralDialogsConfig.POPUP_GIFT_REDEEMED, 
+						new PopupViewLogic(GeneralDialogsConfig.POPUP_GIFT_REDEEMED), 
+						doAction, closeAction));
+			}else{
+				sendNotification(GeneralAppNotifications.OPEN_POPUP,
+					new PopupMediator( GeneralDialogsConfig.POPUP_GIFT_REDEEMED, 
+						new EngagementBarVLogic(GeneralDialogsConfig.POPUP_GIFT_REDEEMED, couponMessage.coupon.giftTypeValue ), 
+						doAction, closeAction));
+			}
 		}
 		
 	}

@@ -6,6 +6,7 @@ package playtiLib.view.mediators.gift
 	
 	import org.puremvc.as3.interfaces.INotification;
 	
+	import playtiLib.config.display.GeneralDialogsConfig;
 	import playtiLib.config.gifts.CouponSystemConfig;
 	import playtiLib.config.notifications.GeneralAppNotifications;
 	import playtiLib.controller.commands.popup.OpenPopupCommand;
@@ -31,7 +32,7 @@ package playtiLib.view.mediators.gift
 		private var _forceUpdate:Boolean;
 		private var _closeBtn:PopupDoActionVO;
 		
-		public function GiftCollectionPopupMediator( popupViewLogic:PopupViewLogic, forceUpdate:Boolean = false )	{
+		public function GiftCollectionPopupMediator( popupViewLogic:GiftCollectionViewLogic, forceUpdate:Boolean = false )	{
 			
 			super( NAME, popupViewLogic );	
 			
@@ -99,7 +100,7 @@ package playtiLib.view.mediators.gift
 					}
 					break;
 				case GeneralAppNotifications.USER_COUPON_DATA_READY:
-					if( notification.getType() != 'removeCoupon' ){
+					if( notification.getType() != GeneralAppNotifications.COUPON_REMOVED ){
 						getUsersSocialInfoAndInsertToGCP();
 					}
 					break;
@@ -129,8 +130,8 @@ package playtiLib.view.mediators.gift
 			if( ( event.data as MouseEvent ) != null ){
 				var target_obj:Object =  ( ( event.data) as MouseEvent ).currentTarget;
 				sendNotification( GeneralAppNotifications.OPEN_POPUP,
-					new PopupMediator( "pop_up_reject_confirm", 
-						new PopupViewLogic( "pop_up_reject_confirm" ), 
+					new PopupMediator( GeneralDialogsConfig.POPUP_REJECT_CONFIRM, 
+						new PopupViewLogic( GeneralDialogsConfig.POPUP_REJECT_CONFIRM ), 
 						new PopupDoActionVO( [GeneralAppNotifications.REJECT_COUPON_CONFIRM],[target_obj],null,[true] ),
 						new PopupDoActionVO( [GeneralAppNotifications.REJECT_COUPON_CANCEL],[target_obj],null,[true] ) ),
 					OpenPopupCommand.FORCE_OPEN );
