@@ -57,19 +57,12 @@ package playtiLib.utils.text {
 			var i:int = 0;
 			var negative : Boolean = (number < 0);
 			var str:String = Math.abs(number).toString();
-			var dotPos:int = (hasDot ? str.indexOf(".") : str.length);
-			var hasDot:Boolean = (dotPos < str.length);
-//			var ret:String = (has_sep && (minDecimals == 0) ? "" : (siStyle ? "," : ".")) + str.substr(sep_pos + 1);
-//			if (minDecimals > 0) {
-//				while(ret.length <= minDecimals - (str.length - (has_sep ? sep_pos - 1 : sep_pos)); j++) {
-//					ret += "0";
-//				}
-//			}
-//			while (i + 3 < (str.substr(0, 1) == "-" ? sep_pos - 1 : sep_pos)) {
-//				ret = (siStyle ? "." : ",") + str.substr(sep_pos - (i += 3), 3) + ret;
-//			}
-//			
-//			return str.substr(0, sep_pos - i) + ret;
+			var dotPos:int = str.indexOf(".");
+			var hasDot:Boolean = (dotPos >= 0);
+			
+			if(!hasDot) {
+				dotPos = str.length;
+			}
 			
 			var integer : String = str.substring(0, dotPos);
 			var fractional : String = str.substr(dotPos + 1, maxDecimals);
