@@ -57,12 +57,6 @@ package playtiLib.controller.commands.coupons
 					systemMsgVO.description = TextLib.lib.retrive( 'coupon.cant_collect_some.desc' ) as String;
 					sendNotification( GeneralAppNotifications.SYSTEM_MSG_POPUP, systemMsgVO );
 					break;
-//				case CouponSystemConfig.COUPON_SYSTEM_UNAVIABLE:
-//					systemMsgVO.popup_name_mc = null;
-//					systemMsgVO.title = TextLib.lib.retrive( 'coupon.coupon_system_unaviable.title' ) as String;
-//					systemMsgVO.description = TextLib.lib.retrive( 'coupon.coupon_system_unaviable.desc' ) as String;
-//					sendNotification( GeneralAppNotifications.SYSTEM_MSG_POPUP, systemMsgVO );
-//					break;
 				//coupon system is unavailable
 				case CouponSystemConfig.STATUS_CUPON_SYSTEM_UNAVIABLE:
 				case CouponSystemConfig.COUPON_UNKNOWN_ERROR:	
