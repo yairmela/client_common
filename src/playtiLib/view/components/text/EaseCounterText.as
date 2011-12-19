@@ -1,10 +1,12 @@
 package playtiLib.view.components.text
 {
 	import fl.motion.easing.Linear;
+	
 	import flash.display.DisplayObject;
 	import flash.display.MovieClip;
 	import flash.events.Event;
 	import flash.text.TextField;
+	
 	import playtiLib.utils.text.TextUtil;
 	import playtiLib.view.interfaces.IViewLogic;
 	
@@ -21,13 +23,15 @@ package playtiLib.view.components.text
 		private var ease_delta_value:Number;
 		
 		private var is_thouthand_separate:Boolean;
+		private var force_decimals : Boolean;
 		
-		public function EaseCounterText( text_con_mc:MovieClip, text_filed_name:String, ease_frame_laps:int = 40, is_thouthand_separate:Boolean = false )	{
+		public function EaseCounterText( text_con_mc:MovieClip, text_filed_name:String, ease_frame_laps:int = 40, is_thouthand_separate:Boolean = false, force_decimals : Boolean = true )	{
 			
 			this.text_con_mc 			= text_con_mc;
 			this.counter_txt 			= text_con_mc[text_filed_name] as TextField;
 			this.ease_count_final 		= ease_frame_laps;
 			this.is_thouthand_separate 	= is_thouthand_separate;
+			this.force_decimals 		= force_decimals;
 		}
 		
 		public function forceValue( new_value:Number ):void {
@@ -39,7 +43,7 @@ package playtiLib.view.components.text
 			//set new value
 			current_value = new_value;
 			if ( is_thouthand_separate ){
-				counter_txt.text = TextUtil.numberFormat( current_value, 2 );
+				counter_txt.text = TextUtil.numberFormat( current_value, 2, (force_decimals ? 2 : 0) );
 			}else{
 				counter_txt.text = current_value.toFixed( 2 );
 			}
