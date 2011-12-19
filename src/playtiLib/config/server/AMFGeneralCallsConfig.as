@@ -28,7 +28,6 @@ package playtiLib.config.server
 		private static const GET_CLIENT_TASKS_COMMAND:String 			= 'getClientTasks';
 		//coupons
 		private static const REJECT_COUPON:String 						= 'rejectCoupon';
-//		private static const ACCEPT_COUPON:String 						= 'acceptCoupon';
 		private static const COLLECT_COUPON:String 						= 'collectCoupon';
 		private static const CREATE_COUPON:String 						= 'createCoupon';
 		private static const CREATE_EVENT_COUPON:String 				= 'createEventCoupon';
@@ -50,7 +49,6 @@ package playtiLib.config.server
 		public static const USER_INFO:DataCallConfig 					= new DataCallConfig( LOBBY_SERVICE, GET_USER_INFO_COMMAND );
 		//coupons
 		public static const REJECT_USER_COUPON:DataCallConfig 			= new DataCallConfig( LOBBY_SERVICE, REJECT_COUPON, false, new CouponRequest );
-//		public static const ACCEPT_USER_COUPON:DataCallConfig 			= new DataCallConfig( LOBBY_SERVICE, ACCEPT_COUPON, false, new CouponRequest );
 		public static const COLLECT_USER_COUPON:DataCallConfig 			= new DataCallConfig( LOBBY_SERVICE, COLLECT_COUPON, false, new CouponRequest );
 		public static const CREATE_USER_COUPON:DataCallConfig 			= new DataCallConfig( LOBBY_SERVICE, CREATE_COUPON, false, new CouponRequest );
 		public static const CREATE_SYSTEM_TO_USER_COUPON:DataCallConfig = new DataCallConfig( LOBBY_SERVICE, CREATE_EVENT_COUPON, false, new CreateEventCouponRequest );

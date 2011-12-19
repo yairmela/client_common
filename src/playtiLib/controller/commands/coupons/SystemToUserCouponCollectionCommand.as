@@ -18,10 +18,12 @@ package playtiLib.controller.commands.coupons
 	import playtiLib.view.mediators.popups.PopupMediator;
 
 	public class SystemToUserCouponCollectionCommand extends CouponCommand{
+		private var is_from_engagement_bar:Boolean;
 		
 		override public function execute ( notification:INotification ):void {
 			//check if the coupon_token is provided by notification
 			var coupon_token:String = notification.getBody() != null ? notification.getBody() as String : null;
+			is_from_engagement_bar = notification.getType() == 'from_engagement_bar';
 			//check if the coupon_token is provided by flash_vars
 			if ( flash_vars_proxy.flash_vars.coupon_token != null && flash_vars_proxy.flash_vars.coupon_token != "" && flash_vars_proxy.flash_vars.coupon_token != "null" ){
 				coupon_token = flash_vars_proxy.flash_vars.coupon_token;  
@@ -55,7 +57,7 @@ package playtiLib.controller.commands.coupons
 					}else{
 						( facade.retrieveProxy( SelectedCouponProxy.NAME ) as SelectedCouponProxy ).coupon = couponMessage.coupon;
 					}
-					sendNotification( GeneralAppNotifications.OPEN_SYSTEM_TO_USER_POPUP, couponMessage );
+					sendNotification( GeneralAppNotifications.OPEN_SYSTEM_TO_USER_POPUP, couponMessage, is_from_engagement_bar.toString() );
 					break;
 				case CouponSystemConfig.STATUS_COUPON_ALREADY_COLLECTED:
 					sendNotification(GeneralAppNotifications.SHOW_STATUS_GIFT_MSG, CouponSystemConfig.STATUS_COUPON_ALREADY_COLLECTED);
