@@ -47,6 +47,7 @@ package playtiLib.controller.commands.coupons
 				coupon.message = ( dataCapsule.getDataHolderByIndex(0).data as CouponMessage ).couponMessage;
 			}
 			postVo.coupon = coupon;
+			
 			sendNotification( GeneralAppNotifications.SHARE_EVENT_COUPON_COMMAND, postVo );
 		}
 	}
