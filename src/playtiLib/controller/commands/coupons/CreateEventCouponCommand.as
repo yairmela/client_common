@@ -37,11 +37,10 @@ package playtiLib.controller.commands.coupons
 		private function onCreateCouponComplete( event:Event ):void {
 
 			var dataCapsule:DataCapsule = event.currentTarget as DataCapsule;
+			dataCapsule.removeEventListener( Event.COMPLETE, onCreateCouponComplete );
 			var coupon:Coupon;
 			if( CouponSystemConfig.isCouponSystemUnavailable( dataCapsule.getDataHolderByIndex(0).server_response.service.errorCode ) ) {
-//				sendNotification( GeneralAppNotifications.COUPON_SYSTEM_UNAVIABLE );
-//				return;
-				
+				//continue the flow with no coupon	
 			}else if( ( dataCapsule.getDataHolderByIndex(0).data as CouponMessage ) != null ){
 				coupon = ( dataCapsule.getDataHolderByIndex(0).data as CouponMessage ).coupon;
 				coupon.message = ( dataCapsule.getDataHolderByIndex(0).data as CouponMessage ).couponMessage;

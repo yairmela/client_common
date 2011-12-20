@@ -13,8 +13,7 @@ package playtiLib.controller.commands.coupons
 	 */	
 	public class CouponCommand extends SimpleCommand {
 		
-		public function CouponCommand()
-		{
+		public function CouponCommand()	{
 			super();
 		}
 		public function get coupon_proxy():UserCouponProxy{

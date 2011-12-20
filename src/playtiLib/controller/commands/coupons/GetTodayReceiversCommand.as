@@ -24,8 +24,9 @@ package playtiLib.controller.commands.coupons
 		
 		private function onDataReady( event:Event ):void {
 			
-			var data_capsule:DataCapsule = event.currentTarget as DataCapsule;
-			var receiversMessage:CouponReceiversMessage = data_capsule.getDataHolderByIndex(0).data as CouponReceiversMessage;
+			var dataCapsule:DataCapsule = event.currentTarget as DataCapsule;
+			dataCapsule.removeEventListener( Event.COMPLETE, onDataReady );
+			var receiversMessage:CouponReceiversMessage = dataCapsule.getDataHolderByIndex(0).data as CouponReceiversMessage;
 			var recrivers:String = receiversMessage.receivers;
 			//init the todayReceivers proxy
 			facade.registerProxy( new TodayReceiversProxy( recrivers ) );
