@@ -8,6 +8,7 @@ package playtiLib.utils.sounds
 	import flash.media.SoundTransform;
 	import flash.net.URLLoader;
 	import flash.net.URLRequest;
+	import flash.utils.ByteArray;
 	
 	import mx.messaging.Channel;
 	
@@ -165,11 +166,16 @@ package playtiLib.utils.sounds
 			trace( event );
 		}
 		
-		public function loadSoundsWarehouse( url:String, name:String=null ):void {
+		public function loadSoundsWarehouse( source:*, name:String=null ):void {
 			
 			var warehouse:SWFGraphicsWarehouse = new SWFGraphicsWarehouse( name );
 			warehouse.addEventListener(IOErrorEvent.IO_ERROR, IO_Error );
-			warehouse.load( url );
+			if(source is ByteArray) {
+				warehouse.loadBytes(source);
+			}
+			else {
+				warehouse.load(source);
+			}
 			sounds_swf_warehouses.push( warehouse );
 		}
 		
