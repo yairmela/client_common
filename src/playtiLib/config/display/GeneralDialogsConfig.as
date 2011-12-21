@@ -16,5 +16,6 @@ package playtiLib.config.display
 		public static const POPUP_COLLECT_GIFTS:String 			= 'pop_up_collect_gifts';
 		public static const POPUP_GIFTS_ARE_NOT_AVAILABLE:String= 'pop_up_gcp_not_available';
 		public static const POPUP_REJECT_CONFIRM:String			= 'pop_up_reject_confirm';
+		public static const POPUP_ENGAGEMENT_GIFT:String		= 'pop_up_engagement_gift';
 	}
 }

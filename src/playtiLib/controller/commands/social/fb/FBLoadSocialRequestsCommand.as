@@ -29,10 +29,10 @@ package playtiLib.controller.commands.social.fb
 			//get the list of FB requests
 			var requests:Array/*SocialRequestsVO*/ = ( dataCapsule.getDataHolderByIndex(0).data as SocialRequestsListVO ).list;
 			//change the req id to id+'_'+userId
-			for each(var sn_request:SNRequestDataVO in requests){
-				//				sn_request.id = sn_request.id.slice(0,sn_request.id.indexOf("_") !=-1 ? sn_request.id.indexOf("_") : sn_request.id.length-1);
-				sn_request.id = sn_request.id+'_'+sn_request.receiver_id;
-			}
+//			for each(var sn_request:SNRequestDataVO in requests){
+//				//				sn_request.id = sn_request.id.slice(0,sn_request.id.indexOf("_") !=-1 ? sn_request.id.indexOf("_") : sn_request.id.length-1);
+//				sn_request.id = sn_request.id+'_'+sn_request.receiver_id;
+//			}
 			
 			//save the non valid request for removal
 			var nonValidRequests:Array = requests.filter(//filter time expiration & missing token

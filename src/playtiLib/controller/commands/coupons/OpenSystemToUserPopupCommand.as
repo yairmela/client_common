@@ -38,7 +38,7 @@ package playtiLib.controller.commands.coupons
 			}else{
 				sendNotification(GeneralAppNotifications.OPEN_POPUP,
 					new PopupMediator( GeneralDialogsConfig.POPUP_GIFT_REDEEMED, 
-						new EngagementBarVLogic(GeneralDialogsConfig.POPUP_GIFT_REDEEMED, couponMessage.coupon.giftTypeValue ), 
+						new EngagementBarVLogic( couponMessage.coupon.giftTypeValue ), 
 						doAction, closeAction));
 			}
 		}
