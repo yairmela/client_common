@@ -33,11 +33,10 @@ package playtiLib.model.proxies.user
 		public var isFirstLogin:Boolean = false;
 		
 		public function UserProxy( user_id:String ){
-			super( NAME, [AMFGeneralCallsConfig.USER_INFO] );
+			super( NAME, [AMFGeneralCallsConfig.USER_INFO, SocialCallsConfig.getUserProfileCallConfig( [user_id] )] );
 			if( !facade.hasProxy( UserSocialInfoProxy.NAME ) ){
 				facade.registerProxy( new UserSocialInfoProxy() );
 			}
-			user_social_info = ( facade.retrieveProxy( UserSocialInfoProxy.NAME ) as UserSocialInfoProxy ).getAndLoadUserInfoByIds( [user_id] )[0];
 		}
 		
 		/**
@@ -45,6 +44,7 @@ package playtiLib.model.proxies.user
 		 * @param event
 		 */
 		override protected function onDataReady( event:Event ):void {
+			user_social_info = getResultByIndex(1).list[0] as UserSocialInfo;
 			normalizeLoadedData();
 			sendNotification( GeneralAppNotifications.USER_DATA_READY );			
 			if( ExternalInterface.available )
