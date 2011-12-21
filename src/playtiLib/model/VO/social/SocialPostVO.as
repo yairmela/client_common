@@ -38,16 +38,16 @@ package playtiLib.model.VO.social
 			this.event_type 	= event_type;
 		}
 
-		public static function injectUserParamsToString( str:String, user_level:UserLevel,user_info:UserSocialInfo, ...num_params : Array ):String {
+		public static function injectUserParamsToString( str:String, user_level:UserLevel,user_info:UserSocialInfo, game_name:String = null, ...num_params : Array ):String {
 			
 			var params:Object = {};
 
 			params["level"] = user_level.level;
 			params["user_name"] = user_info.first_name;
+			params["game_name"] = game_name;
 
 			if( num_params.length == 1 ) {
-				params["num"] = String(num_params[0]);
-				params["game_name"] = String(num_params[0]);
+				params["num"] = String(num_params[0]);				
 			}	else {
 				for( var i : int = 0; i < num_params.length; i++ ) {
 					params["num"+i] = String(num_params[i]);

@@ -1,8 +1,12 @@
 package playtiLib.model.proxies.keyboard
 {
 	import flash.display.InteractiveObject;
+	import flash.display.Stage;
+	import flash.events.FocusEvent;
 	import flash.events.KeyboardEvent;
+	
 	import org.puremvc.as3.patterns.proxy.Proxy;
+
 	/**
 	 * Handles the keyboard cash by adding event listeners in the constructor  for key down and key up . 
 	 */
@@ -15,16 +19,24 @@ package playtiLib.model.proxies.keyboard
 			super( NAME, new Object() );
 			informer.stage.addEventListener( KeyboardEvent.KEY_DOWN, keyDownHandler, false, 0, true );
 			informer.stage.addEventListener( KeyboardEvent.KEY_UP, keyUpHandler, false, 0, true );
+			informer.stage.addEventListener( FocusEvent.FOCUS_IN, onFocusChange, true );
 		}
 		
-		private function keyDownHandler( e:KeyboardEvent ):void {
+		private function onFocusChange( event:FocusEvent ):void {
+					
+			(event.currentTarget as Stage).focus = null;
 			
-			keyDown( e.keyCode );
+			event.stopImmediatePropagation();
 		}
 		
-		private function keyUpHandler( e:KeyboardEvent ):void {
+		private function keyDownHandler( event:KeyboardEvent ):void {
 			
-			keyUp( e.keyCode );
+			keyDown( event.keyCode );
+		}
+		
+		private function keyUpHandler( event:KeyboardEvent ):void {
+			
+			keyUp( event.keyCode );
 		}
 		/**
 		 * Function that set the index of the key (by the keycode var ) to be true and send notification about it.
