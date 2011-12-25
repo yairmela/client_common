@@ -137,6 +137,7 @@ package playtiLib.view.components.gift
 		
 		private function giftBackHandler(event:MouseEvent):void{
 			
+			( event.currentTarget as ButtonSimple ).enabled = false;
 			var gift_mc:MovieClip 		= ( event.currentTarget as ButtonSimple ).content.parent as MovieClip;
 			var coupon:Coupon 	 		= listWindow.GetItem( gift_mc.bg.count ).data as Coupon;
 			var chooseGift:ChooseGift 	= new ChooseGift();
