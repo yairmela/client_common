@@ -48,7 +48,7 @@ package playtiLib.view.components.user
 			if( user_item_class != null )
 				userItemClass = user_item_class;
 			index = 1;
-			scrolled_panel_padding =  72;
+//			scrolled_panel_padding =  72;
 			with( panel_mc ) {
 				//set the scroll content area
 				scrolled_contnent_mc = getChildByName("content") as MovieClip
@@ -143,20 +143,23 @@ package playtiLib.view.components.user
 					break;
 				case left_one_page_btn:
 					start_index = scrolled_index + on_scrolled_num;
-					end_index = start_index + on_scrolled_num;
-					slots_move_num = on_scrolled_num;
-					first_panel_start_x = -on_scrolled_num * scrolled_panel_padding;
+//					end_index = start_index + on_scrolled_num
+					end_index = scrolled_users_data.length-start_index < 5 ? scrolled_users_data.length-start_index+start_index : start_index + on_scrolled_num;
+					slots_move_num = end_index-start_index;
+					first_panel_start_x = -(end_index-start_index) * scrolled_panel_padding;
 					scrolled_index += slots_move_num;
 					break;
 				case right_one_page_btn:
-					start_index = scrolled_index-on_scrolled_num;
+					start_index = (scrolled_index-on_scrolled_num) < 0 ? 0 : scrolled_index-on_scrolled_num;
+//					start_index = start_index < 0 ? 0 : start_index;
 					end_index = start_index + on_scrolled_num;
+//					end_index = scrolled_users_data.length-start_index < 5 ? scrolled_users_data.length-start_index+start_index : start_index + on_scrolled_num;
 					slots_move_num = -on_scrolled_num;
 					first_panel_start_x = on_scrolled_num * scrolled_panel_padding;
 					scrolled_index += slots_move_num;
 					break;
 				case left_to_edge_btn:
-					start_index = Math.max(scrolled_users_data.length - on_scrolled_num*2, scrolled_index);
+					start_index = scrolled_users_data.length - on_scrolled_num;
 					end_index = scrolled_users_data.length;
 					slots_move_num = end_index-start_index;
 					first_panel_start_x = -slots_move_num * scrolled_panel_padding;
@@ -181,21 +184,20 @@ package playtiLib.view.components.user
 //			start_x = start_x;
 			new_users = new_users.reverse();
 			for each( var user:User in new_users ) {
-				if(user){
-					user.userPositionInLeaderBoard = index;	
-				}
-				index++;
 				if( user && !user.userSocialInfo.isReady ){
 					dispatchEvent( new EventTrans( GeneralAppNotifications.LOAD_USER_SOCIAL_INFO_EVENT, user.userSocialInfo.sn_id, true ) );
 				}
 				var userItem:MultiUserPanelItemVLogic;
 				userItem = new userItemClass( user ) as MultiUserPanelItemVLogic;
-				if ( user )
+				if ( user ){
+				   user.userPositionInLeaderBoard = index;	
 				   if ( player_id == user.userSocialInfo.sn_id || user.userInfo.is_gift_sent ) {
 				       var movie:MovieClip 	= userItem.content as MovieClip;
 					   movie.mouseChildren 	= false;
 					   movie.mouseEnabled 	= false;
 				   }
+				}
+				index++;
 				userItem.addEventListener( EventTrans.DATA, dispatchEvent, false, 0, true );
 				scrolled_contnent_mc.addChild( userItem.content ).x = start_x;
 				start_x += scrolled_panel_padding;
@@ -258,10 +260,10 @@ package playtiLib.view.components.user
 		 */		
 		private function setScrollBtnsAvilability( forceDisable:Boolean = false ):void {
 			
-			left_one_btn.enabled = left_to_edge_btn.enabled = !forceDisable && ( scrolled_index+on_scrolled_num ) < scrolled_users_data.length;
-			left_one_page_btn.enabled = !forceDisable && scrolled_index < scrolled_users_data.length-on_scrolled_num * 2;
-			right_one_btn.enabled = right_to_eage_btn.enabled = !forceDisable && scrolled_index > 0 ;
-			right_one_page_btn.enabled = !forceDisable && scrolled_index > on_scrolled_num;
+			left_one_page_btn.enabled = left_one_btn.enabled = left_to_edge_btn.enabled = !forceDisable && ( scrolled_index+on_scrolled_num ) < scrolled_users_data.length;
+//			left_one_page_btn.enabled = !forceDisable && scrolled_index < scrolled_users_data.length-on_scrolled_num * 2;
+			right_one_page_btn.enabled = right_one_btn.enabled = right_to_eage_btn.enabled = !forceDisable && scrolled_index > 0 ;
+//			right_one_page_btn.enabled = !forceDisable && scrolled_index > on_scrolled_num;
 		}
 		/**
 		 * Pushs empty cells to an array.  
