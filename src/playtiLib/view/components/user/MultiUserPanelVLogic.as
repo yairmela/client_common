@@ -154,8 +154,8 @@ package playtiLib.view.components.user
 //					start_index = start_index < 0 ? 0 : start_index;
 					end_index = start_index + on_scrolled_num;
 //					end_index = scrolled_users_data.length-start_index < 5 ? scrolled_users_data.length-start_index+start_index : start_index + on_scrolled_num;
-					slots_move_num = -on_scrolled_num;
-					first_panel_start_x = on_scrolled_num * scrolled_panel_padding;
+					slots_move_num = scrolled_index < on_scrolled_num ? -scrolled_index : -on_scrolled_num;
+					first_panel_start_x = Math.abs(slots_move_num)* scrolled_panel_padding;
 					scrolled_index += slots_move_num;
 					break;
 				case left_to_edge_btn:
