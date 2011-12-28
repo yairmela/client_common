@@ -1,6 +1,7 @@
 package playtiLib.view.components.popups
 {
 	import flash.text.TextField;
+	import playtiLib.utils.text.TextUtil;
 	
 	import playtiLib.config.display.GeneralDialogsConfig;
 	import playtiLib.model.VO.amf.response.helpers.UserInfo;
@@ -22,7 +23,7 @@ package playtiLib.view.components.popups
 		
 		private function setTexts():void{
 			
-			(popup_mc.coins_txt as TextField).text = giftTypeValue;
+			(popup_mc.coins_txt as TextField).text = TextUtil.toCurrency(Number(giftTypeValue));
 		}
 	}
 }
