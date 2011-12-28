@@ -79,8 +79,10 @@ package playtiLib.controller.commands.startups
 			facade.registerCommand( GeneralAppNotifications.TASK_HANDLER, TaskHandlerCommand );
 			
 			facade.registerCommand( GeneralAppNotifications.GOTO_GAME_TAB, GotoGameTabCommand );
-			
+
 			facade.registerCommand( GeneralAppNotifications.EXECUTE_EXTERNAL_CALL, ExecuteGeneralExternalCallCommand );
+			
+			facade.registerCommand( GeneralAppNotifications.TRACK, StatisticsTrackingCommand );
 		}
 	}
 }
