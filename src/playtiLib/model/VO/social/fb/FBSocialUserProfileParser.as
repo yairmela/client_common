@@ -17,7 +17,7 @@ package playtiLib.model.VO.social.fb
 			user.sn_id 			= String( json[FBConfigConstants.PROFILE_FIELD_UID] );
 			user.first_name 	= json[FBConfigConstants.PROFILE_FIELD_FIRST_NAME] as String;
 			user.last_name 		= json[FBConfigConstants.PROFILE_FIELD_LAST_NAME] as String;
-			user.photo 			= json[FBConfigConstants.PROFILE_FIELD_PHOTO] as String;
+			user.photo 			= ( json[FBConfigConstants.PROFILE_FIELD_PHOTO] as String ).replace('_t.jpg','_q.jpg');;
 			user.photo_medium 	= json[FBConfigConstants.PROFILE_FIELD_PHOTO_MEDIUM] as String;
 			user.photo_big 		= json[FBConfigConstants.PROFILE_FIELD_PHOTO_BIG] as String;
 			user.birthday_at 	= buildDate(json[FBConfigConstants.PROFILE_FIELD_B_DATE] as String);
