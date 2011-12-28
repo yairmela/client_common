@@ -10,17 +10,12 @@ package playtiLib.controller.commands.coupons
 	import playtiLib.config.social.SocialCallsConfig;
 	import playtiLib.model.VO.amf.response.Coupon;
 	import playtiLib.model.VO.amf.response.CouponsListMessage;
-	import playtiLib.model.VO.social.SocialPostVO;
 	import playtiLib.model.VO.social.user.SocialUserIdsVO;
-	import playtiLib.model.VO.social.user.SocialUsersListVO;
-	import playtiLib.model.VO.user.UserSocialInfo;
 	import playtiLib.model.proxies.coupon.UserCouponProxy;
 	import playtiLib.model.proxies.user.UserSocialInfoProxy;
 	import playtiLib.utils.data.DataCapsule;
 	import playtiLib.utils.data.DataCapsuleFactory;
-	import playtiLib.utils.locale.TextLib;
 	import playtiLib.utils.time.TimeUtil;
-	import playtiLib.view.components.user.FriendsListVLogic;
 
 	public class GetAndValidateCouponCommand extends CouponCommand	{
 		
