@@ -70,7 +70,9 @@ package playtiLib.model.proxies.user
 		 * @return 
 		 */
 		public function get user_info():UserInfo {
-			
+			if(!dataReady) {
+				return null;
+			}
 			return user_info_msg.userInfo;
 		}
 		
@@ -80,6 +82,9 @@ package playtiLib.model.proxies.user
 		 * @return 
 		 */
 		public function get user_status():UserStatus {
+			if(!dataReady) {
+				return null;
+			}
 			return user_info_msg.userStatus;
 		}
 		
@@ -89,6 +94,9 @@ package playtiLib.model.proxies.user
 		 * @return 
 		 */
 		public function get user_level():UserLevel {
+			if(!dataReady) {
+				return null;
+			}
 			return user_info_msg.userLevel;
 		}
 		
