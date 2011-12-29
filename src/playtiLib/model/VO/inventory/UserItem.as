@@ -1,8 +1,8 @@
 package playtiLib.model.VO.inventory
 {
-	import playtiLib.model.VO.server.DeserializedModel;
+	import playtiLib.model.VO.server.DeserializedJSONModel;
 
-	public class UserItem extends DeserializedModel
+	public class UserItem extends DeserializedJSONModel
 	{
 		public var id:int;
 		public var user_id:int;

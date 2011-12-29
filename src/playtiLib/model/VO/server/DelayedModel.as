@@ -7,7 +7,7 @@ package playtiLib.model.VO.server
 	import playtiLib.config.notifications.GeneralAppNotifications;
 	import playtiLib.utils.events.EventTrans;
 
-	public class DelayedModel extends DeserializedModel implements IEventDispatcher	{
+	public class DelayedModel extends DeserializedJSONModel implements IEventDispatcher	{
 		
 		private var dispatcher:EventDispatcher;
 		private var is_ready:Boolean;

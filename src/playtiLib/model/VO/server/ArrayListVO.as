@@ -3,7 +3,7 @@ package playtiLib.model.VO.server
 	/**
 	 * Holds the cildren's type and a list array. 
 	 */	
-	public class ArrayListVO extends DeserializedModel	{
+	public class ArrayListVO extends DeserializedJSONModel	{
 		
 		private var children_type:Class;
 		protected var list_arr:Array = [];
@@ -11,7 +11,7 @@ package playtiLib.model.VO.server
 		public function ArrayListVO( children_type:Class = null){
 			
 			super();
-			if( children_type != null && !( new children_type is DeserializedModel ) )
+			if( children_type != null && !( new children_type is DeserializedJSONModel ) )
 				throw new Error( 'ArrayListVO.children_type must be from type ServerDataVO' );
 			this.children_type = children_type;
 		}
@@ -39,7 +39,7 @@ package playtiLib.model.VO.server
 			
 			if ( children_type == null ) return;
 			for each( var sub_jason:Object in json ) {
-				var sub_vo:DeserializedModel = new children_type();
+				var sub_vo:DeserializedJSONModel = new children_type();
 				sub_vo.buildVO( sub_jason );
 				list.push( sub_vo );
 			}

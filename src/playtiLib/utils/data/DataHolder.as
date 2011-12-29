@@ -8,7 +8,7 @@ package playtiLib.utils.data
 	
 	import playtiLib.config.server.ServerConfig;
 	import playtiLib.config.server.ServerModulesConfig;
-	import playtiLib.model.VO.server.DeserializedModel;
+	import playtiLib.model.VO.server.DeserializedJSONModel;
 	import playtiLib.utils.events.EventTrans;
 	import playtiLib.utils.server.AMFServerCallManager;
 	import playtiLib.utils.server.IServerManager;
@@ -107,7 +107,7 @@ package playtiLib.utils.data
 			if( data_call_config.vo_generator == null )
 				return data_result;
 			var instance:Object = new data_call_config.vo_generator();
-			if( instance is DeserializedModel )
+			if( instance is DeserializedJSONModel )
 				instance.buildVO( data_result );
 			return instance;
 		}

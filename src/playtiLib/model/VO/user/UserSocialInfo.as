@@ -1,7 +1,7 @@
 package playtiLib.model.VO.user
 {
 	import playtiLib.model.VO.server.DelayedModel;
-	import playtiLib.model.VO.server.DeserializedModel;
+	import playtiLib.model.VO.server.DeserializedJSONModel;
 
 	/**
 	 * Holds all the data of the user like: full name, sex, addres, dates, bonuses, levels, max betand more. 

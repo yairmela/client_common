@@ -1,11 +1,11 @@
 package playtiLib.model.VO.social.user
 {
 	import playtiLib.config.social.SocialConfig;
-	import playtiLib.model.VO.server.DeserializedModel;
+	import playtiLib.model.VO.server.DeserializedJSONModel;
 	/**
 	 * Holds an array of the user SN ids  
 	 */	
-	public class SocialUserIdsVO extends DeserializedModel	{
+	public class SocialUserIdsVO extends DeserializedJSONModel	{
 		
 		public var ids:Array;
 		
