@@ -5,6 +5,7 @@ package playtiLib.utils.sounds
 	import flash.events.IOErrorEvent;
 	import flash.media.Sound;
 	import flash.media.SoundChannel;
+	import flash.media.SoundMixer;
 	import flash.media.SoundTransform;
 	import flash.net.URLLoader;
 	import flash.net.URLRequest;
@@ -83,6 +84,21 @@ package playtiLib.utils.sounds
 			return null;
 		}
 		
+		public function hasSound( name:String ):Boolean {
+			
+			if( sounds_hash[name] != null ) {
+				return true;
+			}
+		
+			for each( var warehouse:SWFGraphicsWarehouse in sounds_swf_warehouses ) {
+				if( warehouse.hasAsset(name) ) {
+					return true;
+				}
+			}
+			
+			return false;
+		}
+		
 		/**
 		 * Plays the sound at a given volume
 		 **/
@@ -99,10 +115,29 @@ package playtiLib.utils.sounds
 			
 			var channel:SoundChannel = sound.play( startTime, loops, trans );
 			if( channel != null ) {//will happen when there are no more channels
-				channel.addEventListener( Event.SOUND_COMPLETE, removeSoundAfterComplete );
+				channel.addEventListener( Event.SOUND_COMPLETE, removeSoundAfterComplete, false, 0, true );
 				active_sounds_cash.push( {sndChannel:channel, volume:volume, name:name} );
 			}
 			return channel;
+		}
+		
+		public function getSoundChannelsByName( name:String ) : Array {
+			
+			var active_of_name:Array = getActiveByName( name );
+			
+			var sound_channels : Array = [];			
+			active_of_name.forEach( function( element:*, index:int, arr:Array):void { sound_channels.push(element.sndChannel); } );
+			
+			return sound_channels;
+		}
+		
+		public function stopAllSounds() : void {
+			
+			SoundMixer.stopAll();
+			
+			while(active_sounds_cash.length) {
+				removeSoundChannelFromActive(active_sounds_cash[0].sndChannel);
+			}
 		}
 		
 		public function isSoundActive( name:String ):Boolean {
@@ -118,10 +153,10 @@ package playtiLib.utils.sounds
 		private function removeSoundAfterComplete( event:Event ):void {
 			
 			var channel:SoundChannel = event.currentTarget as SoundChannel;
-			removeSoundChannelFromAvtive( channel );
+			removeSoundChannelFromActive( channel );
 		}
 		
-		private function removeSoundChannelFromAvtive( channel:SoundChannel ):void {
+		private function removeSoundChannelFromActive( channel:SoundChannel ):void {
 			
 			channel.removeEventListener( Event.SOUND_COMPLETE, removeSoundAfterComplete );
 			var active:Object = active_sounds_cash.filter( function( element:*, index:int, arr:Array):Boolean { return element.sndChannel == channel } )[0];
@@ -143,7 +178,7 @@ package playtiLib.utils.sounds
 			for each( var activeSnd:Object in active_sounds_cash ) {
 				if(activeSnd.name == name) {
 					activeSnd.sndChannel.stop();
-					removeSoundChannelFromAvtive( activeSnd.sndChannel );
+					removeSoundChannelFromActive( activeSnd.sndChannel );
 				}
 			}
 		}
