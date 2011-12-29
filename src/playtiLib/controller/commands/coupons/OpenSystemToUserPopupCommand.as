@@ -21,7 +21,7 @@ package playtiLib.controller.commands.coupons
 			var couponMessage:CouponMessage = notification.getBody() as CouponMessage;
 			var doAction:PopupDoActionVO;
 			var closeAction:PopupDoActionVO;
-			var is_coupon_from_eng_bar:Boolean = notification.getType() == 'true' ? true : false; 
+			var is_coupon_from_eng_bar:Boolean = notification.getType() == 'true' ;
 			
 			switch( couponMessage.coupon.giftTypeId ){
 				case CouponSystemConfig.GIFT_TYPE_COINS:
@@ -42,6 +42,5 @@ package playtiLib.controller.commands.coupons
 						doAction, closeAction));
 			}
 		}
-		
 	}
 }

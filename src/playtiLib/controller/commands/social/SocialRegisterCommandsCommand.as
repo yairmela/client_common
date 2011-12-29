@@ -2,15 +2,12 @@ package playtiLib.controller.commands.social
 {
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.command.SimpleCommand;
-	import playtiLib.controller.commands.social.fb.FBAcceptSurpriseGift;
 	
 	import playtiLib.config.notifications.GeneralAppNotifications;
-	import playtiLib.config.social.SocialCallsConfig;
 	import playtiLib.config.social.SocialConfig;
-	import playtiLib.config.social.mm.MMNotifications;
-	import playtiLib.config.social.vk.VKNotifications;
 	import playtiLib.controller.commands.coupons.CreateCouponCommand;
 	import playtiLib.controller.commands.paypage.OpenPayPageCommand;
+	import playtiLib.controller.commands.social.fb.FBAcceptSurpriseGift;
 	import playtiLib.controller.commands.social.fb.FBAddApprequestCommand;
 	import playtiLib.controller.commands.social.fb.FBAssetsLoadCompleteCommand;
 	import playtiLib.controller.commands.social.fb.FBChooseSnUserCommand;
@@ -23,7 +20,6 @@ package playtiLib.controller.commands.social
 	import playtiLib.controller.commands.social.fb.FBPublishToWallApprovedCommand;
 	import playtiLib.controller.commands.social.fb.FBRemoveAppRequestCommand;
 	import playtiLib.controller.commands.social.fb.FBSendRequestApprovedCommand;
-	import playtiLib.controller.commands.social.fb.FBSendRequestCommand;
 	import playtiLib.controller.commands.social.fb.FBStreamPublishCommand;
 	import playtiLib.controller.commands.social.gift.ChooseSnUserToSendGiftCommand;
 	import playtiLib.controller.commands.social.mm.MMGameInstallCommand;
@@ -46,7 +42,6 @@ package playtiLib.controller.commands.social
 	import playtiLib.controller.commands.social.vk.VKSetBannersCommand;
 	import playtiLib.controller.commands.social.vk.VKSettingsCheckCommand;
 	import playtiLib.model.VO.social.SocialConfigVO;
-	import playtiLib.utils.social.vk.VkWrapperUtil;
 	import playtiLib.utils.tracing.Logger;
 
 	public class SocialRegisterCommandsCommand extends SimpleCommand

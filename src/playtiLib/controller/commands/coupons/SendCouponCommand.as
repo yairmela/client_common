@@ -3,19 +3,12 @@ package playtiLib.controller.commands.coupons
 	import flash.events.Event;
 	
 	import org.puremvc.as3.interfaces.INotification;
-	import org.puremvc.as3.patterns.command.SimpleCommand;
 	
 	import playtiLib.config.gifts.CouponSystemConfig;
 	import playtiLib.config.notifications.GeneralAppNotifications;
 	import playtiLib.config.server.AMFGeneralCallsConfig;
-	import playtiLib.model.VO.amf.request.CouponRequest;
-	import playtiLib.model.VO.amf.response.Coupon;
-	import playtiLib.model.VO.amf.response.CouponMessage;
-	import playtiLib.model.VO.social.SocialPostVO;
-	import playtiLib.model.proxies.coupon.TodayReceiversProxy;
 	import playtiLib.utils.data.DataCapsule;
 	import playtiLib.utils.data.DataCapsuleFactory;
-	import playtiLib.utils.social.SocialCallManager;
 
 	/**
 	 * Called after the coupon was created, user chooses some recievers and FB sends to those recievers the app requests.
