@@ -30,6 +30,7 @@ package playtiLib.view.mediators.popups
 		protected var do_action_vo:PopupDoActionVO;
 		protected var close_action_vo:PopupDoActionVO;
 		protected var popup_logic:PopupViewLogic;
+		protected var autoCenter_mode:Boolean;
 		
 		public function PopupMediator( mediatorName:String, popupViewLogic:PopupViewLogic, doActionVO:PopupDoActionVO=null, closeActionVO:PopupDoActionVO=null, modal_mode:Boolean = true, autoCenter_mode:Boolean = true )	{
 			
@@ -38,6 +39,7 @@ package playtiLib.view.mediators.popups
 			this.modal_mode 	= modal_mode;
 			this.do_action_vo 	= doActionVO;
 			this.close_action_vo 	= closeActionVO;
+			this.autoCenter_mode 	= autoCenter_mode;
 			registerCloseDoListeners();
 			if( autoCenter_mode )
 				popup_logic.content.addEventListener( Event.ADDED_TO_STAGE, onAddedToStage, false, 0, true );
@@ -143,7 +145,9 @@ package playtiLib.view.mediators.popups
 			
 			switch( notification.getName() ) {
 				case GeneralAppNotifications.FULLSCREEN_MODE:
-					centerPopup();
+					if (autoCenter_mode) {
+						centerPopup();
+					}
 					break;
 			}
 		}
