@@ -45,9 +45,9 @@ package playtiLib.view.components.btns {
 			}
 			//TODO: can we delete this junk?
 			/*if(getFieldSafe("direction", VERTICAL) == VERTICAL) {
-			   }
-			   else {
-			 }*/
+			}
+			else {
+			}*/
 			var aBtn:Array = new Array();
 			aBtn[0] = content.getChildByName(SLIDER_NAME);
 			slider_btn = new ButtonSimple(aBtn[0]);
@@ -84,9 +84,9 @@ package playtiLib.view.components.btns {
 			dispatchEvent(event.clone());
 			event.stopImmediatePropagation();
 			//TODO: can we delete this junk????
-		/*dispatchEvent( new MouseEvent(event.type, event.bubbles, event.cancelable, event.localX, event.localY,
-		   event.relatedObject, event.ctrlKey, event.altKey, event.shiftKey, event.buttonDown, event.delta,
-		 false, event.ctrlKey, 0) );*/
+			/*dispatchEvent( new MouseEvent(event.type, event.bubbles, event.cancelable, event.localX, event.localY,
+			event.relatedObject, event.ctrlKey, event.altKey, event.shiftKey, event.buttonDown, event.delta,
+			false, event.ctrlKey, 0) );*/
 		}
 		
 		/**

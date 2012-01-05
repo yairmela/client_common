@@ -34,11 +34,10 @@ package playtiLib.controller.commands.social.fb
 				if ( coupon.couponToken ) {
 					sendNotification(GeneralAppNotifications.SYSTEM_TO_USER_COUPON_COLLECTION, coupon.couponToken, 'from_engagement_bar' );
 				}
-				ExternalInterface.call( 'setSurpiseGiftStatus', true);
 			}else {
 				sendNotification( GeneralAppNotifications.SHOW_STATUS_GIFT_MSG, CouponSystemConfig.STATUS_COUPON_ALREADY_COLLECTED );
-				ExternalInterface.call( 'setSurpiseGiftStatus', false);
 			}
+				ExternalInterface.call( 'setSurpiseGiftStatus');
 		}
 	}
 }
