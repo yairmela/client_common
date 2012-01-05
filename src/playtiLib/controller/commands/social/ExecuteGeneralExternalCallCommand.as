@@ -9,6 +9,8 @@ package playtiLib.controller.commands.social {
 	import org.puremvc.as3.patterns.command.SimpleCommand;
 	
 	import playtiLib.config.server.AMFGeneralCallsConfig;
+	import playtiLib.config.server.GeneralCallsConfig;
+	import playtiLib.config.social.SocialCallsConfig;
 	import playtiLib.utils.data.DataCallConfig;
 	import playtiLib.utils.data.DataCapsule;
 	import playtiLib.utils.data.DataCapsuleFactory;
@@ -18,29 +20,36 @@ package playtiLib.controller.commands.social {
 		protected var call_params:Object;
 		
 		override public function execute(notification:INotification):void {
+			
 			call_params = notification.getBody();
 			if (call_params.params is String) {
 				call_params.params = JSON.decode(call_params.params as String) as Object;
 			}
 			
-			var dataCallConfig:DataCallConfig = getCallConfig();
+			var dataCallConfig:DataCallConfig = getCallConfig(call_params);
 			
 			var dataCapsule:DataCapsule = DataCapsuleFactory.getDataCapsule([dataCallConfig.setRequestProperties(call_params.params)]);
 			dataCapsule.addEventListener(Event.COMPLETE, onResult);
 			dataCapsule.loadData();
 		}
 
-		protected function getCallConfig():DataCallConfig {
+		protected function getCallConfig( params : Object ) : DataCallConfig {
 			
-			var dataCallConfig : DataCallConfig = AMFGeneralCallsConfig.getConfigByCommandName(call_params.command);
+			var dataCallConfig : DataCallConfig = AMFGeneralCallsConfig.getConfigByCommandName(params.command);
 		
 			if(!dataCallConfig) {
-				dataCallConfig = new DataCallConfig(call_params.module, call_params.command);
+				dataCallConfig = GeneralCallsConfig.getConfigByCommandName(params.command);
 			}
+			
+			if(!dataCallConfig) {
+				dataCallConfig = new DataCallConfig(params.module, params.command);
+			}
+			
 			return dataCallConfig;
 		}
 		
 		private function onResult(event:Event):void {
+			
 			var dataCapsule:DataCapsule = event.currentTarget as DataCapsule;
 			dataCapsule.removeEventListener(Event.COMPLETE, onResult);
 			

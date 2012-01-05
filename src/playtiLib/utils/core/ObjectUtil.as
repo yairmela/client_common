@@ -11,15 +11,21 @@ package playtiLib.utils.core
 	 * by string, array and can also returns an array of the object's properties's type in array. 
 	 */
 	public class ObjectUtil	{
+		
+		public static function isInstanceOfType( instance:Object, type:Class ):Boolean {
+
+			return (instance["constructor"] == type);
+		}
 		/**
 		 * Returns the object's properties listed in array.
 		 * @param instance
 		 * @return 
 		 */		
 		public static function getPropertiesType( instance:Object ):Array {
-			
+						
 			var result:Array = [];
-			for each( var prop:XML in describeType(instance).variable ) {
+			var typeDesc:XML = describeType(instance);
+			for each( var prop:XML in typeDesc.variable ) {
 				result.push( {name:prop.@name, type:getDefinitionByName(prop.@type)} );
 			}
 			return result;

@@ -51,18 +51,25 @@ package playtiLib.utils.data
 		}
 		
 		public function setRequestProperties( params:Object, ...args ):DataCallConfig {
-			setRequsetPropertiesByObject(params);
-			for each( params in args)
-				setRequsetPropertiesByObject(params);
+			
+			setRequestPropertiesByObject(params);
+			
+			for each( params in args) {
+				setRequestPropertiesByObject(params);
+			}
+			
 			return this;
 		}
 		
-		private function setRequsetPropertiesByObject(params:Object):void {
+		private function setRequestPropertiesByObject(params:Object):void {
+			
 			var vo_properties:Array = ObjectUtil.getPropertiesType( request_params );
 			for each( var property_info:Object in vo_properties ) {
 				var key:String = property_info.name;
-				if( params.hasOwnProperty( key ) )
+				
+				if( params.hasOwnProperty( key ) ) {
 					request_params[key] = params[key];
+				}
 			}
 		}
 	}
