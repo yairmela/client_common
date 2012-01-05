@@ -30,14 +30,14 @@ package playtiLib.model.proxies.user
 			var missingUserSocialInfoList:Array = new Array();
 			var dataCapsule:DataCapsule;
 			for each( var id:String in ids ){
-				if( userSocialInfoList[id] == null || !( userSocialInfoList[id] as UserSocialInfo ).isReady ){
+				if( userSocialInfoList['id'+id] == null || !( userSocialInfoList['id'+id] as UserSocialInfo ).isReady ){
 					missingUserSocialInfoList.push( id );
-					if( userSocialInfoList[id] == null ){
-						userSocialInfoList[id] = new UserSocialInfo();
-						( userSocialInfoList[id] as UserSocialInfo ).sn_id = id;
+					if( userSocialInfoList['id'+id] == null ){
+						userSocialInfoList['id'+id] = new UserSocialInfo();
+						( userSocialInfoList['id'+id] as UserSocialInfo ).sn_id = id;
 					}
 				}
-				returnUserSocialInfoList.push( userSocialInfoList[id] );
+				returnUserSocialInfoList.push( userSocialInfoList['id'+id] );
 			}
 			if ( missingUserSocialInfoList.length > 0 ){
 				dataCapsule = DataCapsuleFactory.getDataCapsule( [SocialCallsConfig.getUserProfileCallConfig( missingUserSocialInfoList ) ] );
@@ -52,11 +52,11 @@ package playtiLib.model.proxies.user
 			var missingUserSocialInfoList:Array = new Array();
 			var dataCapsule:DataCapsule;
 			for each( var id:String in ids ){
-				if( userSocialInfoList[id] == null ){
-					userSocialInfoList[id] = new UserSocialInfo();
-					( userSocialInfoList[id] as UserSocialInfo ).sn_id = id;
+				if( userSocialInfoList['id'+id] == null ){
+					userSocialInfoList['id'+id] = new UserSocialInfo();
+					( userSocialInfoList['id'+id] as UserSocialInfo ).sn_id = id;
 				}
-				if( userSocialInfoList[id] == null || !( userSocialInfoList[id] as UserSocialInfo ).isReady ){
+				if( userSocialInfoList['id'+id] == null || !( userSocialInfoList['id'+id] as UserSocialInfo ).isReady ){
 					missingUserSocialInfoList.push( id );
 				}
 			}
@@ -73,7 +73,7 @@ package playtiLib.model.proxies.user
 			var friendsListInfo:Array = ( dataCapsule.getDataHolderByIndex(0).data == null ) ? [] : ( dataCapsule.getDataHolderByIndex(0).data as SocialUsersListVO ).list;
 			
 			for each( var user:UserSocialInfo in friendsListInfo ){
-				( userSocialInfoList[user.sn_id] as UserSocialInfo ).setUserInfo( user );
+				( userSocialInfoList['id'+user.sn_id] as UserSocialInfo ).setUserInfo( user );
 			}
 		}
 		//only get the users - if the user isn't exist yet, make a new userSocialInfo
@@ -81,11 +81,11 @@ package playtiLib.model.proxies.user
 			
 			var returnUserSocialInfoList:Array = new Array();
 			for each( var id:String in ids ){
-				if( userSocialInfoList[id] == null ){
-					userSocialInfoList[id] = new UserSocialInfo();
-					( userSocialInfoList[id] as UserSocialInfo ).sn_id = id;
+				if( userSocialInfoList['id'+id] == null ){
+					userSocialInfoList['id'+id] = new UserSocialInfo();
+					( userSocialInfoList['id'+id] as UserSocialInfo ).sn_id = id;
 				}
-				returnUserSocialInfoList.push( userSocialInfoList[id] );
+				returnUserSocialInfoList.push( userSocialInfoList['id'+id] );
 			}
 			return returnUserSocialInfoList;
 		}
