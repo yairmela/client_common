@@ -59,12 +59,12 @@ package playtiLib.config.social
 		 * @param aUids
 		 * @return 
 		 * 
-		 */		
+		 */	
 		public static function getUserProfileCallConfig( aUids:Array ):DataCallConfig{
 			
 			var callConfigVO:DataCallConfig = SOCIAL_USERS_INFO;
-				callConfigVO.request_params.fields = SocialConfig.social_parser.getProfileFiledsList();
-				callConfigVO.request_params.uids= aUids.join();
+			callConfigVO.request_params.fields = SocialConfig.social_parser.getProfileFiledsList();
+			callConfigVO.request_params.uids= aUids.join();
 			return callConfigVO;
 		}
 		
