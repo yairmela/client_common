@@ -199,7 +199,7 @@ package playtiLib.view.components.btns {
 			
 			if (coord[target_variable_name] < 0){
 				slider_btn.content[target_variable_name] = 0;
-			} else if (coord[target_variable_name] > track[target_range_name] ){
+			} else if (coord[target_variable_name] > (track[target_range_name] - slider_btn.content[target_range_name]) ){
 				slider_btn.content[target_variable_name] = track[target_range_name] - slider_btn.content[target_range_name];
 			} else {
 				slider_btn.content[target_variable_name] = coord[target_variable_name];
