@@ -50,7 +50,7 @@ package playtiLib.config.notifications
 		//sounds
 		public static const MUTE_SOUNDS:String 						= 'mute_sounds';
 		//popup handling
-		public static const SETUP_POPUPS_DISPLAY:String 			= 'setup_popups_display';
+		public static const SETUP_UI_DISPLAY:String 				= 'setup_ui_display';
 		public static const OPEN_POPUP:String 						= 'open_popup';
 		public static const SHOW_NEXT_POPUP:String 					= 'show_next_popup';
 		public static const CLOSED_LAST_POPUP_IN_QUEUE:String 		= 'closed_last_popup_in_queue';

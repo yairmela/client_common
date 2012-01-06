@@ -39,7 +39,7 @@ package playtiLib.view.mediators.preload
 			return [ GeneralAppNotifications.LOAD_CUSTOM_PRELOADER_COMPLETE,
 					 GeneralAppNotifications.LOAD_CUSTOM_PRELOADER_PROGRESS,
 					 GeneralAppNotifications.LOAD_INITIAL_ASSETS_PROGRESS,
-					 GeneralAppNotifications.INITIAL_DATA_LOADED ];
+					 GeneralAppNotifications.INITIAL_DATA_LOADED];
 		}
 		/**
 		 * Handles the notifications the mediator is listening to:

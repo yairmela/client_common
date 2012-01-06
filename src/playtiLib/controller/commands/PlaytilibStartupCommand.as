@@ -12,7 +12,7 @@ package playtiLib.controller.commands
 	import playtiLib.controller.commands.load.LoadExternalsCommand;
 	import playtiLib.controller.commands.popup.SetPauseLoadingPopupCommand;
 	import playtiLib.controller.commands.popup.SetPausePopupCommand;
-	import playtiLib.controller.commands.popup.SetupPopupsDisplayCommand;
+	import playtiLib.controller.commands.ui.SetupUIDisplayCommand;
 	import playtiLib.controller.commands.popup.ShowSystemMsgPopupCommand;
 	import playtiLib.controller.commands.server.RefreshIframeCommand;
 	import playtiLib.controller.commands.server.ServerFaultHandlingCommand;
@@ -69,7 +69,7 @@ package playtiLib.controller.commands
 			facade.registerCommand( GeneralAppNotifications.SOCIAL_INSTALL_APPROVED, ServerInitCommand );
 			facade.registerCommand( GeneralAppNotifications.LOAD_EXTERNAL_ASSETS, LoadExternalsCommand );
 			facade.registerCommand( GeneralAppNotifications.SHOW_VERSION_NUMBER, ShowVersionNumberCommand );
-			facade.registerCommand( GeneralAppNotifications.SETUP_POPUPS_DISPLAY, SetupPopupsDisplayCommand );
+			facade.registerCommand( GeneralAppNotifications.SETUP_UI_DISPLAY, SetupUIDisplayCommand );
 			facade.registerCommand( GeneralAppNotifications.SET_PAUSE_POPUP, SetPausePopupCommand );
 			facade.registerCommand( GeneralAppNotifications.SET_PAUSE_POPUP_WITH_LOADING, SetPauseLoadingPopupCommand );
 			facade.registerCommand( GeneralAppNotifications.SERVER_RELOGIN, ServerReloginCommand );
@@ -148,9 +148,9 @@ package playtiLib.controller.commands
 			sendNotification( GeneralAppNotifications.SET_SOCIAL_BANNERS, game_banners_id )
 		}
 		
-		protected function setupPopupsDisplay( centerToWidth : uint, centerToHeight : uint ):void {
-			//setup popups display params
-			sendNotification( GeneralAppNotifications.SETUP_POPUPS_DISPLAY, {width: centerToWidth, height: centerToHeight} )
+		protected function setupUIDisplay( centerToWidth : uint, centerToHeight : uint ):void {
+			//setup ui display params
+			sendNotification( GeneralAppNotifications.SETUP_UI_DISPLAY, {width: centerToWidth, height: centerToHeight} )
 		}
 		
 		protected function initServerCallManagerProxy():void {

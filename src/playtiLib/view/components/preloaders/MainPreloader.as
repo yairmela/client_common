@@ -5,6 +5,9 @@ package playtiLib.view.components.preloaders
  	import flash.geom.Point;
 	
 	public class MainPreloader extends Sprite	{
+		//if this params will not set the logic will use stage height and width
+		public static var PRELOADER_CENTER_TO_WIDTH:Number;
+		public static var PRELOADER_CENTER_TO_HEIGHT:Number;
 		
 		private var offset:Point = new Point();
 		protected var progress_width:int = 200;
@@ -13,15 +16,10 @@ package playtiLib.view.components.preloaders
 		public function MainPreloader()	{
 			
 			super();
-			//register for addedToStage
-			addEventListener( Event.ADDED_TO_STAGE, addedToStageHandler, false, 0, true );
+			offset = new Point( Math.floor( ( PRELOADER_CENTER_TO_WIDTH - progress_width ) / 2 ), 
+								Math.floor( ( PRELOADER_CENTER_TO_HEIGHT - progress_height ) / 2 ) );
 		}
-		
-		public function addedToStageHandler( event:Event ):void {
-			
-			offset = new Point( Math.floor( ( stage.stageWidth - progress_width ) / 2 ), 
-								Math.floor( ( stage.stageHeight - progress_height ) / 2 ) );
-		}
+
 		
 		public function set progress( ratio:Number ):void {
 			
