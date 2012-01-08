@@ -1,11 +1,7 @@
 package playtiLib.model.VO.user
 {
 	import playtiLib.model.VO.server.DelayedModel;
-	import playtiLib.model.VO.server.DeserializedJSONModel;
 
-	/**
-	 * Holds all the data of the user like: full name, sex, addres, dates, bonuses, levels, max betand more. 
-	 */
 	public class UserSocialInfo extends DelayedModel{
 		
 		public var uid:String;
@@ -23,22 +19,8 @@ package playtiLib.model.VO.user
 		public var max_special_bonus_count:int;
 		public var special_bonus_counter:int;
 		
-//		public var level:int;
-//		public var experience:Number;
-//		public var next_level_experience:Number;
-//		public var next_level_reward:Number;
-//		public var level_reward:Number;
-//		public var prev_level_experience:Number;
-		
 		public var coin_gift_amount:int;
 		
-		//additional_params
-//		public var max_bet:String;
-//		public var special_bonus:String;
-		
-//		public var balance:Number;
-		
-//		public var level_poster_id:int;
 		public var invoker_id:int;
 		
 		public var photo:String;
@@ -56,14 +38,13 @@ package playtiLib.model.VO.user
 
 		public var email:String;
 		
-//		public var is_gift_sent:Boolean;
-		
-		public function UserSocialInfo(){
+		public function UserSocialInfo( id:String=null ){
 			
+			this.sn_id = id;
 		}
 		
 		public function setUserInfo( user_social_info:UserSocialInfo ):void{
-			//save the level and the balance
+
 			buildVO( user_social_info );
 			isReady = true;
 		}

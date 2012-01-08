@@ -13,7 +13,7 @@ package playtiLib.model.VO.social.fb
 		override public function parseProfile( json:Object, user:UserSocialInfo = null ):UserSocialInfo {
 			
 			if( !user )
-				user = new UserSocialInfo;
+				user = new UserSocialInfo();
 			user.sn_id 			= String( json[FBConfigConstants.PROFILE_FIELD_UID] );
 			user.first_name 	= json[FBConfigConstants.PROFILE_FIELD_FIRST_NAME] as String;
 			user.last_name 		= json[FBConfigConstants.PROFILE_FIELD_LAST_NAME] as String;

@@ -6,7 +6,7 @@ package playtiLib.utils.social
 		
 		public function parseProfile( json:Object, user:UserSocialInfo = null ):UserSocialInfo {
 			
-			return new UserSocialInfo;
+			return new UserSocialInfo();
 		}
 		
 		public function getInstallationsParams():Object {

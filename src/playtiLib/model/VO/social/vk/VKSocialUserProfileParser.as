@@ -10,7 +10,7 @@ package playtiLib.model.VO.social.vk
 		override public function parseProfile( json:Object, user:UserSocialInfo = null ):UserSocialInfo {
 			
 			if( !user )
-				user = new UserSocialInfo;
+				user = new UserSocialInfo();
 			user.sn_id		 	= String( json[VKConfigConstants.PROFILE_FIELD_UID] );
 			user.first_name 	= json[VKConfigConstants.PROFILE_FIELD_FIRST_NAME] as String;
 			user.last_name 		= json[VKConfigConstants.PROFILE_FIELD_LAST_NAME] as String;
