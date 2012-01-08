@@ -1,15 +1,11 @@
 package playtiLib.controller.commands.sound
 {
-	import flash.media.SoundMixer;
-	import flash.media.SoundTransform;
-	
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.command.SimpleCommand;
 	
 	import playtiLib.config.notifications.GeneralAppNotifications;
 	import playtiLib.config.statistics.GeneralStatistics;
-	import playtiLib.utils.sounds.SoundsLib;
-	import playtiLib.utils.statistics.Tracker;
+	import playtiLib.model.proxies.sound.MuteSoundProxy;
 
 	/**
 	 * Gets a boolean mute var and sets the mute parameter in soundsLib to be as the value of that parameter. It sets the soundTransform
@@ -23,8 +19,7 @@ package playtiLib.controller.commands.sound
 		override public function execute( notification:INotification ):void {
 			
 			var mute:Boolean = notification.getBody() as Boolean;
-			SoundsLib.lib.mute = mute;
-			SoundMixer.soundTransform = new SoundTransform( mute ? 0 : 1 );
+			( facade.retrieveProxy( MuteSoundProxy.NAME ) as MuteSoundProxy ).updateMuteBtn( mute );
 			sendNotification( GeneralAppNotifications.TRACK, null, ( mute ) ? GeneralStatistics.MUTE_SOUNDS : GeneralStatistics.MUTE_SOUNDS_CANCEL );
 		}
 	}
