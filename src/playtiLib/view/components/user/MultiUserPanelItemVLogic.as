@@ -9,12 +9,9 @@ package playtiLib.view.components.user
 	import flash.events.MouseEvent;
 	import flash.net.URLRequest;
 	
-	import org.puremvc.as3.patterns.facade.Facade;
-	
 	import playtiLib.config.notifications.GeneralAppNotifications;
 	import playtiLib.model.VO.user.User;
 	import playtiLib.model.VO.user.UserSocialInfo;
-	import playtiLib.model.proxies.coupon.TodayReceiversProxy;
 	import playtiLib.utils.events.EventTrans;
 	import playtiLib.utils.warehouse.GraphicsWarehouseList;
 	import playtiLib.view.components.btns.ButtonSimple;
@@ -72,7 +69,6 @@ package playtiLib.view.components.user
 					}
 				}
 			}
-			//check if the userSocialInfo is loaded and if not dispatch event to proxy
 			if( user && !user.userSocialInfo.isReady ){
 				user.userSocialInfo.addEventListener( GeneralAppNotifications.USER_SOCIAL_INFO_READY, onUserSocialReady );
 				person_mc['name_txt'].text = "";
