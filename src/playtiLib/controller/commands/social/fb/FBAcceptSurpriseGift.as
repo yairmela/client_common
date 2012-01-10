@@ -17,8 +17,16 @@ package playtiLib.controller.commands.social.fb
 
 	public class FBAcceptSurpriseGift extends SimpleCommand  {
 		
-		override public function execute( notification:INotification ):void {			
+		private var gift_redeemed:Boolean;
 		
+		override public function execute( notification:INotification ):void {			
+			
+			gift_redeemed = notification.getBody() as Boolean;
+			if( gift_redeemed ){
+				sendNotification( GeneralAppNotifications.SHOW_STATUS_GIFT_MSG, CouponSystemConfig.STATUS_COUPON_ALREADY_COLLECTED );
+				ExternalInterface.call( 'setSurpiseGiftStatus');
+				return;
+			}
 			var callConfig:DataCallConfig = AMFGeneralCallsConfig.ACCEPT_SURPRISE_GIFT;
 			var capsule:DataCapsule = DataCapsuleFactory.getDataCapsule([callConfig]);
 			capsule.addEventListener( Event.COMPLETE, onGiftDataReady );

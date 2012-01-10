@@ -2,18 +2,18 @@
 package playtiLib.model.proxies.social {
 
 	import flash.external.ExternalInterface;
-	import playtiLib.config.server.ServerConfig;
-	import playtiLib.model.proxies.server.AMFServerCallManagerProxy;
-	import playtiLib.model.proxies.server.ServerCallManagerProxy;
 	
 	import org.puremvc.as3.patterns.proxy.Proxy;
 	
 	import playtiLib.config.notifications.GeneralAppNotifications;
+	import playtiLib.config.server.ServerConfig;
 	import playtiLib.config.statistics.GeneralStatistics;
 	import playtiLib.config.statistics.KontagentConfig;
 	import playtiLib.controller.commands.paypage.CheckBuyTransactionStatusCommand;
 	import playtiLib.model.VO.payment.CurrencyCost;
 	import playtiLib.model.proxies.payment.CurrencyCostProxy;
+	import playtiLib.model.proxies.server.AMFServerCallManagerProxy;
+	import playtiLib.model.proxies.server.ServerCallManagerProxy;
 	import playtiLib.utils.data.DataCallConfig;
 	import playtiLib.view.mediators.popups.PauseGamePopupMediator;
 	
@@ -170,8 +170,8 @@ package playtiLib.model.proxies.social {
 		}
 		
 		
-		private function acceptSurpriseGiftCoupon():void {			
-			sendNotification(GeneralAppNotifications.SOCIAL_ACCEPT_SURPRISE_GIFT);	
+		private function acceptSurpriseGiftCoupon(gift_redeemed:Boolean):void {			
+			sendNotification(GeneralAppNotifications.SOCIAL_ACCEPT_SURPRISE_GIFT, gift_redeemed);	
 		}
 		
 		private function sendGiftsApproved(response:Object):void {
