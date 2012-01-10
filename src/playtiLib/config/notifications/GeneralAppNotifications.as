@@ -165,5 +165,7 @@ package playtiLib.config.notifications
 		public static const USER_SOCIAL_INFO_READY:String 			= 'user_social_info_ready';
 		public static const LOAD_USER_SOCIAL_INFO_EVENT:String 		= 'load_user_social_info_event';
 		public static const UPDATE_GIFT_ON_SCOREBOARD_EVENT:String 	= 'update_gift_on_scoreboard_event';
+		public static const INIT_FIRST_LOGIN_ARROWS:String 			= 'init_first_login_arrows';
+		
 	}
 }
