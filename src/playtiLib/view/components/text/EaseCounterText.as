@@ -25,7 +25,7 @@ package playtiLib.view.components.text
 		private var is_thouthand_separate:Boolean;
 		private var display_decimals : Boolean;
 		
-		public function EaseCounterText( text_con_mc:MovieClip, text_filed_name:String, ease_frame_laps:int = 40, is_thouthand_separate:Boolean = false, display_decimals : Boolean = true )	{
+		public function EaseCounterText( text_con_mc:MovieClip, text_filed_name:String, ease_frame_laps:int = 40, is_thouthand_separate:Boolean = false, display_decimals : Boolean = false )	{
 			
 			this.text_con_mc 			= text_con_mc;
 			this.counter_txt 			= text_con_mc[text_filed_name] as TextField;
