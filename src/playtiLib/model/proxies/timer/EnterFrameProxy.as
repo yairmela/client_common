@@ -21,5 +21,9 @@ package playtiLib.model.proxies.timer
 			
 			sendNotification( GeneralAppNotifications.ENTER_FRAME );
 		}
+		
+		override public function onRemove():void {
+			EnterFrame.getInstance().removeEventListener( Event.ENTER_FRAME, enterFrameHandler );
+		}
 	}
 }
