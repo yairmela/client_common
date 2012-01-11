@@ -40,6 +40,9 @@ package playtiLib.controller.commands.coupons
 			var link_request_ids:Array = (flashVars.request_ids != "" && flashVars.request_ids != "null" && flashVars.request_ids != null) ? flashVars.request_ids.split(',') : new Array();
 			if (link_request_ids.length>0){
 				var valid_requests_ids:Array = fb_request_proxy.request_ids;
+				for (var i:int = 0 ; i<valid_requests_ids.length; i++){
+					valid_requests_ids[i] = valid_requests_ids[i].slice(0,valid_requests_ids[i].indexOf('_') != -1 ? valid_requests_ids[i].indexOf('_') : valid_requests_ids[i].length-1 );
+				}
 				var invalid_link_request_ids:Array = link_request_ids.filter(function(element:String, ...args):Boolean{return valid_requests_ids.indexOf(element) == -1;});
 				var priority_error_code:int = -1;
 				

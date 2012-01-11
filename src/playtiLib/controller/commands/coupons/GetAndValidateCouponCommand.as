@@ -53,15 +53,13 @@ package playtiLib.controller.commands.coupons
 			var validCoupons:Array = ( dataCapsule.getDataHolderByIndex(0).data as CouponsListMessage ).coupon.toArray();
 			var friendsListInfo:Array = ( dataCapsule.getDataHolderByIndex(1).data == null ) ? [] : ( dataCapsule.getDataHolderByIndex(1).data as SocialUserIdsVO ).ids;
 			//if there is at least 1 coupon
-			if( validCoupons.length > 0 ){
-				filterOutNonFriendCoupons( validCoupons, friendsListInfo )
-				handleCouponsErrors( validCoupons );
-				//filter out the non valid coupons
-				validCoupons = validCoupons.filter( 
-					function( element:Coupon, ...args ):Boolean{
-						return ( element.errorCode == 0 );
-					} );
-			}
+			filterOutNonFriendCoupons( validCoupons, friendsListInfo )
+			handleCouponsErrors( validCoupons );
+			//filter out the non valid coupons
+			validCoupons = validCoupons.filter( 
+				function( element:Coupon, ...args ):Boolean{
+					return ( element.errorCode == 0 );
+				} );
 			//filter out same sender on same day coupons
 			if( validCoupons.length > 0 ){
 				validCoupons = filterOutSameSender( validCoupons );
@@ -116,8 +114,7 @@ package playtiLib.controller.commands.coupons
 				function( element:Coupon, ...args ):Boolean{
 					return ( element.errorCode != 0 );
 				} );
-			if( couponsErrorList.length > 0 )
-				sendNotification( GeneralAppNotifications.CLEANUP_COUPONS_COMMAND, couponsErrorList, is_first_load ? GeneralAppNotifications.CLEANUP_COUPONS_COMMAND : null );
+			sendNotification( GeneralAppNotifications.CLEANUP_COUPONS_COMMAND, couponsErrorList, is_first_load ? GeneralAppNotifications.CLEANUP_COUPONS_COMMAND : null );
 		}
 		
 		//check if the coupon sender is user's friend
@@ -153,7 +150,7 @@ package playtiLib.controller.commands.coupons
 				return false;
 			//break id so we will take only id without reciver
 			var breakId:Array = efficient_id.split("_");
-			return request_ids.indexOf( breakId[0]  )>=0
+			return request_ids.indexOf( breakId[0]  ) >= 0;
 		}
 		private function get is_first_load():Boolean{
 			return facade.hasProxy( UserCouponProxy.NAME ) ? false : true;
