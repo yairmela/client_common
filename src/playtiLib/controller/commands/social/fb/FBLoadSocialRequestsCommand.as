@@ -67,7 +67,7 @@ package playtiLib.controller.commands.social.fb
 		private function isValidRequest( element:SNRequestDataVO, ...args ):Boolean {
 			
 			return !isTimeExpired( element.created_time, flashVars.serverDate, flashVars.couponsExpiredDays ) &&
-				element.coupon_token && element.coupon_token != '';
+				element.coupon_token && element.coupon_token != '' && element.coupon_token != 'undefined' && element.coupon_token != null;
 			
 		}
 		
