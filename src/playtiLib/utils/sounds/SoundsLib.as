@@ -121,23 +121,27 @@ package playtiLib.utils.sounds
 			return channel;
 		}
 		
-		public function getSoundChannelsByName( name:String ) : Array {
+		public function stopAllSounds( soundsToSkip : Array = null ) : void {
 			
-			var active_of_name:Array = getActiveByName( name );
+			var restoreData : Array = [];
 			
-			var sound_channels : Array = [];			
-			active_of_name.forEach( function( element:*, index:int, arr:Array):void { sound_channels.push(element.sndChannel); } );
-			
-			return sound_channels;
-		}
-		
-		public function stopAllSounds() : void {
+			if(soundsToSkip) {
+				active_sounds_cash.forEach( function( element:*, index:int, arr:Array):void {
+					if(soundsToSkip.indexOf(element.name) >= 0) {
+						restoreData.push({name: element.name, position: (element.sndChannel as SoundChannel).position});
+					}
+				} );
+			}
 			
 			SoundMixer.stopAll();
 			
 			while(active_sounds_cash.length) {
 				removeSoundChannelFromActive(active_sounds_cash[0].sndChannel);
 			}
+			
+			active_sounds_cash.forEach( function( element:*, index:int, arr:Array):void {
+				playSound( element.name, element.position );
+			} );		
 		}
 		
 		public function isSoundActive( name:String ):Boolean {
