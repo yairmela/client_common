@@ -6,10 +6,11 @@ package playtiLib.view.components.popups
 	import flash.events.Event;
 	import flash.events.EventDispatcher;
 	import flash.geom.Rectangle;
-
+	
 	import playtiLib.utils.warehouse.GraphicsWarehouseList;
 	import playtiLib.view.components.btns.ButtonSimple;
 	import playtiLib.view.interfaces.IViewLogic;
+	
 	/**
 	 * Represent the basic logic of the popup. It holds do btns and close btns arrays, the mc of the main area of the popup and some more
 	 * display objects. has some basic functionality that all the popup shered (center popup, set position)Registers several optional btns 
@@ -49,6 +50,8 @@ package playtiLib.view.components.popups
 				popup_content = GraphicsWarehouseList.getAsset( 'popup_anim' );
 				//add display to popup_amin mc
 				popup_content['popup_con'].addChild( display );
+				display.x = 0- (display.getBounds(display).width/2 + display.getBounds(display).x);
+				display.y = 0- (display.getBounds(display).height*55/100 + display.getBounds(display).y);
 				display.addEventListener( Event.ADDED_TO_STAGE, startPopupAnim );
 			} else  
 				popup_content = display;
@@ -62,7 +65,7 @@ package playtiLib.view.components.popups
 				}
 			}
 
-			initial_popup_rect = popup_main_area.getBounds(popup_content.parent);
+			initial_popup_rect = popup_main_area.getBounds(popup_content['popup_con']);
 			//check for popup_mc general buttons
 			registerDoAndCloseBtns(popup_mc);
 		}
