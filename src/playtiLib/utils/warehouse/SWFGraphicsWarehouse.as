@@ -83,6 +83,15 @@ package playtiLib.utils.warehouse
 			asset_loader.loadBytes( bytes, context );
 	 	}
 	 	
+		public function getSkinClass( skinAsset:String ):Class {
+			
+			try{
+				return asset_loader.contentLoaderInfo.applicationDomain.getDefinition( skinAsset ) as Class;
+	        } catch(e:Error) {
+	            return null;
+	        }
+	        return null;
+		}
 		public function getSkinAsset( skinAsset:String ):DisplayObject {
 			
 			try{

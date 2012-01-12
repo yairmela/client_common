@@ -3,6 +3,7 @@ package playtiLib.utils.warehouse
 	import flash.display.DisplayObject;
 	import flash.events.EventDispatcher;
 	import flash.media.Sound;
+	
 	import playtiLib.utils.tracing.Logger;
 	/**
 	 * Holds an array of all the SWFGraphicsWarehouse elements. It has only static
@@ -36,6 +37,19 @@ package playtiLib.utils.warehouse
 					return true;
 			}
             return false;
+        }
+		/**
+		 * Get a string skin asset and return its Class if the warehouse array contains such. 
+		 * @param skinAsset
+		 */		
+        public static function getClass( skinAsset:String ):Class {
+			var result:Class;
+        	for each( var warehouse:SWFGraphicsWarehouse in warehouses_map ) {
+				result = warehouse.getSkinClass( skinAsset );
+				if( result )
+					return result;
+			}
+            return result;
         }
 		/**
 		 * Gets a string sound asset and returns a sound object from the warehouse array. 
