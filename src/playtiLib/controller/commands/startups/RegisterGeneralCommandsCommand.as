@@ -35,6 +35,7 @@ package playtiLib.controller.commands.startups
 	import playtiLib.controller.commands.task.TaskHandlerCommand;
 	import playtiLib.controller.commands.user.RegisterNewUserCommand;
 	import playtiLib.controller.commands.user.UpdateUserInfoCommand;
+	import playtiLib.controller.commands.user.UserDataReadyCoreCommand;
 
 	/**
 	 * Registers commands (buy proccess, register user commands, sounds, popups and coupons) by the facade. 
@@ -51,6 +52,7 @@ package playtiLib.controller.commands.startups
 			facade.registerCommand( GeneralAppNotifications.SERVER_LOGIN_COMPLETE, ServerLoginCompleteCommand );
 			facade.registerCommand( GeneralAppNotifications.REGISTER_NEW_USER, RegisterNewUserCommand );
 			facade.registerCommand( GeneralAppNotifications.UPDATE_USER_INFO, UpdateUserInfoCommand );
+			facade.registerCommand( GeneralAppNotifications.USER_DATA_READY, UserDataReadyCoreCommand );
 			//sounds
 			facade.registerCommand( GeneralAppNotifications.MUTE_SOUNDS, MuteSoundsCommand );
 			//popups
