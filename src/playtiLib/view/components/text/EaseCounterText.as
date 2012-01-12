@@ -45,7 +45,7 @@ package playtiLib.view.components.text
 			if ( is_thouthand_separate ) {
 				counter_txt.text = TextUtil.numberFormat( current_value, (display_decimals ? 2 : 0) );
 			}else{
-				counter_txt.text = current_value.toFixed( 2 );
+				counter_txt.text = current_value.toFixed( (display_decimals ? 2 : 0) );
 			}
 		}
 		
