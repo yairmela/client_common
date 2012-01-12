@@ -15,14 +15,6 @@ package playtiLib.utils.warehouse
 		
 		protected static var warehouses_map : Array = [];
 		
-		public static function getClass( skinAsset:String ):Class {
-			
-			for each( var warehouse:SWFGraphicsWarehouse in warehouses_map ) {
-				if( warehouse.hasAsset( skinAsset ) )
-					return warehouse.getSkinAssetClass( skinAsset );
-			}
-			return null;
-		}
 		/**
 		 * Gets a string skin asset and returns the display object from the warehouse array. 
 		 * If there is no such of display object it returns null.

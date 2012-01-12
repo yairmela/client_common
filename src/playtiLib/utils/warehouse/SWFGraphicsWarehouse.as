@@ -97,6 +97,7 @@ package playtiLib.utils.warehouse
 	        }
 	        return null;
 		}
+		
 		public function getSkinAsset( skinAsset:String ):DisplayObject {
 			
 			try{
