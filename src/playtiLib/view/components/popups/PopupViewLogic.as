@@ -61,11 +61,13 @@ package playtiLib.view.components.popups
 			}else {
 				popup_main_area = DisplayObjectContainer(popup_mc).getChildByName("main_area");
 				if(!popup_main_area) {
-					popup_main_area = popup_content;
+					popup_main_area = popup_content;					
+				}else {
+					popup_main_area.visible = false;					
 				}
 			}
 
-			initial_popup_rect = popup_main_area.getBounds(popup_content['popup_con']);
+			initial_popup_rect = (add_show_anim)? popup_main_area.getBounds(popup_content['popup_con']) : popup_main_area.getBounds(popup_content);
 			//check for popup_mc general buttons
 			registerDoAndCloseBtns(popup_mc);
 		}
@@ -126,7 +128,7 @@ package playtiLib.view.components.popups
 			
 			return do_btns.concat();
 		}
-
+		
 		public function get content():DisplayObject {
 			
 			return popup_content;
