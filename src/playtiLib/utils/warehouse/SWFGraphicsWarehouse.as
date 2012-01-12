@@ -82,6 +82,11 @@ package playtiLib.utils.warehouse
 			is_loaded = false;
 			asset_loader.loadBytes( bytes, context );
 	 	}
+		
+		public function getSkinAssetClass( skinAsset:String ):Class {
+			
+			return asset_loader.contentLoaderInfo.applicationDomain.getDefinition( skinAsset ) as Class;
+		}
 	 	
 		public function getSkinClass( skinAsset:String ):Class {
 			
@@ -95,7 +100,7 @@ package playtiLib.utils.warehouse
 		public function getSkinAsset( skinAsset:String ):DisplayObject {
 			
 			try{
-				var assetClass:Class = asset_loader.contentLoaderInfo.applicationDomain.getDefinition( skinAsset ) as Class;
+				var assetClass:Class = getSkinAssetClass( skinAsset );
 				var dis_obj:DisplayObject = new assetClass();
 				return dis_obj;
 	        } catch(e:Error) {

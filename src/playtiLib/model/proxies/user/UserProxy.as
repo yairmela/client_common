@@ -35,7 +35,7 @@ package playtiLib.model.proxies.user
 		public function UserProxy( user_id:String ){
 			
 			super( NAME, [AMFGeneralCallsConfig.USER_INFO] );
-			if( !facade.hasProxy( UserSocialInfoProxy.NAME ) ){
+			if( !facade.hasProxy( UserSocialInfoProxy.NAME ) ) {
 				facade.registerProxy( new UserSocialInfoProxy() );
 			}
 			user_social_info = (facade.retrieveProxy(UserSocialInfoProxy.NAME) as UserSocialInfoProxy).getAndLoadUserInfoByIds([user_id])[0];

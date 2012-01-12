@@ -74,7 +74,7 @@ package playtiLib.controller.commands.user
 				case ServerCallConfig.SRC_SUCCESS:
 					ServerConfig.session_info = ( response.result as LoginMessage ).sessionInfo;
 					trackAppRegistered();
-					sendNotification( GeneralAppNotifications.SERVER_LOGIN_COMPLETE );					
+					sendNotification( GeneralAppNotifications.SERVER_LOGIN_COMPLETE, false );					
 					sendNotification( GeneralAppNotifications.UPDATE_USER_INFO );
 					userProxy.firstLogin = true;
 					if( ExternalInterface.available )
