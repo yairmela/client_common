@@ -20,7 +20,7 @@ package playtiLib.controller.commands.server
 	import playtiLib.utils.statistics.Tracker;
 	import playtiLib.utils.tracing.Logger;
 
-	public class ServerLoginCompleteCommand extends SimpleCommand{
+	public class ServerLoginCompleteCommand extends SimpleCommand {
 		
 		override public function execute( notification:INotification ):void{
 			Logger.log( "ServerLoginCompleteCommand" );
@@ -38,15 +38,15 @@ package playtiLib.controller.commands.server
  		}
 		
 		private function trackLogin( appInstalled:Boolean ):void {
-			var flash_vars_vo:FlashVarsVO = ( facade.retrieveProxy( FlashVarsProxy.NAME ) as FlashVarsProxy ).flash_vars;
+			var flash_vars:FlashVarsVO = ( facade.retrieveProxy( FlashVarsProxy.NAME ) as FlashVarsProxy ).flash_vars;
 			
 			sendNotification(GeneralAppNotifications.TRACK, null, GeneralStatistics.USER_LOGIN);
 			//TODO: fix this in register command
-			if( flash_vars_vo.ch == "fs" ) {
+			if( flash_vars.ch == "fs" ) {
 				sendNotification(GeneralAppNotifications.TRACK, {app_installed: appInstalled}, GeneralStatistics.LOADED_FROM_FEED);
 			}
-			else if( flash_vars_vo.ch == "gr" ) {
-				var request_ids : String = unescape( flash_vars_vo.request_ids );
+			else if( flash_vars.ch == "gr" ) {
+				var request_ids : String = unescape( flash_vars.request_ids );
 				
 				if( request_ids.length && ( request_ids != "null" ) ) {
 					sendNotification( GeneralAppNotifications.REQUEST_GET_GIFT_DATA, request_ids );
@@ -54,8 +54,7 @@ package playtiLib.controller.commands.server
 				else {
 					sendNotification( GeneralAppNotifications.TRACK, {app_installed: appInstalled}, GeneralStatistics.LOADED_FROM_INVITE );
 				}
-			}
-			
+			}			
 		}
 	}
 }

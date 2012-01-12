@@ -86,7 +86,7 @@ package playtiLib.controller.commands.server {
 		 *
 		 */
 		private function loginComplete():void {
-			sendNotification(GeneralAppNotifications.SERVER_LOGIN_COMPLETE);
+			sendNotification(GeneralAppNotifications.SERVER_LOGIN_COMPLETE, true);
 			sendNotification(GeneralAppNotifications.UPDATE_USER_INFO);
 			if (ExternalInterface.available){
 				try {

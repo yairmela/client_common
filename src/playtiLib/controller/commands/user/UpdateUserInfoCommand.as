@@ -121,40 +121,11 @@ package playtiLib.controller.commands.user
 			
 			var data_capsule:DataCapsule = event.currentTarget as DataCapsule;
 			data_capsule.removeEventListener( Event.COMPLETE, updateResult );
-			trackUserInfo();
 		}
 		
 		private function get flash_vars():FlashVarsVO{
 			
 			return (facade.retrieveProxy(FlashVarsProxy.NAME) as FlashVarsProxy).flash_vars;
-		}
-
-		private function trackUserInfo():void {
-			
-			var data_capsule:DataCapsule = DataCapsuleFactory.getDataCapsule( [SocialCallsConfig.ALL_SOCIAL_FRIENDS_INFO] );
-			data_capsule.addEventListener( Event.COMPLETE, onFriendsInfoReady );
-			data_capsule.loadData();
-		}
-		/**
-		 * Tracks the user's friends info.
-		 * @param event
-		 * 
-		 */
-		private function onFriendsInfoReady( event:Event ):void{
-			
-			var data_capsule:DataCapsule = event.currentTarget as DataCapsule;
-			data_capsule.removeEventListener( Event.COMPLETE, onFriendsInfoReady );
-
-			var friends_list:Array = ( data_capsule.getDataHolderByIndex(0).data as Array );
-
-			var current_date : Date = new Date();
-
-			if(	( !user_profile.last_login_at ) || ( user_profile.last_login_at.dateUTC >= current_date.dateUTC ) ) {
-				return;
-			}
-			//TODO: do we need it
-		//	var country_id:String = (facade.retrieveProxy(FlashVarsProxy.NAME) as FlashVarsProxy).flash_vars.countryId;
-			sendNotification(GeneralAppNotifications.TRACK, {friends_count: friends_list.length}, GeneralStatistics.USER_INFO);
 		}
 	}
 }
