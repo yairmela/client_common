@@ -12,7 +12,16 @@ package playtiLib.utils.warehouse
 	 */	
 	public class GraphicsWarehouseList extends EventDispatcher{
 		
-		protected static var warehouses_map : Array = []; 
+		protected static var warehouses_map : Array = [];
+		
+		public static function getClass( skinAsset:String ):Class {
+			
+			for each( var warehouse:SWFGraphicsWarehouse in warehouses_map ) {
+				if( warehouse.hasAsset( skinAsset ) )
+					return warehouse.getSkinAssetClass( skinAsset );
+			}
+			return null;
+		}
 		/**
 		 * Gets a string skin asset and returns the display object from the warehouse array. 
 		 * If there is no such of display object it returns null.
@@ -24,7 +33,7 @@ package playtiLib.utils.warehouse
 					return warehouse.getSkinAsset( skinAsset );
 			}
             return null;
-        }
+        }			
 		/**
 		 * Get a string skin asset and return true if the warehouse array contains such skin asset and false otherwise. 
 		 * @param skinAsset
