@@ -8,6 +8,8 @@ package playtiLib.controller.commands.user
 	import playtiLib.config.notifications.GeneralAppNotifications;
 	import playtiLib.config.social.SocialCallsConfig;
 	import playtiLib.config.statistics.GeneralStatistics;
+	import playtiLib.model.VO.amf.response.helpers.UserInfo;
+	import playtiLib.model.proxies.user.UserProxy;
 	import playtiLib.utils.data.DataCapsule;
 	import playtiLib.utils.data.DataCapsuleFactory;
 	
@@ -39,20 +41,23 @@ package playtiLib.controller.commands.user
 			
 			var friends_list:Array = ( data_capsule.getDataHolderByIndex(0).data as Array );
 			
-			// TODO: restore after userLastLoginTs format will be changed
-			//			var user_profile : UserInfo = userProxy.user_info;
-			//
-			//			if(user_profile.userLastLoginTs) {
-			//				var last_login_date : Date = new Date();
-			//				last_login_date.millisecondsUTC = Date.parse(user_profile.userLastLoginTs);
-			//				var current_date : Date = new Date();
-			//				
-			//				if( last_login_date.dateUTC >= current_date.dateUTC ) {
-			//					return;
-			//				}
-			//			}
+			var user_profile : UserInfo = userProxy.user_info;
+
+			if(user_profile.userLastLoginTs) {
+				var last_login_date : Date = new Date(user_profile.userLastLoginTs * 1000);
+				var current_date : Date = new Date();
+				
+				if( last_login_date.dateUTC >= current_date.dateUTC ) {
+					return;
+				}
+			}
 			
 			sendNotification(GeneralAppNotifications.TRACK, {friends_count: friends_list.length}, GeneralStatistics.USER_INFO);
+		}
+		
+		private function get userProxy():UserProxy {
+			
+			return ( facade.retrieveProxy( UserProxy.NAME ) as UserProxy );
 		}
 	}
 }

@@ -34,7 +34,6 @@ package playtiLib.controller.commands.server
 			sendNotification( GeneralAppNotifications.SYSTEM_TO_USER_COUPON_COLLECTION );
 			//check for today receivers
 			sendNotification( GeneralAppNotifications.GET_TODAY_RECEIVERS_COMMAND );
-			
  		}
 		
 		private function trackLogin( appInstalled:Boolean ):void {

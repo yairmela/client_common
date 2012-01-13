@@ -29,7 +29,7 @@ package playtiLib.model.VO.amf.response.helpers
 		public var userCreateTs:String;
 		
 		/** The user last login ts. */
-		public var userLastLoginTs:String;
+		public var userLastLoginTs:Number;
 		
 		/** The gender. */
 		public var gender:int;
