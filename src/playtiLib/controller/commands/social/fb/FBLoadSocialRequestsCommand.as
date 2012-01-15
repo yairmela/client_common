@@ -39,11 +39,17 @@ package playtiLib.controller.commands.social.fb
 				function ( element:SNRequestDataVO, ...args ):Boolean {
 					return !isValidRequest( element );
 				});
+			
 			//filter out the non valid requests from main list
 			requests = requests.filter( isValidRequest );
 			
 			if( !facade.hasProxy( FBRequestsProxy.NAME ) ) {//first load in this session
 				facade.registerProxy( new FBRequestsProxy( requests ) );
+				for each(var req:SNRequestDataVO in nonValidRequests){
+					if(req.coupon_token == 'undefined' ){
+						fb_request_proxy.addNewInviteRequests([req]);
+					}
+				}
 			} else { //if this is second time we load the fb requests
 				//filter the unknown (new) requests and send only new to the get_and_validate_command
 				requests = requests.filter( 

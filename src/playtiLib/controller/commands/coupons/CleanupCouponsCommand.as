@@ -38,6 +38,10 @@ package playtiLib.controller.commands.coupons
 		
 		private function handleGiftStatusMessages( errorCouponsList:Array ):void{
 			var link_request_ids:Array = (flashVars.request_ids != "" && flashVars.request_ids != "null" && flashVars.request_ids != null) ? flashVars.request_ids.split(',') : new Array();
+			link_request_ids = link_request_ids.filter(
+				function( id:String, ...args ):Boolean{
+					return !fb_request_proxy.isInviteRequestById( id ) ;
+				} );
 			if (link_request_ids.length>0){
 				var valid_requests_ids:Array = fb_request_proxy.request_ids;
 				for (var i:int = 0 ; i<valid_requests_ids.length; i++){

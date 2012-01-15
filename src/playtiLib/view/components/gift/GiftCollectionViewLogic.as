@@ -4,17 +4,18 @@ package playtiLib.view.components.gift
 	import flash.display.MovieClip;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
+	import flash.events.TimerEvent;
 	import flash.net.URLRequest;
+	import flash.utils.Timer;
+	import flash.utils.setTimeout;
 	
 	import playtiLib.config.gifts.CouponSystemConfig;
 	import playtiLib.config.notifications.GeneralAppNotifications;
 	import playtiLib.model.VO.amf.response.Coupon;
 	import playtiLib.model.VO.gift.ChooseGift;
 	import playtiLib.model.VO.gift.Gift;
-	import playtiLib.model.VO.social.SocialPostVO;
 	import playtiLib.model.VO.user.UserSocialInfo;
 	import playtiLib.utils.events.EventTrans;
-	import playtiLib.utils.locale.TextLib;
 	import playtiLib.view.components.btns.ButtonSimple;
 	import playtiLib.view.components.list.ListWindowSimple;
 	import playtiLib.view.components.popups.PopupViewLogic;
@@ -65,7 +66,7 @@ package playtiLib.view.components.gift
 			inserUserSocialInfoToGift( event.currentTarget as UserSocialInfo );
 		}
 		
-		public function inserUserSocialInfoToGift( userSocialInfo:UserSocialInfo ):void{
+		private function inserUserSocialInfoToGift( userSocialInfo:UserSocialInfo ):void{
 			
 			listWindow = gifts_list.list.GetListWindow();
 			var coupon:Coupon;
@@ -137,7 +138,8 @@ package playtiLib.view.components.gift
 		
 		private function giftBackHandler(event:MouseEvent):void{
 			
-			( event.currentTarget as ButtonSimple ).enabled = false;
+//			( event.currentTarget as ButtonSimple ).enabled = false;
+//			waitAndSendEvent();
 			var gift_mc:MovieClip 		= ( event.currentTarget as ButtonSimple ).content.parent as MovieClip;
 			var coupon:Coupon 	 		= listWindow.GetItem( gift_mc.bg.count ).data as Coupon;
 			var chooseGift:ChooseGift 	= new ChooseGift();
@@ -150,7 +152,9 @@ package playtiLib.view.components.gift
 			
 			dispatchEvent( new EventTrans( CouponSystemConfig.SEND_BACK_BTN, chooseGift ) );
 		}
-		
+//		private function waitAndSendEvent():void{
+//			setTimeout( function():void{dispatchEvent( new EventTrans( GeneralAppNotifications.UPDATE_TODAY_RECEIVERS ) ); }, 2000 );
+//		}
 		private function collectHandler(event:MouseEvent):void{
 			
 			event.currentTarget.enabled 			= false;

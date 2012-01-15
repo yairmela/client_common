@@ -29,7 +29,12 @@ package playtiLib.model.proxies.social
 		}
 		
 		public function isInviteRequestById(request_id:String):Boolean{
-			return invite_request_ids.indexOf(request_id) != -1;
+			for each( var invite:String in invite_request_ids ){
+				if(invite == request_id || invite.indexOf( request_id ) > -1){
+					return true;
+				}
+			}
+			return false;
 		}
 		
 		public function get tokens():Array{
