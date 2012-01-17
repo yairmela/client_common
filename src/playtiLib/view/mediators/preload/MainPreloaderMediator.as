@@ -84,7 +84,7 @@ package playtiLib.view.mediators.preload
 		 * @param event
 		 * 
 		 */		
-		private function updateProgress( event:ProgressEvent ):void {
+		protected function updateProgress( event:ProgressEvent ):void {
 			
 			if( !custom_preloader ) // we're still loading the custom preloader
 				return
