@@ -166,6 +166,9 @@ package playtiLib.config.notifications
 		public static const LOAD_USER_SOCIAL_INFO_EVENT:String 		= 'load_user_social_info_event';
 		public static const UPDATE_GIFT_ON_SCOREBOARD_EVENT:String 	= 'update_gift_on_scoreboard_event';
 		public static const INIT_FIRST_LOGIN_ARROWS:String 			= 'init_first_login_arrows';
-		
+		public static const CANCEL_SHARE_POPUP_COMMAND:String 		= 'cancel_share_popup_command';
+		public static const APPROVE_SHARE_POPUP_COMMAND:String 		= 'aprove_share_popup_command';
+
+		public static const ENGINE_PRELOADER_PROGRESS:String 		= 'engine_preloader_progress';
 	}
 }

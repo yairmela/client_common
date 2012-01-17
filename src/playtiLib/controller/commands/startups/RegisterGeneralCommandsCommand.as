@@ -85,6 +85,7 @@ package playtiLib.controller.commands.startups
 			facade.registerCommand( GeneralAppNotifications.EXECUTE_EXTERNAL_CALL, ExecuteGeneralExternalCallCommand );
 			
 			facade.registerCommand( GeneralAppNotifications.TRACK, StatisticsTrackingCommand );
+			facade.registerCommand( GeneralAppNotifications.CANCEL_SHARE_POPUP_COMMAND, StatisticsTrackingCommand );
 		}
 	}
 }
