@@ -18,14 +18,14 @@ package playtiLib.view.mediators.preload
 		
 		public static const NAME:String = 'MainPreloaderMediator';
 		
-		protected var preloader:MainPreloader;
+//		protected var preloader:MainPreloader;
 		protected var custom_preloader:MovieClip;
 		
 		public function MainPreloaderMediator()	{
 			
 			super( NAME, new MainPreloader );
 			//init generic preloader until the game unique preloader will be ready
-			preloader = viewComponent as MainPreloader;
+//			preloader = viewComponent as MainPreloader;
 		}
 		/**
 		 * Returns an array with the notifications the mediator is listening to:
@@ -53,7 +53,7 @@ package playtiLib.view.mediators.preload
 			switch( notification.getName() ) {
 				case GeneralAppNotifications.LOAD_CUSTOM_PRELOADER_PROGRESS:
 					var progress:ProgressEvent = notification.getBody() as ProgressEvent;
-					preloader.progress =  Math.min( progress.bytesLoaded/progress.bytesTotal, .9 );
+//					preloader.progress =  Math.min( progress.bytesLoaded/progress.bytesTotal, .9 );
 					break;
 				case GeneralAppNotifications.LOAD_CUSTOM_PRELOADER_COMPLETE:
 					addCustomPreloader();
@@ -73,8 +73,8 @@ package playtiLib.view.mediators.preload
 		 */		
 		protected function addCustomPreloader():void {
 			//remove the preloader
-			if( preloader.parent )
-				preloader.parent.removeChild( preloader );
+//			if( preloader.parent )
+//				preloader.parent.removeChild( preloader );
 			//add new preloader
 			custom_preloader = GraphicsWarehouseList.getAsset( 'game_preloader' ) as MovieClip;
 			sendNotification( GeneralAppNotifications.ADD_CHILD_TO_ROOT, custom_preloader );
