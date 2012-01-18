@@ -119,9 +119,10 @@ package playtiLib.controller.commands.coupons
 		
 		//check if the coupon sender is user's friend
 		private function filterOutNonFriendCoupons( couponsList:Array, appFriendIds:Array ):void {
-			var isCouponSenderIsUserFriend:Boolean;
 			
+			var isCouponSenderIsUserFriend:Boolean;
 			for each( var coupon:Coupon in couponsList ) {
+				isCouponSenderIsUserFriend = false;
 				for each( var id:String in appFriendIds ) {
 					if( coupon.senderSnId == id ) {
 						isCouponSenderIsUserFriend = true;
