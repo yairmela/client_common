@@ -38,8 +38,8 @@ package playtiLib.config.notifications
 		public static const SOCIAL_GAME_SETTINGS_NOT_APPROVED:String= 'social_game_settings_not_approved';
 		public static const SOCIAL_INSTALL_APPROVED:String 			= 'social_install_approved';
 		public static const SOCIAL_LIKE_APP:String 					= 'social_like_app';
-		public static const SOCIAL_LIKE_APP_CHANGE:String 			= 'social_like_app_change';
 		public static const SOCIAL_LIKE_APP_CALLBACK:String 		= 'social_like_app_callback';
+		public static const SOCIAL_LIKE_APP_DATA_READY:String 		= 'social_like_app_data_ready';
 		public static const SET_PAUSE_POPUP_WITH_LOADING:String 	= 'set_pause_popup_with_loading';
 		public static const SET_SOCIAL_BANNERS:String 				= 'social_set_banners';
 		public static const SOCIAL_ACCEPT_SURPRISE_GIFT:String		= 'social_accept_surprise_gift';

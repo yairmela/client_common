@@ -38,12 +38,7 @@ package playtiLib.controller.commands.user
 			
 			Logger.log( "UpdateUserInfoCommand" );
 			
-			var likeCallConfig:DataCallConfig = SocialCallsConfig.LIKE_INFO;
-			
-			var flashVarsProxy:FlashVarsProxy = facade.retrieveProxy(FlashVarsProxy.NAME) as FlashVarsProxy;
-			likeCallConfig.request_params.app_id = flashVarsProxy.flash_vars.api_id;
-			
-			var dataCapsule:DataCapsule = DataCapsuleFactory.getDataCapsule( [SocialCallsConfig.getUserProfileCallConfig([flash_vars.viewer_id]), likeCallConfig, SocialCallsConfig.SOCIAL_APP_FRIENDS_IDS ] );
+			var dataCapsule:DataCapsule = DataCapsuleFactory.getDataCapsule( [SocialCallsConfig.getUserProfileCallConfig([flash_vars.viewer_id]), SocialCallsConfig.getLikeInfo(flash_vars.page_id), SocialCallsConfig.SOCIAL_APP_FRIENDS_IDS ] );
 			dataCapsule.addEventListener( Event.COMPLETE, onUserInfoReady );
 			dataCapsule.addEventListener( ErrorEvent.ERROR, onDataReadyWithErrors);
 			dataCapsule.addEventListener( IOErrorEvent.IO_ERROR,  IO_Error);
@@ -70,7 +65,7 @@ package playtiLib.controller.commands.user
 			
 			user_profile = (data_capsule.getDataHolderByIndex(0).data as SocialUsersListVO).list_copy[0] as UserSocialInfo;
 			
-			var like_data_holder:Object = data_capsule.getDataHolder( SocialCallsConfig.LIKE_INFO ).data;
+			var like_data_holder:Object = data_capsule.getDataHolderByIndex(1).data;
 			Logger.log( "dataHolder " + like_data_holder );
 			if ( like_data_holder.length > 0 ){
 				user_profile.like = 1;
