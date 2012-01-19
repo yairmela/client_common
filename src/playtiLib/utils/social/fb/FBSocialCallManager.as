@@ -76,7 +76,7 @@ package playtiLib.utils.social.fb
 				case FBCallsConfig.FB_LIKE_APP_COMMAND_NAME:
 //					callFQL( 'SELECT target_id FROM connection WHERE source_id = ' + params.user_id + ' AND target_id = ' + params.app_id,
 //						on_result_func );
-					callFQL( 'SELECT uid, page_id FROM page_fan WHERE uid='+params.user_id+' AND page_id='+ params.app_id, on_result_func)
+					callFQL( 'SELECT uid, page_id FROM page_fan WHERE uid='+params.user_id+' AND page_id='+ params.page_id, on_result_func)
 					break;
 				
 				case SocialCallsConfig.LOAD_APP_REQUESTS_COMMAND_NAME:

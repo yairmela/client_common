@@ -34,7 +34,7 @@ package playtiLib.controller.commands.social.fb
 			var like_call_config:DataCallConfig = SocialCallsConfig.LIKE_INFO;
 			
 			var flash_vars_proxy:FlashVarsProxy = facade.retrieveProxy(FlashVarsProxy.NAME) as FlashVarsProxy;
-			like_call_config.request_params.app_id = flash_vars_proxy.flash_vars.api_id;
+			like_call_config.request_params.page_id = flash_vars_proxy.flash_vars.page_id;
 			
 			var like_capsule:DataCapsule = DataCapsuleFactory.getDataCapsule([like_call_config]);
 			like_capsule.addEventListener( Event.COMPLETE, onLikeDataReady );
@@ -44,7 +44,7 @@ package playtiLib.controller.commands.social.fb
 		 * Function that gets a dataCapsule object and check if has leength and with that sends notification SOCIAL_LIKE_APP_CHANGE.
 		 * @param event
 		 * 
-		 */		
+		 */
 		private function onLikeDataReady( event:Event ):void{
 			
 			var like_data_holder:Object = ( event.target as DataCapsule ).getDataHolderByIndex(0).data;

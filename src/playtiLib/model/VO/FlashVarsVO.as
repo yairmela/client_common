@@ -18,9 +18,10 @@ package playtiLib.model.VO
 			return getCastedProperty("assets_server_path", String);
 		}
 
-		public function get api_url():String { 		return getCastedProperty( "api_url", String ); }
-		public function get api_id():String { 		return getCastedProperty( "api_id", String );}
-		public function get app_id():String { 		return getCastedProperty( "app_id", String );}
+		public function get api_url():String { return getCastedProperty( "api_url", String ); }
+		public function get api_id():String { return getCastedProperty( "api_id", String );}
+		public function get app_id():String { return getCastedProperty( "app_id", String );}
+		public function get page_id():String { return getCastedProperty( "page_id", String );}
 		public function set api_id( id:String ):void { params["api_id"] = id }
 
 		public function get is_like_app():Boolean {
