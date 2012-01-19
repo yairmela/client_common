@@ -103,10 +103,11 @@ package playtiLib.config.social
 			return callConfigVO;
 		}
 		
-		public static function get LIKE_INFO() : DataCallConfig	{
+		public static function getLikeInfo( page_id : String ) : DataCallConfig	{
 			
 			var callConfigVO:DataCallConfig = LIKE_APP;
 			callConfigVO.request_params.user_id = SocialConfig.viewer_sn_id;
+			callConfigVO.request_params.page_id = page_id;
 			return callConfigVO;
 		}
 	}

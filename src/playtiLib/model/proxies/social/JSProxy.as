@@ -63,7 +63,7 @@ package playtiLib.model.proxies.social {
 		 * @param reciver_ids
 		 *
 		 */
-		private function couponPostComplete(reciver_ids:String, postVO:Object = null):void {
+		private function couponPostComplete(reciver_ids:String, postVO:Object):void {
 //			sendNotification( GeneralAppNotifications.COUPON_POST_COMPLETE, reciver_ids );
 			sendNotification( GeneralAppNotifications.SEND_COUPON_COMMAND, postVO, reciver_ids );
 			sendNotification( GeneralAppNotifications.UPDATE_TODAY_RECEIVERS, reciver_ids )
