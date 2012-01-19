@@ -8,8 +8,6 @@ package playtiLib.view.components.btns {
 	import flash.events.MouseEvent;
 	import flash.geom.Point;
 	
-	import playtiLib.view.components.btns.ButtonSimple;
-	
 	/**
 	 * A class of a simple btn slider. It listens to mouse events and handles them and can set it's
 	 * position coordination.
@@ -150,6 +148,7 @@ package playtiLib.view.components.btns {
 		 *
 		 */
 		protected function onTrackDownEvent(event:MouseEvent):void {
+		 
 			var y:Number = event.localY * ( ( ( event as Event ).currentTarget ) as SimpleButton ).scaleY
 			setSliderBtnPositionAfterTrackClick(new Point(event.localX, y));
 			redispatchEvent(event);
