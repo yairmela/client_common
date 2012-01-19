@@ -100,6 +100,7 @@ package playtiLib.view.components.list
 				scroll.removeEventListener( MouseEvent.CLICK, onScrollVertical );
 				scroll.removeEventListener( MouseEvent.MOUSE_MOVE, onScrollVertical );
 				scroll.removeEventListener( Event.MOUSE_LEAVE, onScrollVertical );
+				scroll.removeEventListener( MouseEvent.MOUSE_WHEEL, onScrollVertical );
 			}
 			
 			delete scroll_attached[scrollingDirection];

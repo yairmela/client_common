@@ -18,20 +18,10 @@ package playtiLib.view.components.list
 			
 			super( content );
 			list = new ListWindowSimple( content.getChildByName( LIST_NAME ) as MovieClip );
-			//TODO: can we delete this?
-			//var scrollAdditionalParams : Object = CommonUtils.getFieldSafe(additionalParams, "scrollParams", {direction: WindowDirected.VERTICAL});
 			scroll = new ScrollSimple( content.getChildByName( SCROLL_NAME ) as MovieClip ) ;
 			
 			list.AttachScroll( scroll );
 		}
-		//TODO: can we delete this function?
-		/*override public function Destroy( removeContentFromStage : Boolean = true ) : void
-		{
-			list.Destroy(removeContentFromStage);
-			scroll.Destroy(removeContentFromStage);
-			
-			super.Destroy(removeContentFromStage);
-		}*/
 		
 		public function GetListWindow() : ListWindowSimple	{
 			

@@ -7,7 +7,6 @@ package playtiLib.view.components.btns {
 	import flash.events.EventDispatcher;
 	import flash.events.MouseEvent;
 	import flash.geom.Point;
-	import playtiLib.view.components.btns.ButtonSimple;
 	
 	/**
 	 * A class of a simple btn slider. It listens to mouse events and handles them and can set it's
@@ -55,7 +54,7 @@ package playtiLib.view.components.btns {
 			
 			track = content.getChildByName(TRACK_NAME);
 			
-			track.addEventListener(MouseEvent.MOUSE_DOWN, onTrackDownEvent);
+			track.addEventListener(MouseEvent.CLICK, onTrackDownEvent);
 		}
 		
 		public function get content():DisplayObjectContainer {
@@ -149,8 +148,9 @@ package playtiLib.view.components.btns {
 		 *
 		 */
 		protected function onTrackDownEvent(event:MouseEvent):void {
-			
-			setSliderButtonPosition(new Point(event.localX, event.localY));
+		 
+			var y:Number = event.localY * ( ( ( event as Event ).currentTarget ) as SimpleButton ).scaleY
+			setSliderBtnPositionAfterTrackClick(new Point(event.localX, y));
 			redispatchEvent(event);
 		}
 		
@@ -204,6 +204,16 @@ package playtiLib.view.components.btns {
 			} else {
 				slider_btn.content[target_variable_name] = coord[target_variable_name];
 			}
+		}
+		
+		private function setSliderBtnPositionAfterTrackClick(coord:Point):void{
+			if( coord[target_variable_name] <  slider_btn.content[target_variable_name] ){
+				slider_btn.content[target_variable_name] -= 10;
+			}else{
+				slider_btn.content[target_variable_name] +=10;
+			}
+			slider_btn.content[target_variable_name] = slider_btn.content[target_variable_name] < 0 ? 0 : slider_btn.content[target_variable_name];
+			slider_btn.content[target_variable_name] = slider_btn.content[target_variable_name] > track[target_range_name] - slider_btn.content[target_range_name] ? track[target_range_name] - slider_btn.content[target_range_name] : slider_btn.content[target_variable_name];
 		}
 	}
 }
