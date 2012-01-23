@@ -6,31 +6,13 @@ package playtiLib.utils.statistics.googleAnalytics
 	
 	import playtiLib.config.statistics.GeneralStatistics;
 	import playtiLib.utils.statistics.ISpecificTracker;
-	import playtiLib.utils.statistics.TrackSnapshot;
+	import playtiLib.utils.statistics.GeneralTrackSnapshot;
 	
-	public class GoogleAnalyticsTracker implements ISpecificTracker
+	public class GeneralGoogleAnalyticsTracker implements ISpecificTracker
 	{
 		static public const NAME : String = "GoogleAnalyticsTracker";
-		
-		static private var instance:GoogleAnalyticsTracker;
-		
-		protected var ga_tracker : GATracker;
 
-		/**
-		 * Static function that returns the singleton GoogleAnalyticsTracker
-		 * @return 
-		 * 
-		 */
-		static public function getInstance() : GoogleAnalyticsTracker {
-			if( !instance ) {
-				instance = new GoogleAnalyticsTracker();
-			}
-			
-			return instance;
-		}
-		
-		public function GoogleAnalyticsTracker() {
-		}
+		protected var ga_tracker : GATracker;
 		
 		public function init(display_object:DisplayObject, account:String, mode:String='AS3', is_debug:Boolean=false):void {
 			

@@ -12,7 +12,6 @@ package playtiLib.controller.commands
 	import playtiLib.controller.commands.load.LoadExternalsCommand;
 	import playtiLib.controller.commands.popup.SetPauseLoadingPopupCommand;
 	import playtiLib.controller.commands.popup.SetPausePopupCommand;
-	import playtiLib.controller.commands.ui.SetupUIDisplayCommand;
 	import playtiLib.controller.commands.popup.ShowSystemMsgPopupCommand;
 	import playtiLib.controller.commands.server.RefreshIframeCommand;
 	import playtiLib.controller.commands.server.ServerFaultHandlingCommand;
@@ -21,6 +20,7 @@ package playtiLib.controller.commands
 	import playtiLib.controller.commands.server.ServerReloginCompleteCommand;
 	import playtiLib.controller.commands.server.SystemErrorCommand;
 	import playtiLib.controller.commands.social.SocialRegisterCommandsCommand;
+	import playtiLib.controller.commands.ui.SetupUIDisplayCommand;
 	import playtiLib.controller.commands.version.ShowVersionNumberCommand;
 	import playtiLib.model.VO.FlashVarsVO;
 	import playtiLib.model.VO.amf.request.SessionInfo;
@@ -33,6 +33,10 @@ package playtiLib.controller.commands
 	import playtiLib.model.proxies.social.JSProxy;
 	import playtiLib.utils.network.URLUtil;
 	import playtiLib.utils.social.SocialCallManager;
+	import playtiLib.utils.statistics.ISpecificTracker;
+	import playtiLib.utils.statistics.Tracker;
+	import playtiLib.utils.statistics.googleAnalytics.GeneralGoogleAnalyticsTracker;
+	import playtiLib.utils.statistics.kontagent.GeneralKontagentTracker;
 	import playtiLib.utils.tracing.Logger;
 	import playtiLib.view.mediators.core.RootMediator;
 
@@ -136,6 +140,12 @@ package playtiLib.controller.commands
 		protected function loadExternals( initialAssetsLoadConfigPath:String ):void {
 			//execute LoadExternalsCommand
 			sendNotification( GeneralAppNotifications.LOAD_EXTERNAL_ASSETS, initialAssetsLoadConfigPath );
+		}
+		
+		protected function initGATracker( tracker : GeneralGoogleAnalyticsTracker, root : Sprite, account : String, is_debug : Boolean = false ):void {
+			
+			tracker.init( root, account, 'AS3', is_debug );
+			Tracker.setTracker(tracker, GeneralGoogleAnalyticsTracker.NAME);
 		}
 			
 		/**

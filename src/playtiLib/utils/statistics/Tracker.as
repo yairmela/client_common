@@ -21,7 +21,7 @@ package playtiLib.utils.statistics
 			return trackers_list[id];
 		}
 		
-		static public function track(eventName:String, snapshot:TrackSnapshot):void {
+		static public function track(eventName:String, snapshot:GeneralTrackSnapshot):void {
 			for each(var tracker : ISpecificTracker in trackers_list) {
 				tracker.track(eventName, snapshot);
 			}
