@@ -8,6 +8,7 @@ package playtiLib.config.server
 	import playtiLib.model.VO.amf.request.LoginRequest;
 	import playtiLib.model.VO.amf.request.RegisterRequest;
 	import playtiLib.model.VO.amf.request.TransactionStatusRequest;
+	import playtiLib.model.VO.amf.request.UpdateRegistrationInfoRequest;
 	import playtiLib.model.VO.amf.request.UpdateUserInfoRequest;
 	import playtiLib.model.VO.social.user.StipulatedConverToStringCallConfigVO;
 	import playtiLib.utils.data.ContentDataCallConfig;
@@ -23,6 +24,7 @@ package playtiLib.config.server
 		private static const REGISTER_COMMAND:String 					= 'register';
 		private static const UPDATE_USER_INFO_COMMAND:String 			= 'updateUserInfo';
 		private static const GET_USER_INFO_COMMAND:String 				= 'getUserInfo';
+		private static const UPDATE_REGISTRATION_INFO_COMMAND:String 	= 'updateUserRegistrationInfo';
 		
 		private static const GET_LOCALIZATION_COMMAND:String 			= 'getLocalization';
 		private static const GET_CLIENT_TASKS_COMMAND:String 			= 'getClientTasks';
@@ -43,10 +45,11 @@ package playtiLib.config.server
 		private static const GET_CURRENCY_COSTS_COMMAND:String 			= 'getCurrencyCosts';
 		private static const GET_TRANSACTION_STATUS_COMMAND:String 		= 'getTransactionStatus';		
 		
-		public static const LOGIN:DataCallConfig 						= new DataCallConfig( LOBBY_SERVICE, LOGIN_COMMAND, false, new LoginRequest );
-		public static const REGISTER_NEW_USER:DataCallConfig 			= new DataCallConfig( LOBBY_SERVICE, REGISTER_COMMAND, false, new RegisterRequest );
-		public static const UPDATE_USER_INFO:DataCallConfig 			= new DataCallConfig( LOBBY_SERVICE, UPDATE_USER_INFO_COMMAND,false, new UpdateUserInfoRequest);
+		public static const LOGIN:DataCallConfig 						= new DataCallConfig( LOBBY_SERVICE, LOGIN_COMMAND, false, new LoginRequest() );
+		public static const REGISTER_NEW_USER:DataCallConfig 			= new DataCallConfig( LOBBY_SERVICE, REGISTER_COMMAND, false, new RegisterRequest() );
+		public static const UPDATE_USER_INFO:DataCallConfig 			= new DataCallConfig( LOBBY_SERVICE, UPDATE_USER_INFO_COMMAND, false, new UpdateUserInfoRequest() );
 		public static const USER_INFO:DataCallConfig 					= new DataCallConfig( LOBBY_SERVICE, GET_USER_INFO_COMMAND );
+		public static const UPDATE_REGISTRATION_INFO:DataCallConfig 	= new DataCallConfig( LOBBY_SERVICE, UPDATE_REGISTRATION_INFO_COMMAND, false, new UpdateRegistrationInfoRequest() );
 		//coupons
 		public static const REJECT_USER_COUPON:DataCallConfig 			= new DataCallConfig( LOBBY_SERVICE, REJECT_COUPON, false, new CouponRequest );
 		public static const COLLECT_USER_COUPON:DataCallConfig 			= new DataCallConfig( LOBBY_SERVICE, COLLECT_COUPON, false, new CouponRequest );
@@ -71,6 +74,8 @@ package playtiLib.config.server
 			switch (cmd_name) {
 				case BUY_COINS_COMMAND:
 					return BUY_COINS;
+				case UPDATE_REGISTRATION_INFO_COMMAND:
+					return UPDATE_REGISTRATION_INFO;
 				default:
 					return null;
 			}
