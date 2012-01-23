@@ -9,6 +9,7 @@ package playtiLib.model.proxies.server
 	import org.puremvc.as3.patterns.proxy.Proxy;
 	
 	import playtiLib.config.notifications.GeneralAppNotifications;
+	import playtiLib.config.server.AMFGeneralCallsConfig;
 	import playtiLib.config.server.GeneralCallsConfig;
 	import playtiLib.config.server.ServerErrorsConfig;
 	import playtiLib.config.social.SocialConfig;
@@ -88,7 +89,7 @@ package playtiLib.model.proxies.server
 			var flash_vars:FlashVarsVO = ( facade.retrieveProxy( FlashVarsProxy.NAME ) as FlashVarsProxy ).flash_vars as FlashVarsVO;
 			
 			var data_capsule:DataCapsule = DataCapsuleFactory.getDataCapsule([
-				GeneralCallsConfig.LOGIN.setRequestProperties({user_sn_id: SocialConfig.viewer_sn_id, password: flash_vars.auth_key})
+				AMFGeneralCallsConfig.LOGIN.setRequestProperties({user_sn_id: SocialConfig.viewer_sn_id, password: flash_vars.auth_key})
 			]);
 			
 			data_capsule.addEventListener( Event.COMPLETE, reloginResult );
