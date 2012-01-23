@@ -78,7 +78,7 @@ package playtiLib.view.components.text
 			//todo go over all the text
 			var textFiledsDic:Dictionary = DisplayObjectUtil.getAllInstancesFromType( content as MovieClip, TextField );
 			for ( var dic_key:String in textFiledsDic ) {
-				var txt_field:TextField = ( content as MovieClip ).getChildByName( ( textFiledsDic[dic_key] as TextField ).name ) as TextField;
+				var txt_field:TextField = textFiledsDic[dic_key] as TextField;
 				
 				if( !template_texts.hasOwnProperty(dic_key) ) {
 					template_texts[dic_key] = txt_field.text;
