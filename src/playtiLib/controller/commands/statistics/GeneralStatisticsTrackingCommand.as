@@ -10,36 +10,47 @@ package playtiLib.controller.commands.statistics
 	import playtiLib.model.VO.user.UserSocialInfo;
 	import playtiLib.model.proxies.data.FlashVarsProxy;
 	import playtiLib.model.proxies.user.UserProxy;
-	import playtiLib.utils.statistics.TrackSnapshot;
+	import playtiLib.utils.core.ObjectUtil;
+	import playtiLib.utils.statistics.GeneralTrackSnapshot;
 	import playtiLib.utils.statistics.Tracker;
 
-	public class StatisticsTrackingCommand extends SimpleCommand
+	public class GeneralStatisticsTrackingCommand extends SimpleCommand
 	{
 		public override function execute(notification:INotification):void {
+			
 			super.execute(notification);
 			
 			Tracker.track( notification.getType(), createSnapshot(notification.getBody()) );
 		}
 
-		protected function createSnapshot( dynamic_data : Object ):TrackSnapshot {
+		protected function createSnapshot( dynamicData : Object ):GeneralTrackSnapshot {
+			
+			var snapshot : GeneralTrackSnapshot = new snapshotClass();
 			
 			if( facade.hasProxy(UserProxy.NAME) ) {
-				var user_level : UserLevel = user_proxy.user_level;
-				var user_info : UserInfo = user_proxy.user_info;
+				snapshot.user_level = userProxy.user_level;
+				snapshot.user_info = userProxy.user_info;
 			}
 			if( facade.hasProxy(FlashVarsProxy.NAME) ) {
-				var flash_vars : FlashVarsVO = flash_vars_proxy.flash_vars;
+				snapshot.flash_vars = flashVarsProxy.flash_vars;
 			}
+			
+			ObjectUtil.setMatchingProperties(dynamicData, snapshot);
 
-			return new TrackSnapshot(user_level, user_info, flash_vars, dynamic_data);
+			return snapshot;
 		}
 		
-		protected function get user_proxy() : UserProxy {
+		protected function get snapshotClass() : Class {
+			
+			return GeneralTrackSnapshot;
+		}
+		
+		protected function get userProxy() : UserProxy {
 			
 			return (facade.retrieveProxy(UserProxy.NAME) as UserProxy);
 		}
 		
-		protected function get flash_vars_proxy() : FlashVarsProxy {
+		protected function get flashVarsProxy() : FlashVarsProxy {
 			
 			return (facade.retrieveProxy(FlashVarsProxy.NAME) as FlashVarsProxy);
 		}

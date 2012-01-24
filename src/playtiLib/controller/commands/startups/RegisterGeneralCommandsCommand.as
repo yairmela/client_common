@@ -30,7 +30,7 @@ package playtiLib.controller.commands.startups
 	import playtiLib.controller.commands.social.ExecuteGeneralExternalCallCommand;
 	import playtiLib.controller.commands.social.fb.FBLoadSocialRequestsCommand;
 	import playtiLib.controller.commands.sound.MuteSoundsCommand;
-	import playtiLib.controller.commands.statistics.StatisticsTrackingCommand;
+	import playtiLib.controller.commands.statistics.GeneralStatisticsTrackingCommand;
 	import playtiLib.controller.commands.task.GetTasksCommand;
 	import playtiLib.controller.commands.task.TaskHandlerCommand;
 	import playtiLib.controller.commands.user.RegisterNewUserCommand;
@@ -84,8 +84,7 @@ package playtiLib.controller.commands.startups
 
 			facade.registerCommand( GeneralAppNotifications.EXECUTE_EXTERNAL_CALL, ExecuteGeneralExternalCallCommand );
 			
-			facade.registerCommand( GeneralAppNotifications.TRACK, StatisticsTrackingCommand );
-			facade.registerCommand( GeneralAppNotifications.CANCEL_SHARE_POPUP_COMMAND, StatisticsTrackingCommand );
+			facade.registerCommand( GeneralAppNotifications.TRACK, GeneralStatisticsTrackingCommand );
 		}
 	}
 }

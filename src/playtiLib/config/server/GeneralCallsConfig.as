@@ -13,14 +13,14 @@ package playtiLib.config.server
 	public class GeneralCallsConfig	{
 		
 		private static const LOGIN_COMMAND:String = 'LOGIN';
-		private static const UPDATE_REGISTRATION_INFO_COMMAND:String = 'UPDATE_REGISTRATION_INFO';
+//		private static const UPDATE_REGISTRATION_INFO_COMMAND:String = 'UPDATE_REGISTRATION_INFO';
 		private static const GET_USER_INFO_COMMAND:String = 'GET_USER_INFO';
 		private static const PREPARE_GIFT_COMMAND:String = 'PREPARE_GIFT';
 		
 //		private static const POST_LOGIN:DataCallConfig = new DataCallConfig( ServerModulesConfig.LOGIN, 'POST_LOGIN');
 		private static const USER_LOGIN:DataCallConfig = new DataCallConfig( ServerModulesConfig.LOGIN, LOGIN_COMMAND, false, null, LoginVO );
 //		private static const REGISTER_NEW_USER:DataCallConfig = new DataCallConfig( ServerModulesConfig.LOGIN, 'REGISTER', false, null, UserSocialInfo );
-		private static const UPDATE_USER_INFO:DataCallConfig = new DataCallConfig( ServerModulesConfig.COMMON, UPDATE_REGISTRATION_INFO_COMMAND, false, new UserUpdateInfo() );
+//		private static const UPDATE_USER_INFO:DataCallConfig = new DataCallConfig( ServerModulesConfig.COMMON, UPDATE_REGISTRATION_INFO_COMMAND, false, new UserUpdateInfo() );
 		public static const GET_USER_INFO:DataCallConfig = new DataCallConfig( ServerModulesConfig.COMMON, GET_USER_INFO_COMMAND, true, null, UserSocialInfo );
 //		public static const BUY_CHIPS:DataCallConfig = new DataCallConfig( ServerModulesConfig.PAYMENT, 'BUY_CHIPS' );
 		public static const PREPARE_GIFT:DataCallConfig = new DataCallConfig( ServerModulesConfig.GIFT, PREPARE_GIFT_COMMAND );
@@ -35,12 +35,7 @@ package playtiLib.config.server
 		}
 		
 		public static function getConfigByCommandName(cmd_name:String):DataCallConfig {
-			switch (cmd_name) {
-				case UPDATE_REGISTRATION_INFO_COMMAND:
-					return UPDATE_USER_INFO;
-				default:
-					return null;
-			}
+			return null;
 		}
 
 //		public static function getUpdateUserInfoCallConfig(	firstname:String,

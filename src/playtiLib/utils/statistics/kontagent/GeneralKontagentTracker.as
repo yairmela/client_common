@@ -14,7 +14,7 @@ package playtiLib.utils.statistics.kontagent
 	import playtiLib.model.VO.user.UserSocialInfo;
 	import playtiLib.utils.core.DateUtil;
 	import playtiLib.utils.statistics.ISpecificTracker;
-	import playtiLib.utils.statistics.TrackSnapshot;
+	import playtiLib.utils.statistics.GeneralTrackSnapshot;
 
 	/**
 	 * This class should have only one instance (singletone). It handles the sending of data to
@@ -22,29 +22,9 @@ package playtiLib.utils.statistics.kontagent
 	 * buy coins, sending invitation, loggin from invitation, trackin the user info and more.
 	 * It used mostly in the Tracker class. 
 	 */
-	public class KontagentTracker implements ISpecificTracker
+	public class GeneralKontagentTracker implements ISpecificTracker
     {
 		static public const NAME : String = "KontagentTracker";
-		
-		static private var instance:KontagentTracker;
-
-//		private var user_id : String;
-		/**
-		 * Static function that returns the singleton KontagentTracker
-		 * @return 
-		 * 
-		 */
-		static public function getInstance() : KontagentTracker	{
-			
-			if( !instance ) {
-				instance = new KontagentTracker();
-			}
-
-			return instance;
-		}
-
-		public function KontagentTracker() {
-		}
 			
 //		/**
 //		 * Function that sets the user's id and the user's account type 
