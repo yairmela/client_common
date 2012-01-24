@@ -62,6 +62,7 @@ package playtiLib.view.mediators.preload
 					updateProgress( notification.getBody() as ProgressEvent )
 					break;
 				case GeneralAppNotifications.INITIAL_DATA_LOADED:
+					onRemove()
 					facade.removeMediator( NAME );
 					break;
 			}
