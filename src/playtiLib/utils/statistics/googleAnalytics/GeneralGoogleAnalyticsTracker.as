@@ -5,8 +5,8 @@ package playtiLib.utils.statistics.googleAnalytics
 	import flash.display.DisplayObject;
 	
 	import playtiLib.config.statistics.GeneralStatistics;
-	import playtiLib.utils.statistics.ISpecificTracker;
 	import playtiLib.utils.statistics.GeneralTrackSnapshot;
+	import playtiLib.utils.statistics.ISpecificTracker;
 	
 	public class GeneralGoogleAnalyticsTracker implements ISpecificTracker
 	{
@@ -19,8 +19,8 @@ package playtiLib.utils.statistics.googleAnalytics
 			ga_tracker = new GATracker( display_object, account, mode, is_debug );
 		}
 		
-		public function track(eventName:String, snapshot:*):void {
-
+		public function track(eventName:String, snapshot:GeneralTrackSnapshot):void {
+			
 			switch(eventName) {
 				case GeneralStatistics.ERROR_SYSTEM:
 					trackPage(eventName+"_error_code_"+snapshot.error_code);
