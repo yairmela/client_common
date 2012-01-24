@@ -18,10 +18,6 @@ package playtiLib.config.statistics
 		public static const MESSAGE_TYPE_STREAM_POST_RESPONSE : String 	= "psr";
 		public static const MESSAGE_TYPE_USER_INFORMATION : String 		= "cpu";
 		public static const MESSAGE_TYPE_REVENUE_TRACKING : String 		= "mtu";
-		//buy click
-		public static const BUY_TYPE_BUTTON_CLICK :String 				= "buy_coins_button_click";
-		public static const BUY_TYPE_TAB_CLICK :String 					= "buy_coins_tab_click";
-		public static const BUY_TYPE_POPUP_CLICK :String 				= "popup_click";
 		//server url
 		private static const SERVER_URL : String 						= "api.geo.kontagent.net/api/v1";
 		private static const TEST_SERVER_URL : String 					= "test-server.kontagent.net/api/v1";

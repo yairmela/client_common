@@ -158,7 +158,7 @@ package playtiLib.model.proxies.social {
 		 * Sends notification OPEN_PAY_PAGE
 		 */
 		private function openPayPagePopup():void {
-			sendNotification(GeneralAppNotifications.OPEN_PAY_PAGE, {buyType: KontagentConfig.BUY_TYPE_TAB_CLICK});
+			sendNotification(GeneralAppNotifications.OPEN_PAY_PAGE, {buyType: GeneralStatistics.BUY_TYPE_TAB_CLICK});
 		}
 		
 		private function inviteSent(event_type:String, users_list:String, pid:String, crt:String):void {

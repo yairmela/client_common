@@ -39,5 +39,13 @@ package playtiLib.config.statistics
 		public static const LOADED_FROM_INVITE:String						= 'loaded_from_invite';
 		public static const MENU_TAB_SELECT:String							= 'menu_tab_select';
 		public static const USER_LOGIN:String								= 'user_login';
+		
+		public static const OPEN_GCP:String 								= 'collect';
+		public static const COLLECT_GIFT:String 							= 'collect_gift';
+		
+		//buy click
+		public static const BUY_TYPE_BUTTON_CLICK :String 				= "buy_coins_button_click";
+		public static const BUY_TYPE_TAB_CLICK :String 					= "buy_coins_tab_click";
+		public static const BUY_TYPE_POPUP_CLICK :String 				= "popup_click";
 	}
 }
