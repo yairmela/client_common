@@ -1,16 +1,10 @@
 package playtiLib.controller.commands.statistics
 {
-	import org.casalib.events.RetryEvent;
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.command.SimpleCommand;
 	
-	import playtiLib.model.VO.FlashVarsVO;
-	import playtiLib.model.VO.amf.response.helpers.UserInfo;
-	import playtiLib.model.VO.amf.response.helpers.UserLevel;
-	import playtiLib.model.VO.user.UserSocialInfo;
 	import playtiLib.model.proxies.data.FlashVarsProxy;
 	import playtiLib.model.proxies.user.UserProxy;
-	import playtiLib.utils.core.ObjectUtil;
 	import playtiLib.utils.statistics.GeneralTrackSnapshot;
 	import playtiLib.utils.statistics.Tracker;
 
@@ -35,7 +29,9 @@ package playtiLib.controller.commands.statistics
 				snapshot.flash_vars = flashVarsProxy.flash_vars;
 			}
 			
-			ObjectUtil.setMatchingProperties(dynamicData, snapshot);
+			for(var field : String in dynamicData) {
+				snapshot[field] = dynamicData[field];
+			}
 
 			return snapshot;
 		}
