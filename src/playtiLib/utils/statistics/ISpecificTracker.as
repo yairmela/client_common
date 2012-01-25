@@ -4,6 +4,6 @@ package playtiLib.utils.statistics
 
 	public interface ISpecificTracker
 	{
-		function track(eventName:String, snapshot:*):void;
+		function track(eventName:String, snapshot:GeneralTrackSnapshot):void;
 	}
 }

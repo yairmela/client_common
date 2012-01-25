@@ -9,6 +9,7 @@ package playtiLib.view.mediators.gift
 	import playtiLib.config.display.GeneralDialogsConfig;
 	import playtiLib.config.gifts.CouponSystemConfig;
 	import playtiLib.config.notifications.GeneralAppNotifications;
+	import playtiLib.config.statistics.GeneralStatistics;
 	import playtiLib.controller.commands.popup.OpenPopupCommand;
 	import playtiLib.model.VO.amf.response.Coupon;
 	import playtiLib.model.VO.gift.ChooseGift;
@@ -34,7 +35,7 @@ package playtiLib.view.mediators.gift
 		
 		public function GiftCollectionPopupMediator( popupViewLogic:GiftCollectionViewLogic, forceUpdate:Boolean = false )	{
 			
-			super( NAME, popupViewLogic );	
+			super( NAME, popupViewLogic );
 			
 			_forceUpdate 	= forceUpdate;
 			popupVLogic 	= popupViewLogic as GiftCollectionViewLogic;
@@ -49,6 +50,8 @@ package playtiLib.view.mediators.gift
 			if( _forceUpdate ){
 				getUsersSocialInfoAndInsertToGCP();
 			}
+			
+			sendNotification(GeneralAppNotifications.TRACK, null, GeneralStatistics.OPEN_GCP);
 		}
 		
 		private function registerListeners():void {

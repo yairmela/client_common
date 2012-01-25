@@ -41,7 +41,7 @@ package playtiLib.utils.statistics.kontagent
 		 * @param snapshot
 		 * 
 		 */
-		public function track(eventName:String, snapshot:*):void {
+		public function track(eventName:String, snapshot:GeneralTrackSnapshot):void {
 			
 //			if( !isSnapshotSufficient(snapshot) ) {
 //				return;
@@ -100,7 +100,7 @@ package playtiLib.utils.statistics.kontagent
 					trackCoinsBought(snapshot.flash_vars.viewer_id,
 									 snapshot.user_level.level,
 									 snapshot.flash_vars.account_type,
-									 snapshot.transaction.cost);
+									 snapshot.transaction.transactionInfo.currencyCost);
 					break;
 				
 				case GeneralStatistics.MENU_TAB_SELECT:

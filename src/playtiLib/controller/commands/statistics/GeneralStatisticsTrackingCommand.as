@@ -17,7 +17,7 @@ package playtiLib.controller.commands.statistics
 	public class GeneralStatisticsTrackingCommand extends SimpleCommand
 	{
 		public override function execute(notification:INotification):void {
-			
+
 			super.execute(notification);
 			
 			Tracker.track( notification.getType(), createSnapshot(notification.getBody()) );

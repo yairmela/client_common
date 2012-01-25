@@ -22,7 +22,7 @@ package playtiLib.model.VO
 		public function get api_id():String { return getCastedProperty( "api_id", String );}
 		public function get app_id():String { return getCastedProperty( "app_id", String );}
 		public function get page_id():String { return getCastedProperty( "page_id", String );}
-		public function set api_id( id:String ):void { params["api_id"] = id }
+		public function set api_id( id:String ):void { params["api_id"] = id; }
 
 		public function get is_like_app():Boolean {
 			
@@ -78,6 +78,7 @@ package playtiLib.model.VO
 		public function get pid_c():String {		return getCastedProperty( "pid_c", String );}
 		public function get src_c():String {		return getCastedProperty( "src_c", String );}
 		public function get iid_c():String {		return getCastedProperty( "iid_c", String );}
+		public function get upc_c():String {		return getCastedProperty( "upc_c", String );}
 		//login
 		public function get ch():String {			return getCastedProperty( "ch", String );}
 		public function get et():String {			return getCastedProperty( "et", String );}
