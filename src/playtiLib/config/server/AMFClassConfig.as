@@ -67,6 +67,8 @@ package playtiLib.config.server
 			registerClassAlias("com.playtika.casino.messages.response.CurrencyCost", CurrencyCost);
 			registerClassAlias( "com.playtika.casino.messages.request.TransactionStatusRequest", TransactionStatusRequest );
 			registerClassAlias( "com.playtika.casino.messages.response.TransactionStatusMessage", TransactionStatusMessage );
+			
+			registerClassAlias( "com.playtika.casino.messages.helpers.UpdateRegistrationInfoRequest", UpdateRegistrationInfoRequest );
 		}
 	}
 }
