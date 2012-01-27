@@ -81,8 +81,7 @@ package playtiLib.utils.text {
 		}
 		
 		public static function literalMannerFormat(number:int):String {
-			var result:String;	
-			number = 99999999;
+			var result:String;			
 			if ((number > 9999) && (number <= 9999999)) {
 				number = Math.floor(number / 1000);
 				result = numberFormat(number) + 'k';
