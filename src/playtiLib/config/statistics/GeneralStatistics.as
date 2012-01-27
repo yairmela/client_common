@@ -40,6 +40,7 @@ package playtiLib.config.statistics
 		public static const MENU_TAB_SELECT:String							= 'menu_tab_select';
 		public static const USER_LOGIN:String								= 'user_login';
 		
+		public static const GIFT_SENT:String 								= 'send_gifts';
 		public static const OPEN_GCP:String 								= 'collect';
 		public static const COLLECT_GIFT:String 							= 'collect_gift';
 		
