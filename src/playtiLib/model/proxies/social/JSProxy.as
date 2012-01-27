@@ -42,7 +42,7 @@ package playtiLib.model.proxies.social {
 				ExternalInterface.addCallback( 'openGiftsPopup', openGiftsPopup );
 //				ExternalInterface.addCallback( 'sendGiftsApproved', sendGiftsApproved );
 				ExternalInterface.addCallback('resumeGame', removePausePopup);
-				ExternalInterface.addCallback('showInviteFriends', showInviteFriends);
+//				ExternalInterface.addCallback('showInviteFriends', showInviteFriends);
 				ExternalInterface.addCallback('couponPostComplete', couponPostComplete);
 				ExternalInterface.addCallback('deleteFBRequestCallback', emptyCallback);
 				ExternalInterface.addCallback('publishComplete', publishComplete);
@@ -66,7 +66,8 @@ package playtiLib.model.proxies.social {
 		private function couponPostComplete(reciver_ids:String, postVO:Object):void {
 //			sendNotification( GeneralAppNotifications.COUPON_POST_COMPLETE, reciver_ids );
 			sendNotification( GeneralAppNotifications.SEND_COUPON_COMMAND, postVO, reciver_ids );
-			sendNotification( GeneralAppNotifications.UPDATE_TODAY_RECEIVERS, reciver_ids )
+			sendNotification( GeneralAppNotifications.UPDATE_TODAY_RECEIVERS, reciver_ids );
+			sendNotification( GeneralAppNotifications.TRACK, null, GeneralStatistics.GIFT_SENT);
 		}
 		
 		/**
@@ -161,14 +162,13 @@ package playtiLib.model.proxies.social {
 			sendNotification(GeneralAppNotifications.OPEN_PAY_PAGE, {buyType: GeneralStatistics.BUY_TYPE_TAB_CLICK});
 		}
 		
-		private function inviteSent(event_type:String, users_list:String, pid:String, crt:String):void {
-			sendNotification(GeneralAppNotifications.TRACK, {invite_data: {event_type: event_type, users_list: users_list, pid: pid, crt: crt}}, GeneralStatistics.INVITE_SENT);
+		private function inviteSent(event_type:String, users_list:String, pid:String, crt:String, initiated_from_menu:Boolean):void {
+			sendNotification(GeneralAppNotifications.TRACK, {invite_data: {event_type: event_type, users_list: users_list, pid: pid, crt: crt, initiated_from_menu: initiated_from_menu}}, GeneralStatistics.INVITE_SENT);
 		}
 		
-		private function showInviteFriends():void {
-			sendNotification(GeneralAppNotifications.SOCIAL_INVITE_FRIENDS);
-		}
-		
+//		private function showInviteFriends():void {
+//			sendNotification(GeneralAppNotifications.SOCIAL_INVITE_FRIENDS);
+//		}
 		
 		private function acceptSurpriseGiftCoupon(gift_redeemed:Boolean):void {			
 			sendNotification(GeneralAppNotifications.SOCIAL_ACCEPT_SURPRISE_GIFT, gift_redeemed);	

@@ -15,7 +15,7 @@ package playtiLib.controller.commands.social.fb
 		
 		override public function execute( notification:INotification ):void {
 			sendNotification(GeneralAppNotifications.FULLSCREEN_MODE,false);
-			ExternalInterface.call( 'showInviteFriends' );
+			ExternalInterface.call( 'showInviteFriends', false );
 		}
 	}
 }
