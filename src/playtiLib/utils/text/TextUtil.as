@@ -82,12 +82,12 @@ package playtiLib.utils.text {
 		
 		public static function literalMannerFormat(number:int):String {
 			var result:String;			
-			if ((number > 9999) && (number <= 9999999)) {
-				number = Math.floor(number / 1000);
-				result = numberFormat(number) + 'k';
-			}else if (number > 9999999) {
+			if (number > 9999999) {
 				number = Math.floor(number / 1000000);
 				result = numberFormat(number) + 'M';
+			}else if (number > 9999) {
+				number = Math.floor(number / 1000);
+				result = numberFormat(number) + 'k';
 			}else {
 				result = numberFormat(number);
 			}
