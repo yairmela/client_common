@@ -80,6 +80,22 @@ package playtiLib.utils.text {
 			return (negative ? "-" : "") + integer + ( (fractional.length) ? ( (siStyle ? "," : ".") + fractional ) : "" );
 		}
 		
+		public static function literalMannerFormat(number:int):String {
+			var result:String;	
+			number = 99999999;
+			if ((number > 9999) && (number <= 9999999)) {
+				number = Math.floor(number / 1000);
+				result = numberFormat(number) + 'k';
+			}else if (number > 9999999) {
+				number = Math.floor(number / 1000000);
+				result = numberFormat(number) + 'M';
+			}else {
+				result = numberFormat(number);
+			}
+			
+			return result;
+		}
+		
 		/**
 		 * Static function that gets string and an object with some parameters and returns the string
 		 * with the object's fields inside it
