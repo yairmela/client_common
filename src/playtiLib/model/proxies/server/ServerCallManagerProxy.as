@@ -89,7 +89,7 @@ package playtiLib.model.proxies.server
 			var flash_vars:FlashVarsVO = ( facade.retrieveProxy( FlashVarsProxy.NAME ) as FlashVarsProxy ).flash_vars as FlashVarsVO;
 			
 			var data_capsule:DataCapsule = DataCapsuleFactory.getDataCapsule([
-				AMFGeneralCallsConfig.LOGIN.setRequestProperties({user_sn_id: SocialConfig.viewer_sn_id, password: flash_vars.auth_key})
+				AMFGeneralCallsConfig.LOGIN.setRequestProperties({user_sn_id: SocialConfig.viewer_sn_id, password: flash_vars.signed_request})
 			]);
 			
 			data_capsule.addEventListener( Event.COMPLETE, reloginResult );

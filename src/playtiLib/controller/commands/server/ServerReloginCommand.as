@@ -32,7 +32,7 @@ package playtiLib.controller.commands.server
 			
 			var flash_vars:FlashVarsVO = (facade.retrieveProxy(FlashVarsProxy.NAME) as FlashVarsProxy).flash_vars as FlashVarsVO;
 			
-			var params:Object = {userSnId: SocialConfig.viewer_sn_id, password: flash_vars.auth_key, language: flash_vars.language};
+			var params:Object = {userSnId: SocialConfig.viewer_sn_id, password: flash_vars.signed_request, language: flash_vars.language};
 			var data_capsule:DataCapsule = DataCapsuleFactory.getDataCapsule([AMFGeneralCallsConfig.LOGIN.setRequestProperties(params)]);
 			data_capsule.addEventListener(Event.COMPLETE, reloginResult);
 			data_capsule.addEventListener(FaultEvent.FAULT, reloginFault);

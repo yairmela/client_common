@@ -42,15 +42,14 @@ package playtiLib.controller.commands.user
 	 * @see playtiLib.model.proxies.user.UserProxy
 	 * @see playtiLib.utils.data.DataCapsule
 	 */
-	public class RegisterNewUserCommand extends SimpleCommand{		
-
+	public class RegisterNewUserCommand extends SimpleCommand {		
 
 		override public function execute( notification:INotification ):void{
 			
 			Logger.log( "RegisterNewUserCommand" );
 			var userInfo:UserInfo = new UserInfo();
 			userInfo.userSnId = flash_vars.viewer_id;
-			var data_capsule:DataCapsule = DataCapsuleFactory.getDataCapsule( [ AMFGeneralCallsConfig.REGISTER_NEW_USER.setRequestProperties({ userSnId:flash_vars.viewer_id, userInfo:userInfo, urlParams: flash_vars.toString() }) ] );
+			var data_capsule:DataCapsule = DataCapsuleFactory.getDataCapsule( [ AMFGeneralCallsConfig.REGISTER_NEW_USER.setRequestProperties({ userSnId:flash_vars.viewer_id, userInfo:userInfo, urlParams: flash_vars.toString(), password: flash_vars.signed_request }) ] );
 			data_capsule.addEventListener( Event.COMPLETE, registerResult );
 			data_capsule.addEventListener( IOErrorEvent.IO_ERROR,  trace );
 			data_capsule.loadData();

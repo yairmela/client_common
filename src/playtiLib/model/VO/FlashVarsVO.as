@@ -53,7 +53,7 @@ package playtiLib.model.VO
 		public function set is_app_user( value:Boolean ):void { params["is_app_user"]  = value?"1":"0" }
 
 		public function get viewer_type():int { return getCastedProperty( "viewer_type", int ) }
-		public function get auth_key():String { return getCastedProperty( "auth_key", String ) }
+		public function get signed_request():String { return getCastedProperty( "signed_request", String ) }
 		public function get language():String { return getCastedProperty( "locale", String ) }
 		public function get locale():String { return getCastedProperty( "locale", String ) }
 		public function get api_result():String { return getCastedProperty( "api_result", String ) }
