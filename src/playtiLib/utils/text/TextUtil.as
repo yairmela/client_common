@@ -80,12 +80,14 @@ package playtiLib.utils.text {
 			return (negative ? "-" : "") + integer + ( (fractional.length) ? ( (siStyle ? "," : ".") + fractional ) : "" );
 		}
 		
-		public static function literalMannerFormat(number:int):String {
+		public static function literalMannerFormat(number:int, mannerDigitsCount:int, kMannerEnable:Boolean = true):String {
 			var result:String;			
-			if (number > 9999999) {
+			mannerDigitsCount = ((mannerDigitsCount > 3) || (mannerDigitsCount < 0)) ? 3 : mannerDigitsCount;
+			
+			if (number >  Math.exp(Math.log(10)*mannerDigitsCount) * 100000 - 1 ) {
 				number = Math.floor(number / 1000000);
 				result = numberFormat(number) + 'M';
-			}else if (number > 9999) {
+			}else if ((kMannerEnable) && (number > Math.exp(Math.log(10)*mannerDigitsCount) * 100 - 1)) {
 				number = Math.floor(number / 1000);
 				result = numberFormat(number) + 'k';
 			}else {
