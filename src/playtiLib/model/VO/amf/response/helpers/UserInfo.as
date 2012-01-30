@@ -66,12 +66,14 @@ package playtiLib.model.VO.amf.response.helpers
 		/** The dailyBonusCounter */
 		public var dailyBonusCounter:int;
 		public var dailyBonusMultiplier:int;
+		public var dailyBonusFriendsPercentage:Number;
 		
 		public var lastMegaBonusTs:Number;
 		
 		public var isTRPromptChecked:Boolean;
 		
 		public var accountToken:String;
+		
 		
 		public function UserInfo()
 		{
