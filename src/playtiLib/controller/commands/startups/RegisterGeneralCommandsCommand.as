@@ -24,6 +24,7 @@ package playtiLib.controller.commands.startups
 	import playtiLib.controller.commands.paypage.BuyTransactionResultCommand;
 	import playtiLib.controller.commands.paypage.CheckBuyTransactionStatusCommand;
 	import playtiLib.controller.commands.popup.GotoGameTabCommand;
+	import playtiLib.controller.commands.popup.OpenURLCommand;
 	import playtiLib.controller.commands.popup.OpenPopupCommand;
 	import playtiLib.controller.commands.popup.ShowNextPopupCommand;
 	import playtiLib.controller.commands.server.ServerLoginCompleteCommand;
@@ -85,6 +86,8 @@ package playtiLib.controller.commands.startups
 			facade.registerCommand( GeneralAppNotifications.EXECUTE_EXTERNAL_CALL, ExecuteGeneralExternalCallCommand );
 			
 			facade.registerCommand( GeneralAppNotifications.TRACK, GeneralStatisticsTrackingCommand );
+			
+			facade.registerCommand( GeneralAppNotifications.OPEN_URL, OpenURLCommand );
 		}
 	}
 }

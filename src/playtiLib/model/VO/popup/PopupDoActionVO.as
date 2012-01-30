@@ -81,5 +81,14 @@ package playtiLib.model.VO.popup
 				return true;
 			return should_close_after_do[id];
 		}
+		
+		public function updateNotificationBodyById( id:int, value:Object ):void {
+			
+			if( notification_bodys == null ) {
+				notification_bodys = [];
+			}
+			
+			notification_bodys[id] = value;
+		}
 	}
 }

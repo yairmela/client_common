@@ -69,8 +69,17 @@ package playtiLib.model.VO.amf.response.helpers
 		
 		public var lastMegaBonusTs:Number;
 		
+		public var isTRPromptChecked:Boolean;
+		
+		public var accountToken:String;
+		
 		public function UserInfo()
 		{
+		}
+		
+		public function get isTRAccountSpecified() : Boolean
+		{
+			return accountToken && (accountToken != "0");
 		}
 	}
 }
