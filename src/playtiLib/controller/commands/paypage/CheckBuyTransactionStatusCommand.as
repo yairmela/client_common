@@ -66,7 +66,7 @@ package playtiLib.controller.commands.paypage
 		 * @param event
 		 * 
 		 */		
-		private function onServerResponse( event:Event ):void	{
+		private function onServerResponse( event:Event ):void {
 			
 			var dataCapsule:DataCapsule = event.currentTarget as DataCapsule;
 			dataCapsule.removeEventListener( Event.COMPLETE, onServerResponse );
