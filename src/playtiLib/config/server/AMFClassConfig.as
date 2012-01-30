@@ -55,6 +55,7 @@ package playtiLib.config.server
 			//tasks
 			registerClassAlias( "com.playtika.casino.messages.response.ClientTasksMessage", ClientTasksMessage );
 			registerClassAlias( "com.playtika.casino.messages.helpers.ClientTask", ClientTask );
+			registerClassAlias( "com.playtika.casino.messages.request.UpdateClientTaskRequest", UpdateClientTaskRequest );
 			
 			registerClassAlias( "com.playtika.casino.localization.dto.LocalizedEntity", LocalizedEntity );
 			registerClassAlias( "com.playtika.casino.localization.dto.LocalizationRequest", LocalizationRequest );

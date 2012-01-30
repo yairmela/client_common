@@ -6,6 +6,9 @@ package playtiLib.model.proxies.task {
 	import playtiLib.model.proxies.data.DataCapsuleProxy;
 	import playtiLib.model.VO.amf.response.ClientTasksMessage;
 	import playtiLib.model.VO.amf.response.helpers.ClientTask;
+	import playtiLib.utils.data.DataCallConfig;
+	import playtiLib.utils.data.DataCapsule;
+	import playtiLib.utils.data.DataCapsuleFactory;
 	
 	public class TasksProxy extends DataCapsuleProxy {
 		
@@ -36,5 +39,14 @@ package playtiLib.model.proxies.task {
 			}
 			return incoming_tasks;
 		}
+		
+		
+		public function setTaskComplete(task:ClientTask):void 
+		{
+			var updateTaskCallConfig:DataCallConfig = AMFGeneralCallsConfig.UPDATE_CLIENT_TASK_STATUS.setRequestProperties ({userTaskId:task.userTaskId, taskStatus:task.userTaskStatus, taskCode:task.userTaskCode });
+			var dataCapsule:DataCapsule = DataCapsuleFactory.getDataCapsule([updateTaskCallConfig]);
+			dataCapsule.loadData();
+		}
+	  
 	}
 }
