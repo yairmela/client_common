@@ -7,6 +7,7 @@ package playtiLib.model.VO.payment {
 		public var currencyCostId:int;
 		public var paymentPageGroupId:int;
 		public var currencyCost:Number;
+		public var totalRewardAmount:Number;
 		
 		public function CurrencyCost(){
 		
