@@ -88,7 +88,16 @@ package playtiLib.model.VO.popup
 				notification_bodys = [];
 			}
 			
-			notification_bodys[id] = value;
+			var body : Object = notification_bodys[id];
+			
+			if(!body) {
+				notification_bodys[id] = value;
+			}
+			else {
+				for(var field : String in value) {
+					body[field] = value[field];
+				}
+			}
 		}
 	}
 }
