@@ -8,6 +8,7 @@ package playtiLib.config.server
 	import playtiLib.model.VO.amf.request.LoginRequest;
 	import playtiLib.model.VO.amf.request.RegisterRequest;
 	import playtiLib.model.VO.amf.request.TransactionStatusRequest;
+	import playtiLib.model.VO.amf.request.UpdateClientTaskRequest;
 	import playtiLib.model.VO.amf.request.UpdateRegistrationInfoRequest;
 	import playtiLib.model.VO.amf.request.UpdateUserInfoRequest;
 	import playtiLib.model.VO.social.user.StipulatedConverToStringCallConfigVO;
@@ -38,7 +39,7 @@ package playtiLib.config.server
 		private static const ACCEPT_SURPRISE_GIFT_COMMAND:String 		= 'activateEngagementGift';
 		
 		private static const GET_TODAY_RECEIVERS:String 				= 'getTodayRecievers';
-		//private static const UPDATE_CLIENT_TASK_STATUS_COMMAND:String 	= 'updateClientTaskStatus';
+		private static const UPDATE_CLIENT_TASK_STATUS_COMMAND:String 	= 'updateClientTaskStatus';
 		
 		//payments
 		private static const BUY_COINS_COMMAND:String 					= 'buyCoins';
@@ -63,7 +64,7 @@ package playtiLib.config.server
 		public static const LOCALIZATION:ContentDataCallConfig 			= new ContentDataCallConfig( LOCALIZATION_SERVICE, GET_LOCALIZATION_COMMAND ,false, new LocalizationRequest());
 		//tasks
 		public static const GET_CLIENT_TASKS:DataCallConfig 			= new DataCallConfig(LOBBY_SERVICE, GET_CLIENT_TASKS_COMMAND);
-		//public static const UPDATE_CLIENT_TASK_STATUS:DataCallConfig = new DataCallConfig(LOBBY_SERVICE, UPDATE_CLIENT_TASK_STATUS_COMMAND);
+		public static const UPDATE_CLIENT_TASK_STATUS:DataCallConfig 	= new DataCallConfig(LOBBY_SERVICE, UPDATE_CLIENT_TASK_STATUS_COMMAND, false, new UpdateClientTaskRequest());
 		
 		//payments
 		public static const BUY_COINS:DataCallConfig 					= new DataCallConfig( PAYMENT_SERVICE, BUY_COINS_COMMAND, false, new BuyCoinsRequest() );	

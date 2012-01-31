@@ -66,12 +66,22 @@ package playtiLib.model.VO.amf.response.helpers
 		/** The dailyBonusCounter */
 		public var dailyBonusCounter:int;
 		public var dailyBonusMultiplier:int;
-		public var dailyBonusFriendsPercentage:int;
+		public var dailyBonusFriendsPercentage:Number;
 		
 		public var lastMegaBonusTs:Number;
 		
+		public var TRPromptChecked:Boolean;
+		
+		public var accountToken:String;
+		
+		
 		public function UserInfo()
 		{
+		}
+		
+		public function get isTRAccountSpecified() : Boolean
+		{
+			return accountToken && (accountToken != "0");
 		}
 	}
 }

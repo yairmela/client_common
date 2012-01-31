@@ -170,5 +170,7 @@ package playtiLib.config.notifications
 		public static const APPROVE_SHARE_POPUP_COMMAND:String 		= 'aprove_share_popup_command';
 
 		public static const ENGINE_PRELOADER_PROGRESS:String 		= 'engine_preloader_progress';
+		
+		public static const OPEN_URL:String							= 'open_url';
 	}
 }
