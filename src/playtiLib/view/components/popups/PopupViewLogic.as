@@ -114,7 +114,7 @@ package playtiLib.view.components.popups
 			return true;
 		}
 
-		private function startPopupAnim( event:Event ):void {
+		protected function startPopupAnim( event:Event ):void {
 			
 			( popup_content as MovieClip ).gotoAndPlay(1);
 		}
