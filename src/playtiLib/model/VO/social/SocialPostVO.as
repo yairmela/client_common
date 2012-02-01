@@ -46,8 +46,8 @@ package playtiLib.model.VO.social
 			params["user_name"] = user_info.first_name;
 			params["game_name"] = game_name;
 
-			if( num_params.length == 1 ) {
-				params["num"] = String(num_params[0]);				
+			if ( num_params.length == 1 ) {				
+				params["num"] = ((num_params[0] is Number) || (num_params[0] is int) || (num_params[0] is uint)) ? TextUtil.numberFormat(num_params[0]) : String(num_params[0]);				
 			}	else {
 				for( var i : int = 0; i < num_params.length; i++ ) {
 					params["num"+i] = String(num_params[i]);
