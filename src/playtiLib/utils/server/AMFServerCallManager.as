@@ -2,14 +2,20 @@ package playtiLib.utils.server {
 	
 	import flash.display.LoaderInfo;
 	import flash.events.EventDispatcher;
+	
 	import mx.core.mx_internal;
+	import mx.messaging.ChannelSet;
+	import mx.messaging.channels.AMFChannel;
 	import mx.messaging.config.LoaderConfig;
+	import mx.messaging.events.ChannelEvent;
+	import mx.messaging.events.ChannelFaultEvent;
 	import mx.rpc.AsyncToken;
+	import mx.rpc.Responder;
 	import mx.rpc.events.FaultEvent;
 	import mx.rpc.events.ResultEvent;
 	import mx.rpc.remoting.Operation;
 	import mx.rpc.remoting.RemoteObject;
-	import mx.rpc.Responder;
+	
 	import playtiLib.config.server.ServerConfig;
 	import playtiLib.model.VO.amf.request.ClientRequest;
 	
@@ -21,6 +27,8 @@ package playtiLib.utils.server {
 		
 		public var server_modules:Array = [];
 		
+		private var channelSets:Object = {};
+		
 		public function AMFServerCallManager(singleton_key:ServerCallManagerSKey){}
 		
 		public function send(server_url:String, module:String, command:String, params:Object, on_result_func:Function, on_io_error_func:Function):void {
@@ -29,29 +37,81 @@ package playtiLib.utils.server {
 				client_request = new ClientRequest;
 			if (!client_request.sessionInfo)
 				client_request.sessionInfo = ServerConfig.session_info;
+						
+//			var plugin_module:RemoteObject = server_modules[module] as RemoteObject;
+//			if (!plugin_module){
+//				plugin_module = new RemoteObject;
+//				plugin_module.destination = module;
+//				plugin_module.endpoint = server_url;
+//				server_modules[module] = plugin_module;
+//			}
+//			
+//			var remote_call:AsyncToken = (plugin_module[command] as Operation).send(client_request);
+//			remote_call.addResponder(new Responder(on_result_func, on_io_error_func));
+//			remote_call.addResponder(new Responder(remoteCallSuccessHandler, remoteCallFaultHandler));
+			var channelSet:ChannelSet = channelSets[module];
 			
-			var plugin_module:RemoteObject = server_modules[module] as RemoteObject;
-			if (!plugin_module){
-				plugin_module = new RemoteObject;
-				plugin_module.destination = module;
-				plugin_module.endpoint = server_url;
-				server_modules[module] = plugin_module;
+			if(!channelSet) {
+				channelSet = new ChannelSet();
+
+				var amfChannel:AMFChannel = new AMFChannel(module, server_url);
+				amfChannel.pollingEnabled = false;
+				amfChannel.requestTimeout = 3;
+				amfChannel.connectTimeout = 3;
+				channelSet.addChannel( amfChannel );
+				
+				amfChannel.addEventListener(ChannelFaultEvent.FAULT, handleChannelFault);
+				amfChannel.addEventListener(ChannelEvent.CONNECT, handleChannelConnect);
+				amfChannel.addEventListener(ChannelEvent.DISCONNECT, handleChannelDisconnect);
+				
+				channelSets[module] = channelSet;
 			}
 			
-			var remote_call:AsyncToken = (plugin_module[command] as Operation).send(client_request);
+			var ro:RemoteObject = new RemoteObject();
+			//ro.destination must be set to destination id of the class you want to execute that youve defined in remoting-config.xml
+			ro.destination = module;
+			ro.channelSet = channelSet;
+			ro.addEventListener(ResultEvent.RESULT, onResult);
+			ro.addEventListener(FaultEvent.FAULT, onFault);
+			//The operation is literally the method on the class defined in definition
+			var remote_call:AsyncToken = ro.getOperation(command).send(client_request);
 			remote_call.addResponder(new Responder(on_result_func, on_io_error_func));
-			remote_call.addResponder(new Responder(remoteCallSuccessHandler, remoteCallFaultHandler));
 		}
 		
-		private function remoteCallSuccessHandler(event:ResultEvent):void {
+		private function onResult(event:ResultEvent):void {
 			dispatchEvent(event);
 			trace(event);
 		}
 		
-		private function remoteCallFaultHandler(event:FaultEvent):void {
+		private function onFault(event:FaultEvent):void {
 			dispatchEvent(event);
 			trace(event);
 		}
+		
+		public function handleChannelFault(event:ChannelFaultEvent):void {
+			trace("Channel Fault");
+			trace(event);
+		}		
+		
+		public function handleChannelConnect(event:ChannelEvent):void {
+			trace("Channel Connect");
+			trace(event);
+		}
+		
+		public function handleChannelDisconnect(event:ChannelEvent):void {
+			trace("Channel Disconnect");
+			trace(event);
+		}
+		
+//		private function remoteCallSuccessHandler(event:ResultEvent):void {
+//			dispatchEvent(event);
+//			trace(event);
+//		}
+//		
+//		private function remoteCallFaultHandler(event:FaultEvent):void {
+//			dispatchEvent(event);
+//			trace(event);
+//		}
 		
 		public static function getInstance():IServerManager {
 			if (!instance)
