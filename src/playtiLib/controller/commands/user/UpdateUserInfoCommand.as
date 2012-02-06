@@ -92,7 +92,6 @@ package playtiLib.controller.commands.user
 			}
 			var flash_vars:FlashVarsVO = ( Facade.getInstance().retrieveProxy( FlashVarsProxy.NAME ) as FlashVarsProxy ).flash_vars;
 
-			//TODO: why we use two VO's: UserInfo and UserVO?
 			var userInfo:UserInfo = new UserInfo();
 				userInfo.userFirstName = user_profile.first_name;
 				userInfo.userLastName = user_profile.last_name;

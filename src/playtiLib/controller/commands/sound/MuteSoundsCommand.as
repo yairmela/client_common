@@ -26,8 +26,7 @@ package playtiLib.controller.commands.sound
 			var userPreferencesProxy :UserPreferencesProxy = ( facade.retrieveProxy( UserPreferencesProxy.NAME ) as UserPreferencesProxy );
 			userPreferencesProxy.setProperties( {mute: muteValue} );
 			SoundsLib.lib.mute = muteValue;
-			SoundMixer.soundTransform = new SoundTransform( muteValue ? 0 : 1 );
-			sendNotification( GeneralAppNotifications.TRACK, null, ( muteValue ) ? GeneralStatistics.MUTE_SOUNDS : GeneralStatistics.MUTE_SOUNDS_CANCEL );
+			SoundMixer.soundTransform = new SoundTransform( muteValue ? 0 : 1 );			
 		}
 	}
 }

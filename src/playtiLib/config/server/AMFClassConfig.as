@@ -3,14 +3,49 @@ package playtiLib.config.server
 	import flash.net.registerClassAlias;
 	
 	import mx.collections.ArrayCollection;
+	import mx.collections.ArrayList;
 	import mx.messaging.config.ConfigMap;
-	import mx.messaging.messages.*;
-	import mx.rpc.*;
+	import mx.messaging.messages.AcknowledgeMessage;
+	import mx.messaging.messages.AcknowledgeMessageExt;
+	import mx.messaging.messages.CommandMessage;
+	import mx.messaging.messages.CommandMessageExt;
+	import mx.messaging.messages.ErrorMessage;
+	import mx.messaging.messages.RemotingMessage;
 	import mx.utils.ObjectProxy;
 	
-	import playtiLib.model.VO.amf.request.*;
-	import playtiLib.model.VO.amf.response.*;
-	import playtiLib.model.VO.amf.response.helpers.*;
+	import playtiLib.model.VO.amf.request.BuyCoinsRequest;
+	import playtiLib.model.VO.amf.request.ClientRequest;
+	import playtiLib.model.VO.amf.request.CouponRequest;
+	import playtiLib.model.VO.amf.request.CreateEventCouponRequest;
+	import playtiLib.model.VO.amf.request.LocalizationRequest;
+	import playtiLib.model.VO.amf.request.LoginRequest;
+	import playtiLib.model.VO.amf.request.RegisterRequest;
+	import playtiLib.model.VO.amf.request.SessionInfo;
+	import playtiLib.model.VO.amf.request.TransactionStatusRequest;
+	import playtiLib.model.VO.amf.request.UpdateClientTaskRequest;
+	import playtiLib.model.VO.amf.request.UpdateRegistrationInfoRequest;
+	import playtiLib.model.VO.amf.request.UpdateUserInfoRequest;
+	import playtiLib.model.VO.amf.response.BuyCoinsMessage;
+	import playtiLib.model.VO.amf.response.ClientResponse;
+	import playtiLib.model.VO.amf.response.ClientTasksMessage;
+	import playtiLib.model.VO.amf.response.CollectCouponMessage;
+	import playtiLib.model.VO.amf.response.Coupon;
+	import playtiLib.model.VO.amf.response.CouponMessage;
+	import playtiLib.model.VO.amf.response.CouponReceiversMessage;
+	import playtiLib.model.VO.amf.response.CouponsListMessage;
+	import playtiLib.model.VO.amf.response.CurrencyCostsMessage;
+	import playtiLib.model.VO.amf.response.LocaleResponse;
+	import playtiLib.model.VO.amf.response.LoginMessage;
+	import playtiLib.model.VO.amf.response.RegisterMessage;
+	import playtiLib.model.VO.amf.response.ResultMessage;
+	import playtiLib.model.VO.amf.response.ServiceMessage;
+	import playtiLib.model.VO.amf.response.TransactionStatusMessage;
+	import playtiLib.model.VO.amf.response.UserInfoMessage;
+	import playtiLib.model.VO.amf.response.helpers.ClientTask;
+	import playtiLib.model.VO.amf.response.helpers.LocalizedEntity;
+	import playtiLib.model.VO.amf.response.helpers.UserInfo;
+	import playtiLib.model.VO.amf.response.helpers.UserLevel;
+	import playtiLib.model.VO.amf.response.helpers.UserStatus;
 	import playtiLib.model.VO.payment.CurrencyCost;
 
 	public class AMFClassConfig	{
