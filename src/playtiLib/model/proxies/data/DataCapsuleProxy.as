@@ -71,8 +71,8 @@ package playtiLib.model.proxies.data
 		override public function onRemove():void{
 			
 			data_capsule.removeEventListener( Event.COMPLETE, onDataReady);
+			data_capsule.removeEventListener( ErrorEvent.ERROR, onDataReadyWithErrors);
 			data_capsule.removeEventListener(IOErrorEvent.IO_ERROR,  IO_Error);
-			data_capsule.removeEventListener( EventTrans.DATA, onDataReadyWithErrors);
 		}
 		/**
 		 * This function returns the data inside the DataCallConfig that this function get 
