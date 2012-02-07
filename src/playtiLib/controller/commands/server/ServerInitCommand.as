@@ -8,23 +8,16 @@ package playtiLib.controller.commands.server {
 	
 	import playtiLib.config.notifications.GeneralAppNotifications;
 	import playtiLib.config.server.AMFGeneralCallsConfig;
-	import playtiLib.config.server.GeneralCallsConfig;
 	import playtiLib.config.server.ServerCallConfig;
 	import playtiLib.config.server.ServerConfig;
 	import playtiLib.config.server.SystemErrorConfig;
 	import playtiLib.config.social.SocialConfig;
 	import playtiLib.model.VO.FlashVarsVO;
-	import playtiLib.model.VO.amf.request.ClientRequest;
-	import playtiLib.model.VO.amf.request.LoginRequest;
-	import playtiLib.model.VO.amf.request.SessionInfo;
 	import playtiLib.model.VO.amf.response.ClientResponse;
 	import playtiLib.model.VO.amf.response.LoginMessage;
 	import playtiLib.model.proxies.data.FlashVarsProxy;
-	import playtiLib.utils.data.DataCallConfig;
 	import playtiLib.utils.data.DataCapsule;
 	import playtiLib.utils.data.DataCapsuleFactory;
-	import playtiLib.utils.data.DataServerResponseVO;
-	import playtiLib.utils.statistics.Tracker;
 	import playtiLib.utils.tracing.Logger;
 	
 	public class ServerInitCommand extends SimpleCommand {
@@ -94,7 +87,7 @@ package playtiLib.controller.commands.server {
 				} catch (error:Error){
 					trace(error.toString());
 				}
-			}
+			}			
 		}
 		
 		private function get flash_vars():FlashVarsVO {

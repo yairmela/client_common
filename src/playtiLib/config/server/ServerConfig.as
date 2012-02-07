@@ -39,7 +39,7 @@ package playtiLib.config.server
 			DataCallConfig.server_path 				= ServerConfig.SERVER_IP;
 			ContentDataCallConfig.server_path 		= ServerConfig.CONTENT_SERVER_IP;
 			
-			AMFClassConfig.registerClasses();
+			AMFGeneralClassConfig.registerClasses();
 			AMFServerCallManager.initializeRPC( main_view.loaderInfo );
 		}
 		/**

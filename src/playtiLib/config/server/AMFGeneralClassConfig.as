@@ -1,18 +1,26 @@
 package playtiLib.config.server
 {	
+	import flash.net.getClassByAlias;
 	import flash.net.registerClassAlias;
 	
 	import mx.collections.ArrayCollection;
 	import mx.collections.ArrayList;
+	import mx.logging.targets.TraceTarget;
 	import mx.messaging.config.ConfigMap;
 	import mx.messaging.messages.AcknowledgeMessage;
 	import mx.messaging.messages.AcknowledgeMessageExt;
+	import mx.messaging.messages.AsyncMessage;
+	import mx.messaging.messages.AsyncMessageExt;
 	import mx.messaging.messages.CommandMessage;
 	import mx.messaging.messages.CommandMessageExt;
 	import mx.messaging.messages.ErrorMessage;
+	import mx.messaging.messages.HTTPRequestMessage;
+	import mx.messaging.messages.MessagePerformanceInfo;
 	import mx.messaging.messages.RemotingMessage;
+	import mx.messaging.messages.SOAPMessage;
 	import mx.utils.ObjectProxy;
 	
+	import playtiLib.DynamicObject;
 	import playtiLib.model.VO.amf.request.BuyCoinsRequest;
 	import playtiLib.model.VO.amf.request.ClientRequest;
 	import playtiLib.model.VO.amf.request.CouponRequest;
@@ -48,9 +56,31 @@ package playtiLib.config.server
 	import playtiLib.model.VO.amf.response.helpers.UserStatus;
 	import playtiLib.model.VO.payment.CurrencyCost;
 
-	public class AMFClassConfig	{
+	public class AMFGeneralClassConfig	{
 		
 		public static function registerClasses():void {
+			
+			/////////////////////////////////////////////////////////////////////////
+			registerClassAlias("flex.messaging.messages.RemotingMessage", RemotingMessage);
+			registerClassAlias("flex.messaging.messages.CommandMessage",CommandMessage);
+			registerClassAlias("flex.messaging.messages.AcknowledgeMessage", AcknowledgeMessage);
+			registerClassAlias("flex.messaging.messages.ErrorMessage", ErrorMessage);
+			registerClassAlias("DSC", CommandMessageExt);
+			registerClassAlias("DSK", AcknowledgeMessageExt);
+			registerClassAlias("flex.messaging.io.ArrayList", ArrayList);
+			registerClassAlias("flex.messaging.config.ConfigMap", ConfigMap);
+			registerClassAlias("flex.messaging.io.ArrayCollection", ArrayCollection);
+			registerClassAlias("flex.messaging.io.ObjectProxy", ObjectProxy);
+			
+			// You may want to register pub/sub and other rpc message types too...
+			registerClassAlias("flex.messaging.messages.HTTPMessage", HTTPRequestMessage);
+			registerClassAlias("flex.messaging.messages.SOAPMessage", SOAPMessage);
+			registerClassAlias("flex.messaging.messages.AsyncMessage", AsyncMessage);
+			registerClassAlias("DSA", AsyncMessageExt);
+			registerClassAlias("flex.messaging.messages.MessagePerformanceInfo", MessagePerformanceInfo);
+			/////////////////////////////////////////////////////////////////////////
+			
+			registerClassAlias("com.playtika.common.exception.PlaytikaException", DynamicObject);
 			
 			registerClassAlias( "flex.messaging.messages.ErrorMessage", ErrorMessage );
 			registerClassAlias( "flex.messaging.messages.CommandMessage", CommandMessage );
@@ -105,6 +135,9 @@ package playtiLib.config.server
 			registerClassAlias( "com.playtika.casino.messages.response.TransactionStatusMessage", TransactionStatusMessage );
 			
 			registerClassAlias( "com.playtika.casino.messages.helpers.UpdateRegistrationInfoRequest", UpdateRegistrationInfoRequest );
+			
+			var target:TraceTarget = new TraceTarget();
+			target.level = 0;
 		}
 	}
 }
