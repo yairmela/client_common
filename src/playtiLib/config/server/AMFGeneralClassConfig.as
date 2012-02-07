@@ -20,7 +20,6 @@ package playtiLib.config.server
 	import mx.messaging.messages.SOAPMessage;
 	import mx.utils.ObjectProxy;
 	
-	import playtiLib.DynamicObject;
 	import playtiLib.model.VO.amf.request.BuyCoinsRequest;
 	import playtiLib.model.VO.amf.request.ClientRequest;
 	import playtiLib.model.VO.amf.request.CouponRequest;
@@ -79,9 +78,7 @@ package playtiLib.config.server
 			registerClassAlias("DSA", AsyncMessageExt);
 			registerClassAlias("flex.messaging.messages.MessagePerformanceInfo", MessagePerformanceInfo);
 			/////////////////////////////////////////////////////////////////////////
-			
-			registerClassAlias("com.playtika.common.exception.PlaytikaException", DynamicObject);
-			
+						
 			registerClassAlias( "flex.messaging.messages.ErrorMessage", ErrorMessage );
 			registerClassAlias( "flex.messaging.messages.CommandMessage", CommandMessage );
 			registerClassAlias( "flex.messaging.messages.RemotingMessage", RemotingMessage );
