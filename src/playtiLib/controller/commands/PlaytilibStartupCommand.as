@@ -65,7 +65,7 @@ package playtiLib.controller.commands
 			//set ServerConfig from flash_vars
 			ServerConfig.setPropertiesFromFlashVars( main_view.loaderInfo.parameters, main_view );
 			//set local from flash_vars
-			LocaleContentConfig.setLanguageFromFlashVars( flash_vars_vo );
+			LocaleContentConfig.setLanguageFromFlashVars( flashVars );
 			
 			//first register all the general social known commands
 			facade.registerCommand( GeneralAppNotifications.SOCIAL_REGISTER_COMMANDS, SocialRegisterCommandsCommand );
@@ -86,7 +86,7 @@ package playtiLib.controller.commands
 						
 			facade.registerProxy( new DisplaySettingsProxy( main_view.stage ) );
 						
-			initServerCallManagerProxy();
+			facade.registerProxy( new AMFServerCallManagerProxy() );
 			
 			facade.registerCommand( GeneralAppNotifications.SERVER_FAULT, ServerFaultHandlingCommand);
 		}
@@ -100,12 +100,12 @@ package playtiLib.controller.commands
 		protected function setExternalSession( sessionId:String ):void {
 			var session:SessionInfo = new SessionInfo();
 			session.sessionId = sessionId;
-			session.userSnId = flash_vars_vo.viewer_id;			
+			session.userSnId = flashVars.viewer_id;			
 			ServerConfig.session_info = session;
-			SocialConfig.viewer_sn_id = flash_vars_vo.viewer_id;
+			SocialConfig.viewer_sn_id = flashVars.viewer_id;
 		}
 		
-		protected function get flash_vars_vo():FlashVarsVO {
+		protected function get flashVars():FlashVarsVO {
 			return facade.retrieveProxy( FlashVarsProxy.NAME ).getData() as FlashVarsVO;
 		}
 		
@@ -161,11 +161,6 @@ package playtiLib.controller.commands
 		protected function setupUIDisplay( centerToWidth : uint, centerToHeight : uint ):void {
 			//setup ui display params
 			sendNotification( GeneralAppNotifications.SETUP_UI_DISPLAY, {width: centerToWidth, height: centerToHeight} )
-		}
-		
-		protected function initServerCallManagerProxy():void {
-			
-			facade.registerProxy( new AMFServerCallManagerProxy() );
 		}
 	}
 }
