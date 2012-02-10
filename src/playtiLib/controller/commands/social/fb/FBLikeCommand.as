@@ -10,6 +10,7 @@ package playtiLib.controller.commands.social.fb
 	import playtiLib.config.social.SocialCallsConfig;
 	import playtiLib.config.social.SocialConfig;
 	import playtiLib.model.proxies.data.FlashVarsProxy;
+	import playtiLib.model.proxies.user.UserProxy;
 	import playtiLib.utils.data.DataCallConfig;
 	import playtiLib.utils.data.DataCapsule;
 	import playtiLib.utils.data.DataCapsuleFactory;
@@ -33,7 +34,7 @@ package playtiLib.controller.commands.social.fb
 				return;
 			}
 			
-			var dataCapsule:DataCapsule = DataCapsuleFactory.getDataCapsule([SocialCallsConfig.getLikeInfo(flash_vars_proxy.flash_vars.page_id)]);
+			var dataCapsule:DataCapsule = DataCapsuleFactory.getDataCapsule([SocialCallsConfig.getLikeInfo(flashVarsProxy.flash_vars.page_id)]);
 			dataCapsule.addEventListener( Event.COMPLETE, onLikeDataReady );
 			dataCapsule.loadData();
 		}
@@ -47,17 +48,27 @@ package playtiLib.controller.commands.social.fb
 			
 			var likeDataHolder:Object = ( event.target as DataCapsule ).getDataHolderByIndex(0).data;
 			var like:int = SocialConfig.LIKE_STATUS_UNLIKED;
-			if (likeDataHolder.has_error){
+			if (likeDataHolder.has_error) {
 				like = SocialConfig.LIKE_STATUS_UNKNOWN;
-			}else if ( likeDataHolder.length > 0 ){
+			}else if ( likeDataHolder.length > 0 ) {
 				like = SocialConfig.LIKE_STATUS_LIKED;
+			}
+			
+			if(userProxy.dataReady) {
+				userProxy.user_info.userLikesApp = (like == SocialConfig.LIKE_STATUS_LIKED);
 			}
 			
 			sendNotification(GeneralAppNotifications.SOCIAL_LIKE_APP_DATA_READY, like);
 		}
 
-		private function get flash_vars_proxy():FlashVarsProxy {
+		private function get flashVarsProxy():FlashVarsProxy {
+			
 			return facade.retrieveProxy(FlashVarsProxy.NAME) as FlashVarsProxy;
+		}
+		
+		protected function get userProxy() : UserProxy {
+			
+			return (facade.retrieveProxy(UserProxy.NAME) as UserProxy);
 		}
 	}
 }
