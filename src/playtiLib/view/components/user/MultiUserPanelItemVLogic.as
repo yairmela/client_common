@@ -8,6 +8,8 @@ package playtiLib.view.components.user
 	import flash.events.EventDispatcher;
 	import flash.events.MouseEvent;
 	import flash.net.URLRequest;
+	import flash.text.TextField;
+	import flash.text.TextFormat;
 	
 	import playtiLib.config.notifications.GeneralAppNotifications;
 	import playtiLib.model.VO.user.User;
@@ -25,6 +27,8 @@ package playtiLib.view.components.user
 	 * @see flash.net.URLRequest
 	 */	
 	public class MultiUserPanelItemVLogic extends EventDispatcher implements IViewLogic{
+		
+		protected const USER_NAME_TEXT_MAX_SIZE:uint = 8;
 		
 		protected var user:User;
 		protected var panel_btn:ButtonSimple;
@@ -59,8 +63,8 @@ package playtiLib.view.components.user
 				panel_btn = new ButtonSimple( person_mc );
 				panel_btn.addEventListener( MouseEvent.CLICK, panelClickHandler );
 				if( user.userSocialInfo.isReady ){
-					//set name
-					person_mc['name_txt'].text = user.userSocialInfo.first_name;
+					//set name					
+					setUserName(person_mc['name_txt'], user.userSocialInfo.first_name);					
 					//set photo
 					if( user.userSocialInfo.photo ) {
 						user_photo_loader = person_mc['photo_holder'].addChild( new Loader ) as Loader;
@@ -72,6 +76,17 @@ package playtiLib.view.components.user
 			if( user && !user.userSocialInfo.isReady ){
 				user.userSocialInfo.addEventListener( GeneralAppNotifications.USER_SOCIAL_INFO_READY, onUserSocialReady );
 				person_mc['name_txt'].text = "";
+			}
+		}
+		
+		private function setUserName(nameField:TextField, userName:String):void {
+			nameField.text = userName;
+			var format:TextFormat = nameField.getTextFormat();
+				
+			while ((nameField.textWidth > nameField.width-3) && (int(format.size) >= USER_NAME_TEXT_MAX_SIZE)) {
+				format.size = int(format.size) - 1;
+				nameField.setTextFormat(format);
+				format = nameField.getTextFormat();				
 			}
 		}
 		
