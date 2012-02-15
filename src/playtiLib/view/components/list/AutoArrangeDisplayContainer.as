@@ -51,6 +51,14 @@ package playtiLib.view.components.list
 			return child;
 		}
 		
+		public function clean():void {
+			while(container.numChildren) {
+				container.removeChildAt(0);
+			}
+			next_x = 0;
+			next_y = 0;
+		}
+		
 		public function get content():DisplayObject {
 			return container;
 		}

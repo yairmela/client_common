@@ -1,5 +1,6 @@
 package playtiLib.view.components.list
 {
+	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;
 	import flash.display.MovieClip;
 	import flash.events.EventDispatcher;
@@ -12,11 +13,11 @@ package playtiLib.view.components.list
 		static protected const LIST_NAME : String 	= "listItems";
 		
 		protected var scroll : ScrollSimple;
-		protected var list : ListWindowSimple;
+		protected var list : ListWindowSimple;		
 		
 		public function ListBoxSimple( content : DisplayObjectContainer ){
 			
-			super( content );
+			super( content );			
 			list = new ListWindowSimple( content.getChildByName( LIST_NAME ) as MovieClip );
 			scroll = new ScrollSimple( content.getChildByName( SCROLL_NAME ) as MovieClip ) ;
 			

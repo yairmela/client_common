@@ -37,6 +37,7 @@ package playtiLib.model.VO.user
 		public var timezone:int;	
 
 		public var email:String;
+
 		
 		public function UserSocialInfo( id:String=null ){
 			
@@ -46,7 +47,7 @@ package playtiLib.model.VO.user
 		public function setUserInfo( user_social_info:UserSocialInfo ):void{
 
 			buildVO( user_social_info );
-			isReady = true;
+			isReady = true;	
 		}
 	}
 }
