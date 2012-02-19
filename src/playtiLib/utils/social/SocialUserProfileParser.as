@@ -34,5 +34,10 @@ package playtiLib.utils.social
 			
 			return [];
 		}
+		
+		public function parseFriendsInfo ( result:Object ):Array {
+			
+			return [];
+		}
 	}
 }

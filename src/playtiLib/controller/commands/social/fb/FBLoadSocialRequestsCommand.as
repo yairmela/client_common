@@ -9,7 +9,7 @@ package playtiLib.controller.commands.social.fb
 	import playtiLib.controller.commands.coupons.CouponCommand;
 	import playtiLib.model.VO.social.SNRequestDataVO;
 	import playtiLib.model.VO.social.SocialRequestsListVO;
-	import playtiLib.model.proxies.social.FBRequestsProxy;
+	import playtiLib.model.proxies.social.fb.FBRequestsProxy;
 	import playtiLib.utils.data.DataCapsule;
 	import playtiLib.utils.data.DataCapsuleFactory;
 	import playtiLib.utils.time.TimeUtil;

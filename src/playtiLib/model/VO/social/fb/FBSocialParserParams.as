@@ -5,6 +5,7 @@ package playtiLib.model.VO.social.fb
 	import playtiLib.model.VO.FlashVarsVO;
 	import playtiLib.model.proxies.data.FlashVarsProxy;
 	import playtiLib.utils.social.SocialUserProfileParser;
+	import playtiLib.utils.tracing.Logger;
 	
 	public class FBSocialParserParams extends SocialUserProfileParser{
 		
@@ -60,6 +61,22 @@ package playtiLib.model.VO.social.fb
 				}
 			}
 
+			return parser_data;
+		}
+		
+		override public function parseFriendsInfo( response:Object ):Array {
+			
+			var parser_data:Array = new Array();
+			try{
+				for each( var request_json:Object in response.data ) {
+					var request:FBSelectUserVO = new FBSelectUserVO();
+					request.buildVO(  request_json );
+					parser_data.push( request )
+				}
+			}catch(e:Error){
+				Logger.log("ERROR SN DATA: "+response.toString()+" \n"+e.toString());
+			}
+			
 			return parser_data;
 		}
 	}

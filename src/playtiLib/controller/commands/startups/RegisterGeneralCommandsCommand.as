@@ -24,12 +24,14 @@ package playtiLib.controller.commands.startups
 	import playtiLib.controller.commands.paypage.BuyTransactionResultCommand;
 	import playtiLib.controller.commands.paypage.CheckBuyTransactionStatusCommand;
 	import playtiLib.controller.commands.popup.GotoGameTabCommand;
-	import playtiLib.controller.commands.popup.OpenURLCommand;
 	import playtiLib.controller.commands.popup.OpenPopupCommand;
+	import playtiLib.controller.commands.popup.OpenURLCommand;
 	import playtiLib.controller.commands.popup.ShowNextPopupCommand;
 	import playtiLib.controller.commands.server.ServerLoginCompleteCommand;
 	import playtiLib.controller.commands.social.ExecuteGeneralExternalCallCommand;
+	import playtiLib.controller.commands.social.fb.CloseSendGiftProxyCommand;
 	import playtiLib.controller.commands.social.fb.FBLoadSocialRequestsCommand;
+	import playtiLib.controller.commands.social.fb.ShowGameTabCommand;
 	import playtiLib.controller.commands.sound.MuteSoundsCommand;
 	import playtiLib.controller.commands.statistics.GeneralStatisticsTrackingCommand;
 	import playtiLib.controller.commands.task.GetTasksCommand;
