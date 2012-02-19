@@ -10,7 +10,7 @@ package playtiLib.model.proxies.social {
 	import playtiLib.config.statistics.GeneralStatistics;
 	import playtiLib.config.statistics.KontagentConfig;
 	import playtiLib.controller.commands.paypage.CheckBuyTransactionStatusCommand;
-	import playtiLib.model.VO.payment.CurrencyCost;
+	import playtiLib.model.vo.payment.CurrencyCost;
 	import playtiLib.model.proxies.payment.CurrencyCostProxy;
 	import playtiLib.model.proxies.server.AMFServerCallManagerProxy;
 	import playtiLib.model.proxies.server.ServerCallManagerProxy;

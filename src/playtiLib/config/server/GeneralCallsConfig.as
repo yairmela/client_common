@@ -1,9 +1,9 @@
 package playtiLib.config.server
 {
 	import playtiLib.config.social.SocialConfig;
-	import playtiLib.model.VO.user.LoginVO;
-	import playtiLib.model.VO.user.UserSocialInfo;
-	import playtiLib.model.VO.user.UserUpdateInfo;
+	import playtiLib.model.vo.user.LoginVO;
+	import playtiLib.model.vo.user.UserSocialInfo;
+	import playtiLib.model.vo.user.UserUpdateInfo;
 	import playtiLib.utils.data.DataCallConfig;
 
 	/**

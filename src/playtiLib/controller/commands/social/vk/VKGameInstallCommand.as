@@ -9,8 +9,8 @@ package playtiLib.controller.commands.social.vk
 	import playtiLib.config.social.vk.VKGeneralDialogs;
 	import playtiLib.config.social.vk.VKNotifications;
 	import playtiLib.controller.commands.popup.OpenPopupCommand;
-	import playtiLib.model.VO.FlashVarsVO;
-	import playtiLib.model.VO.popup.PopupDoActionVO;
+	import playtiLib.model.vo.FlashVarsVO;
+	import playtiLib.model.vo.popup.PopupDoActionVO;
 	import playtiLib.model.proxies.data.FlashVarsProxy;
 	import playtiLib.utils.events.EventTrans;
 	import playtiLib.utils.social.vk.VkWrapperUtil;

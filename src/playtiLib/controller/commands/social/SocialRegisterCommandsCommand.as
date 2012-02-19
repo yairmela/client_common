@@ -41,7 +41,7 @@ package playtiLib.controller.commands.social
 	import playtiLib.controller.commands.social.vk.VKPublishToWallCommand;
 	import playtiLib.controller.commands.social.vk.VKSetBannersCommand;
 	import playtiLib.controller.commands.social.vk.VKSettingsCheckCommand;
-	import playtiLib.model.VO.social.SocialConfigVO;
+	import playtiLib.model.vo.social.SocialConfigVO;
 	import playtiLib.utils.tracing.Logger;
 
 	public class SocialRegisterCommandsCommand extends SimpleCommand

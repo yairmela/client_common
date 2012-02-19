@@ -2,7 +2,7 @@ package playtiLib.controller.commands.coupons
 {
 	import org.puremvc.as3.patterns.command.SimpleCommand;
 	
-	import playtiLib.model.VO.FlashVarsVO;
+	import playtiLib.model.vo.FlashVarsVO;
 	import playtiLib.model.proxies.coupon.TodayReceiversProxy;
 	import playtiLib.model.proxies.coupon.UserCouponProxy;
 	import playtiLib.model.proxies.data.FlashVarsProxy;

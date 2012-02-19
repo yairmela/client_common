@@ -15,7 +15,7 @@ package playtiLib.model.proxies.server {
 	import playtiLib.config.notifications.GeneralAppNotifications;
 	import playtiLib.config.server.ServerConfig;
 	import playtiLib.config.server.ServerErrorsConfig;
-	import playtiLib.model.VO.amf.request.ClientRequest;
+	import playtiLib.model.vo.amf.request.ClientRequest;
 	import playtiLib.utils.server.AMFServerCallManager;
 	
 	/**

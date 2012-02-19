@@ -24,8 +24,8 @@ package playtiLib.controller.commands.social.vk
 	
 	import playtiLib.config.notifications.GeneralAppNotifications;
 	import playtiLib.config.social.SocialCallsConfig;
-	import playtiLib.model.VO.FlashVarsVO;
-	import playtiLib.model.VO.social.SocialPostVO;
+	import playtiLib.model.vo.FlashVarsVO;
+	import playtiLib.model.vo.social.SocialPostVO;
 	import playtiLib.model.proxies.config.AppConfigProxy;
 	import playtiLib.utils.data.DataCapsule;
 	import playtiLib.utils.data.DataCapsuleFactory;

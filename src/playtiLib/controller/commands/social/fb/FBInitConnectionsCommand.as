@@ -7,7 +7,7 @@ package playtiLib.controller.commands.social.fb
 	
 	import playtiLib.config.gifts.CouponSystemConfig;
 	import playtiLib.config.notifications.GeneralAppNotifications;
-	import playtiLib.model.VO.social.SocialConfigVO;
+	import playtiLib.model.vo.social.SocialConfigVO;
 	import playtiLib.utils.social.fb.FBSocialCallManager;
 
 	/**

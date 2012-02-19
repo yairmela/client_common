@@ -11,11 +11,11 @@ package playtiLib.view.mediators.gift
 	import playtiLib.config.notifications.GeneralAppNotifications;
 	import playtiLib.config.statistics.GeneralStatistics;
 	import playtiLib.controller.commands.popup.OpenPopupCommand;
-	import playtiLib.model.VO.amf.response.Coupon;
-	import playtiLib.model.VO.gift.ChooseGift;
-	import playtiLib.model.VO.gift.Gift;
-	import playtiLib.model.VO.popup.PopupDoActionVO;
-	import playtiLib.model.VO.social.SocialPostVO;
+	import playtiLib.model.vo.amf.response.Coupon;
+	import playtiLib.model.vo.gift.ChooseGift;
+	import playtiLib.model.vo.gift.Gift;
+	import playtiLib.model.vo.popup.PopupDoActionVO;
+	import playtiLib.model.vo.social.SocialPostVO;
 	import playtiLib.model.proxies.coupon.UserCouponProxy;
 	import playtiLib.model.proxies.user.UserProxy;
 	import playtiLib.model.proxies.user.UserSocialInfoProxy;

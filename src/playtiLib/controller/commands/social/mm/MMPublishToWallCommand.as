@@ -4,7 +4,7 @@ package playtiLib.controller.commands.social.mm
 	import org.puremvc.as3.patterns.command.SimpleCommand;
 	
 	import playtiLib.config.notifications.GeneralAppNotifications;
-	import playtiLib.model.VO.social.SocialPostVO;
+	import playtiLib.model.vo.social.SocialPostVO;
 	import playtiLib.model.proxies.user.UserProxy;
 	import playtiLib.utils.social.mm.MailruCall;
 	import playtiLib.utils.social.mm.MailruCallEvent;

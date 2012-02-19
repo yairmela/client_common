@@ -12,7 +12,7 @@ package playtiLib.controller.commands.server
 	import playtiLib.config.server.SystemErrorConfig;
 	import playtiLib.config.social.SocialConfig;
 	import playtiLib.config.statistics.GeneralStatistics;
-	import playtiLib.model.VO.FlashVarsVO;
+	import playtiLib.model.vo.FlashVarsVO;
 	import playtiLib.model.proxies.data.FlashVarsProxy;
 	import playtiLib.utils.data.DataCapsule;
 	import playtiLib.utils.data.DataCapsuleFactory;

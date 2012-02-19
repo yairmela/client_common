@@ -8,9 +8,9 @@ package playtiLib.controller.commands.coupons
 	import playtiLib.config.gifts.CouponSystemConfig;
 	import playtiLib.config.notifications.GeneralAppNotifications;
 	import playtiLib.config.server.AMFGeneralCallsConfig;
-	import playtiLib.model.VO.amf.response.Coupon;
-	import playtiLib.model.VO.amf.response.CouponMessage;
-	import playtiLib.model.VO.social.SocialPostVO;
+	import playtiLib.model.vo.amf.response.Coupon;
+	import playtiLib.model.vo.amf.response.CouponMessage;
+	import playtiLib.model.vo.social.SocialPostVO;
 	import playtiLib.utils.data.DataCapsule;
 	import playtiLib.utils.data.DataCapsuleFactory;
 

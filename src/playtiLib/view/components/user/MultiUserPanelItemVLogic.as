@@ -12,8 +12,8 @@ package playtiLib.view.components.user
 	import flash.text.TextFormat;
 	
 	import playtiLib.config.notifications.GeneralAppNotifications;
-	import playtiLib.model.VO.user.User;
-	import playtiLib.model.VO.user.UserSocialInfo;
+	import playtiLib.model.vo.user.User;
+	import playtiLib.model.vo.user.UserSocialInfo;
 	import playtiLib.utils.events.EventTrans;
 	import playtiLib.utils.warehouse.GraphicsWarehouseList;
 	import playtiLib.view.components.btns.ButtonSimple;

@@ -4,12 +4,12 @@ package playtiLib.controller.commands.social.fb
 	import org.puremvc.as3.patterns.command.SimpleCommand;
 	
 	import playtiLib.config.notifications.GeneralAppNotifications;
-	import playtiLib.model.VO.social.SocialPostVO;
+	import playtiLib.model.vo.social.SocialPostVO;
 	/**
 	 * Gets a SocialPostVO object from the notification's body and if it's is_gift parameter is true, it sends notifications(ADD_APP_REQUEST, PUBLISH_GIFT_COMPLETE)
 	 * and if not it sends notification (PUBLISH_GIFT_COMPLETE)
 	 * @see playtiLib.config.notifications.GeneralAppNotifications
-	 * @see playtiLib.model.VO.social.SocialPostVO
+	 * @see playtiLib.model.vo.social.SocialPostVO
 	 * @see org.puremvc.as3.interfaces.INotification
 	 */	
 	public class FBPublishToWallApprovedCommand extends SimpleCommand	{

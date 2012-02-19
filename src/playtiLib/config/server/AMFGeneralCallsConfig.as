@@ -1,17 +1,17 @@
 package playtiLib.config.server
 {
-	import playtiLib.model.VO.amf.request.BuyCoinsRequest;
-	import playtiLib.model.VO.amf.request.ClientRequest;
-	import playtiLib.model.VO.amf.request.CouponRequest;
-	import playtiLib.model.VO.amf.request.CreateEventCouponRequest;
-	import playtiLib.model.VO.amf.request.LocalizationRequest;
-	import playtiLib.model.VO.amf.request.LoginRequest;
-	import playtiLib.model.VO.amf.request.RegisterRequest;
-	import playtiLib.model.VO.amf.request.TransactionStatusRequest;
-	import playtiLib.model.VO.amf.request.UpdateClientTaskRequest;
-	import playtiLib.model.VO.amf.request.UpdateRegistrationInfoRequest;
-	import playtiLib.model.VO.amf.request.UpdateUserInfoRequest;
-	import playtiLib.model.VO.social.user.StipulatedConverToStringCallConfigVO;
+	import playtiLib.model.vo.amf.request.BuyCoinsRequest;
+	import playtiLib.model.vo.amf.request.ClientRequest;
+	import playtiLib.model.vo.amf.request.CouponRequest;
+	import playtiLib.model.vo.amf.request.CreateEventCouponRequest;
+	import playtiLib.model.vo.amf.request.LocalizationRequest;
+	import playtiLib.model.vo.amf.request.LoginRequest;
+	import playtiLib.model.vo.amf.request.RegisterRequest;
+	import playtiLib.model.vo.amf.request.TransactionStatusRequest;
+	import playtiLib.model.vo.amf.request.UpdateClientTaskRequest;
+	import playtiLib.model.vo.amf.request.UpdateRegistrationInfoRequest;
+	import playtiLib.model.vo.amf.request.UpdateUserInfoRequest;
+	import playtiLib.model.vo.amf.social.user.StipulatedConverToStringCallConfigVO;
 	import playtiLib.utils.data.ContentDataCallConfig;
 	import playtiLib.utils.data.DataCallConfig;
 

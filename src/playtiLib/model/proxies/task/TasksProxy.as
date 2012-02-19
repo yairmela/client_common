@@ -4,8 +4,8 @@ package playtiLib.model.proxies.task {
 	import playtiLib.config.notifications.GeneralAppNotifications;
 	import playtiLib.config.server.AMFGeneralCallsConfig;
 	import playtiLib.model.proxies.data.DataCapsuleProxy;
-	import playtiLib.model.VO.amf.response.ClientTasksMessage;
-	import playtiLib.model.VO.amf.response.helpers.ClientTask;
+	import playtiLib.model.vo.amf.response.ClientTasksMessage;
+	import playtiLib.model.vo.amf.response.helpers.ClientTask;
 	import playtiLib.utils.data.DataCallConfig;
 	import playtiLib.utils.data.DataCapsule;
 	import playtiLib.utils.data.DataCapsuleFactory;

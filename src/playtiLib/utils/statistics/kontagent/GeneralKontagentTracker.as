@@ -11,7 +11,7 @@ package playtiLib.utils.statistics.kontagent
 	
 	import playtiLib.config.statistics.GeneralStatistics;
 	import playtiLib.config.statistics.KontagentConfig;
-	import playtiLib.model.VO.user.UserSocialInfo;
+	import playtiLib.model.vo.user.UserSocialInfo;
 	import playtiLib.utils.core.DateUtil;
 	import playtiLib.utils.statistics.ISpecificTracker;
 	import playtiLib.utils.statistics.GeneralTrackSnapshot;

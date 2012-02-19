@@ -2,7 +2,7 @@ package playtiLib.model.proxies.payment
 {
 	import org.puremvc.as3.patterns.proxy.Proxy;
 	
-	import playtiLib.model.VO.payment.CurrencyCost;
+	import playtiLib.model.vo.payment.CurrencyCost;
 	
 	public class CurrencyCostProxy extends Proxy{
 		

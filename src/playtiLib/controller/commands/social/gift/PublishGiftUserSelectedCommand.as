@@ -4,7 +4,7 @@ package playtiLib.controller.commands.social.gift
 	import org.puremvc.as3.patterns.command.SimpleCommand;
 	
 	import playtiLib.config.notifications.GeneralAppNotifications;
-	import playtiLib.model.VO.social.SocialPostVO;
+	import playtiLib.model.vo.social.SocialPostVO;
 	/**
 	 * Gets a SocialPostVO object and user SN id from the notification's body, removes the command CHOOSE_SN_USER_COMPLETE and sends 
 	 * notification PUBLISH_TO_WALL_COMMAND' with it's information.

@@ -3,8 +3,8 @@ package playtiLib.model.proxies.social
 	import org.puremvc.as3.patterns.proxy.Proxy;
 	
 	import playtiLib.config.notifications.GeneralAppNotifications;
-	import playtiLib.model.VO.social.SNRequestDataVO;
-	import playtiLib.model.VO.social.SocialRequestsListVO;
+	import playtiLib.model.vo.social.SNRequestDataVO;
+	import playtiLib.model.vo.social.SocialRequestsListVO;
 	
 	public class FBRequestsProxy extends Proxy
 	{

@@ -22,9 +22,9 @@ package playtiLib.controller.commands
 	import playtiLib.controller.commands.social.SocialRegisterCommandsCommand;
 	import playtiLib.controller.commands.ui.SetupUIDisplayCommand;
 	import playtiLib.controller.commands.version.ShowVersionNumberCommand;
-	import playtiLib.model.VO.FlashVarsVO;
-	import playtiLib.model.VO.amf.request.SessionInfo;
-	import playtiLib.model.VO.social.SocialConfigVO;
+	import playtiLib.model.vo.FlashVarsVO;
+	import playtiLib.model.vo.amf.request.SessionInfo;
+	import playtiLib.model.vo.social.SocialConfigVO;
 	import playtiLib.model.proxies.config.AppConfigProxy;
 	import playtiLib.model.proxies.config.DisplaySettingsProxy;
 	import playtiLib.model.proxies.data.FlashVarsProxy;

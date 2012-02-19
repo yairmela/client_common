@@ -5,9 +5,9 @@ package playtiLib.view.mediators.gift
 	import flash.external.ExternalInterface;
 	
 	import playtiLib.config.notifications.GeneralAppNotifications;
-	import playtiLib.model.VO.gift.ChooseGift;
-	import playtiLib.model.VO.gift.Gift;
-	import playtiLib.model.VO.popup.PopupDoActionVO;
+	import playtiLib.model.vo.gift.ChooseGift;
+	import playtiLib.model.vo.gift.Gift;
+	import playtiLib.model.vo.popup.PopupDoActionVO;
 	import playtiLib.view.components.gift.ChooseGiftsViewLogic;
 	import playtiLib.view.mediators.popups.PopupMediator;
 	 

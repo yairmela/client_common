@@ -10,8 +10,8 @@ package playtiLib.controller.commands.social.mm
 	import playtiLib.config.server.AMFGeneralCallsConfig;
 	import playtiLib.config.server.GeneralCallsConfig;
 	import playtiLib.config.server.ServerCallConfig;
-	import playtiLib.model.VO.amf.response.TransactionStatusMessage;
-	import playtiLib.model.VO.payment.CurrencyCost;
+	import playtiLib.model.vo.amf.response.TransactionStatusMessage;
+	import playtiLib.model.vo.payment.CurrencyCost;
 	import playtiLib.model.proxies.payment.CurrencyCostProxy;
 	import playtiLib.utils.data.DataCapsule;
 	import playtiLib.utils.data.DataCapsuleFactory;
@@ -23,8 +23,8 @@ package playtiLib.controller.commands.social.mm
 	 * Gets a CurrencyCostVO object by the notification's body, sends notification (CLOSE_PAYPAGE), if selected record is provided - save it, adds listerners
 	 * (PAYMENT_PAGE, PAYMENT_DIALOG) to the MailruCall and exe mailru.app.payments.showDialog.
 	 * @see playtiLib.utils.social.mm.MailruCall
-	 * @see playtiLib.model.VO.payment.BuyTransactionVO
-	 * @see playtiLib.model.VO.payment.CurrencyCostVO
+	 * @see playtiLib.model.vo.payment.BuyTransactionVO
+	 * @see playtiLib.model.vo.payment.CurrencyCostVO
 	 * @see playtiLib.model.proxies.payment.CurrencyCostProxy
 	 * @see playtiLib.utils.data.DataCapsule
 	 */	

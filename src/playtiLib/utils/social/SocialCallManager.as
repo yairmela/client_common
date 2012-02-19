@@ -3,8 +3,8 @@ package playtiLib.utils.social
 	import org.puremvc.as3.patterns.facade.Facade;
 	
 	import playtiLib.config.social.SocialConfig;
-	import playtiLib.model.VO.FlashVarsVO;
-	import playtiLib.model.VO.social.SocialConfigVO;
+	import playtiLib.model.vo.FlashVarsVO;
+	import playtiLib.model.vo.social.SocialConfigVO;
 	import playtiLib.model.proxies.config.AppConfigProxy;
 	import playtiLib.model.proxies.data.FlashVarsProxy;
 	import playtiLib.utils.server.IServerManager;

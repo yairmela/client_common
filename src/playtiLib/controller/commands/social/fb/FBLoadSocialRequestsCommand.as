@@ -7,8 +7,8 @@ package playtiLib.controller.commands.social.fb
 	import playtiLib.config.notifications.GeneralAppNotifications;
 	import playtiLib.config.social.SocialCallsConfig;
 	import playtiLib.controller.commands.coupons.CouponCommand;
-	import playtiLib.model.VO.social.SNRequestDataVO;
-	import playtiLib.model.VO.social.SocialRequestsListVO;
+	import playtiLib.model.vo.social.SNRequestDataVO;
+	import playtiLib.model.vo.social.SocialRequestsListVO;
 	import playtiLib.model.proxies.social.FBRequestsProxy;
 	import playtiLib.utils.data.DataCapsule;
 	import playtiLib.utils.data.DataCapsuleFactory;

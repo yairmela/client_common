@@ -1,7 +1,7 @@
 package playtiLib.model.proxies.user
 {
 	import playtiLib.config.notifications.GeneralAppNotifications;
-	import playtiLib.model.VO.user.UserPreferences;
+	import playtiLib.model.vo.user.UserPreferences;
 	import playtiLib.model.proxies.data.SharedObjectProxy;
 	import playtiLib.utils.core.ObjectUtil;
 	

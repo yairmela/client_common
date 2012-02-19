@@ -5,8 +5,8 @@ package playtiLib.controller.commands.coupons
 	import playtiLib.config.display.GeneralDialogsConfig;
 	import playtiLib.config.gifts.CouponSystemConfig;
 	import playtiLib.config.notifications.GeneralAppNotifications;
-	import playtiLib.model.VO.amf.response.CouponMessage;
-	import playtiLib.model.VO.popup.PopupDoActionVO;
+	import playtiLib.model.vo.amf.response.CouponMessage;
+	import playtiLib.model.vo.popup.PopupDoActionVO;
 	import playtiLib.view.components.popups.EngagementBarVLogic;
 	import playtiLib.view.components.popups.PopupViewLogic;
 	import playtiLib.view.mediators.popups.PopupMediator;

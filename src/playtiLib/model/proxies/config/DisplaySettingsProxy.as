@@ -8,7 +8,7 @@ package playtiLib.model.proxies.config
 	import org.puremvc.as3.patterns.proxy.Proxy;
 	
 	import playtiLib.config.notifications.GeneralAppNotifications;
-	import playtiLib.model.VO.config.DisplaySettingsVO;
+	import playtiLib.model.vo.config.DisplaySettingsVO;
 
 	/**
 	 * Waits to full screen event on its constructor and then sets the relevant parameters.

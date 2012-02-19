@@ -4,12 +4,12 @@ package playtiLib.controller.commands.social.fb
 	import org.puremvc.as3.patterns.command.SimpleCommand;
 	
 	import playtiLib.config.notifications.GeneralAppNotifications;
-	import playtiLib.model.VO.social.SocialPostVO;
+	import playtiLib.model.vo.social.SocialPostVO;
 	/**
 	 * Gets a socialPostVO object and user SN id from the notification's body. It removes the command (CHOOSE_SN_USER_COMPLETE) and sends 
 	 * notification PUBLISH_TO_WALL_COMMAND.
 	 * by the information it got. 
-	 * @see playtiLib.model.VO.social.SocialPostVO
+	 * @see playtiLib.model.vo.social.SocialPostVO
 	 */	
 	public class FBPublishGiftUserSelectedCommand extends SimpleCommand	{
 		

@@ -5,7 +5,7 @@ package playtiLib.controller.commands.coupons
 	import playtiLib.config.gifts.CouponSystemConfig;
 	import playtiLib.config.notifications.GeneralAppNotifications;
 	import playtiLib.config.statistics.GeneralStatistics;
-	import playtiLib.model.VO.amf.response.Coupon;
+	import playtiLib.model.vo.amf.response.Coupon;
 	import playtiLib.model.proxies.coupon.SelectedCouponProxy;
 
 	//this class need to be override at the game core commands

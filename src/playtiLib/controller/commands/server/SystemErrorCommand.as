@@ -6,13 +6,13 @@ package playtiLib.controller.commands.server {
 	import playtiLib.config.server.ServerErrorsConfig;
 	import playtiLib.config.server.SystemErrorConfig;
 	import playtiLib.config.statistics.GeneralStatistics;
-	import playtiLib.model.VO.popup.SystemMsgVO;
+	import playtiLib.model.vo.popup.SystemMsgVO;
 	import playtiLib.utils.locale.TextLib;
 	
 	/**
 	 * Handles the system erors config. It gets the error code by the notification's body, make a new msg, sends notification(SYSTEM_MSG_POPUP)
 	 * and tracks the action.
-	 * @see playtiLib.model.VO.popup.SystemMsgVO
+	 * @see playtiLib.model.vo.popup.SystemMsgVO
 	 */
 	public class SystemErrorCommand extends SimpleCommand {
 		

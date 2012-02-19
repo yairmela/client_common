@@ -4,7 +4,7 @@ package playtiLib.controller.commands.coupons
 	
 	import playtiLib.config.gifts.CouponSystemConfig;
 	import playtiLib.config.notifications.GeneralAppNotifications;
-	import playtiLib.model.VO.amf.response.Coupon;
+	import playtiLib.model.vo.amf.response.Coupon;
 	/**
 	 * Gets an array of coupons in the notification body and handles the coupons with errors. In some cases it sends a popup for the bad coupons, it also removes the Facebook 
 	 * game request (if the error is different from cant collect today) and removes the coupon from the UserCouponProxy.

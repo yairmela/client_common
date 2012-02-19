@@ -10,8 +10,8 @@ package playtiLib.model.proxies.user
 	import org.puremvc.as3.patterns.proxy.Proxy;
 	
 	import playtiLib.config.social.SocialCallsConfig;
-	import playtiLib.model.VO.social.user.SocialUsersListVO;
-	import playtiLib.model.VO.user.UserSocialInfo;
+	import playtiLib.model.vo.amf.social.user.SocialUsersListVO;
+	import playtiLib.model.vo.user.UserSocialInfo;
 	import playtiLib.utils.data.DataCapsule;
 	import playtiLib.utils.data.DataCapsuleFactory;
 	

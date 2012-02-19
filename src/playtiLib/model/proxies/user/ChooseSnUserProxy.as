@@ -5,12 +5,12 @@ package playtiLib.model.proxies.user
 	import playtiLib.config.notifications.GeneralAppNotifications;
 	import playtiLib.config.social.SocialCallsConfig;
 	import playtiLib.config.social.SocialConfig;
-	import playtiLib.model.VO.user.UserSocialInfo;
+	import playtiLib.model.vo.user.UserSocialInfo;
 	import playtiLib.model.proxies.data.DataCapsuleProxy;
 	import playtiLib.model.proxies.user.UserProxy;
 	/**
 	 * Handles the s.n user's friends 
-	 * @see playtiLib.model.VO.user.UserVO
+	 * @see playtiLib.model.vo.user.UserVO
 	 * @see playtiLib.model.proxies.data.DataCapsuleProxy
 	 * @see playtiLib.model.proxies.user.UserProxy
 	 */	

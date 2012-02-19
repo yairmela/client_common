@@ -1,11 +1,11 @@
 package playtiLib.config.social
 {
-	import playtiLib.model.VO.social.fb.FBSocialUserProfileParser;
-	import playtiLib.model.VO.social.fb.FBSocialParserParams;
-	import playtiLib.model.VO.social.mm.MMSocialUserProfileParser;
-	import playtiLib.model.VO.social.mm.MMSocialParserParams;
-	import playtiLib.model.VO.social.vk.VKSocialUserProfileParser;
-	import playtiLib.model.VO.social.vk.VKSocialParserParams;
+	import playtiLib.model.vo.amf.social.fb.FBSocialUserProfileParser;
+	import playtiLib.model.vo.amf.social.fb.FBSocialParserParams;
+	import playtiLib.model.vo.amf.social.mm.MMSocialUserProfileParser;
+	import playtiLib.model.vo.amf.social.mm.MMSocialParserParams;
+	import playtiLib.model.vo.amf.social.vk.VKSocialUserProfileParser;
+	import playtiLib.model.vo.amf.social.vk.VKSocialParserParams;
 	import playtiLib.utils.social.SocialUserProfileParser;
 
 	//this is used as uint constants because we 

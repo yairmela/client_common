@@ -1,6 +1,6 @@
 package playtiLib.utils.social
 {
-	import playtiLib.model.VO.user.UserSocialInfo;
+	import playtiLib.model.vo.user.UserSocialInfo;
 
 	public class SocialUserProfileParser{
 		

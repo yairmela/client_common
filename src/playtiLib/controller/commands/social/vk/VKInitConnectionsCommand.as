@@ -3,7 +3,7 @@ package playtiLib.controller.commands.social.vk
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.command.SimpleCommand;
 	
-	import playtiLib.model.VO.social.SocialConfigVO;
+	import playtiLib.model.vo.social.SocialConfigVO;
 	import playtiLib.model.proxies.config.AppConfigProxy;
 	import playtiLib.model.proxies.data.FlashVarsProxy;
 	import playtiLib.utils.social.vk.VkWrapperUtil;

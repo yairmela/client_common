@@ -13,8 +13,8 @@ package playtiLib.controller.commands.social.vk
 	import playtiLib.config.server.ServerCallConfig;
 	import playtiLib.config.social.SocialCallsConfig;
 	import playtiLib.config.social.vk.VKNotifications;
-	import playtiLib.model.VO.amf.response.TransactionStatusMessage;
-	import playtiLib.model.VO.payment.CurrencyCost;
+	import playtiLib.model.vo.amf.response.TransactionStatusMessage;
+	import playtiLib.model.vo.payment.CurrencyCost;
 	import playtiLib.model.proxies.payment.CurrencyCostProxy;
 	import playtiLib.utils.data.DataCallConfig;
 	import playtiLib.utils.data.DataCapsule;

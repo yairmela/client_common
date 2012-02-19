@@ -1,5 +1,5 @@
 package playtiLib.config.content {
-	import playtiLib.model.VO.FlashVarsVO;
+	import playtiLib.model.vo.FlashVarsVO;
 	
 	/**
 	 * This class configures the localization parameters ( language )

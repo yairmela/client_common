@@ -6,7 +6,7 @@ package playtiLib.controller.commands.social.fb
 	import org.puremvc.as3.patterns.command.SimpleCommand;
 
 	import playtiLib.config.notifications.GeneralAppNotifications;
-	import playtiLib.model.VO.social.SocialPostVO;
+	import playtiLib.model.vo.social.SocialPostVO;
 	import playtiLib.model.proxies.config.DisplaySettingsProxy;
 	import playtiLib.utils.social.fb.FBSocialCallManager;
 	/**
@@ -14,7 +14,7 @@ package playtiLib.controller.commands.social.fb
 	 * it makes an external interface call for publishing stream. It also sends notification (SET_PAUSE_POPUP) and sets the fullscreen setting to false.
 	 * @see flash.external.ExternalInterface
 	 * @see playtiLib.utils.social.fb.FBSocialCallManager
-	 * @see playtiLib.model.VO.social.SocialPostVO
+	 * @see playtiLib.model.vo.social.SocialPostVO
 	 */
 	public class FBStreamPublishCommand extends SimpleCommand	{
 		

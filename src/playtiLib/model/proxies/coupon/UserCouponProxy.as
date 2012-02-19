@@ -3,7 +3,7 @@ package playtiLib.model.proxies.coupon
 	import org.puremvc.as3.patterns.proxy.Proxy;
 	
 	import playtiLib.config.notifications.GeneralAppNotifications;
-	import playtiLib.model.VO.amf.response.Coupon;
+	import playtiLib.model.vo.amf.response.Coupon;
 	/**
 	 * Proxy that used to store the user's coupons information.It can add\remove coupons to the list and set the coupon's 'isSendGiftBack' property
 	 */	

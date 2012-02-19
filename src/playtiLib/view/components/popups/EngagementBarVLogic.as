@@ -4,10 +4,10 @@ package playtiLib.view.components.popups
 	import playtiLib.utils.text.TextUtil;
 	
 	import playtiLib.config.display.GeneralDialogsConfig;
-	import playtiLib.model.VO.amf.response.helpers.UserInfo;
-	import playtiLib.model.VO.amf.response.helpers.UserLevel;
-	import playtiLib.model.VO.social.SocialPostVO;
-	import playtiLib.model.VO.user.UserSocialInfo;
+	import playtiLib.model.vo.amf.response.helpers.UserInfo;
+	import playtiLib.model.vo.amf.response.helpers.UserLevel;
+	import playtiLib.model.vo.social.SocialPostVO;
+	import playtiLib.model.vo.user.UserSocialInfo;
 	import playtiLib.utils.locale.TextLib;
 
 	public class EngagementBarVLogic extends PopupViewLogic	{

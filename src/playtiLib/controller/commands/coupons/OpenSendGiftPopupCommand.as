@@ -6,10 +6,10 @@ package playtiLib.controller.commands.coupons
 	import playtiLib.config.gifts.CouponSystemConfig;
 	import playtiLib.config.notifications.GeneralAppNotifications;
 	import playtiLib.controller.commands.popup.OpenPopupCommand;
-	import playtiLib.model.VO.amf.response.helpers.UserInfo;
-	import playtiLib.model.VO.gift.ChooseGift;
-	import playtiLib.model.VO.gift.Gift;
-	import playtiLib.model.VO.popup.PopupDoActionVO;
+	import playtiLib.model.vo.amf.response.helpers.UserInfo;
+	import playtiLib.model.vo.gift.ChooseGift;
+	import playtiLib.model.vo.gift.Gift;
+	import playtiLib.model.vo.popup.PopupDoActionVO;
 	import playtiLib.model.proxies.user.UserProxy;
 	import playtiLib.view.mediators.gift.ChooseGiftPopupMediator;
 	

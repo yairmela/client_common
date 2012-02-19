@@ -2,7 +2,7 @@ package playtiLib.model.proxies.config
 {
 	import org.puremvc.as3.patterns.proxy.Proxy;
 	
-	import playtiLib.model.VO.social.SocialConfigVO;
+	import playtiLib.model.vo.social.SocialConfigVO;
 	
 	public class AppConfigProxy extends Proxy{
 		

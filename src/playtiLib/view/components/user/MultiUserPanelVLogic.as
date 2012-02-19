@@ -7,8 +7,8 @@ package playtiLib.view.components.user
 	import flash.events.MouseEvent;
 	
 	import playtiLib.config.notifications.GeneralAppNotifications;
-	import playtiLib.model.VO.user.User;
-	import playtiLib.model.VO.user.UserSocialInfo;
+	import playtiLib.model.vo.user.User;
+	import playtiLib.model.vo.user.UserSocialInfo;
 	import playtiLib.utils.events.EventTrans;
 	import playtiLib.view.components.btns.ButtonSimple;
 	import playtiLib.view.interfaces.IViewLogic;

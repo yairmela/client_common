@@ -8,7 +8,7 @@ package playtiLib.controller.commands.user
 	import playtiLib.config.notifications.GeneralAppNotifications;
 	import playtiLib.config.social.SocialCallsConfig;
 	import playtiLib.config.statistics.GeneralStatistics;
-	import playtiLib.model.VO.amf.response.helpers.UserInfo;
+	import playtiLib.model.vo.amf.response.helpers.UserInfo;
 	import playtiLib.model.proxies.user.UserProxy;
 	import playtiLib.utils.data.DataCapsule;
 	import playtiLib.utils.data.DataCapsuleFactory;

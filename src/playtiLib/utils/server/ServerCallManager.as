@@ -6,13 +6,13 @@ package playtiLib.utils.server
  	import flash.events.IOErrorEvent;
  	
  	import playtiLib.config.server.ServerCallConfig;
- 	import playtiLib.model.VO.server.ServerCallVO;
+ 	import playtiLib.model.vo.server.ServerCallVO;
  	import playtiLib.utils.core.ObjectUtil;
 	/**
 	 * Handles the server calls. Holds an array of the activ calls. 
 	 * Sends the server's call by ServerCallVO object and dispatches events when it has the results.
 	 * @see IServerManager
-	 * @see playtiLib.model.VO.server.ServerCallVO
+	 * @see playtiLib.model.vo.server.ServerCallVO
 	 * 
 	 */ 
 	public class ServerCallManager extends EventDispatcher implements IServerManager{

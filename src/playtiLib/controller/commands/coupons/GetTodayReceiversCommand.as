@@ -6,7 +6,7 @@ package playtiLib.controller.commands.coupons
 	
 	import playtiLib.config.gifts.CouponSystemConfig;
 	import playtiLib.config.server.AMFGeneralCallsConfig;
-	import playtiLib.model.VO.amf.response.CouponReceiversMessage;
+	import playtiLib.model.vo.amf.response.CouponReceiversMessage;
 	import playtiLib.model.proxies.coupon.TodayReceiversProxy;
 	import playtiLib.utils.data.DataCapsule;
 	import playtiLib.utils.data.DataCapsuleFactory;

@@ -2,7 +2,7 @@ package playtiLib.view.mediators.popups
 {
 	import flash.display.Sprite;
 	
-	import playtiLib.model.VO.popup.PopupDoActionVO;
+	import playtiLib.model.vo.popup.PopupDoActionVO;
 	import playtiLib.view.components.popups.PopupViewLogic;
 	
 	public class PauseLoadingGamePopupMediator extends PopupMediator{
