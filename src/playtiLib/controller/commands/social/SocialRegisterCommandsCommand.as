@@ -7,6 +7,8 @@ package playtiLib.controller.commands.social
 	import playtiLib.config.social.SocialConfig;
 	import playtiLib.controller.commands.coupons.CreateCouponCommand;
 	import playtiLib.controller.commands.paypage.OpenPayPageCommand;
+	import playtiLib.controller.commands.social.fb.CloseInviteProxyCommand;
+	import playtiLib.controller.commands.social.fb.CloseSendGiftProxyCommand;
 	import playtiLib.controller.commands.social.fb.FBAcceptSurpriseGift;
 	import playtiLib.controller.commands.social.fb.FBAddApprequestCommand;
 	import playtiLib.controller.commands.social.fb.FBAssetsLoadCompleteCommand;
@@ -21,6 +23,9 @@ package playtiLib.controller.commands.social
 	import playtiLib.controller.commands.social.fb.FBRemoveAppRequestCommand;
 	import playtiLib.controller.commands.social.fb.FBSendRequestApprovedCommand;
 	import playtiLib.controller.commands.social.fb.FBStreamPublishCommand;
+	import playtiLib.controller.commands.social.fb.InviteFriendsCommand;
+	import playtiLib.controller.commands.social.fb.SendSocialInvitesCommand;
+	import playtiLib.controller.commands.social.fb.ShowGameTabCommand;
 	import playtiLib.controller.commands.social.gift.ChooseSnUserToSendGiftCommand;
 	import playtiLib.controller.commands.social.mm.MMGameInstallCommand;
 	import playtiLib.controller.commands.social.mm.MMInitConnectionsCommand;
@@ -68,7 +73,8 @@ package playtiLib.controller.commands.social
 				case SocialConfig.FB:
 					facade.registerCommand( GeneralAppNotifications.LOAD_INITIAL_ASSETS_COMPLETE, FBAssetsLoadCompleteCommand );
 					facade.registerCommand( GeneralAppNotifications.SOCIAL_INIT_CONNECTIONS, FBInitConnectionsCommand );
-					facade.registerCommand( GeneralAppNotifications.SOCIAL_INVITE_FRIENDS, FBInviteFriendsCommand );
+//					facade.registerCommand( GeneralAppNotifications.SOCIAL_INVITE_FRIENDS, FBInviteFriendsCommand );
+					facade.registerCommand( GeneralAppNotifications.SOCIAL_INVITE_FRIENDS, InviteFriendsCommand );
 					facade.registerCommand( GeneralAppNotifications.PUBLISH_TO_WALL_COMMAND, FBStreamPublishCommand );
 					facade.registerCommand( GeneralAppNotifications.CHOOSE_SN_USER, FBChooseSnUserCommand);
 					facade.registerCommand( GeneralAppNotifications.PUBLISH_TO_WALL_APPROVED, FBSendRequestApprovedCommand);
@@ -82,6 +88,10 @@ package playtiLib.controller.commands.social
 					facade.registerCommand( GeneralAppNotifications.SOCIAL_LIKE_APP, FBLikeCommand);
 					facade.registerCommand( GeneralAppNotifications.SOCIAL_LIKE_APP_CALLBACK, FBLikeCommand);
 					facade.registerCommand( GeneralAppNotifications.SOCIAL_ACCEPT_SURPRISE_GIFT, FBAcceptSurpriseGift);
+					facade.registerCommand( GeneralAppNotifications.CLOSE_INVITE_PROXY, CloseInviteProxyCommand );
+					facade.registerCommand( GeneralAppNotifications.CLOSE_SEND_GIFTS_PROXY, CloseSendGiftProxyCommand );
+					facade.registerCommand( GeneralAppNotifications.SHOW_GAME_TAB_COMMAND, ShowGameTabCommand );
+					facade.registerCommand( GeneralAppNotifications.OPEN_SOCIAL_INVITE_FRIENDS_DIALOG, SendSocialInvitesCommand );
 					break;
 
 				case SocialConfig.MM:

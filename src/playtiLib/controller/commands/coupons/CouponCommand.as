@@ -6,7 +6,7 @@ package playtiLib.controller.commands.coupons
 	import playtiLib.model.proxies.coupon.TodayReceiversProxy;
 	import playtiLib.model.proxies.coupon.UserCouponProxy;
 	import playtiLib.model.proxies.data.FlashVarsProxy;
-	import playtiLib.model.proxies.social.FBRequestsProxy;
+	import playtiLib.model.proxies.social.fb.FBRequestsProxy;
 	import playtiLib.model.proxies.user.UserProxy;
 	/**
 	 * Class that has some getter function that helps some other commands that use it.

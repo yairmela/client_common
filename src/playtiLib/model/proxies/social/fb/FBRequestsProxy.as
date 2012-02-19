@@ -1,10 +1,10 @@
-package playtiLib.model.proxies.social
+package playtiLib.model.proxies.social.fb
 {
 	import org.puremvc.as3.patterns.proxy.Proxy;
 	
 	import playtiLib.config.notifications.GeneralAppNotifications;
-	import playtiLib.model.vo.social.SNRequestDataVO;
-	import playtiLib.model.vo.social.SocialRequestsListVO;
+	import playtiLib.model.VO.social.SNRequestDataVO;
+	import playtiLib.model.VO.social.SocialRequestsListVO;
 	
 	public class FBRequestsProxy extends Proxy
 	{

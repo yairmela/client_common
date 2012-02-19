@@ -82,6 +82,9 @@ package playtiLib.utils.social.fb
 				case SocialCallsConfig.LOAD_APP_REQUESTS_COMMAND_NAME:
 					callGetData( "me/apprequests", "", on_result_func );
 					break;
+				case SocialCallsConfig.GET_ALL_FRIENDS_IDS_AND_NAMES:
+					callGetData( "me/friends", null , on_result_func );
+					break;
 			}
 		}
 		/**

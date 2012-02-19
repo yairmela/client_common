@@ -173,5 +173,13 @@ package playtiLib.config.notifications
 		public static const ENGINE_PRELOADER_PROGRESS:String 		= 'engine_preloader_progress';
 		
 		public static const OPEN_URL:String							= 'open_url';
+		public static const SELECT_FRIEND_CLICK:String				= 'select_friend_click';
+		public static const CLOSE_POPUP:String						= 'close_popup';
+		public static const SHOW_GAME_TAB_COMMAND:String			= 'show_game_tab_command';
+		public static const SEND_SOCIAL_REQ_DATA_READY:String		= 'send_social_req_data_ready';
+		public static const UPDATE_AFTER_SOCIAL_REQ_SENT:String		= 'update_after_social_req_sent';
+		public static const OPEN_SOCIAL_INVITE_FRIENDS_DIALOG:String= 'open_social_invite_friends_dialog';
+		public static const CLOSE_INVITE_PROXY:String				= 'close_invite_proxy';
+		public static const CLOSE_SEND_GIFTS_PROXY:String			= 'close_send_gifts_proxy';
 	}
 }
