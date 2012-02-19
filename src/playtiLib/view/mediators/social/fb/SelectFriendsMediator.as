@@ -6,7 +6,7 @@ package playtiLib.view.mediators.social.fb
 	import org.puremvc.as3.interfaces.INotification;
 	
 	import playtiLib.config.notifications.GeneralAppNotifications;
-	import playtiLib.model.VO.popup.PopupDoActionVO;
+	import playtiLib.model.vo.popup.PopupDoActionVO;
 	import playtiLib.view.components.popups.PopupViewLogic;
 	import playtiLib.view.components.social.fb.SelectFriendsVLogic;
 	import playtiLib.view.mediators.popups.PopupMediator;

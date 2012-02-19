@@ -7,7 +7,7 @@ package playtiLib.view.components.social.fb
 	import flash.events.MouseEvent;
 	
 	import playtiLib.config.notifications.GeneralAppNotifications;
-	import playtiLib.model.VO.social.fb.FBSelectUserVO;
+	import playtiLib.model.vo.social.fb.FBSelectUserVO;
 	import playtiLib.utils.events.EventTrans;
 	import playtiLib.view.interfaces.IViewLogic;
 	

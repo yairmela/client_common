@@ -1,7 +1,7 @@
-package playtiLib.model.VO.social.fb
+package playtiLib.model.vo.social.fb
 {
 	import playtiLib.config.social.SocialConfig;
-	import playtiLib.model.VO.server.ArrayListVO;
+	import playtiLib.model.vo.server.ArrayListVO;
 	
 	public class SocialFriendsInfoListVo extends ArrayListVO
 	{

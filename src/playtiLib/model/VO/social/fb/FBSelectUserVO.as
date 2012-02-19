@@ -1,8 +1,8 @@
-package playtiLib.model.VO.social.fb
+package playtiLib.model.vo.social.fb
 {
-	import playtiLib.model.VO.server.DeserializedJSONModel;
+	import playtiLib.model.vo.server.DeserializedJSONModel;
 	
-	public class FBSelectUserVO extends DeserializedJSONModel
+	public class FBSelectUserVO extends DeserializedJSONModel 
 	{
 		public var id:String;
 		public var name:String;

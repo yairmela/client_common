@@ -4,12 +4,12 @@ package playtiLib.model.proxies.social.fb
 	
 	import playtiLib.config.notifications.GeneralAppNotifications;
 	import playtiLib.config.social.SocialCallsConfig;
-	import playtiLib.model.VO.social.SocialPostVO;
-	import playtiLib.model.VO.social.fb.FBSelectUserVO;
-	import playtiLib.model.VO.social.fb.SocialFriendsInfoListVo;
-	import playtiLib.model.VO.social.user.SocialUserIdsVO;
 	import playtiLib.model.proxies.coupon.TodayReceiversProxy;
 	import playtiLib.model.proxies.data.DataCapsuleProxy;
+	import playtiLib.model.vo.amf.social.user.SocialUserIdsVO;
+	import playtiLib.model.vo.social.SocialPostVO;
+	import playtiLib.model.vo.social.fb.FBSelectUserVO;
+	import playtiLib.model.vo.social.fb.SocialFriendsInfoListVo;
 	
 	public class SendSocialGiftsReqProxy extends DataCapsuleProxy	{
 		
@@ -65,7 +65,7 @@ package playtiLib.model.proxies.social.fb
 					appFriendsArray = new Array();
 					appFriendsArray = allFriendsInfo.filter( function(
 						user:FBSelectUserVO, ...args):Boolean{
-						return appFriendsInfo.indexOf( user.id ) != -1;
+						return appFriendsInfo.indexOf( parseInt(user.id) ) != -1;
 					}); 
 					return appFriendsArray;
 				}else{

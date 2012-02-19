@@ -7,9 +7,10 @@ package playtiLib.controller.commands.social.fb
 	import org.puremvc.as3.patterns.command.SimpleCommand;
 	
 	import playtiLib.config.notifications.GeneralAppNotifications;
-	import playtiLib.model.VO.social.fb.SocialFriendsInfoListVo;
+	import playtiLib.config.social.SocialCallsConfig;
 	import playtiLib.model.proxies.social.fb.SendSocialGiftsReqProxy;
 	import playtiLib.model.proxies.social.fb.SendSocialInviteReqProxy;
+	import playtiLib.model.vo.social.fb.SocialFriendsInfoListVo;
 	import playtiLib.utils.data.DataCapsule;
 	import playtiLib.utils.data.DataCapsuleFactory;
 	import playtiLib.view.mediators.social.fb.SelectFriendsToInviteMediator;
@@ -17,14 +18,14 @@ package playtiLib.controller.commands.social.fb
 	public class InviteFriendsCommand extends SimpleCommand	{
 		
 		public static const INVITE_MC:String 			= 'invite_friends_popup';
-		public static const MAX_NUMBER_OF_FRIENDS:int 	= 600;
+		public static const MAX_NUMBER_OF_FRIENDS:int 	= 1600;
 		
 		override public function execute( notification:INotification ):void {
 			//change the tab to invite tab
 			//check if there are more\less then 600 friends
-			var dataCapsule_couponValidate:DataCapsule = DataCapsuleFactory.getDataCapsule([/*SocialCallsConfig.FRIENDS_IDS_AND_NAMES*/]);
-			dataCapsule_couponValidate.addEventListener( Event.COMPLETE, onDataReady );
-			dataCapsule_couponValidate.loadData();
+			var dataCapsule:DataCapsule = DataCapsuleFactory.getDataCapsule([SocialCallsConfig.FRIENDS_IDS_AND_NAMES]);
+			dataCapsule.addEventListener( Event.COMPLETE, onDataReady );
+			dataCapsule.loadData();
 		}
 		
 		private function onDataReady( event:Event ):void{

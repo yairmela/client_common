@@ -1,10 +1,11 @@
 package playtiLib.config.social
 {
 	import playtiLib.config.server.ServerModulesConfig;
-	import playtiLib.model.vo.social.SocialRequestsListVO;
 	import playtiLib.model.vo.amf.social.user.SocialUserIdsVO;
 	import playtiLib.model.vo.amf.social.user.SocialUsersListVO;
 	import playtiLib.model.vo.amf.social.user.StipulatedConverToStringCallConfigVO;
+	import playtiLib.model.vo.social.SocialRequestsListVO;
+	import playtiLib.model.vo.social.fb.SocialFriendsInfoListVo;
 	import playtiLib.utils.data.DataCallConfig;
 	import playtiLib.utils.data.DataStipulationVO;
 

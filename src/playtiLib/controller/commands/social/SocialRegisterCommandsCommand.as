@@ -21,6 +21,7 @@ package playtiLib.controller.commands.social
 	import playtiLib.controller.commands.social.fb.FBOpenPayPageCommand;
 	import playtiLib.controller.commands.social.fb.FBPublishToWallApprovedCommand;
 	import playtiLib.controller.commands.social.fb.FBRemoveAppRequestCommand;
+	import playtiLib.controller.commands.social.fb.FBSendGiftRequestCommand;
 	import playtiLib.controller.commands.social.fb.FBSendRequestApprovedCommand;
 	import playtiLib.controller.commands.social.fb.FBStreamPublishCommand;
 	import playtiLib.controller.commands.social.fb.InviteFriendsCommand;
@@ -46,6 +47,7 @@ package playtiLib.controller.commands.social
 	import playtiLib.controller.commands.social.vk.VKPublishToWallCommand;
 	import playtiLib.controller.commands.social.vk.VKSetBannersCommand;
 	import playtiLib.controller.commands.social.vk.VKSettingsCheckCommand;
+	import playtiLib.model.proxies.social.fb.SendSocialGiftsReqProxy;
 	import playtiLib.model.vo.social.SocialConfigVO;
 	import playtiLib.utils.tracing.Logger;
 
@@ -78,7 +80,8 @@ package playtiLib.controller.commands.social
 					facade.registerCommand( GeneralAppNotifications.PUBLISH_TO_WALL_COMMAND, FBStreamPublishCommand );
 					facade.registerCommand( GeneralAppNotifications.CHOOSE_SN_USER, FBChooseSnUserCommand);
 					facade.registerCommand( GeneralAppNotifications.PUBLISH_TO_WALL_APPROVED, FBSendRequestApprovedCommand);
-					facade.registerCommand( GeneralAppNotifications.PUBLISH_GIFT_COMMAND, CreateCouponCommand );
+					facade.registerCommand( GeneralAppNotifications.CREATE_COUPON, CreateCouponCommand );
+					facade.registerCommand( GeneralAppNotifications.PUBLISH_GIFT_COMMAND, FBSendGiftRequestCommand );
 					facade.registerCommand( GeneralAppNotifications.OPEN_PAY_PAGE, FBOpenPayPageCommand );
 					facade.registerCommand( GeneralAppNotifications.PUBLISH_TO_WALL_APPROVED, FBPublishToWallApprovedCommand);
 					facade.registerCommand( GeneralAppNotifications.ADD_APP_REQUEST, FBAddApprequestCommand);

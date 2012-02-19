@@ -2,8 +2,9 @@ package playtiLib.model.vo.amf.social.fb
 {
 	import org.puremvc.as3.patterns.facade.Facade;
 	
-	import playtiLib.model.vo.FlashVarsVO;
 	import playtiLib.model.proxies.data.FlashVarsProxy;
+	import playtiLib.model.vo.FlashVarsVO;
+	import playtiLib.model.vo.social.fb.FBSelectUserVO;
 	import playtiLib.utils.social.SocialUserProfileParser;
 	import playtiLib.utils.tracing.Logger;
 	

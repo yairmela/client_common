@@ -115,6 +115,10 @@ package playtiLib.utils.social.fb
 		 */		
 		private function callGetData( command:String, params:String, on_result_func:Function ):void {
 			
+			if(!params) {
+				params = "";
+			}
+			
 			var call_id:String = command + " " + params;
 			
 			if( calls_queue[call_id] ) {

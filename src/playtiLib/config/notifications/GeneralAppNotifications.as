@@ -150,6 +150,7 @@ package playtiLib.config.notifications
 		public static const SEND_COUPON_TO_FAKE_USERS:String 		= 'send_coupon_to_fake_users';
 		public static const CREATE_EVENT_COUPON_COMMAND:String 		= 'create_event_coupon_command';
 		public static const SHARE_EVENT_COUPON_COMMAND:String 		= 'share_event_coupon_command';
+		public static const CREATE_COUPON:String 					= 'create_coupon';
 		
 		public static const GOTO_GAME_TAB:String					= 'goto_game_tab';
 		

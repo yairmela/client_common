@@ -6,8 +6,8 @@ package playtiLib.view.mediators.social.fb
 	import org.puremvc.as3.interfaces.INotification;
 	
 	import playtiLib.config.notifications.GeneralAppNotifications;
-	import playtiLib.model.VO.social.SocialPostVO;
 	import playtiLib.model.proxies.social.fb.SendSocialGiftsReqProxy;
+	import playtiLib.model.vo.social.SocialPostVO;
 	import playtiLib.view.components.social.fb.SelectFriendsSendGiftVLogic;
 	import playtiLib.view.components.social.fb.SelectFriendsVLogic;
 	
@@ -37,7 +37,7 @@ package playtiLib.view.mediators.social.fb
 					selectFriendsVLogic.insertFriends( usersArray, SelectFriendsVLogic.ALL_FRIENDS_LIST );
 					break;
 				case GeneralAppNotifications.TODAY_RECEIVERS_READY:
-					var todayReceivers:string = notification.getBody();
+					var todayReceivers:String = notification.getBody() as String;
 					sendSocialGiftsReqProxy.updateTodayReceivers( todayReceivers );
 					break;
 				case GeneralAppNotifications.UPDATE_AFTER_SOCIAL_REQ_SENT:

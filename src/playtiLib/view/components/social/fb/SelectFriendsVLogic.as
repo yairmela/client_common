@@ -8,7 +8,7 @@ package playtiLib.view.components.social.fb
 	import flash.text.TextField;
 	
 	import playtiLib.config.notifications.GeneralAppNotifications;
-	import playtiLib.model.VO.social.fb.FBSelectUserVO;
+	import playtiLib.model.vo.social.fb.FBSelectUserVO;
 	import playtiLib.utils.events.EventTrans;
 	import playtiLib.view.components.btns.ButtonSimple;
 	import playtiLib.view.components.popups.PopupViewLogic;
