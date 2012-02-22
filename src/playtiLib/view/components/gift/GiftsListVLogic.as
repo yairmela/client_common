@@ -25,7 +25,7 @@ package playtiLib.view.components.gift
 		private var list_mc:MovieClip;
 		public var list:ListBoxSimple;
 		
-		private static const COUPON_LIMIT:int = 250;
+		private static const COUPON_LIMIT:int = 100;
 		
 		public function GiftsListVLogic( list_mc:MovieClip ){
 			
@@ -39,11 +39,11 @@ package playtiLib.view.components.gift
 			var scrollable_content_mc:MovieClip =  list_mc['listItems']['scrollableContent'] as MovieClip;
 			var content_con_mc:AutoArrangeDisplayContainer = new AutoArrangeDisplayContainer( mask_mc.width, scrollable_content_mc );
 			var i:int = 0;
-			for each( var coupon:Object in gifts ) {
+			for each( var coupon:Coupon in gifts ) {
 				if ( i >= COUPON_LIMIT ) 
 					break;
 				var gift_mc:MovieClip = GraphicsWarehouseList.getAsset( 'mc_gifts_con' ) as MovieClip;
-				gift_mc.gotoAndStop(  'gift_' + String( ( coupon as Coupon ).giftTypeId ) );
+				gift_mc.gotoAndStop(  'gift_' + coupon.giftTypeId );
 				mask_mc.width =  gift_mc.width;
 				content_con_mc.addChild( gift_mc );
 				(gift_mc.gift.bg as MovieClip).enabled = false;
