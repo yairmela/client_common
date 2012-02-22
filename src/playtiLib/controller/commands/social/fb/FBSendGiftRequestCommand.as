@@ -6,6 +6,7 @@ package playtiLib.controller.commands.social.fb
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.command.SimpleCommand;
 	
+	import playtiLib.config.display.GeneralDialogsConfig;
 	import playtiLib.config.notifications.GeneralAppNotifications;
 	import playtiLib.config.social.SocialCallsConfig;
 	import playtiLib.model.proxies.config.DisplaySettingsProxy;
@@ -19,8 +20,8 @@ package playtiLib.controller.commands.social.fb
 	
 	public class FBSendGiftRequestCommand extends SimpleCommand	{
 		
-		public static const SEND_GIFTS_MC:String 		= 'pop_up_send_gifts';
 		public static const MAX_NUMBER_OF_FRIENDS:int 	= 1600;
+		public static const NO_FRIENDS:String 			= '0';
 		
 		private var post_data:SocialPostVO;
 		private var today_receivers:String;
@@ -30,7 +31,7 @@ package playtiLib.controller.commands.social.fb
 			post_data = notification.getBody() as SocialPostVO;
 			today_receivers = notification.getType() as String;
 			
-			if ( post_data.user_sn_id && post_data.user_sn_id != '' && post_data.user_sn_id == '0' ){
+			if ( post_data.user_sn_id &&  post_data.user_sn_id == NO_FRIENDS ){
 				//check if there are more\less then 600 friends
 				var dataCapsule:DataCapsule = DataCapsuleFactory.getDataCapsule([SocialCallsConfig.FRIENDS_IDS_AND_NAMES]);
 				dataCapsule.addEventListener( Event.COMPLETE, onDataReady );
@@ -51,20 +52,15 @@ package playtiLib.controller.commands.social.fb
 				}
 				sendNotification( GeneralAppNotifications.CLOSE_POPUP );
 				
-				facade.registerMediator( new SelectFriendsSendGiftMediator( SEND_GIFTS_MC ) );
+				facade.registerMediator( new SelectFriendsSendGiftMediator( GeneralDialogsConfig.POPUP_SEND_GIFTS ) );
 				facade.registerProxy( new SendSocialGiftsReqProxy() );
 				(facade.retrieveProxy(SendSocialGiftsReqProxy.NAME) as SendSocialGiftsReqProxy).current_post_vo = post_data;
 			}
 			else{
 				( facade.retrieveProxy( DisplaySettingsProxy.NAME ) as DisplaySettingsProxy ).fullscreen = false;
-				ExternalInterface.call( 'sendGift', 
-					post_data.title, 
-					post_data.descreiption, 
-					post_data.gift_type, 
-					post_data.event_type, 
-					today_receivers);
+				sendNotification( GeneralAppNotifications.CREATE_COUPON, post_data );
 			}
-			ExternalInterface.call('showFreeGiftstab'); 
+			ExternalInterface.call('showGiftsTab'); 
 		}
 	}
 }

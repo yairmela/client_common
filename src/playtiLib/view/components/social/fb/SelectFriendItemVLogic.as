@@ -34,7 +34,7 @@ package playtiLib.view.components.social.fb
 		
 		private function onMouseClick( event:MouseEvent ):void{
 			person_mc.gotoAndStop('over');
-			dispatchEvent( new EventTrans(GeneralAppNotifications.SELECT_FRIEND_CLICK, user ) );
+			dispatchEvent( new EventTrans( SelectFriendsListVLogic.SELECT_FRIEND_CLICK, user ) );
 		}
 		
 		public function get content():DisplayObject	{

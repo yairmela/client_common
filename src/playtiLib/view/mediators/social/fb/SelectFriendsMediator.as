@@ -1,13 +1,11 @@
 package playtiLib.view.mediators.social.fb
 {
 	import flash.events.Event;
-	import flash.events.MouseEvent;
 	
 	import org.puremvc.as3.interfaces.INotification;
 	
 	import playtiLib.config.notifications.GeneralAppNotifications;
-	import playtiLib.model.vo.popup.PopupDoActionVO;
-	import playtiLib.view.components.popups.PopupViewLogic;
+	import playtiLib.utils.events.EventTrans;
 	import playtiLib.view.components.social.fb.SelectFriendsVLogic;
 	import playtiLib.view.mediators.popups.PopupMediator;
 	
@@ -22,7 +20,10 @@ package playtiLib.view.mediators.social.fb
 		}
 		
 		override public function listNotificationInterests():Array{
-			return super.listNotificationInterests().concat([GeneralAppNotifications.CLOSE_POPUP]);
+			return super.listNotificationInterests().concat([GeneralAppNotifications.CLOSE_POPUP,
+				GeneralAppNotifications.UPDATE_AFTER_SOCIAL_REQ_SENT,
+				GeneralAppNotifications.SEND_SOCIAL_REQ_DATA_READY
+			]);
 		}
 		
 		override public function handleNotification(notification:INotification):void{
@@ -31,8 +32,16 @@ package playtiLib.view.mediators.social.fb
 				case GeneralAppNotifications.CLOSE_POPUP:
 					closePopup();
 					break;
+				case GeneralAppNotifications.UPDATE_AFTER_SOCIAL_REQ_SENT:
+					var usersArray:Array = [].concat( ( notification.getBody() as String ).split(',') );
+					selectFriendsVLogic.updateAfterUsersSent( usersArray );
+					break;
+				case GeneralAppNotifications.SEND_SOCIAL_REQ_DATA_READY:
+					onSendSocialReqDataReady();
+					break;
 			}
 		}
+		
 		override public function onRegister():void{
 			super.onRegister();
 			registerListeners();
@@ -40,9 +49,8 @@ package playtiLib.view.mediators.social.fb
 		
 		protected function registerListeners():void{
 			
-			selectFriendsVLogic.sendBtn.addEventListener(MouseEvent.CLICK, onSendBtnClick );
+			selectFriendsVLogic.addEventListener( GeneralAppNotifications.ON_SEND_BTN_CLICK, onSendBtnClick );
 			selectFriendsVLogic.addEventListener( SelectFriendsVLogic.NO_MORE_FRIENDS_TO_SEND, closePopup );
-			selectFriendsVLogic.sendMoreBtn.addEventListener(MouseEvent.CLICK, onSendBtnClick );
 		}
 		
 		public override function closePopup(event:Event=null):void{
@@ -50,7 +58,11 @@ package playtiLib.view.mediators.social.fb
 			super.closePopup(event);
 		} 
 		
-		protected function onSendBtnClick( event:MouseEvent ):void{
+		protected function onSendBtnClick( event:EventTrans ):void{
+			//implement in each extended class
+		}
+		
+		protected function onSendSocialReqDataReady():void{
 			//implement in each extended class
 		}
 	}

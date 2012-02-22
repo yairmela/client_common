@@ -153,6 +153,8 @@ package playtiLib.config.notifications
 		public static const CREATE_COUPON:String 					= 'create_coupon';
 		
 		public static const GOTO_GAME_TAB:String					= 'goto_game_tab';
+		public static const ON_SEND_BTN_CLICK:String				= 'on_send_btn_click';
+		
 		
 		//tasks
 		public static const GET_TASKS_COMMAND:String				= 'get_tasks_command';
@@ -174,7 +176,6 @@ package playtiLib.config.notifications
 		public static const ENGINE_PRELOADER_PROGRESS:String 		= 'engine_preloader_progress';
 		
 		public static const OPEN_URL:String							= 'open_url';
-		public static const SELECT_FRIEND_CLICK:String				= 'select_friend_click';
 		public static const CLOSE_POPUP:String						= 'close_popup';
 		public static const SHOW_GAME_TAB_COMMAND:String			= 'show_game_tab_command';
 		public static const SEND_SOCIAL_REQ_DATA_READY:String		= 'send_social_req_data_ready';

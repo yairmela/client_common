@@ -3,9 +3,7 @@ package playtiLib.view.components.social.fb
 	import flash.display.DisplayObject;
 	import flash.display.MovieClip;
 	import flash.events.EventDispatcher;
-	import flash.events.IEventDispatcher;
 	
-	import playtiLib.config.notifications.GeneralAppNotifications;
 	import playtiLib.model.vo.social.fb.FBSelectUserVO;
 	import playtiLib.utils.events.EventTrans;
 	import playtiLib.utils.warehouse.GraphicsWarehouseList;
@@ -15,6 +13,8 @@ package playtiLib.view.components.social.fb
 	import playtiLib.view.interfaces.IViewLogic;
 	
 	public class SelectFriendsListVLogic extends EventDispatcher implements IViewLogic	{
+		
+		public static const SELECT_FRIEND_CLICK:String = 'select_friend_click';
 		
 		private var list_mc:MovieClip;
 		public var list:ListBoxSimple;
@@ -47,14 +47,14 @@ package playtiLib.view.components.social.fb
 				var friend_mc:MovieClip = GraphicsWarehouseList.getAsset( itemName ) as MovieClip;
 				content_con_mc.addChild( friend_mc );
 				var selectFriend:SelectFriendItemVLogic = new SelectFriendItemVLogic( user, friend_mc );
-				selectFriend.addEventListener( GeneralAppNotifications.SELECT_FRIEND_CLICK, onFriendClick );
+				selectFriend.addEventListener( SELECT_FRIEND_CLICK, onFriendClick );
 				list.GetListWindow().AddItem( friend_mc ).data = user;
 			} 
 			updatePosition();
 		}
 		
 		private function onFriendClick( event:EventTrans ):void{
-			(event.currentTarget as SelectFriendItemVLogic).removeEventListener( GeneralAppNotifications.SELECT_FRIEND_CLICK, onFriendClick );
+			(event.currentTarget as SelectFriendItemVLogic).removeEventListener( SELECT_FRIEND_CLICK, onFriendClick );
 			dispatchEvent( event );
 		}
 		
@@ -91,7 +91,7 @@ package playtiLib.view.components.social.fb
 				var friend_mc:MovieClip = GraphicsWarehouseList.getAsset( itemName ) as MovieClip;
 				content_con_mc.addChild( friend_mc, true, false );
 				var selectFriend:SelectFriendItemVLogic = new SelectFriendItemVLogic( user, friend_mc );
-				selectFriend.addEventListener( GeneralAppNotifications.SELECT_FRIEND_CLICK, onFriendClick );
+				selectFriend.addEventListener( SELECT_FRIEND_CLICK, onFriendClick );
 				list.GetListWindow().AddItem( friend_mc ).data = user;
 			}
 			usersArray = usersArray.concat( users );

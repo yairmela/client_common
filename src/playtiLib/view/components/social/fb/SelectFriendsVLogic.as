@@ -1,6 +1,5 @@
 package playtiLib.view.components.social.fb
 {
-	import flash.display.DisplayObject;
 	import flash.display.MovieClip;
 	import flash.events.Event;
 	import flash.events.FocusEvent;
@@ -89,15 +88,17 @@ package playtiLib.view.components.social.fb
 			mainFriendsList 							= [];
 		}
 		
-		private function addListeners():void{
+		protected function addListeners():void{
 			
 			searchFriendsText.addEventListener(FocusEvent.FOCUS_IN, onFocusEvent );
 			searchFriendsText.addEventListener(FocusEvent.FOCUS_OUT, onFocusEvent );
 			searchFriendsText.addEventListener(Event.CHANGE, onSearchFriends );
-			friendsList.addEventListener(GeneralAppNotifications.SELECT_FRIEND_CLICK, onChooseFriend );
-			chosenList.addEventListener(GeneralAppNotifications.SELECT_FRIEND_CLICK, onDeChooseFriend );
+			friendsList.addEventListener(SelectFriendsListVLogic.SELECT_FRIEND_CLICK, onChooseFriend );
+			chosenList.addEventListener(SelectFriendsListVLogic.SELECT_FRIEND_CLICK, onDeChooseFriend );
 			selectAllBtn.addEventListener(MouseEvent.CLICK, onSelectAllClick );
 			unselectAllBtn.addEventListener(MouseEvent.CLICK, onSelectAllClick );
+			sendBtn.addEventListener(MouseEvent.CLICK, onSendBtnClick );
+			sendMoreBtn.addEventListener(MouseEvent.CLICK, onSendBtnClick );
 		}
 		//the function called only for init the component - by the mediator
 		public function insertFriends( friendsInfoList:Array, listType:String ):void{
@@ -306,6 +307,10 @@ package playtiLib.view.components.social.fb
 		
 		protected function getVisble(mc:MovieClip):Boolean{
 			return mc.alpha ? true : false;
+		}
+		
+		protected function onSendBtnClick( event:MouseEvent ):void{
+			dispatchEvent( new EventTrans( GeneralAppNotifications.ON_SEND_BTN_CLICK ) )
 		}
 	}
 }

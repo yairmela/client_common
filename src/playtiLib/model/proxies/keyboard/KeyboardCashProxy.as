@@ -19,15 +19,15 @@ package playtiLib.model.proxies.keyboard
 			super( NAME, new Object() );
 			informer.stage.addEventListener( KeyboardEvent.KEY_DOWN, keyDownHandler, false, 0, true );
 			informer.stage.addEventListener( KeyboardEvent.KEY_UP, keyUpHandler, false, 0, true );
-			informer.stage.addEventListener( FocusEvent.FOCUS_IN, onFocusChange, true );
+//			informer.stage.addEventListener( FocusEvent.FOCUS_IN, onFocusChange, true );
 		}
 		
-		private function onFocusChange( event:FocusEvent ):void {
-					
-			(event.currentTarget as Stage).focus = null;
-			
-			event.stopImmediatePropagation();
-		}
+//		private function onFocusChange( event:FocusEvent ):void {
+//					
+//			(event.currentTarget as Stage).focus = null;
+//			
+//			event.stopImmediatePropagation();
+//		}
 		
 		private function keyDownHandler( event:KeyboardEvent ):void {
 			

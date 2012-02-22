@@ -6,6 +6,7 @@ package playtiLib.controller.commands.social.fb
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.command.SimpleCommand;
 	
+	import playtiLib.config.display.GeneralDialogsConfig;
 	import playtiLib.config.notifications.GeneralAppNotifications;
 	import playtiLib.config.social.SocialCallsConfig;
 	import playtiLib.model.proxies.social.fb.SendSocialGiftsReqProxy;
@@ -17,7 +18,6 @@ package playtiLib.controller.commands.social.fb
 	
 	public class InviteFriendsCommand extends SimpleCommand	{
 		
-		public static const INVITE_MC:String 			= 'invite_friends_popup';
 		public static const MAX_NUMBER_OF_FRIENDS:int 	= 1600;
 		
 		override public function execute( notification:INotification ):void {
@@ -37,7 +37,7 @@ package playtiLib.controller.commands.social.fb
 					( facade.retrieveProxy( SendSocialGiftsReqProxy.NAME ) as SendSocialGiftsReqProxy ).onRemove();
 				}
 				sendNotification( GeneralAppNotifications.CLOSE_POPUP );
-				facade.registerMediator( new SelectFriendsToInviteMediator( INVITE_MC ) );
+				facade.registerMediator( new SelectFriendsToInviteMediator( GeneralDialogsConfig.POPUP_INVITE_FRIENDS ) );
 				facade.registerProxy( new SendSocialInviteReqProxy() );
 			}else{
 				sendNotification( GeneralAppNotifications.FULLSCREEN_MODE, false );

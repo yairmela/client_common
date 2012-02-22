@@ -43,6 +43,11 @@ package playtiLib.model.proxies.social {
 			ExternalInterface.addCallback('FBGetRequestCallback', FBGetRequestCallback);
 			ExternalInterface.addCallback("menuItemClick", menuItemClick);
 			ExternalInterface.addCallback("acceptSurpriseGiftCoupon", acceptSurpriseGiftCoupon);
+			ExternalInterface.addCallback("playTabClick", playTabClick);
+		}
+		
+		private function playTabClick():void {
+			sendNotification(GeneralAppNotifications.CLOSE_POPUP );
 		}
 		
 		private function externalCall(call_params:Object):void {
@@ -52,6 +57,7 @@ package playtiLib.model.proxies.social {
 		private function couponPostComplete(reciver_ids:String, postVO:Object):void {
 //			sendNotification( GeneralAppNotifications.COUPON_POST_COMPLETE, reciver_ids );
 			sendNotification( GeneralAppNotifications.SEND_COUPON_COMMAND, postVO, reciver_ids );
+			sendNotification( GeneralAppNotifications.UPDATE_AFTER_SOCIAL_REQ_SENT, reciver_ids );
 			sendNotification( GeneralAppNotifications.UPDATE_TODAY_RECEIVERS, reciver_ids );
 			sendNotification( GeneralAppNotifications.TRACK, null, GeneralStatistics.GIFT_SENT);
 		}
@@ -109,6 +115,7 @@ package playtiLib.model.proxies.social {
 		}
 		
 		private function inviteSent(event_type:String, users_list:String, pid:String, crt:String, initiated_from_menu:Boolean):void {
+			sendNotification( GeneralAppNotifications.UPDATE_AFTER_SOCIAL_REQ_SENT, users_list );
 			sendNotification(GeneralAppNotifications.TRACK, {invite_data: {event_type: event_type, users_list: users_list, pid: pid, crt: crt, initiated_from_menu: initiated_from_menu}}, GeneralStatistics.INVITE_SENT);
 		}
 		

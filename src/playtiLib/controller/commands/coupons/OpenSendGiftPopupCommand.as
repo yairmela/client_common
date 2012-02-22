@@ -1,16 +1,18 @@
 package playtiLib.controller.commands.coupons
 {
+	import flash.external.ExternalInterface;
+	
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.command.SimpleCommand;
 	
 	import playtiLib.config.gifts.CouponSystemConfig;
 	import playtiLib.config.notifications.GeneralAppNotifications;
 	import playtiLib.controller.commands.popup.OpenPopupCommand;
+	import playtiLib.model.proxies.user.UserProxy;
 	import playtiLib.model.vo.amf.response.helpers.UserInfo;
 	import playtiLib.model.vo.gift.ChooseGift;
 	import playtiLib.model.vo.gift.Gift;
 	import playtiLib.model.vo.popup.PopupDoActionVO;
-	import playtiLib.model.proxies.user.UserProxy;
 	import playtiLib.view.mediators.gift.ChooseGiftPopupMediator;
 	
 
@@ -33,7 +35,7 @@ package playtiLib.controller.commands.coupons
 			var default_friend:String = notification.getBody() as String;
 			if( default_friend && ( notification.getType() == null || notification.getType() == "" ) ) {
 				sendNotification( GeneralAppNotifications.OPEN_POPUP,
-					new ChooseGiftPopupMediator(default_friend, null, null, new PopupDoActionVO([GeneralAppNotifications.GOTO_GAME_TAB])), OpenPopupCommand.FORCE_OPEN );
+					new ChooseGiftPopupMediator(default_friend, null, null, new PopupDoActionVO([])), OpenPopupCommand.FORCE_OPEN );
 				return;
 			}
 			
@@ -41,7 +43,7 @@ package playtiLib.controller.commands.coupons
 			//sendGift btn (not gift back&&not from scorebord)
 			if (default_gift_type != 3){
 				sendNotification( GeneralAppNotifications.OPEN_POPUP,
-					new ChooseGiftPopupMediator("0", null, null, new PopupDoActionVO([GeneralAppNotifications.GOTO_GAME_TAB])), OpenPopupCommand.FORCE_OPEN );
+					new ChooseGiftPopupMediator("0", null, null, new PopupDoActionVO([])), OpenPopupCommand.FORCE_OPEN );
 				return;
 			}
 			//if comes from after free spins when you get the chance to send 10 free spin to you friend
