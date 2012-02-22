@@ -1,7 +1,9 @@
 package playtiLib.model.proxies.keyboard
 {
+	import flash.display.DisplayObject;
 	import flash.display.InteractiveObject;
 	import flash.display.Stage;
+	import flash.events.Event;
 	import flash.events.FocusEvent;
 	import flash.events.KeyboardEvent;
 	
@@ -19,15 +21,29 @@ package playtiLib.model.proxies.keyboard
 			super( NAME, new Object() );
 			informer.stage.addEventListener( KeyboardEvent.KEY_DOWN, keyDownHandler, false, 0, true );
 			informer.stage.addEventListener( KeyboardEvent.KEY_UP, keyUpHandler, false, 0, true );
-//			informer.stage.addEventListener( FocusEvent.FOCUS_IN, onFocusChange, true );
+			informer.stage.addEventListener( FocusEvent.FOCUS_IN, onFocusChange, false, 0, true );
 		}
 		
-//		private function onFocusChange( event:FocusEvent ):void {
-//					
-//			(event.currentTarget as Stage).focus = null;
-//			
-//			event.stopImmediatePropagation();
-//		}
+		private function onFocusChange( event:FocusEvent ):void {
+			
+			var displayObject : DisplayObject = event.target as DisplayObject;
+			
+			if(!displayObject) {
+				(event.currentTarget as Stage).focus = null;
+				
+				return;
+			}
+			
+			displayObject.addEventListener(Event.REMOVED_FROM_STAGE, onCurrentFocusAssigneeRemoved);
+		}
+		
+		private function onCurrentFocusAssigneeRemoved( event : Event ):void {
+			
+			var displayObject : DisplayObject = event.target as DisplayObject;			
+			displayObject.removeEventListener(Event.REMOVED_FROM_STAGE, onCurrentFocusAssigneeRemoved);
+			
+			displayObject.stage.focus = null;
+		}
 		
 		private function keyDownHandler( event:KeyboardEvent ):void {
 			
