@@ -20,7 +20,7 @@ package playtiLib.controller.commands.social.fb
 	
 	public class FBSendGiftRequestCommand extends SimpleCommand	{
 		
-		public static const MAX_NUMBER_OF_FRIENDS:int 	= 1600;
+		public static const MAX_NUMBER_OF_FRIENDS:int 	= 700;
 		public static const NO_FRIENDS:String 			= '0';
 		
 		private var post_data:SocialPostVO;

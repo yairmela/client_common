@@ -18,7 +18,7 @@ package playtiLib.controller.commands.social.fb
 	
 	public class InviteFriendsCommand extends SimpleCommand	{
 		
-		public static const MAX_NUMBER_OF_FRIENDS:int 	= 1600;
+		public static const MAX_NUMBER_OF_FRIENDS:int 	= 700;
 		
 		override public function execute( notification:INotification ):void {
 			//change the tab to invite tab
