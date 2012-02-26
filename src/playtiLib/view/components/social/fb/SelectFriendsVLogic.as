@@ -131,7 +131,7 @@ package playtiLib.view.components.social.fb
 			onFocusEvent(new FocusEvent( FocusEvent.FOCUS_IN ) );
 			onFocusEvent(new FocusEvent( FocusEvent.FOCUS_OUT ) );
 		}
-		//function that handles the click on friend id from the left list (select friends for sending request)
+
 		private function onChooseFriend( event:EventTrans ):void{
 			
 			var fbSelectedUser:FBSelectUserVO = event.data as FBSelectUserVO;
@@ -146,7 +146,7 @@ package playtiLib.view.components.social.fb
 			updateProgress();
 			updateLists();
 		}
-		//function that handles the click on the right list (un select friends)
+
 		private function onDeChooseFriend( event:EventTrans ):void{
 			
 			var fbSelectedUser:FBSelectUserVO = event.data as FBSelectUserVO;
@@ -249,9 +249,10 @@ package playtiLib.view.components.social.fb
 		}
 		
 		protected function showTab( tabName:String ):void{
-			
+			//Implemented in extension of this class
 		}
-		public function updateProgress():void{
+		
+		private function updateProgress():void{
 			if( getVisble( progress ) ){
 				var sentUserProgress:Number = Math.ceil( sentFriendsArray.length / (sentFriendsArray.length + chosenFriendsList.length) * 100 );
 				( progress.progress_bar as MovieClip ).gotoAndStop( sentUserProgress );

@@ -9,7 +9,6 @@ package playtiLib.controller.commands.social.fb
 	import playtiLib.config.display.GeneralDialogsConfig;
 	import playtiLib.config.notifications.GeneralAppNotifications;
 	import playtiLib.config.social.SocialCallsConfig;
-	import playtiLib.model.proxies.social.fb.SendSocialGiftsReqProxy;
 	import playtiLib.model.proxies.social.fb.SendSocialInviteReqProxy;
 	import playtiLib.model.vo.social.fb.SocialFriendsInfoListVo;
 	import playtiLib.utils.data.DataCapsule;
@@ -33,17 +32,24 @@ package playtiLib.controller.commands.social.fb
 			var data_capsule:DataCapsule = event.currentTarget as DataCapsule;
 			var allFriendsInfo:Array = ( data_capsule.getDataHolderByIndex(0).data as SocialFriendsInfoListVo ).list;
 			if( allFriendsInfo.length <= MAX_NUMBER_OF_FRIENDS ){
-				if( facade.hasProxy( SendSocialGiftsReqProxy.NAME ) ){
-					( facade.retrieveProxy( SendSocialGiftsReqProxy.NAME ) as SendSocialGiftsReqProxy ).onRemove();
-				}
-				sendNotification( GeneralAppNotifications.CLOSE_POPUP );
-				facade.registerMediator( new SelectFriendsToInviteMediator( GeneralDialogsConfig.POPUP_INVITE_FRIENDS ) );
-				facade.registerProxy( new SendSocialInviteReqProxy() );
+				openFlashPopup();
 			}else{
-				sendNotification( GeneralAppNotifications.FULLSCREEN_MODE, false );
-				ExternalInterface.call( 'showFBInviteDialog' );
+				openFacebookPopup();
 			}
 			ExternalInterface.call('showInviteTab');
+		}
+		
+		private function openFacebookPopup():void
+		{
+			sendNotification( GeneralAppNotifications.FULLSCREEN_MODE, false );
+			ExternalInterface.call( 'showFBInviteDialog' );
+		}
+		
+		private function openFlashPopup():void
+		{
+			sendNotification( GeneralAppNotifications.CLOSE_POPUP );
+			facade.registerMediator( new SelectFriendsToInviteMediator( GeneralDialogsConfig.POPUP_INVITE_FRIENDS ) );
+			facade.registerProxy( new SendSocialInviteReqProxy() );
 		}
 	}
 }
