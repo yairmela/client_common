@@ -4,6 +4,7 @@ package playtiLib.controller.commands.startups
 	import org.puremvc.as3.patterns.command.SimpleCommand;
 	
 	import playtiLib.config.notifications.GeneralAppNotifications;
+	import playtiLib.controller.commands.content.GetLocaleContentCommand;
 	import playtiLib.controller.commands.coupons.AfterCollectCouponCommand;
 	import playtiLib.controller.commands.coupons.ChooseGiftCompleteCommand;
 	import playtiLib.controller.commands.coupons.CleanupCouponsCommand;
@@ -90,6 +91,7 @@ package playtiLib.controller.commands.startups
 			facade.registerCommand( GeneralAppNotifications.TRACK, GeneralStatisticsTrackingCommand );
 			
 			facade.registerCommand( GeneralAppNotifications.OPEN_URL, OpenURLCommand );
+			facade.registerCommand(GeneralAppNotifications.LOAD_NEW_LOCALE_CONTENT, GetLocaleContentCommand);
 		}
 	}
 }
