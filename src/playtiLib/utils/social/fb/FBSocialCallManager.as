@@ -22,7 +22,7 @@ package playtiLib.utils.social.fb
 		//this param need to be filled in the intialize process
 		public static var swf_object_name:String;
 		private static var instance:FBSocialCallManager;
-		private var calls_queue:Array = [];
+		private var callsList:Object = {};
 		
 		public function FBSocialCallManager( singleton_key:FBCallManagerSKey ){
 			
@@ -76,7 +76,7 @@ package playtiLib.utils.social.fb
 				case FBCallsConfig.FB_LIKE_APP_COMMAND_NAME:
 //					callFQL( 'SELECT target_id FROM connection WHERE source_id = ' + params.user_id + ' AND target_id = ' + params.app_id,
 //						on_result_func );
-					callFQL( 'SELECT uid, page_id FROM page_fan WHERE uid='+params.user_id+' AND page_id='+ params.page_id, on_result_func)
+					callFQL( 'SELECT uid, page_id FROM page_fan WHERE uid='+params.user_id+' AND page_id='+ params.page_id, on_result_func, 5000)
 					break;
 				
 				case SocialCallsConfig.LOAD_APP_REQUESTS_COMMAND_NAME:
@@ -94,17 +94,22 @@ package playtiLib.utils.social.fb
 		 * @param on_result_func
 		 * 
 		 */		
-		private function callFQL( query:String, on_result_func:Function ):void {
+		private function callFQL( query:String, on_result_func:Function, timeout : uint = 0 ):void {
 			
 			var call_id:String = query;
 			
-			if( calls_queue[call_id] ) {
-				calls_queue[call_id].push( on_result_func );
+			var callData : CallData = callsList[call_id];
+			
+			if( callData ) {
+				callData.callbacks.push( on_result_func );
 				return;
 			}
-			calls_queue[call_id] = [on_result_func];
-			callExternalFQL( call_id, query );
+			
+			addCallData(call_id, [on_result_func]);
+			
+			callExternalFQL( call_id, query, timeout );
 		}
+		
 		/**
 		 * Gets a command, some params(string) and a result function. It sets the result function with the command and the params (concatenated)
 		 * and calls the ExternalInterface ('callFBData')
@@ -121,11 +126,15 @@ package playtiLib.utils.social.fb
 			
 			var call_id:String = command + " " + params;
 			
-			if( calls_queue[call_id] ) {
-				calls_queue[call_id].push( on_result_func );
+			var callData : CallData = callsList[call_id];
+			
+			if( callData ) {
+				callData.callbacks.push( on_result_func );
 				return;
 			}
-			calls_queue[call_id] = [on_result_func];
+			
+			addCallData(call_id, [on_result_func]);
+			
 			callExternalGetData( call_id, command, params );
 		}
 		
@@ -134,46 +143,128 @@ package playtiLib.utils.social.fb
 			ExternalInterface.call( 'callFBData', swf_object_name, call_id, command, params );
 		}
 		
-		private function callExternalFQL( call_id:String, query:String ):void {
+		private function callExternalFQL( call_id:String, query:String, timeout : uint = 0 ):void {
 			
 			if( !ExternalInterface.available ) {
-				setTimeout( callExternalFQL, 1000, call_id, query );
+				setTimeout( callExternalFQL, 1000, call_id, query, timeout );
 				return;
 			}
+			
+			(callsList[call_id] as CallData).timeout = timeout;
+			
 			ExternalInterface.call( 'callFql', swf_object_name, call_id, query );
 		}
 		
 		public function FQLCallback( call_id:String, result:Object ):void {
 			
-			var listeners:Array = calls_queue[call_id];
-			calls_queue[call_id] = null;
-			for each( var result_func:Function in listeners )
+			var callData : CallData = callsList[call_id];
+			
+			if(!callData) {
+				return;
+			}
+			
+			for each( var result_func:Function in callData.callbacks )
 				result_func( new EventTrans( Event.COMPLETE, result ) );
+			
+			removeCallData(call_id);
 		}
 		
 		public function FQLCallbackError( call_id:String, error_message:String ):void {
 			
-			var listeners:Array = calls_queue[call_id];
-			calls_queue[call_id] = null;
-			for each( var result_func:Function in listeners )
+			var callData : CallData = callsList[call_id];
+			
+			if(!callData) {
+				return;
+			}
+			
+			for each( var result_func:Function in callData.callbacks )
 				result_func( new EventTrans( ErrorEvent.ERROR, error_message ) );
 			Logger.log( "FB API error:" + error_message );
+			
+			removeCallData(call_id);
 		}
 		/**
 		 * Gets a call id(string) and result object and sets into array the calls id queue. It run over this array and dispatches new events(COMPLETE)
 		 * @param call_id
 		 * @param result
 		 * 
-		 */		
+		 */
 		public function FBDataCallback( call_id:String, result:Object ):void{
 			
-			var listeners:Array = calls_queue[call_id];
-			calls_queue[call_id] = null;
-			for each( var result_func:Function in listeners )
+			var callData : CallData = callsList[call_id];
+			
+			if(!callData) {
+				return;
+			}
+			
+			for each( var result_func:Function in callData.callbacks )
 				result_func( new EventTrans( Event.COMPLETE, result ) );
+
+			removeCallData(call_id);
+		}		
+		
+		private function addCallData( call_id:String, callbacks : Array ) : void
+		{
+			var callData : CallData = new CallData(call_id);
+			callData.addEventListener(Event.CANCEL, onCallTimeout, false, 0, true);
+			callData.callbacks = callbacks;
+			
+			callsList[call_id] = callData;
 		}
 		
+		private function removeCallData( call_id:String ) : void
+		{
+			callsList[call_id].destroy();
+			delete callsList[call_id];
+		}
+		
+		private function onCallTimeout( event:EventTrans ) : void
+		{
+			FQLCallbackError(event.data as String, "Timeout");
+		}
 	}
 }
-//the singleton private key
+import flash.events.Event;
+import flash.events.EventDispatcher;
+import flash.utils.clearTimeout;
+import flash.utils.setTimeout;
+
+import playtiLib.utils.events.EventTrans;
+
 class FBCallManagerSKey {}
+
+class CallData extends EventDispatcher {
+	
+	private var callId : String
+	private var callTimeout : uint;
+	public var callbacks : Array;
+	
+	public function CallData( callId : String )
+	{
+		this.callId = callId;
+	}
+	
+	public function destroy() : void
+	{
+		if(callTimeout) {
+			clearTimeout(callTimeout);
+			callTimeout = 0;
+		}
+		
+		callbacks = null;
+	}
+	
+	public function set timeout( value : uint ) : void
+	{
+		if(value) {
+			callTimeout = setTimeout(onCallTimeout, value);
+		}
+	}
+	
+	private function onCallTimeout() : void
+	{
+		callTimeout = 0;
+		
+		dispatchEvent( new EventTrans(Event.CANCEL, callId) );
+	}
+}
