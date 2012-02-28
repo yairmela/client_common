@@ -9,7 +9,18 @@ package playtiLib.controller.commands.popup
 	{
 		public override function execute(notification:INotification):void {
 			
-			URLUtil.openWindow( notification.getBody() as String );
+			var url : String = validateURL(notification.getBody() as String);
+			
+			URLUtil.openWindow(url);
+		}
+		
+		private function validateURL( url : String ) : String {
+			
+			if( !URLUtil.isHttpURL(url) ) {
+				url = "http://"+url;
+			}
+			
+			return url;
 		}
 	}
 }
