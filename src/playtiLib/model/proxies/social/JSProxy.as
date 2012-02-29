@@ -17,12 +17,13 @@ package playtiLib.model.proxies.social {
 	 * @see playtiLib.view.mediators.popups.PauseGamePopupMediator
 	 *
 	 */
-	public class JSProxy extends Proxy {
+	public class JSProxy extends Proxy 
+	{
 		
 		public static const NAME:String = 'JSProxy';
 		
-		public function JSProxy(){
-			
+		public function JSProxy()
+		{
 			super(NAME, null);
 			if (!ExternalInterface.available)
 				return;

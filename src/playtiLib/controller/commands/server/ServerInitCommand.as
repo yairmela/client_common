@@ -12,23 +12,23 @@ package playtiLib.controller.commands.server {
 	import playtiLib.config.server.ServerConfig;
 	import playtiLib.config.server.SystemErrorConfig;
 	import playtiLib.config.social.SocialConfig;
+	import playtiLib.model.proxies.data.FlashVarsProxy;
 	import playtiLib.model.vo.FlashVarsVO;
 	import playtiLib.model.vo.amf.response.ClientResponse;
 	import playtiLib.model.vo.amf.response.LoginMessage;
-	import playtiLib.model.proxies.data.FlashVarsProxy;
 	import playtiLib.utils.data.DataCapsule;
 	import playtiLib.utils.data.DataCapsuleFactory;
 	import playtiLib.utils.tracing.Logger;
 	
-	public class ServerInitCommand extends SimpleCommand {
-		
+	public class ServerInitCommand extends SimpleCommand 
+	{
 		/**
 		 * Inits connection with server and try login.
-		 * Gets data from the server (by loading a data capsule) about the login (failed or success)
-		 * @ see playtiLib.utils.data.DataCapsule
-		 * @see playtiLib.utils.data.DataServerResponseVO
+		 * Gets data from the server (by loading a data capsule) 
+		 * about the login (failed or success)
 		 * */
-		override public function execute(notification:INotification):void {
+		override public function execute(notification:INotification):void 
+		{
 			Logger.log("ServerInitCommand");
 			//set the SocialConfig.viewer_sn_id
 			SocialConfig.viewer_sn_id = flash_vars.viewer_id;
@@ -65,19 +65,8 @@ package playtiLib.controller.commands.server {
 					sendNotification(GeneralAppNotifications.SYSTEM_ERROR, SystemErrorConfig.LOGIN_NOT_ALLOWED_AT_THIS_MOMENT);
 					return;
 			}
-			// TODO: Needs to add more cases for login response:
-			//trackLoadedFrom( response.service.errorCode == ServerCallConfig.SRC_SUCCESS );
 		}
-		
-		//TODO: we never use this function
-		private function onPostLogin(event:Event = null):void {
-			loginComplete();
-		}
-		
-		/**
-		 * Sends notifications when the server login complete( SERVER_LOGIN_COMPLETE, UPDATE_USER_INFO )
-		 *
-		 */
+
 		private function loginComplete():void {
 			sendNotification(GeneralAppNotifications.SERVER_LOGIN_COMPLETE, true);
 			sendNotification(GeneralAppNotifications.UPDATE_USER_INFO);
@@ -90,7 +79,8 @@ package playtiLib.controller.commands.server {
 			}			
 		}
 		
-		private function get flash_vars():FlashVarsVO {
+		private function get flash_vars():FlashVarsVO 
+		{
 			return (facade.retrieveProxy(FlashVarsProxy.NAME) as FlashVarsProxy).flash_vars;
 		}
 	}

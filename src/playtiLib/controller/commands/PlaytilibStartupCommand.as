@@ -10,66 +10,44 @@ package playtiLib.controller.commands
 	import playtiLib.config.server.ServerConfig;
 	import playtiLib.config.social.SocialConfig;
 	import playtiLib.controller.commands.load.LoadExternalsCommand;
-	import playtiLib.controller.commands.popup.SetPauseLoadingPopupCommand;
-	import playtiLib.controller.commands.popup.SetPausePopupCommand;
-	import playtiLib.controller.commands.popup.ShowSystemMsgPopupCommand;
-	import playtiLib.controller.commands.server.RefreshIframeCommand;
-	import playtiLib.controller.commands.server.ServerFaultHandlingCommand;
-	import playtiLib.controller.commands.server.ServerInitCommand;
-	import playtiLib.controller.commands.server.ServerReloginCommand;
-	import playtiLib.controller.commands.server.ServerReloginCompleteCommand;
-	import playtiLib.controller.commands.server.SystemErrorCommand;
+	import playtiLib.controller.commands.popup.*;
+	import playtiLib.controller.commands.server.*;
 	import playtiLib.controller.commands.social.SocialRegisterCommandsCommand;
 	import playtiLib.controller.commands.ui.SetupUIDisplayCommand;
 	import playtiLib.controller.commands.version.ShowVersionNumberCommand;
-	import playtiLib.model.vo.FlashVarsVO;
-	import playtiLib.model.vo.amf.request.SessionInfo;
-	import playtiLib.model.vo.social.SocialConfigVO;
 	import playtiLib.model.proxies.config.AppConfigProxy;
 	import playtiLib.model.proxies.config.DisplaySettingsProxy;
 	import playtiLib.model.proxies.data.FlashVarsProxy;
 	import playtiLib.model.proxies.server.AMFServerCallManagerProxy;
 	import playtiLib.model.proxies.server.ServerCallManagerProxy;
 	import playtiLib.model.proxies.social.JSProxy;
+	import playtiLib.model.vo.FlashVarsVO;
+	import playtiLib.model.vo.amf.request.SessionInfo;
+	import playtiLib.model.vo.social.SocialConfigVO;
 	import playtiLib.utils.network.URLUtil;
 	import playtiLib.utils.social.SocialCallManager;
-	import playtiLib.utils.statistics.ISpecificTracker;
 	import playtiLib.utils.statistics.Tracker;
 	import playtiLib.utils.statistics.googleAnalytics.GeneralGoogleAnalyticsTracker;
-	import playtiLib.utils.statistics.kontagent.GeneralKontagentTracker;
 	import playtiLib.utils.tracing.Logger;
 	import playtiLib.view.mediators.core.RootMediator;
 
-	/**
-	 * This is the basic startup comman class. The startup class of the game that use playtilib should extends this class.
-	 * It registers to some important commands and does the initilize of the startup  
-	 */
 	public class PlaytilibStartupCommand extends SimpleCommand{
-		/**
-		 * This function is an override function that registers the the flashVars proxy, some general commands
-	 	 * and the root mediator 
-		 * @param notification
-		 * 
-		 */		
-		override public function execute( notification:INotification ):void {
+
+		override public function execute( notification:INotification ):void 
+		{
 			
 			Logger.log("SocialStartupCommand");
 			var main_view:Sprite = notification.getBody() as Sprite;
 			
 			facade.registerCommand( GeneralAppNotifications.CLOSE, PlaytilibCloseCommand );
 			
-			//init utils
 			URLUtil.init( main_view );
-			//set the flash_vars proxy
 			facade.registerProxy( new FlashVarsProxy( new FlashVarsVO( main_view.loaderInfo.parameters ) ) );
-			//set ServerConfig from flash_vars
 			ServerConfig.setPropertiesFromFlashVars( main_view.loaderInfo.parameters, main_view );
-			//set local from flash_vars
 			LocaleContentConfig.setLanguageFromFlashVars( flashVars );
 			
-			//first register all the general social known commands
 			facade.registerCommand( GeneralAppNotifications.SOCIAL_REGISTER_COMMANDS, SocialRegisterCommandsCommand );
-			//add these general commands registrations
+
 			facade.registerCommand( GeneralAppNotifications.SOCIAL_INSTALL_APPROVED, ServerInitCommand );
 			facade.registerCommand( GeneralAppNotifications.LOAD_EXTERNAL_ASSETS, LoadExternalsCommand );
 			facade.registerCommand( GeneralAppNotifications.SHOW_VERSION_NUMBER, ShowVersionNumberCommand );
@@ -81,7 +59,7 @@ package playtiLib.controller.commands
 			facade.registerCommand( GeneralAppNotifications.SYSTEM_ERROR, SystemErrorCommand );
 			facade.registerCommand( GeneralAppNotifications.SYSTEM_MSG_POPUP, ShowSystemMsgPopupCommand );
 			facade.registerCommand( GeneralAppNotifications.REFRESH_IFRAME, RefreshIframeCommand );
-			//init the main view mediator
+
 			facade.registerMediator( new RootMediator( main_view ) );
 						
 			facade.registerProxy( new DisplaySettingsProxy( main_view.stage ) );
@@ -92,9 +70,11 @@ package playtiLib.controller.commands
 		}
 		
 		/**
-		 * If the seeion is create outside of the game this function will set it instead of creating new session.
-		 * We pass sessionId and not take it from flash_vars_vo because sometimes when we load a module we prefare not to set the session_id in the url to prevent cache breaking
-		 * @param sociaConfigVO
+		 * If the seeion is create outside of the game this function will set it instead of 
+		 * creating new session.
+		 * We pass sessionId and not take it from flash_vars_vo because sometimes when we 
+		 * load a module we prefare not to set the session_id in the url to prevent 
+		 * cache breaking.
 		 * 
 		 */	
 		protected function setExternalSession( sessionId:String ):void {
@@ -105,54 +85,35 @@ package playtiLib.controller.commands
 			SocialConfig.viewer_sn_id = flashVars.viewer_id;
 		}
 		
-		protected function get flashVars():FlashVarsVO {
+		protected function get flashVars():FlashVarsVO 
+		{
 			return facade.retrieveProxy( FlashVarsProxy.NAME ).getData() as FlashVarsVO;
 		}
 		
-		/**
-		 * Sends notifications(SOCIAL_REGISTER_COMMANDS,SOCIAL_INIT_CONNECTIONS ), inits app proxy for contain socialConfigVo, inits the 
-		 * social connections and the socialCallManage
-		 * @param sociaConfigVO
-		 * 
-		 */		
-		protected function initiateSocialNetwork( sociaConfigVO:SocialConfigVO ):void {
-			//set commands registrations;
+		protected function initiateSocialNetwork( sociaConfigVO:SocialConfigVO ):void 
+		{
 			sendNotification( GeneralAppNotifications.SOCIAL_REGISTER_COMMANDS, sociaConfigVO );
-			// init app proxy for contain socialConfigVO 			
 			facade.registerProxy( new AppConfigProxy( sociaConfigVO ) );
 			facade.registerProxy( new ServerCallManagerProxy() );			
-			//set iframe listener to apply js changes
 			facade.registerProxy( new JSProxy() );
 			
 			SocialConfig.current_social_network = sociaConfigVO.sn_type;
-			
-			//init the socail connections
 			sendNotification( GeneralAppNotifications.SOCIAL_INIT_CONNECTIONS, sociaConfigVO );
-			
-			// init socialCallmanager
+
 			SocialCallManager.init( SocialConfig.current_social_network );
 		}
-		/**
-		 * Sends notidication to load external assets (LOAD_EXTERNAL_ASSETS)
-		 * @param initialAssetsLoadConfigPath
-		 * 
-		 */		
-		protected function loadExternals( initialAssetsLoadConfigPath:String ):void {
-			//execute LoadExternalsCommand
+	
+		protected function loadExternals( initialAssetsLoadConfigPath:String ):void 
+		{
 			sendNotification( GeneralAppNotifications.LOAD_EXTERNAL_ASSETS, initialAssetsLoadConfigPath );
 		}
 		
-		protected function initGATracker( tracker : GeneralGoogleAnalyticsTracker, root : Sprite, account : String, is_debug : Boolean = false ):void {
-			
+		protected function initGATracker( tracker : GeneralGoogleAnalyticsTracker, root : Sprite, account : String, is_debug : Boolean = false ):void 
+		{
 			tracker.init( root, account, 'AS3', is_debug );
 			Tracker.setTracker(tracker, GeneralGoogleAnalyticsTracker.NAME);
 		}
 			
-		/**
-		 * Sends notification that set social banners 
-		 * @param game_banners_id
-		 * 
-		 */		
 		protected function initSocialBanners( game_banners_id:int ):void {
 			//set social banners
 			sendNotification( GeneralAppNotifications.SET_SOCIAL_BANNERS, game_banners_id )
