@@ -35,6 +35,7 @@ package playtiLib.model.proxies.social {
 			ExternalInterface.addCallback('waitForTransaction', waitForTransaction);
 			ExternalInterface.addCallback( 'openGiftsPopup', openGiftsPopup );
 //			ExternalInterface.addCallback( 'sendGiftsApproved', sendGiftsApproved );
+			ExternalInterface.addCallback('pauseGame', addPausePopup);
 			ExternalInterface.addCallback('resumeGame', removePausePopup);
 			ExternalInterface.addCallback('showInviteFriends', showInviteFriends);
 			ExternalInterface.addCallback('couponPostComplete', couponPostComplete);
@@ -130,6 +131,10 @@ package playtiLib.model.proxies.social {
 		
 		private function sendGiftsApproved(response:Object):void {
 			sendNotification(GeneralAppNotifications.PUBLISH_TO_WALL_APPROVED, response);
+		}
+		
+		private function addPausePopup():void {
+			sendNotification( GeneralAppNotifications.SET_PAUSE_POPUP, true );
 		}
 		
 		private function removePausePopup():void {
