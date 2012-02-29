@@ -8,7 +8,7 @@ package playtiLib.model.proxies.config
 	import org.puremvc.as3.patterns.proxy.Proxy;
 	
 	import playtiLib.config.notifications.GeneralAppNotifications;
-	import playtiLib.model.vo.config.DisplaySettingsVO;
+	import playtiLib.model.vo.config.DisplaySettings;
 
 	/**
 	 * Waits to full screen event on its constructor and then sets the relevant parameters.
@@ -21,7 +21,7 @@ package playtiLib.model.proxies.config
 
 		public function DisplaySettingsProxy( stage:Stage )	{
 			
-			super( NAME, new DisplaySettingsVO() );
+			super( NAME, new DisplaySettings() );
 			
 			this.stage = stage;
 			this.stage.addEventListener(FullScreenEvent.FULL_SCREEN, onFullScreenModeChanged);
@@ -50,23 +50,44 @@ package playtiLib.model.proxies.config
 		
 		private function initSettings():void{
 
-			if(!displaySettings.fullscreen_size) {
-				displaySettings.fullscreen_size = new Point();
+			if(!displaySettings.fullscreenSize) {
+				displaySettings.fullscreenSize = new Point();
 			}
-			displaySettings.fullscreen_size.x = stage.fullScreenWidth;
-			displaySettings.fullscreen_size.y = stage.fullScreenHeight;
-			
+			displaySettings.fullscreenSize.x = stage.fullScreenWidth;
+			displaySettings.fullscreenSize.y = stage.fullScreenHeight;
+						
 			displaySettings.fullscreen = (stage.displayState == StageDisplayState.FULL_SCREEN);
+			displaySettings.defaultFramerate =
+			displaySettings.framerate = stage.frameRate;
+		}
+		
+		private function get displaySettings():DisplaySettings
+		{
+			return data as DisplaySettings;
 		}
 		
 		public function get fullscreen_size():Point {
 			
-			return displaySettings.fullscreen_size;
+			return displaySettings.fullscreenSize;
 		}
 		
-		private function get displaySettings():DisplaySettingsVO
-		{
-			return getData() as DisplaySettingsVO;
+		public function resetFramerate() : void{
+			
+			framerate = displaySettings.defaultFramerate;
+		}
+		
+		public function set framerate( value:Number ) : void{
+			
+			if( displaySettings.framerate == value ) {
+				return;
+			}
+			displaySettings.framerate = value;
+			sendNotification( GeneralAppNotifications.FRAMERATE_CHANGED, value );
+		}
+		
+		public function get framerate():Number {
+			
+			return displaySettings.framerate;
 		}
 		
 		public function set fullscreen( value:Boolean ) : void{
