@@ -39,11 +39,12 @@ package playtiLib.controller.commands.social
 				case SocialConfig.FB:
 					facade.registerCommand( GeneralAppNotifications.LOAD_INITIAL_ASSETS_COMPLETE, FBAssetsLoadCompleteCommand );
 					facade.registerCommand( GeneralAppNotifications.SOCIAL_INIT_CONNECTIONS, FBInitConnectionsCommand );
-					facade.registerCommand( GeneralAppNotifications.SOCIAL_INVITE_FRIENDS, FBInviteFriendsCommand );
+					facade.registerCommand( GeneralAppNotifications.SOCIAL_INVITE_FRIENDS, InviteFriendsCommand );
 					facade.registerCommand( GeneralAppNotifications.PUBLISH_TO_WALL_COMMAND, FBStreamPublishCommand );
 					facade.registerCommand( GeneralAppNotifications.CHOOSE_SN_USER, FBChooseSnUserCommand);
 					facade.registerCommand( GeneralAppNotifications.PUBLISH_TO_WALL_APPROVED, FBSendRequestApprovedCommand);
-					facade.registerCommand( GeneralAppNotifications.PUBLISH_GIFT_COMMAND, CreateCouponCommand );
+					facade.registerCommand( GeneralAppNotifications.CREATE_COUPON, CreateCouponCommand );
+					facade.registerCommand( GeneralAppNotifications.PUBLISH_GIFT_COMMAND, FBSendGiftRequestCommand  );
 					facade.registerCommand( GeneralAppNotifications.OPEN_PAY_PAGE, FBOpenPayPageCommand );
 					facade.registerCommand( GeneralAppNotifications.PUBLISH_TO_WALL_APPROVED, FBPublishToWallApprovedCommand);
 					facade.registerCommand( GeneralAppNotifications.ADD_APP_REQUEST, FBAddApprequestCommand);
@@ -53,6 +54,10 @@ package playtiLib.controller.commands.social
 					facade.registerCommand( GeneralAppNotifications.SOCIAL_LIKE_APP, FBLikeCommand);
 					facade.registerCommand( GeneralAppNotifications.SOCIAL_LIKE_APP_CALLBACK, FBLikeCommand);
 					facade.registerCommand( GeneralAppNotifications.SOCIAL_ACCEPT_SURPRISE_GIFT, FBAcceptSurpriseGift);
+					facade.registerCommand( GeneralAppNotifications.CLOSE_INVITE_PROXY, CloseInviteProxyCommand );
+					facade.registerCommand( GeneralAppNotifications.CLOSE_SEND_GIFTS_PROXY, CloseSendGiftProxyCommand );
+					facade.registerCommand( GeneralAppNotifications.SHOW_GAME_TAB_COMMAND, ShowGameTabCommand );
+					facade.registerCommand( GeneralAppNotifications.OPEN_SOCIAL_INVITE_FRIENDS_DIALOG, SendSocialInvitesCommand );
 					break;
 
 				case SocialConfig.MM:
