@@ -44,8 +44,8 @@ package playtiLib.config.notifications
 		public static const SET_SOCIAL_BANNERS:String 				= 'social_set_banners';
 		public static const SOCIAL_ACCEPT_SURPRISE_GIFT:String		= 'social_accept_surprise_gift';
 		
-		//full screen
 		public static const FULLSCREEN_MODE:String 					= 'fullscreen_mode';
+		public static const FRAMERATE_CHANGED:String 				= 'framerate_changed';
 
 		//sounds
 		public static const MUTE_SOUNDS:String 						= 'mute_sounds';

@@ -8,6 +8,7 @@ package playtiLib.utils.video {
 	import flash.media.Video;
 	import flash.net.NetConnection;
 	import flash.net.NetStream;
+	import flash.utils.setTimeout;
 	
 	public class NetVideo extends Sprite {
 		private var video:Video;
@@ -23,10 +24,15 @@ package playtiLib.utils.video {
 			connection = new NetConnection();
 			connection.addEventListener(SecurityErrorEvent.SECURITY_ERROR, errorHandler);
 			connection.addEventListener(NetStatusEvent.NET_STATUS, connectionStatusHandler);
+		}
+		
+		public function play() : void {
+			
 			connection.connect(null);
 		}
 		
 		private function connectionStatusHandler(event:NetStatusEvent):void {
+			
 			switch (event.info.code){
 				case "NetConnection.Connect.Success": 
 					connectionSuccess();
@@ -44,6 +50,7 @@ package playtiLib.utils.video {
 		}
 		
 		private function connectionSuccess():void {
+			
 			stream = new NetStream(connection);
 			stream.client = {onMetaData: StreamOnMetaData};
 			stream.addEventListener(NetStatusEvent.NET_STATUS, connectionStatusHandler);
@@ -58,6 +65,7 @@ package playtiLib.utils.video {
 		}
 		
 		private function StreamOnMetaData(item:Object):void {
+			
 			if (center_relatively_to_stage){
 				video.x = (stage.stageWidth - video.width) / 2;
 				video.y = (stage.stageHeight - video.height) / 2;
@@ -65,12 +73,14 @@ package playtiLib.utils.video {
 		}
 		
 		private function errorHandler(event:Event = null):void {
+			
 			trace(event);
 			dispatchEvent(new Event(ErrorEvent.ERROR));
 			destroy();
 		}
 		
 		private function netStatusErrorHandler(code:String):void {
+			
 			trace(code);
 			dispatchEvent(new ErrorEvent(ErrorEvent.ERROR));
 			destroy();

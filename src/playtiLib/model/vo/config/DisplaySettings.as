@@ -5,9 +5,11 @@ package playtiLib.model.vo.config
 	/**
 	 * Holds the display setting data like the full screen mode parameter 
 	 */ 
-	public class DisplaySettingsVO{
+	public class DisplaySettings{
 		
 		public var fullscreen : Boolean = false;
-		public var fullscreen_size:Point;		
+		public var fullscreenSize:Point;
+		public var defaultFramerate:Number;
+		public var framerate:Number;
 	}
 }

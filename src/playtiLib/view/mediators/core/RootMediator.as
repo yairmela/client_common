@@ -41,7 +41,8 @@ package playtiLib.view.mediators.core
 			return [ GeneralAppNotifications.FULLSCREEN_MODE,
 					 GeneralAppNotifications.ADD_CHILD_TO_ROOT,
 					 GeneralAppNotifications.ADD_CHILD_TO_ROOT_AT,
-					 GeneralAppNotifications.ADD_CHILD_TO_ROOT_AT_BOTTOM ];
+					 GeneralAppNotifications.ADD_CHILD_TO_ROOT_AT_BOTTOM,
+					 GeneralAppNotifications.FRAMERATE_CHANGED ];
 		}
 		/**
 		 * Handles the notifications that this mediator are listens for.
@@ -65,6 +66,9 @@ package playtiLib.view.mediators.core
 					break;
 				case GeneralAppNotifications.ADD_CHILD_TO_ROOT_AT_BOTTOM:
 					addChildToRootAt( notification.getBody() as DisplayObject, 0 );
+					break;
+				case GeneralAppNotifications.FRAMERATE_CHANGED:
+					framerate = notification.getBody() as Number;
 					break;
 			}
 		}
@@ -100,6 +104,11 @@ package playtiLib.view.mediators.core
 				root_view.stage.scaleMode 		= StageScaleMode.EXACT_FIT;
 				root_view.stage.displayState 	= StageDisplayState.NORMAL;
 			}
+		}
+		
+		private function set framerate( value:Number ):void{
+			
+			root_view.stage.frameRate = value;
 		}
 	}
 }
