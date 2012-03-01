@@ -46,7 +46,7 @@ package playtiLib.model.proxies.server {
 			if (event.fault.rootCause.faultCode){
 				sendNotification(GeneralAppNotifications.SYSTEM_ERROR, ServerErrorsConfig.ERROR_IOERROR);
 				
-				storedOperations = [];
+				clearOperationList();
 				return;
 			}
 			
@@ -74,6 +74,10 @@ package playtiLib.model.proxies.server {
 			sendNotification(GeneralAppNotifications.SERVER_FAULT_HANDLED, result);
 		}
 
+		public function clearOperationList():void {
+			storedOperations = [];
+		}
+		
 		private function storeFailedOperation(token:AsyncToken):void {
 			
 			for each (var remoteObject:RemoteObject in serverCallManager.server_modules) {
@@ -102,8 +106,9 @@ package playtiLib.model.proxies.server {
 				}
 			}
 			
-			storedOperations = [];
-		}
+			clearOperationList();
+		}		
+		
 		
 		protected function get serverCallManager() : AMFServerCallManager {
 			
