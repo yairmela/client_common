@@ -39,6 +39,7 @@ package playtiLib.controller.commands.social.fb
 			}
 			else{
 				sendNotification( GeneralAppNotifications.CREATE_COUPON, post_data );
+				ExternalInterface.call('showGiftsTab'); 
 			}
 		}
 		
