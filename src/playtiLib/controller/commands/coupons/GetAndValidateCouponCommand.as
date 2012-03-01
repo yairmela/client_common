@@ -66,8 +66,7 @@ package playtiLib.controller.commands.coupons
 			}
 			if( !facade.hasProxy( UserCouponProxy.NAME ) ) {
 				//first load in this session, if there is a req id in the flash vars, force open the GCP
-				facade.registerProxy( new UserCouponProxy( validCoupons ) );
-				facade.registerProxy( new UserSocialInfoProxy() );
+				facade.registerProxy( new UserCouponProxy( validCoupons ) );	
 				sendNotification( GeneralAppNotifications.USER_COUPON_DATA_READY, validCoupons.length, ( request_ids.length > 0 ).toString() );
 			} else {
 				coupon_proxy.addCoupons( validCoupons );
