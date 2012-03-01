@@ -2,6 +2,8 @@ package playtiLib.controller.commands.server {
 	
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.command.SimpleCommand;
+	
+	import playtiLib.config.gifts.CouponSystemConfig;
 	import playtiLib.config.notifications.GeneralAppNotifications;
 	import playtiLib.config.server.ServerErrorsConfig;
 	import playtiLib.config.server.SystemErrorConfig;
@@ -39,8 +41,10 @@ package playtiLib.controller.commands.server {
 				case ServerErrorsConfig.ERROR_SERVER_SESSION_IS_INVALID: 
 					showSessionProblem();
 					break;
+				case ServerErrorsConfig.ERROR_COUPONS_MAINTENANCE:
+					sendNotification( GeneralAppNotifications.COUPON_SYSTEM_UNAVAILABLE );
+					break;
 				case ServerErrorsConfig.ERROR_SERVER_MAINTENANCE: 
-				case ServerErrorsConfig.ERROR_COUPONS_MAINTENANCE: 
 				case ServerErrorsConfig.ERROR_PLUGIN_MAINTENANCE: 
 				case ServerErrorsConfig.ERROR_MISSIONS_MAINTENANCE: 
 					showMaintenance(error_code);

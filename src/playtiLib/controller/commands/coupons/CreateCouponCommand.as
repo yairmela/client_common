@@ -42,8 +42,7 @@ package playtiLib.controller.commands.coupons {
 			var dataCapsule:DataCapsule = event.currentTarget as DataCapsule;
 			dataCapsule.removeEventListener( Event.COMPLETE, onDataReady );
 			if( CouponSystemConfig.isCouponSystemUnavailable( dataCapsule.getDataHolderByIndex(0).server_response.service.errorCode ) ){
-				sendNotification( GeneralAppNotifications.SHOW_STATUS_GIFT_MSG, CouponSystemConfig.STATUS_CUPON_SYSTEM_UNAVIABLE );
-				sendNotification( GeneralAppNotifications.COUPON_SYSTEM_UNAVIABLE );
+				sendNotification( GeneralAppNotifications.COUPON_SYSTEM_UNAVAILABLE );
 				sendNotification( GeneralAppNotifications.SET_PAUSE_POPUP, false );
 				return;
 			}

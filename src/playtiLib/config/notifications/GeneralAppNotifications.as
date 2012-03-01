@@ -102,7 +102,7 @@ package playtiLib.config.notifications
 		//enter frame for games heart beat
 		public static const ENTER_FRAME:String 						= 'enter_frame';
 
-		public static const COUPON_SYSTEM_UNAVIABLE:String 			= 'coupon_system_unaviable';
+		public static const COUPON_SYSTEM_UNAVAILABLE:String 		= 'coupon_system_unavailable';
 		
 		public static const LOAD_USER_GIFTS_FROM_GCP_HANDLER:String = 'load_user_gifts_from_gcp_handler';
 		public static const REJECT_COUPON:String					= 'reject_coupon';

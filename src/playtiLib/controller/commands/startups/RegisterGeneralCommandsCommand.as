@@ -9,6 +9,7 @@ package playtiLib.controller.commands.startups
 	import playtiLib.controller.commands.coupons.ChooseGiftCompleteCommand;
 	import playtiLib.controller.commands.coupons.CleanupCouponsCommand;
 	import playtiLib.controller.commands.coupons.CollectCouponCommand;
+	import playtiLib.controller.commands.coupons.CouponSystemUnavailableCommand;
 	import playtiLib.controller.commands.coupons.CreateCouponCommand;
 	import playtiLib.controller.commands.coupons.CreateEventCouponCommand;
 	import playtiLib.controller.commands.coupons.GetAndValidateCouponCommand;
@@ -80,6 +81,7 @@ package playtiLib.controller.commands.startups
 			facade.registerCommand( GeneralAppNotifications.SYSTEM_TO_USER_COUPON_COLLECTION, SystemToUserCouponCollectionCommand );
 			facade.registerCommand( GeneralAppNotifications.UPDATE_TODAY_RECEIVERS, UpdateTodayRecieversCommand );
 			facade.registerCommand( GeneralAppNotifications.CREATE_EVENT_COUPON_COMMAND, CreateEventCouponCommand );
+			facade.registerCommand( GeneralAppNotifications.COUPON_SYSTEM_UNAVAILABLE, CouponSystemUnavailableCommand);
 			//tasks
 			facade.registerCommand( GeneralAppNotifications.GET_TASKS_COMMAND, GetTasksCommand );
 			facade.registerCommand( GeneralAppNotifications.TASK_HANDLER, TaskHandlerCommand );

@@ -42,9 +42,10 @@ package playtiLib.model.proxies.server {
 		 */
 		private function onFault(event:FaultEvent):void {
 			
+			var errorCode : int = event.fault.rootCause["errorCode"];
 			//server not available
-			if (event.fault.rootCause.faultCode){
-				sendNotification(GeneralAppNotifications.SYSTEM_ERROR, ServerErrorsConfig.ERROR_IOERROR);
+			if (errorCode) {
+				sendNotification(GeneralAppNotifications.SYSTEM_ERROR, errorCode);
 				
 				clearOperationList();
 				return;
@@ -75,6 +76,7 @@ package playtiLib.model.proxies.server {
 		}
 
 		public function clearOperationList():void {
+			
 			storedOperations = [];
 		}
 		

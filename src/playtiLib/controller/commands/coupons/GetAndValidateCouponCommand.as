@@ -43,10 +43,10 @@ package playtiLib.controller.commands.coupons
 			var dataCapsule:DataCapsule = event.currentTarget as DataCapsule;
 			dataCapsule.removeEventListener( Event.COMPLETE, onDataReady );
 			if ( CouponSystemConfig.isCouponSystemUnavailable( dataCapsule.getDataHolderByIndex(0).server_response.service.errorCode ) ){
-				sendNotification( GeneralAppNotifications.COUPON_SYSTEM_UNAVIABLE );
-				if ( request_ids.length > 0 && !fb_request_proxy.isInviteRequestById( ( request_ids[0] ) ) ){
-					sendNotification( GeneralAppNotifications.SHOW_STATUS_GIFT_MSG, CouponSystemConfig.COUPON_SYSTEM_UNAVIABLE );
-				}
+				sendNotification( GeneralAppNotifications.COUPON_SYSTEM_UNAVAILABLE );
+//				if ( request_ids.length > 0 && !fb_request_proxy.isInviteRequestById( ( request_ids[0] ) ) ){
+//					sendNotification( GeneralAppNotifications.SHOW_STATUS_GIFT_MSG, CouponSystemConfig.COUPON_SYSTEM_UNAVIABLE );
+//				}
 				return;
 			}	
 			//get array of valid coupons

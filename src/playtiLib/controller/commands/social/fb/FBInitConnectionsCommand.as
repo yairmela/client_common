@@ -32,7 +32,7 @@ package playtiLib.controller.commands.social.fb
 				ExternalInterface.addCallback( 'OnLikeCallback', onLikeCallback);
 				ExternalInterface.addCallback( 'fbDataCallback',  FBSocialCallManager.getInstance().FBDataCallback );
 				ExternalInterface.addCallback( 'fbDataCallback',  FBSocialCallManager.getInstance().FBDataCallback );
-                        }
+            }
 		}
 		/**
 		 * 
@@ -49,8 +49,7 @@ package playtiLib.controller.commands.social.fb
 		 */		
 		private function OnCouponUnaviable():void{
 			
-			sendNotification( GeneralAppNotifications.COUPON_SYSTEM_UNAVIABLE );
-			sendNotification( GeneralAppNotifications.SHOW_STATUS_GIFT_MSG, CouponSystemConfig.COUPON_SYSTEM_UNAVIABLE );
+			sendNotification( GeneralAppNotifications.COUPON_SYSTEM_UNAVAILABLE );
 		}
 		/**
 		 * Sends notification SOCIAL_LIKE_APP_CALLBACK when there is call back from the external interface about that issu
