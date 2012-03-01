@@ -37,6 +37,7 @@ package playtiLib.model.proxies.social.fb
 		
 		private function initInfo():void{
 			
+			allFriendsToInviteArray = new Array();
 			allFriendsInfo 			= (data_capsule.getDataHolderByIndex(0).data as SocialFriendsInfoListVo).list;
 			appFriendsInfo 			= (data_capsule.getDataHolderByIndex(1).data as SocialUserIdsVO).ids;
 		}
@@ -44,15 +45,12 @@ package playtiLib.model.proxies.social.fb
 		public function get allFriendsToInviteInfo():Array{
 			
 			if( ( !allFriendsToInviteArray || allFriendsToInviteArray.length == 0 ) &&  allFriendsInfo && appFriendsInfo ){
-				allFriendsToInviteArray = new Array();
 				allFriendsToInviteArray = allFriendsInfo.filter( function(
 					user:FBSelectUserVO, ...args):Boolean{
-					return appFriendsInfo.indexOf( user.id ) == -1;
+					return appFriendsInfo.indexOf( parseInt(user.id) ) == -1;
 				}); 
-				return allFriendsToInviteArray;
-			}else{
-				return [];
 			}
+			return allFriendsToInviteArray;
 		}
 	}
 }
