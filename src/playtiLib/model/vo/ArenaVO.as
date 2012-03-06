@@ -23,7 +23,6 @@ package playtiLib.model.vo
 		public function ArenaVO(arenaXML:XML)
 		{
 			_id 					= uint(arenaXML.@id);
-			_enginePath 			= arenaXML.@engine_path;
 			_numberGamesInRoom 	= parseInt( arenaXML.@number_games_in_room );
 			_popupOutOfMoneyName = arenaXML.@popup_out_of_money;
 			_useEmbededIcons 	= TextUtil.getBooleanByString(arenaXML.@use_embeded_icon);
@@ -35,15 +34,16 @@ package playtiLib.model.vo
 		{
 			var arenaName:String = engineNameFromServer.toLocaleLowerCase();
 			this._name = arenaName + 'Arena';
-			this._arenaMC = smallEngineIcone + '_arena_mc';
-			this._arenaContainerName = smallEngineIcone + '_arena_con';
-			this._preloaderName = smallEngineIcone + '_preloader';
+			this._arenaMC = smallEngineIconeName + '_arena_mc';
+			this._arenaContainerName = smallEngineIconeName + '_arena_con';
+			this._preloaderName = smallEngineIconeName + '_preloader';
 			this._assetCachedId = 'cached_' + this.id;
-			this._btnName =  smallEngineIcone + '_btn';
+			this._btnName =  smallEngineIconeName + '_btn';
+			this._enginePath =  folderName + '/caesars_' + smallEngineIconeName + '.swf';
 		}
 		
 		//getters
-		public function get smallEngineIcone():String{ return _smallEngineIcone;	}
+		public function get smallEngineIconeName():String{ return _smallEngineIcone;	}
 		public function get folderName():String	{ return _folderName;}
 		public function get assetCachedId():String	{	return _assetCachedId;	}
 		public function get btnName():String{	return _btnName;	}
