@@ -5,32 +5,56 @@ package playtiLib.model.vo
 	public class ArenaVO
 	{
 		//set by xml
-		public var id:uint;
-		public var enginePath:String;
-		public var numberGamesInRoom:int;
-		public var popupOutOfMoneyName:String;
-		public var useEmbededIcons:Boolean;
+		private var _id:uint;
+		private var _enginePath:String;
+		private var _numberGamesInRoom:int;
+		private var _popupOutOfMoneyName:String;
+		private var _useEmbededIcons:Boolean;
 		//set by arenas proxy
-		public var name:String;
-		public var arenaMC:String;
-		public var preloaderName:String;
-		public var arenaContainerName:String;
-		public var btnName:String;
-		public var assetCachedId:String;
-		public var folderName:String;
-		public var smallEngineIcone:String;
-		
+		private var _name:String;
+		private var _arenaMC:String;
+		private var _preloaderName:String;
+		private var _arenaContainerName:String;
+		private var _btnName:String;
+		private var _assetCachedId:String;
+		private var _folderName:String;
+		private var _smallEngineIcone:String;
 		
 		public function ArenaVO(arenaXML:XML)
 		{
-			id 					= uint(arenaXML.@id);
-			enginePath 			= arenaXML.@engine_path;
-			numberGamesInRoom 	= parseInt( arenaXML.@number_games_in_room );
-			popupOutOfMoneyName = arenaXML.@popup_out_of_money;
-			folderName 			= arenaXML.@folder_name;
-			smallEngineIcone 	= arenaXML.@small_engine_icone;
-			useEmbededIcons 	= TextUtil.getBooleanByString(arenaXML.@use_embeded_icon);
-			
+			_id 					= uint(arenaXML.@id);
+			_enginePath 			= arenaXML.@engine_path;
+			_numberGamesInRoom 	= parseInt( arenaXML.@number_games_in_room );
+			_popupOutOfMoneyName = arenaXML.@popup_out_of_money;
+			_useEmbededIcons 	= TextUtil.getBooleanByString(arenaXML.@use_embeded_icon);
+			_folderName 			= arenaXML.@folder_name;
+			_smallEngineIcone 	= arenaXML.@small_engine_icone;
 		}
+
+		public function setPropertiesByName(engineNameFromServer:String):void
+		{
+			var arenaName:String = engineNameFromServer.toLocaleLowerCase();
+			this._name = arenaName + 'Arena';
+			this._arenaMC = smallEngineIcone + '_arena_mc';
+			this._arenaContainerName = smallEngineIcone + '_arena_con';
+			this._preloaderName = smallEngineIcone + '_preloader';
+			this._assetCachedId = 'cached_' + this.id;
+			this._btnName =  smallEngineIcone + '_btn';
+		}
+		
+		//getters
+		public function get smallEngineIcone():String{ return _smallEngineIcone;	}
+		public function get folderName():String	{ return _folderName;}
+		public function get assetCachedId():String	{	return _assetCachedId;	}
+		public function get btnName():String{	return _btnName;	}
+		public function get arenaContainerName():String	{	return _arenaContainerName;	}
+		public function get preloaderName():String	{	return _preloaderName;	}
+		public function get arenaMC():String{	return _arenaMC;	}
+		public function get name():String{	return _name;	}
+		public function get useEmbededIcons():Boolean	{	return _useEmbededIcons;	}
+		public function get popupOutOfMoneyName():String{	return _popupOutOfMoneyName;	}
+		public function get numberGamesInRoom():int	{	return _numberGamesInRoom;	}
+		public function get enginePath():String		{	return _enginePath;	}
+		public function get id():uint	{	return _id;	}
 	}
 }
