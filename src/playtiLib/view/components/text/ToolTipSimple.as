@@ -131,11 +131,16 @@ package playtiLib.view.components.text
 				contentMovie.gotoAndPlay( SHOW );
 				
 			}else{
-				contentMovie.addEventListener( Event.ENTER_FRAME, HideHandler );
-				contentMovie.gotoAndPlay( HIDE );
-				
-				resetTextTemplates();
+				hideTooltip();
 			}
+		}
+		
+		public function hideTooltip():void
+		{
+			contentMovie.addEventListener( Event.ENTER_FRAME, HideHandler );
+			contentMovie.gotoAndPlay( HIDE );
+			
+			resetTextTemplates();
 		}
 		
 		private function HideHandler( e:Event ):void {

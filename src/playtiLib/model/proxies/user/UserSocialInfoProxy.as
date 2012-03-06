@@ -26,6 +26,7 @@ package playtiLib.model.proxies.user
 			
 			super( NAME, '' );
 			userSocialInfoList = new Array();
+			requestedIds = new Array();
 		}
 		
 		//only load users - the users are already exist in the userSocialInfoList 
@@ -86,14 +87,16 @@ package playtiLib.model.proxies.user
 			}			
 		}
 	
-	
 		private function invalidateUsersData(missingUserSocialIds:Array):void {
 			for each (var id:String in missingUserSocialIds) {
-				requestedIds.splice(requestedIds.indexOf(id),1)
-				userSocialInfoList.splice( userSocialInfoList.indexOf('id' + id), 1);
+				if( requestedIds.indexOf(id) != -1 ){
+					requestedIds.splice( requestedIds.indexOf(id) ,1)
+				}
+				if( userSocialInfoList.indexOf('id' + id) != -1 ){
+					userSocialInfoList.splice( userSocialInfoList.indexOf('id' + id), 1);
+				}
 			}
-			
-			sendNotification(GeneralAppNotifications.USER_SOCIAL_INFO_HAS_INVALIDATE_DATA, getUserInfoByIds(requestedIds));
+			sendNotification( GeneralAppNotifications.USER_SOCIAL_INFO_HAS_INVALIDATE_DATA, getUserInfoByIds(requestedIds) );
 		}
 	}
 }

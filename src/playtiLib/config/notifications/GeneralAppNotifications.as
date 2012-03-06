@@ -183,5 +183,6 @@ package playtiLib.config.notifications
 		public static const OPEN_SOCIAL_INVITE_FRIENDS_DIALOG:String= 'open_social_invite_friends_dialog';
 		public static const CLOSE_INVITE_PROXY:String				= 'close_invite_proxy';
 		public static const CLOSE_SEND_GIFTS_PROXY:String			= 'close_send_gifts_proxy';
+		public static const INIT_ARENAS_PROXY_COMMAND:String		= 'init_arenas_proxy_command';
 	}
 }

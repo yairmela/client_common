@@ -14,7 +14,6 @@ package playtiLib.controller.commands.load
 	import playtiLib.config.server.ServerConfig;
 	import playtiLib.config.statistics.GeneralStatistics;
 	import playtiLib.controller.commands.popup.OpenPopupCommand;
-	import playtiLib.model.proxies.config.ArenasProxy;
 	import playtiLib.model.proxies.config.HelpProxy;
 	import playtiLib.model.proxies.config.HostProxy;
 	import playtiLib.model.proxies.config.VersionProxy;
@@ -114,7 +113,8 @@ package playtiLib.controller.commands.load
 						xml_proxy = new VersionProxy( ServerConfig.ASSETS_SERVER_IP + xml_node.@url );
 						break;
 					case 'arenas':
-						xml_proxy = new ArenasProxy(ServerConfig.ASSETS_SERVER_IP + xml_node.@url);
+						var xml_path:String = ServerConfig.ASSETS_SERVER_IP + xml_node.@url;
+						sendNotification( GeneralAppNotifications.INIT_ARENAS_PROXY_COMMAND, xml_path );
 						break;					
 				}
 				

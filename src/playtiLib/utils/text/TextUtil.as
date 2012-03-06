@@ -115,5 +115,12 @@ package playtiLib.utils.text {
 			}
 			return true;
 		}
+		
+		public static function getBooleanByString(value:String):Boolean
+		{
+			var lowerCaseValue:String;
+			lowerCaseValue = value.toLowerCase(); 
+			return  (lowerCaseValue== 'true') || (lowerCaseValue == '1'); 
+		}
 	}
 }
