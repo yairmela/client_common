@@ -7,7 +7,6 @@ package playtiLib.model.vo
 		//set by xml
 		private var _id:uint;
 		private var _enginePath:String;
-		private var _numberGamesInRoom:int;
 		private var _popupOutOfMoneyName:String;
 		private var _useEmbededIcons:Boolean;
 		//set by arenas proxy
@@ -23,7 +22,6 @@ package playtiLib.model.vo
 		public function ArenaVO(arenaXML:XML)
 		{
 			_id 					= uint(arenaXML.@id);
-			_numberGamesInRoom 	= parseInt( arenaXML.@number_games_in_room );
 			_popupOutOfMoneyName = arenaXML.@popup_out_of_money;
 			_useEmbededIcons 	= TextUtil.getBooleanByString(arenaXML.@use_embeded_icon);
 			_folderName 			= arenaXML.@folder_name;
@@ -53,7 +51,6 @@ package playtiLib.model.vo
 		public function get name():String{	return _name;	}
 		public function get useEmbededIcons():Boolean	{	return _useEmbededIcons;	}
 		public function get popupOutOfMoneyName():String{	return _popupOutOfMoneyName;	}
-		public function get numberGamesInRoom():int	{	return _numberGamesInRoom;	}
 		public function get enginePath():String		{	return _enginePath;	}
 		public function get id():uint	{	return _id;	}
 	}
