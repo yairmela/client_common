@@ -6,16 +6,31 @@ package playtiLib.utils.social.vk
 	import playtiLib.config.social.SocialCallsConfig;
 	import playtiLib.utils.core.ObjectUtil;
 	import playtiLib.utils.events.EventTrans;
-	import playtiLib.utils.server.IServerManager;
+	import playtiLib.utils.social.ISocialCallManager;
 	import playtiLib.utils.tracing.Logger;
 	
-	public class VKSocialCallManager extends EventDispatcher implements IServerManager {
+	public class VKSocialCallManager extends EventDispatcher implements ISocialCallManager {
+		
+		private static var instance:VKSocialCallManager;
 		
 		private var on_result_func:Function, on_io_error_func:Function;
 		
-		public function VKSocialCallManager()	{
+		public function VKSocialCallManager( singleton_key:VKCallManagerSKey )	{
 			
 			super();
+		}
+		
+		public static function getInstance():VKSocialCallManager {
+			
+			if( !instance )
+				instance = new VKSocialCallManager( new VKCallManagerSKey )
+			return instance;
+		}
+		
+		public function get SNInaccessible() : Boolean {
+			
+			// TODO: do an actual check
+			return false;
 		}
 		
 		public function send( server_path:String, module:String, command:String, params:Object, on_result_func:Function, on_io_error_func:Function ):void {
@@ -61,3 +76,5 @@ package playtiLib.utils.social.vk
 		
 	}
 }
+//the singleton private key
+class VKCallManagerSKey {}
