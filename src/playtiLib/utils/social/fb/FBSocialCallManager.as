@@ -19,7 +19,7 @@ package playtiLib.utils.social.fb
 	 */	
 	public class FBSocialCallManager extends EventDispatcher implements ISocialCallManager {
 		
-		static public const FQL_CALL_TIMEOUT : uint = 500;
+		static public const FQL_CALL_TIMEOUT : uint = 5000;
 		
 		//incase there are more than 1 swf on the page the js need to know to which swf to 
 		//return the result so we pass upon request the swf_object_name
