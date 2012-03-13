@@ -6,15 +6,14 @@ package playtiLib.utils.social.mm
 	import playtiLib.config.social.SocialCallsConfig;
 	import playtiLib.utils.events.EventTrans;
 	import playtiLib.utils.server.IServerManager;
+	import playtiLib.utils.social.ISocialCallManager;
+
 	/**
 	 * A singletone class that handles all the MM calls by sending relevant scripts to the server, waits to get the data back and executes 
 	 * the result function and the COMPLETE events. 
 	 */	
-	public class MMSocialCallManager extends EventDispatcher implements IServerManager	{
+	public class MMSocialCallManager extends EventDispatcher implements ISocialCallManager	{
 		
-		//incase there are more than 1 swf on the page the js need to know to which swf to 
-		//return the result so we pass upon request the swf_object_name
-		//this param need to be filled in the intialize process
 		private static var instance:MMSocialCallManager;
 		
 		public function MMSocialCallManager( singleton_key:MMCallManagerSKey ){
@@ -27,6 +26,12 @@ package playtiLib.utils.social.mm
 			if( !instance )
 				instance = new MMSocialCallManager( new MMCallManagerSKey )
 			return instance;
+		}
+		
+		public function get SNInaccessible() : Boolean {
+			
+			// TODO: do an actual check
+			return false;
 		}
 		/**
 		 * Handles the commands and calls the ExternalInterface. It passes to the in the call function the params and the on result function.
