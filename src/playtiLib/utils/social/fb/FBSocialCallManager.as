@@ -10,12 +10,14 @@ package playtiLib.utils.social.fb
 	import playtiLib.config.social.fb.FBCallsConfig;
 	import playtiLib.utils.events.EventTrans;
 	import playtiLib.utils.server.IServerManager;
+	import playtiLib.utils.social.ISocialCallManager;
 	import playtiLib.utils.tracing.Logger;
+
 	/**
 	 * A singletone class that handles all the FB calls by sending relevant queries to the server, wait to get the data back and executes 
 	 * the result function and the COMPLETE events. 
 	 */	
-	public class FBSocialCallManager extends EventDispatcher implements IServerManager{
+	public class FBSocialCallManager extends EventDispatcher implements ISocialCallManager {
 		
 		static private var FQL_CALL_TIMEOUT : uint = 5000;
 		
@@ -23,8 +25,12 @@ package playtiLib.utils.social.fb
 		//return the result so we pass upon request the swf_object_name
 		//this param need to be filled in the intialize process
 		public static var swf_object_name:String;
+		
 		private static var instance:FBSocialCallManager;
+		
 		private var callsList:Object = {};
+		
+		private var isSNInaccessible : Boolean = false;
 		
 		public function FBSocialCallManager( singleton_key:FBCallManagerSKey ){
 			
@@ -38,6 +44,12 @@ package playtiLib.utils.social.fb
 
 			return instance;
 		}
+		
+		public function get SNInaccessible() : Boolean {
+			
+			return isSNInaccessible;
+		}
+		
 		/**
 		 * Handles the commands and calls the ExternalInterface. It passes to the in the call function the params and the on result function.
 		 * @param module
@@ -160,6 +172,8 @@ package playtiLib.utils.social.fb
 		
 		public function FQLCallback( call_id:String, result:Object ):void {
 			
+			isSNInaccessible = false;
+			
 			var callData : CallData = callsList[call_id];
 			
 			if(!callData) {
@@ -223,6 +237,8 @@ package playtiLib.utils.social.fb
 		
 		private function onCallTimeout( event:EventTrans ) : void
 		{
+			isSNInaccessible = true;
+			
 			FQLCallbackError(event.data as String, "Timeout");
 		}
 	}
