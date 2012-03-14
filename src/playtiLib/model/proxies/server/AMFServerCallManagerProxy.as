@@ -42,8 +42,16 @@ package playtiLib.model.proxies.server {
 		 */
 		private function onFault(event:FaultEvent):void {
 			
-			var errorCode : int = event.fault.rootCause["errorCode"];
 			//server not available
+			if (event.fault.rootCause["faultCode"]){
+				sendNotification(GeneralAppNotifications.SYSTEM_ERROR, ServerErrorsConfig.ERROR_IOERROR);
+				
+				clearOperationList();
+				return;
+			}
+			
+			var errorCode : Object = event.fault.rootCause["errorCode"];
+			
 			if (errorCode) {
 				sendNotification(GeneralAppNotifications.SYSTEM_ERROR, errorCode);
 				
