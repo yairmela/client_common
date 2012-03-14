@@ -158,7 +158,7 @@ package playtiLib.view.mediators.gift
 			
 			for each( var coupon:Coupon in coupons ){
 				coupon.message = SocialPostVO.injectUserParamsToString( TextLib.lib.retrive('wall_posts.gifts.gift_'+coupon.giftTypeId+'.user_msg'), 
-					user_proxy.user_level, user_proxy.userSocialInfo, null, [user_proxy.user_level.coinsGiftAmount] );
+					user_proxy.user_level, user_proxy.userSocialInfo, null, user_proxy.user_level.coinsGiftAmount );
 			}
 		}
 
