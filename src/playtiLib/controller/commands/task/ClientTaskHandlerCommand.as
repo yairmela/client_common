@@ -8,10 +8,10 @@ package playtiLib.controller.commands.task {
 	import flash.net.URLRequest;
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.command.SimpleCommand;
-	import playtiLib.model.proxies.task.TasksProxy;
+	import playtiLib.model.proxies.task.ClientTasksProxy;
 	import playtiLib.model.vo.amf.response.helpers.ClientTask;
 	
-	public class TaskHandlerCommand extends SimpleCommand {
+	public class ClientTaskHandlerCommand extends SimpleCommand {
 		
 		private var task:ClientTask; 
         
@@ -68,7 +68,7 @@ package playtiLib.controller.commands.task {
         private function onTaskComplete():void{
             task.userTaskStatus = 1;
             task.userTaskCode = 0;
-            (facade.retrieveProxy( TasksProxy.NAME) as TasksProxy).setTaskComplete(task);             
+            (facade.retrieveProxy( ClientTasksProxy.NAME) as ClientTasksProxy).setTaskComplete(task);             
         }
 
 	}

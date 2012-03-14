@@ -10,13 +10,13 @@ package playtiLib.model.proxies.task {
 	import playtiLib.utils.data.DataCapsule;
 	import playtiLib.utils.data.DataCapsuleFactory;
 	
-	public class TasksProxy extends DataCapsuleProxy {
+	public class ClientTasksProxy extends DataCapsuleProxy {
 		
 		public static const NAME:String = 'TasksProxy';
 		
 		private var tasks:Array = [];
 		
-		public function TasksProxy(){
+		public function ClientTasksProxy(){
 			
 			super(NAME, [AMFGeneralCallsConfig.GET_CLIENT_TASKS]);
 		}
