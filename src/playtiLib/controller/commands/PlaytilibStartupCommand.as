@@ -4,6 +4,7 @@ package playtiLib.controller.commands
 	
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.command.SimpleCommand;
+	import org.puremvc.as3.patterns.proxy.Proxy;
 	
 	import playtiLib.config.content.LocaleContentConfig;
 	import playtiLib.config.notifications.GeneralAppNotifications;
@@ -94,8 +95,9 @@ package playtiLib.controller.commands
 		{
 			sendNotification( GeneralAppNotifications.SOCIAL_REGISTER_COMMANDS, sociaConfigVO );
 			facade.registerProxy( new AppConfigProxy( sociaConfigVO ) );
-			facade.registerProxy( new ServerCallManagerProxy() );			
-			facade.registerProxy( new JSProxy() );
+			facade.registerProxy( new ServerCallManagerProxy() );
+			
+			createJSProxy();
 			
 			SocialConfig.current_social_network = sociaConfigVO.sn_type;
 			sendNotification( GeneralAppNotifications.SOCIAL_INIT_CONNECTIONS, sociaConfigVO );
@@ -122,6 +124,11 @@ package playtiLib.controller.commands
 		protected function setupUIDisplay( centerToWidth : uint, centerToHeight : uint ):void {
 			//setup ui display params
 			sendNotification( GeneralAppNotifications.SETUP_UI_DISPLAY, {width: centerToWidth, height: centerToHeight} )
+		}
+		
+		protected function createJSProxy() : void {
+			
+			facade.registerProxy( new JSProxy() );
 		}
 	}
 }

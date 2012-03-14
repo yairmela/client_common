@@ -18,8 +18,7 @@ package playtiLib.model.proxies.social {
 	 *
 	 */
 	public class JSProxy extends Proxy 
-	{
-		
+	{		
 		public static const NAME:String = 'JSProxy';
 		
 		public function JSProxy()
