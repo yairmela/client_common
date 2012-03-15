@@ -27,9 +27,11 @@ package playtiLib.controller.commands.coupons
 			var dataCapsule:DataCapsule = event.currentTarget as DataCapsule;
 			dataCapsule.removeEventListener( Event.COMPLETE, onDataReady );
 			var receiversMessage:CouponReceiversMessage = dataCapsule.getDataHolderByIndex(0).data as CouponReceiversMessage;
-			var recrivers:String = receiversMessage.receivers;
-			//init the todayReceivers proxy
-			facade.registerProxy( new TodayReceiversProxy( recrivers ) );
+			if (receiversMessage){
+				var recrivers:String = receiversMessage.receivers;
+				//init the todayReceivers proxy
+				facade.registerProxy( new TodayReceiversProxy( recrivers ) );
+			}
 		}
 	}
 }
