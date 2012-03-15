@@ -24,27 +24,25 @@ package playtiLib.model.proxies.social {
 		public function JSProxy()
 		{
 			super(NAME, null);
-			if (!ExternalInterface.available)
-				return;
-			//set listeners
-			ExternalInterface.addCallback('externalCall', externalCall);
-			ExternalInterface.addCallback('openPayPagePopup', openPayPagePopup);
-			ExternalInterface.addCallback('inviteSent', inviteSent);
-			ExternalInterface.addCallback('VKCurrencyData', VKCurrencyData);
-			ExternalInterface.addCallback('waitForTransaction', waitForTransaction);
-			ExternalInterface.addCallback( 'openGiftsPopup', openGiftsPopup );
-//			ExternalInterface.addCallback( 'sendGiftsApproved', sendGiftsApproved );
-			ExternalInterface.addCallback('pauseGame', addPausePopup);
-			ExternalInterface.addCallback('resumeGame', removePausePopup);
-			ExternalInterface.addCallback('showInviteFriends', showInviteFriends);
-			ExternalInterface.addCallback('couponPostComplete', couponPostComplete);
-			ExternalInterface.addCallback('deleteFBRequestCallback', emptyCallback);
-			ExternalInterface.addCallback('publishComplete', publishComplete);
-			ExternalInterface.addCallback('publishCancel', publishCancel);
-			ExternalInterface.addCallback('FBGetRequestCallback', FBGetRequestCallback);
-			ExternalInterface.addCallback("menuItemClick", menuItemClick);
-			ExternalInterface.addCallback("acceptSurpriseGiftCoupon", acceptSurpriseGiftCoupon);
-			ExternalInterface.addCallback("playTabClick", playTabClick);
+			
+			addCallback('externalCall', externalCall);
+			addCallback('openPayPagePopup', openPayPagePopup);
+			addCallback('inviteSent', inviteSent);
+			addCallback('VKCurrencyData', VKCurrencyData);
+			addCallback('waitForTransaction', waitForTransaction);
+			addCallback( 'openGiftsPopup', openGiftsPopup );
+			addCallback('pauseGame', addPausePopup);
+			addCallback('resumeGame', removePausePopup);
+			addCallback('showInviteFriends', showInviteFriends);
+			addCallback('couponPostComplete', couponPostComplete);
+			addCallback('deleteFBRequestCallback', emptyCallback);
+			addCallback('publishComplete', publishComplete);
+			addCallback('publishCancel', publishCancel);
+			addCallback('FBGetRequestCallback', FBGetRequestCallback);
+			addCallback("menuItemClick", menuItemClick);
+			addCallback("acceptSurpriseGiftCoupon", acceptSurpriseGiftCoupon);
+			addCallback("playTabClick", playTabClick);
+			addCallback("addSNRequests", addSNRequests);
 		}
 		
 		private function playTabClick():void {
@@ -124,12 +122,8 @@ package playtiLib.model.proxies.social {
 			sendNotification(GeneralAppNotifications.SOCIAL_INVITE_FRIENDS);
 		}
 		
-		private function acceptSurpriseGiftCoupon(gift_redeemed:Boolean):void {			
+		private function acceptSurpriseGiftCoupon(gift_redeemed:Boolean):void {
 			sendNotification(GeneralAppNotifications.SOCIAL_ACCEPT_SURPRISE_GIFT, gift_redeemed);	
-		}
-		
-		private function sendGiftsApproved(response:Object):void {
-			sendNotification(GeneralAppNotifications.PUBLISH_TO_WALL_APPROVED, response);
 		}
 		
 		private function addPausePopup():void {
@@ -142,6 +136,18 @@ package playtiLib.model.proxies.social {
 		
 		private function menuItemClick(menu_type:String):void {
 			sendNotification(GeneralAppNotifications.TRACK, {menu_type: menu_type}, GeneralStatistics.MENU_TAB_SELECT);
+		}
+		
+		private function addSNRequests( request_id : String ) : void {
+			sendNotification(GeneralAppNotifications.LOAD_SOCIAL_REQUESTS);
+		}
+		
+		protected function addCallback( closure : String, callback : Function ) : void
+		{
+			if (!ExternalInterface.available)
+				return;
+			
+			ExternalInterface.addCallback(closure, callback);
 		}
 	}
 }
