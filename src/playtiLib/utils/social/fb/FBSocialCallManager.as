@@ -10,21 +10,27 @@ package playtiLib.utils.social.fb
 	import playtiLib.config.social.fb.FBCallsConfig;
 	import playtiLib.utils.events.EventTrans;
 	import playtiLib.utils.server.IServerManager;
+	import playtiLib.utils.social.ISocialCallManager;
 	import playtiLib.utils.tracing.Logger;
+
 	/**
 	 * A singletone class that handles all the FB calls by sending relevant queries to the server, wait to get the data back and executes 
 	 * the result function and the COMPLETE events. 
 	 */	
-	public class FBSocialCallManager extends EventDispatcher implements IServerManager{
+	public class FBSocialCallManager extends EventDispatcher implements ISocialCallManager {
 		
-		static private var FQL_CALL_TIMEOUT : uint = 5000;
+		static public const FQL_CALL_TIMEOUT : uint = 5000;
 		
 		//incase there are more than 1 swf on the page the js need to know to which swf to 
 		//return the result so we pass upon request the swf_object_name
 		//this param need to be filled in the intialize process
 		public static var swf_object_name:String;
+		
 		private static var instance:FBSocialCallManager;
+		
 		private var callsList:Object = {};
+		
+		private var isSNInaccessible : Boolean = false;
 		
 		public function FBSocialCallManager( singleton_key:FBCallManagerSKey ){
 			
@@ -38,6 +44,12 @@ package playtiLib.utils.social.fb
 
 			return instance;
 		}
+		
+		public function get SNInaccessible() : Boolean {
+			
+			return isSNInaccessible;
+		}
+		
 		/**
 		 * Handles the commands and calls the ExternalInterface. It passes to the in the call function the params and the on result function.
 		 * @param module
@@ -52,7 +64,7 @@ package playtiLib.utils.social.fb
 			switch( command ) {
 				case SocialCallsConfig.SOCIAL_USER_INFO_COMMAND_NAME:
 					callFQL( 'SELECT ' + params.fields + ' FROM user WHERE uid IN (' + params.uids + ')', 
-						on_result_func, FQL_CALL_TIMEOUT );
+							on_result_func, FQL_CALL_TIMEOUT );
 					break;
 				case SocialCallsConfig.SOCIAL_FRIENDS_COMMAND_NAME:
 					callFQL( 'SELECT uid2 FROM friend WHERE uid1 = "' + params.user_id + '"',
@@ -60,7 +72,7 @@ package playtiLib.utils.social.fb
 					break;
 				case SocialCallsConfig.SOCIAL_APP_FRIENDS_IDS_COMMAND_NAME:
 					callFQL( 'SELECT uid FROM user WHERE has_added_app=1 and uid IN (SELECT uid2 FROM friend WHERE uid1 = "' + params.user_id + '")',
-						on_result_func, FQL_CALL_TIMEOUT );
+							 on_result_func, FQL_CALL_TIMEOUT );
 					break;
 				case SocialCallsConfig.SOCIAL_GET_GROUPS_COMMAND_NAME:
 					break;
@@ -78,8 +90,7 @@ package playtiLib.utils.social.fb
 				case FBCallsConfig.FB_LIKE_APP_COMMAND_NAME:
 //					callFQL( 'SELECT target_id FROM connection WHERE source_id = ' + params.user_id + ' AND target_id = ' + params.app_id,
 //						on_result_func );
-					callFQL( 'SELECT uid, page_id FROM page_fan WHERE uid='+params.user_id+' AND page_id='+ params.page_id,
-						on_result_func, FQL_CALL_TIMEOUT)
+					callFQL( 'SELECT uid, page_id FROM page_fan WHERE uid='+params.user_id+' AND page_id='+ params.page_id, on_result_func, FQL_CALL_TIMEOUT )
 					break;
 				
 				case SocialCallsConfig.LOAD_APP_REQUESTS_COMMAND_NAME:
@@ -160,6 +171,8 @@ package playtiLib.utils.social.fb
 		
 		public function FQLCallback( call_id:String, result:Object ):void {
 			
+			isSNInaccessible = false;
+			
 			var callData : CallData = callsList[call_id];
 			
 			if(!callData) {
@@ -223,6 +236,8 @@ package playtiLib.utils.social.fb
 		
 		private function onCallTimeout( event:EventTrans ) : void
 		{
+			isSNInaccessible = true;
+			
 			FQLCallbackError(event.data as String, "Timeout");
 		}
 	}

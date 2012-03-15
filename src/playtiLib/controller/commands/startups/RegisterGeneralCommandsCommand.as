@@ -37,7 +37,7 @@ package playtiLib.controller.commands.startups
 	import playtiLib.controller.commands.sound.MuteSoundsCommand;
 	import playtiLib.controller.commands.statistics.GeneralStatisticsTrackingCommand;
 	import playtiLib.controller.commands.task.GetTasksCommand;
-	import playtiLib.controller.commands.task.TaskHandlerCommand;
+	import playtiLib.controller.commands.task.ClientTaskHandlerCommand;
 	import playtiLib.controller.commands.user.RegisterNewUserCommand;
 	import playtiLib.controller.commands.user.UpdateUserInfoCommand;
 	import playtiLib.controller.commands.user.UserDataReadyCoreCommand;
@@ -84,7 +84,7 @@ package playtiLib.controller.commands.startups
 			facade.registerCommand( GeneralAppNotifications.COUPON_SYSTEM_UNAVAILABLE, CouponSystemUnavailableCommand);
 			//tasks
 			facade.registerCommand( GeneralAppNotifications.GET_TASKS_COMMAND, GetTasksCommand );
-			facade.registerCommand( GeneralAppNotifications.TASK_HANDLER, TaskHandlerCommand );
+			facade.registerCommand( GeneralAppNotifications.TASK_HANDLER, ClientTaskHandlerCommand );
 			
 			facade.registerCommand( GeneralAppNotifications.GOTO_GAME_TAB, GotoGameTabCommand );
 

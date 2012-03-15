@@ -73,7 +73,7 @@ package playtiLib.view.components.social.fb
 		protected function initComponents():void{
 			
 			searchFriendsText.mouseEnabled 				= true;
-			sendBtn.enabled 							= false;
+//			sendBtn.enabled 							= false;
 			unselectAllBtn.enabled						= false;
 			selectAllBtn.enabled						= false;
 			
@@ -301,9 +301,11 @@ package playtiLib.view.components.social.fb
 		
 		protected function setVisble( mc:MovieClip, value:Boolean ):void{
 			mc.alpha = value?1:0;
-			if( !value ){
-				
-			}	
+			mc.enabled = value;
+			mc.mouseChildren = value;
+			mc.mouseEnabled = value;
+			mc.visible = value;
+			
 		}
 		
 		protected function getVisble(mc:MovieClip):Boolean{
