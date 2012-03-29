@@ -1,6 +1,6 @@
 package playtiLib.utils.social
 {
-	import playtiLib.model.VO.user.UserSocialInfo;
+	import playtiLib.model.vo.user.UserSocialInfo;
 
 	public class SocialUserProfileParser{
 		
@@ -31,6 +31,11 @@ package playtiLib.utils.social
 		}
 		
 		public function parseSnRequests ( result:Object ):Array {
+			
+			return [];
+		}
+		
+		public function parseFriendsInfo ( result:Object ):Array {
 			
 			return [];
 		}

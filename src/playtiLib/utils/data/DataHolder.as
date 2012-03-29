@@ -8,7 +8,7 @@ package playtiLib.utils.data
 	
 	import playtiLib.config.server.ServerConfig;
 	import playtiLib.config.server.ServerModulesConfig;
-	import playtiLib.model.VO.server.DeserializedJSONModel;
+	import playtiLib.model.vo.server.DeserializedJSONModel;
 	import playtiLib.utils.events.EventTrans;
 	import playtiLib.utils.server.AMFServerCallManager;
 	import playtiLib.utils.server.IServerManager;

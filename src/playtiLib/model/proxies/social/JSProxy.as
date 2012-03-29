@@ -6,16 +6,10 @@ package playtiLib.model.proxies.social {
 	import org.puremvc.as3.patterns.proxy.Proxy;
 	
 	import playtiLib.config.notifications.GeneralAppNotifications;
-	import playtiLib.config.server.ServerConfig;
 	import playtiLib.config.statistics.GeneralStatistics;
-	import playtiLib.config.statistics.KontagentConfig;
 	import playtiLib.controller.commands.paypage.CheckBuyTransactionStatusCommand;
-	import playtiLib.model.VO.payment.CurrencyCost;
 	import playtiLib.model.proxies.payment.CurrencyCostProxy;
-	import playtiLib.model.proxies.server.AMFServerCallManagerProxy;
-	import playtiLib.model.proxies.server.ServerCallManagerProxy;
-	import playtiLib.utils.data.DataCallConfig;
-	import playtiLib.view.mediators.popups.PauseGamePopupMediator;
+	import playtiLib.model.vo.payment.CurrencyCost;
 	
 	/**
 	 * Handles the java script calls back
@@ -23,74 +17,58 @@ package playtiLib.model.proxies.social {
 	 * @see playtiLib.view.mediators.popups.PauseGamePopupMediator
 	 *
 	 */
-	public class JSProxy extends Proxy {
-		
+	public class JSProxy extends Proxy 
+	{		
 		public static const NAME:String = 'JSProxy';
 		
-		public function JSProxy(){
-			
+		public function JSProxy()
+		{
 			super(NAME, null);
-			if (!ExternalInterface.available)
-				return;
-			//set listeners
-			ExternalInterface.addCallback('externalCall', externalCall);
-			ExternalInterface.addCallback('openPayPagePopup', openPayPagePopup);
-			ExternalInterface.addCallback('inviteSent', inviteSent);
-			ExternalInterface.addCallback('VKCurrencyData', VKCurrencyData);
-			ExternalInterface.addCallback('waitForTransaction', waitForTransaction);
-			ExternalInterface.addCallback( 'openGiftsPopup', openGiftsPopup );
-//			ExternalInterface.addCallback( 'sendGiftsApproved', sendGiftsApproved );
-			ExternalInterface.addCallback('resumeGame', removePausePopup);
-//			ExternalInterface.addCallback('showInviteFriends', showInviteFriends);
-			ExternalInterface.addCallback('couponPostComplete', couponPostComplete);
-			ExternalInterface.addCallback('deleteFBRequestCallback', emptyCallback);
-			ExternalInterface.addCallback('publishComplete', publishComplete);
-			ExternalInterface.addCallback('publishCancel', publishCancel);
-			ExternalInterface.addCallback('FBGetRequestCallback', FBGetRequestCallback);
-			ExternalInterface.addCallback("menuItemClick", menuItemClick);
-			ExternalInterface.addCallback("acceptSurpriseGiftCoupon", acceptSurpriseGiftCoupon);
+			
+			addCallback('externalCall', externalCall);
+			addCallback('openPayPagePopup', openPayPagePopup);
+			addCallback('inviteSent', inviteSent);
+			addCallback('VKCurrencyData', VKCurrencyData);
+			addCallback('waitForTransaction', waitForTransaction);
+			addCallback( 'openGiftsPopup', openGiftsPopup );
+			addCallback('pauseGame', addPausePopup);
+			addCallback('resumeGame', removePausePopup);
+			addCallback('showInviteFriends', showInviteFriends);
+			addCallback('couponPostComplete', couponPostComplete);
+			addCallback('deleteFBRequestCallback', emptyCallback);
+			addCallback('publishComplete', publishComplete);
+			addCallback('publishCancel', publishCancel);
+			addCallback('FBGetRequestCallback', FBGetRequestCallback);
+			addCallback("menuItemClick", menuItemClick);
+			addCallback("acceptSurpriseGiftCoupon", acceptSurpriseGiftCoupon);
+			addCallback("playTabClick", playTabClick);
+			addCallback("addSNRequests", addSNRequests);
+		}
+		
+		private function playTabClick():void {
+			sendNotification(GeneralAppNotifications.CLOSE_POPUP );
 		}
 		
 		private function externalCall(call_params:Object):void {
 			sendNotification(GeneralAppNotifications.EXECUTE_EXTERNAL_CALL, call_params);
 		}
 		
-		/**
-		 * Sends notification - COUPON_POST_COMPLETE
-		 * @param reciver_ids
-		 *
-		 */
 		private function couponPostComplete(reciver_ids:String, postVO:Object):void {
 //			sendNotification( GeneralAppNotifications.COUPON_POST_COMPLETE, reciver_ids );
 			sendNotification( GeneralAppNotifications.SEND_COUPON_COMMAND, postVO, reciver_ids );
+			sendNotification( GeneralAppNotifications.UPDATE_AFTER_SOCIAL_REQ_SENT, reciver_ids );
 			sendNotification( GeneralAppNotifications.UPDATE_TODAY_RECEIVERS, reciver_ids );
 			sendNotification( GeneralAppNotifications.TRACK, null, GeneralStatistics.GIFT_SENT);
 		}
 		
-		/**
-		 * Sends notification -  REQUEST_DATA_RECEIVED
-		 * @param response
-		 *
-		 */
 		private function FBGetRequestCallback(response:Object):void {
 			sendNotification(GeneralAppNotifications.REQUEST_DATA_RECEIVED, response);
 		}
 		
-		/**
-		 * Empty function
-		 * @param response
-		 *
-		 */
 		private function emptyCallback(response:Object = null):void {
 		
 		}
 		
-		/**
-		 * Checks if there is a registered CurrencyCostProxy and if not it registers new one and sends notification - BUY_SELECTED_AMOUNT
-		 * @param transaction_token
-		 * @param currency
-		 *
-		 */
 		private function VKCurrencyData(transaction_token:String, currency:Object):void {
 			
 			if (!facade.hasProxy(CurrencyCostProxy.NAME))
@@ -98,32 +76,15 @@ package playtiLib.model.proxies.social {
 			sendNotification(GeneralAppNotifications.BUY_SELECTED_AMOUNT, currency);
 		}
 		
-		/**
-		 * Sends notification  PUBLISH_TO_WALL_COMPLETE and track this action
-		 * @param eventType
-		 * @param pid
-		 * @param crt
-		 *
-		 */
 		private function publishComplete(event_type:String, pid:String, crt:String):void {
 			sendNotification(GeneralAppNotifications.PUBLISH_TO_WALL_COMPLETE);
 			sendNotification(GeneralAppNotifications.TRACK, {publish_data: {event_type: event_type, pid: pid, crt: crt}}, GeneralStatistics.PUBLISH_TO_WALL_COMPLETE);
 		}
 		
-		/**
-		 * Sends notification -  PUBLISH_TO_WALL_CANCEL
-		 *
-		 */
 		private function publishCancel():void {
 			sendNotification(GeneralAppNotifications.PUBLISH_TO_WALL_CANCEL);
 		}
-		
-		/**
-		 * Checks if the CurrencyCostProxy is registered and if not, it registers a new one. Sends notification - BUY_SELECTED_AMOUNT
-		 * and checks if CheckBuyTransactionStatusCommand.timed_process_id == 0 then it sends notification CHECK_BUY_STATUS
-		 * @param transaction_token
-		 *
-		 */
+
 		private function waitForTransaction(transaction_token:String):void {
 			
 			if (!facade.hasProxy(CurrencyCostProxy.NAME)) {
@@ -144,35 +105,29 @@ package playtiLib.model.proxies.social {
 			return facade.retrieveProxy(CurrencyCostProxy.NAME) as CurrencyCostProxy;
 		}
 		
-		/**
-		 *Sends notification  OPEN_SEND_GIFT_POPUP
-		 *
-		 */
 		private function openGiftsPopup():void {
 			sendNotification(GeneralAppNotifications.OPEN_SEND_GIFT_POPUP);
 		}
 		
-		/**
-		 * Sends notification OPEN_PAY_PAGE
-		 */
 		private function openPayPagePopup():void {
 			sendNotification(GeneralAppNotifications.OPEN_PAY_PAGE, {buyType: GeneralStatistics.BUY_TYPE_TAB_CLICK});
 		}
 		
 		private function inviteSent(event_type:String, users_list:String, pid:String, crt:String, initiated_from_menu:Boolean):void {
+			sendNotification( GeneralAppNotifications.UPDATE_AFTER_SOCIAL_REQ_SENT, users_list );
 			sendNotification(GeneralAppNotifications.TRACK, {invite_data: {event_type: event_type, users_list: users_list, pid: pid, crt: crt, initiated_from_menu: initiated_from_menu}}, GeneralStatistics.INVITE_SENT);
 		}
 		
-//		private function showInviteFriends():void {
-//			sendNotification(GeneralAppNotifications.SOCIAL_INVITE_FRIENDS);
-//		}
+		private function showInviteFriends():void {
+			sendNotification(GeneralAppNotifications.SOCIAL_INVITE_FRIENDS);
+		}
 		
-		private function acceptSurpriseGiftCoupon(gift_redeemed:Boolean):void {			
+		private function acceptSurpriseGiftCoupon(gift_redeemed:Boolean):void {
 			sendNotification(GeneralAppNotifications.SOCIAL_ACCEPT_SURPRISE_GIFT, gift_redeemed);	
 		}
 		
-		private function sendGiftsApproved(response:Object):void {
-			sendNotification(GeneralAppNotifications.PUBLISH_TO_WALL_APPROVED, response);
+		private function addPausePopup():void {
+			sendNotification( GeneralAppNotifications.SET_PAUSE_POPUP, true );
 		}
 		
 		private function removePausePopup():void {
@@ -181,6 +136,18 @@ package playtiLib.model.proxies.social {
 		
 		private function menuItemClick(menu_type:String):void {
 			sendNotification(GeneralAppNotifications.TRACK, {menu_type: menu_type}, GeneralStatistics.MENU_TAB_SELECT);
+		}
+		
+		private function addSNRequests( request_id : String ) : void {
+			sendNotification(GeneralAppNotifications.LOAD_SOCIAL_REQUESTS);
+		}
+		
+		protected function addCallback( closure : String, callback : Function ) : void
+		{
+			if (!ExternalInterface.available)
+				return;
+			
+			ExternalInterface.addCallback(closure, callback);
 		}
 	}
 }

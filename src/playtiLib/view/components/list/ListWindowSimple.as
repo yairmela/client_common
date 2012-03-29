@@ -180,7 +180,7 @@ package playtiLib.view.components.list
 			
 			if( scrollingDirection == VERTICAL ) {
 				var scroll : ScrollSimple = scroll_attached[scrollingDirection];
-				if( scroll )  
+				if( scroll && length)  
 					scroll.delta =  (1 / length );
 			}
 			

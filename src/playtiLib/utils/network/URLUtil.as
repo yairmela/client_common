@@ -47,5 +47,14 @@ package playtiLib.utils.network
 			
 			ExternalInterface.call( WINDOW_OPEN_FUNCTION, url, window, features );
 		}
+		
+		public static function validateURL( url : String ) : String {
+			
+			if( !URLUtil.isHttpURL(url) ) {
+				url = "http://"+url;
+			}
+			
+			return url;
+		}
 	}
 }

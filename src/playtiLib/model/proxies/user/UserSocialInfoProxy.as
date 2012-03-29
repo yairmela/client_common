@@ -10,8 +10,8 @@ package playtiLib.model.proxies.user
 	import org.puremvc.as3.patterns.proxy.Proxy;
 	
 	import playtiLib.config.social.SocialCallsConfig;
-	import playtiLib.model.VO.social.user.SocialUsersListVO;
-	import playtiLib.model.VO.user.UserSocialInfo;
+	import playtiLib.model.vo.amf.social.user.SocialUsersListVO;
+	import playtiLib.model.vo.user.UserSocialInfo;
 	import playtiLib.utils.data.DataCapsule;
 	import playtiLib.utils.data.DataCapsuleFactory;
 	
@@ -26,6 +26,7 @@ package playtiLib.model.proxies.user
 			
 			super( NAME, '' );
 			userSocialInfoList = new Array();
+			requestedIds = new Array();
 		}
 		
 		//only load users - the users are already exist in the userSocialInfoList 
@@ -86,14 +87,16 @@ package playtiLib.model.proxies.user
 			}			
 		}
 	
-	
 		private function invalidateUsersData(missingUserSocialIds:Array):void {
 			for each (var id:String in missingUserSocialIds) {
-				requestedIds.splice(requestedIds.indexOf(id),1)
-				userSocialInfoList.splice( userSocialInfoList.indexOf('id' + id), 1);
+				if( requestedIds.indexOf(id) != -1 ){
+					requestedIds.splice( requestedIds.indexOf(id) ,1)
+				}
+				if( userSocialInfoList.indexOf('id' + id) != -1 ){
+					userSocialInfoList.splice( userSocialInfoList.indexOf('id' + id), 1);
+				}
 			}
-			
-			sendNotification(GeneralAppNotifications.USER_SOCIAL_INFO_HAS_INVALIDATE_DATA, getUserInfoByIds(requestedIds));
+			sendNotification( GeneralAppNotifications.USER_SOCIAL_INFO_HAS_INVALIDATE_DATA, getUserInfoByIds(requestedIds) );
 		}
 	}
 }

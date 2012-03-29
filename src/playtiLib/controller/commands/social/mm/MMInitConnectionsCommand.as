@@ -7,12 +7,12 @@ package playtiLib.controller.commands.social.mm
 	
 	import playtiLib.config.notifications.GeneralAppNotifications;
 	import playtiLib.config.server.DeploymentConfig;
-	import playtiLib.model.VO.social.SocialConfigVO;
+	import playtiLib.model.vo.social.SocialConfigVO;
 	import playtiLib.utils.social.mm.MailruCall;
 	/**
 	 * Get a SocialConfigVO object. It adds listener to MailruCall (complete) and handles it, and handles the deployment mode
 	 * (dev mode, staging mode and production mode)
-	 * @see playtiLib.model.VO.social.SocialConfigVO
+	 * @see playtiLib.model.vo.social.SocialConfigVO
 	 * @see playtiLib.utils.social.mm.MailruCall
 	 */	
 	public class MMInitConnectionsCommand extends SimpleCommand {

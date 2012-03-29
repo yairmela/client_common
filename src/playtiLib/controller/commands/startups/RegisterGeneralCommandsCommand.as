@@ -4,10 +4,12 @@ package playtiLib.controller.commands.startups
 	import org.puremvc.as3.patterns.command.SimpleCommand;
 	
 	import playtiLib.config.notifications.GeneralAppNotifications;
+	import playtiLib.controller.commands.content.GetLocaleContentCommand;
 	import playtiLib.controller.commands.coupons.AfterCollectCouponCommand;
 	import playtiLib.controller.commands.coupons.ChooseGiftCompleteCommand;
 	import playtiLib.controller.commands.coupons.CleanupCouponsCommand;
 	import playtiLib.controller.commands.coupons.CollectCouponCommand;
+	import playtiLib.controller.commands.coupons.CouponSystemUnavailableCommand;
 	import playtiLib.controller.commands.coupons.CreateCouponCommand;
 	import playtiLib.controller.commands.coupons.CreateEventCouponCommand;
 	import playtiLib.controller.commands.coupons.GetAndValidateCouponCommand;
@@ -24,16 +26,18 @@ package playtiLib.controller.commands.startups
 	import playtiLib.controller.commands.paypage.BuyTransactionResultCommand;
 	import playtiLib.controller.commands.paypage.CheckBuyTransactionStatusCommand;
 	import playtiLib.controller.commands.popup.GotoGameTabCommand;
-	import playtiLib.controller.commands.popup.OpenURLCommand;
 	import playtiLib.controller.commands.popup.OpenPopupCommand;
+	import playtiLib.controller.commands.popup.OpenURLCommand;
 	import playtiLib.controller.commands.popup.ShowNextPopupCommand;
 	import playtiLib.controller.commands.server.ServerLoginCompleteCommand;
 	import playtiLib.controller.commands.social.ExecuteGeneralExternalCallCommand;
+	import playtiLib.controller.commands.social.fb.CloseSendGiftProxyCommand;
 	import playtiLib.controller.commands.social.fb.FBLoadSocialRequestsCommand;
+	import playtiLib.controller.commands.social.fb.ShowGameTabCommand;
 	import playtiLib.controller.commands.sound.MuteSoundsCommand;
 	import playtiLib.controller.commands.statistics.GeneralStatisticsTrackingCommand;
 	import playtiLib.controller.commands.task.GetTasksCommand;
-	import playtiLib.controller.commands.task.TaskHandlerCommand;
+	import playtiLib.controller.commands.task.ClientTaskHandlerCommand;
 	import playtiLib.controller.commands.user.RegisterNewUserCommand;
 	import playtiLib.controller.commands.user.UpdateUserInfoCommand;
 	import playtiLib.controller.commands.user.UserDataReadyCoreCommand;
@@ -77,9 +81,10 @@ package playtiLib.controller.commands.startups
 			facade.registerCommand( GeneralAppNotifications.SYSTEM_TO_USER_COUPON_COLLECTION, SystemToUserCouponCollectionCommand );
 			facade.registerCommand( GeneralAppNotifications.UPDATE_TODAY_RECEIVERS, UpdateTodayRecieversCommand );
 			facade.registerCommand( GeneralAppNotifications.CREATE_EVENT_COUPON_COMMAND, CreateEventCouponCommand );
+			facade.registerCommand( GeneralAppNotifications.COUPON_SYSTEM_UNAVAILABLE, CouponSystemUnavailableCommand);
 			//tasks
 			facade.registerCommand( GeneralAppNotifications.GET_TASKS_COMMAND, GetTasksCommand );
-			facade.registerCommand( GeneralAppNotifications.TASK_HANDLER, TaskHandlerCommand );
+			facade.registerCommand( GeneralAppNotifications.TASK_HANDLER, ClientTaskHandlerCommand );
 			
 			facade.registerCommand( GeneralAppNotifications.GOTO_GAME_TAB, GotoGameTabCommand );
 
@@ -88,6 +93,7 @@ package playtiLib.controller.commands.startups
 			facade.registerCommand( GeneralAppNotifications.TRACK, GeneralStatisticsTrackingCommand );
 			
 			facade.registerCommand( GeneralAppNotifications.OPEN_URL, OpenURLCommand );
+			facade.registerCommand(GeneralAppNotifications.LOAD_NEW_LOCALE_CONTENT, GetLocaleContentCommand);
 		}
 	}
 }

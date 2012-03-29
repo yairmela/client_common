@@ -1,6 +1,6 @@
 package playtiLib.utils.user
 {
-	import playtiLib.model.VO.user.UserSocialInfo;
+	import playtiLib.model.vo.user.UserSocialInfo;
 	import playtiLib.utils.core.ObjectUtil;
 
 	public class UserUtil	{
@@ -8,7 +8,7 @@ package playtiLib.utils.user
 		 * Gets two lists (master list and slave list) and returns one merged 
 		 * list. It checks if the list contains users's id or s.n users's id. In the final list, 
 		 * there'll be only uniqe users.
-		 * @see playtiLib.model.VO.user.UserVO
+		 * @see playtiLib.model.vo.user.UserVO
 		 * @see playtiLib.utils.core.ObjectUtil
 		 */		
 		public static function mergeUsersList( master_list:Array, slave_list:Array ):void {

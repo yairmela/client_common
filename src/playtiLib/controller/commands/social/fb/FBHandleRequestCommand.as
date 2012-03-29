@@ -6,7 +6,7 @@ package playtiLib.controller.commands.social.fb
 
 	import playtiLib.config.notifications.GeneralAppNotifications;
 	import playtiLib.config.statistics.GeneralStatistics;
-	import playtiLib.model.VO.FlashVarsVO;
+	import playtiLib.model.vo.FlashVarsVO;
 	import playtiLib.model.proxies.data.FlashVarsProxy;
 	import playtiLib.utils.statistics.Tracker;
 

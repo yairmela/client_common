@@ -5,7 +5,7 @@ package playtiLib.view.components.user
 	import flash.display.MovieClip;
 	import flash.net.URLRequest;
 	
-	import playtiLib.model.VO.user.UserSocialInfo;
+	import playtiLib.model.vo.user.UserSocialInfo;
 	import playtiLib.utils.warehouse.GraphicsWarehouseList;
 	import playtiLib.view.components.list.AutoArrangeDisplayContainer;
 	import playtiLib.view.components.list.ListBoxSimple;
@@ -14,7 +14,7 @@ package playtiLib.view.components.user
 	 * Represents the list of friends component that on the stage. It holds a ListBoxSimple object and a list of MovieClip. 
 	 * @see flash.display.MovieClip
 	 * @see playtiLib.utils.warehouse.GraphicsWarehouseList
-	 * @see playtiLib.model.VO.user.UserVO
+	 * @see playtiLib.model.vo.user.UserVO
 	 */	
 	public class FriendsListVLogic implements IViewLogic{
 		

@@ -4,7 +4,7 @@ package playtiLib.controller.commands.social.vk
 	import org.puremvc.as3.patterns.command.SimpleCommand;
 	
 	import playtiLib.config.notifications.GeneralAppNotifications;
-	import playtiLib.model.VO.social.SocialPostVO;
+	import playtiLib.model.vo.social.SocialPostVO;
 	import playtiLib.controller.commands.social.gift.PublishGiftUserSelectedCommand;
 	
 	public class VKPublishGiftCommand extends SimpleCommand

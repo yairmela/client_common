@@ -4,7 +4,7 @@ package playtiLib.view.components.popups
 	import flash.events.Event;
 	import flash.text.TextField;
 	
-	import playtiLib.model.VO.user.UserSocialInfo;
+	import playtiLib.model.vo.user.UserSocialInfo;
 	import playtiLib.utils.events.EventTrans;
 	import playtiLib.utils.user.UserUtil;
 	import playtiLib.view.components.btns.ButtonSimple;

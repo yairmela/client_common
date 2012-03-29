@@ -11,10 +11,10 @@ package playtiLib.view.components.gift
 	
 	import playtiLib.config.gifts.CouponSystemConfig;
 	import playtiLib.config.notifications.GeneralAppNotifications;
-	import playtiLib.model.VO.amf.response.Coupon;
-	import playtiLib.model.VO.gift.ChooseGift;
-	import playtiLib.model.VO.gift.Gift;
-	import playtiLib.model.VO.user.UserSocialInfo;
+	import playtiLib.model.vo.amf.response.Coupon;
+	import playtiLib.model.vo.gift.ChooseGift;
+	import playtiLib.model.vo.gift.Gift;
+	import playtiLib.model.vo.user.UserSocialInfo;
 	import playtiLib.utils.events.EventTrans;
 	import playtiLib.view.components.btns.ButtonSimple;
 	import playtiLib.view.components.list.ListWindowSimple;

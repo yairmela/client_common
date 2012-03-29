@@ -8,8 +8,8 @@ package playtiLib.controller.commands.paypage
 	import playtiLib.config.server.ServerCallConfig;
 	import playtiLib.config.statistics.GeneralStatistics;
 	import playtiLib.controller.commands.popup.OpenPopupCommand;
-	import playtiLib.model.VO.amf.response.TransactionStatusMessage;
-	import playtiLib.model.VO.popup.PopupDoActionVO;
+	import playtiLib.model.vo.amf.response.TransactionStatusMessage;
+	import playtiLib.model.vo.popup.PopupDoActionVO;
 	import playtiLib.model.proxies.user.UserProxy;
 	import playtiLib.utils.statistics.Tracker;
 	import playtiLib.view.components.popups.PopupViewLogic;

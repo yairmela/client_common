@@ -2,7 +2,7 @@ package playtiLib.model.proxies.coupon
 {
 	import org.puremvc.as3.patterns.proxy.Proxy;
 	
-	import playtiLib.model.VO.amf.response.Coupon;
+	import playtiLib.model.vo.amf.response.Coupon;
 	/**
 	 * Proxy that stores the coupon that was selected by the user for collecting it( it is used after the user press on collect coupon 
 	 * in GCP in the preCollectCouponCommand).

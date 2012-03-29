@@ -4,7 +4,7 @@ package playtiLib.controller.commands.server
 	import org.puremvc.as3.patterns.command.SimpleCommand;
 	
 	import playtiLib.config.server.ServerConfig;
-	import playtiLib.model.VO.amf.request.SessionInfo;
+	import playtiLib.model.vo.amf.request.SessionInfo;
 	import playtiLib.model.proxies.server.AMFServerCallManagerProxy;
 	
 	public class ServerReloginCompleteCommand extends SimpleCommand

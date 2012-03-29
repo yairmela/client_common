@@ -3,10 +3,10 @@ package playtiLib.utils.social
 	import org.puremvc.as3.patterns.facade.Facade;
 	
 	import playtiLib.config.social.SocialConfig;
-	import playtiLib.model.VO.FlashVarsVO;
-	import playtiLib.model.VO.social.SocialConfigVO;
 	import playtiLib.model.proxies.config.AppConfigProxy;
 	import playtiLib.model.proxies.data.FlashVarsProxy;
+	import playtiLib.model.vo.FlashVarsVO;
+	import playtiLib.model.vo.social.SocialConfigVO;
 	import playtiLib.utils.server.IServerManager;
 	import playtiLib.utils.social.fb.FBSocialCallManager;
 	import playtiLib.utils.social.mm.MMSocialCallManager;
@@ -25,7 +25,7 @@ package playtiLib.utils.social
 	 */	
 	public class SocialCallManager	{
 		
-		private static var instance:IServerManager;
+		private static var instance:ISocialCallManager;
 		private static var social_type:String; 
 		
 		public function SocialCallManager()	{
@@ -37,17 +37,17 @@ package playtiLib.utils.social
 		 * @return 
 		 * 
 		 */		
-		public static function getServerMgr():IServerManager{
+		public static function getServerMgr():ISocialCallManager{
 			
 			switch( social_type  ) {
 				case SocialConfig.VK :
-					return new VKSocialCallManager();
+					return VKSocialCallManager.getInstance();
 				case SocialConfig.FB :
 					return FBSocialCallManager.getInstance();
 				case SocialConfig.MM :
 					return MMSocialCallManager.getInstance();
 				case SocialConfig.SIMULATE:
-					return new SimulateSocialCallManager();
+					return SimulateSocialCallManager.getInstance();
 			}
 			return null;
 		}
@@ -83,6 +83,11 @@ package playtiLib.utils.social
 					
 					break;
 			}
+		}
+		
+		public static function get SNInaccessible():Boolean {
+			
+			return getServerMgr().SNInaccessible;
 		}
 	}
 }

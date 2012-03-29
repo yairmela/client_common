@@ -8,13 +8,13 @@ package playtiLib.model.proxies.user
 	import playtiLib.config.server.GeneralCallsConfig;
 	import playtiLib.config.server.ServerConfig;
 	import playtiLib.config.social.SocialCallsConfig;
-	import playtiLib.model.VO.FlashVarsVO;
-	import playtiLib.model.VO.amf.response.UserInfoMessage;
-	import playtiLib.model.VO.amf.response.helpers.UserInfo;
-	import playtiLib.model.VO.amf.response.helpers.UserLevel;
-	import playtiLib.model.VO.amf.response.helpers.UserStatus;
-	import playtiLib.model.VO.social.user.SocialUsersListVO;
-	import playtiLib.model.VO.user.UserSocialInfo;
+	import playtiLib.model.vo.FlashVarsVO;
+	import playtiLib.model.vo.amf.response.UserInfoMessage;
+	import playtiLib.model.vo.amf.response.helpers.UserInfo;
+	import playtiLib.model.vo.amf.response.helpers.UserLevel;
+	import playtiLib.model.vo.amf.response.helpers.UserStatus;
+	import playtiLib.model.vo.amf.social.user.SocialUsersListVO;
+	import playtiLib.model.vo.user.UserSocialInfo;
 	import playtiLib.model.proxies.data.DataCapsuleProxy;
 	import playtiLib.model.proxies.data.FlashVarsProxy;
 	import playtiLib.utils.core.ObjectUtil;
@@ -66,7 +66,7 @@ package playtiLib.model.proxies.user
 		}
 		/**
 		 * Returns the user static information as UserInfo object
-		 * @see playtiLib.model.VO.amf.response.helpers.UserInfo
+		 * @see playtiLib.model.vo.amf.response.helpers.UserInfo
 		 * @return 
 		 */
 		public function get user_info():UserInfo {
@@ -78,7 +78,7 @@ package playtiLib.model.proxies.user
 		
 		/**
 		 * Returns the user balance info as UserStatus object
-		 * @see playtiLib.model.VO.amf.response.helpers.UserStatus
+		 * @see playtiLib.model.vo.amf.response.helpers.UserStatus
 		 * @return 
 		 */
 		public function get user_status():UserStatus {
@@ -90,7 +90,7 @@ package playtiLib.model.proxies.user
 		
 		/**
 		 * Returns the user balance info as UserLevel object
-		 * @see playtiLib.model.VO.amf.response.helpers.UserLevel
+		 * @see playtiLib.model.vo.amf.response.helpers.UserLevel
 		 * @return 
 		 */
 		public function get user_level():UserLevel {

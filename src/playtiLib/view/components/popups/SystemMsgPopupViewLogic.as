@@ -4,13 +4,13 @@ package playtiLib.view.components.popups
 	import flash.external.ExternalInterface;
 	import flash.text.TextField;
 	
-	import playtiLib.model.VO.popup.SystemMsgVO;
+	import playtiLib.model.vo.popup.SystemMsgVO;
 	import playtiLib.view.components.btns.ButtonSimple;
 	/**
 	 * Holds a title textField, description textField, close and reload buttons and a SystemMsVO object.
 	 * It sets the title.text, close btn, and reload btn (it is like do btn) by the popup mc, and handles the reload btn visible. 
 	 * @see flash.external.ExternalInterface
-	 * @see playtiLib.model.VO.popup.SystemMsgVO
+	 * @see playtiLib.model.vo.popup.SystemMsgVO
 	 */	
 	public class SystemMsgPopupViewLogic extends PopupViewLogic{
 		

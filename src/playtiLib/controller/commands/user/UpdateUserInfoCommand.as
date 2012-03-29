@@ -4,7 +4,7 @@ package playtiLib.controller.commands.user
 	import flash.events.Event;
 	import flash.events.IOErrorEvent;
 	import playtiLib.config.server.AMFGeneralCallsConfig;
-	import playtiLib.model.VO.amf.response.helpers.UserInfo;
+	import playtiLib.model.vo.amf.response.helpers.UserInfo;
 	
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.command.SimpleCommand;
@@ -14,9 +14,9 @@ package playtiLib.controller.commands.user
 	import playtiLib.config.server.GeneralCallsConfig;
 	import playtiLib.config.social.SocialCallsConfig;
 	import playtiLib.config.statistics.GeneralStatistics;
-	import playtiLib.model.VO.FlashVarsVO;
-	import playtiLib.model.VO.social.user.SocialUsersListVO;
-	import playtiLib.model.VO.user.UserSocialInfo;
+	import playtiLib.model.vo.FlashVarsVO;
+	import playtiLib.model.vo.amf.social.user.SocialUsersListVO;
+	import playtiLib.model.vo.user.UserSocialInfo;
  	import playtiLib.model.proxies.data.FlashVarsProxy;
  	import playtiLib.utils.data.DataCallConfig;
 	import playtiLib.utils.data.DataCapsule;

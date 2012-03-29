@@ -7,10 +7,10 @@ package playtiLib.controller.commands.coupons
 	import playtiLib.config.gifts.CouponSystemConfig;
 	import playtiLib.config.notifications.GeneralAppNotifications;
 	import playtiLib.config.server.AMFGeneralCallsConfig;
-	import playtiLib.model.VO.amf.response.ClientResponse;
-	import playtiLib.model.VO.amf.response.CollectCouponMessage;
-	import playtiLib.model.VO.amf.response.Coupon;
-	import playtiLib.model.VO.amf.response.CouponMessage;
+	import playtiLib.model.vo.amf.response.ClientResponse;
+	import playtiLib.model.vo.amf.response.CollectCouponMessage;
+	import playtiLib.model.vo.amf.response.Coupon;
+	import playtiLib.model.vo.amf.response.CouponMessage;
 	import playtiLib.model.proxies.coupon.SelectedCouponProxy;
 	import playtiLib.utils.data.DataCapsule;
 	import playtiLib.utils.data.DataCapsuleFactory;
@@ -41,8 +41,7 @@ package playtiLib.controller.commands.coupons
 			var dataCapsule:DataCapsule = event.currentTarget as DataCapsule;
 			dataCapsule.removeEventListener( Event.COMPLETE, onDataReady );
 			if ( CouponSystemConfig.isCouponSystemUnavailable( dataCapsule.getDataHolderByIndex(0).server_response.service.errorCode ) ){
-				sendNotification( GeneralAppNotifications.COUPON_SYSTEM_UNAVIABLE );
-				sendNotification( GeneralAppNotifications.SHOW_STATUS_GIFT_MSG, CouponSystemConfig.COUPON_SYSTEM_UNAVIABLE );
+				sendNotification( GeneralAppNotifications.COUPON_SYSTEM_UNAVAILABLE );
 				return;
 			}	
 			var couponMessage:CouponMessage = dataCapsule.getDataHolderByIndex(0).data as CouponMessage;

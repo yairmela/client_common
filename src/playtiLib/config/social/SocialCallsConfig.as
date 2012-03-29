@@ -1,10 +1,11 @@
 package playtiLib.config.social
 {
 	import playtiLib.config.server.ServerModulesConfig;
-	import playtiLib.model.VO.social.SocialRequestsListVO;
-	import playtiLib.model.VO.social.user.SocialUserIdsVO;
-	import playtiLib.model.VO.social.user.SocialUsersListVO;
-	import playtiLib.model.VO.social.user.StipulatedConverToStringCallConfigVO;
+	import playtiLib.model.vo.amf.social.user.SocialUserIdsVO;
+	import playtiLib.model.vo.amf.social.user.SocialUsersListVO;
+	import playtiLib.model.vo.amf.social.user.StipulatedConverToStringCallConfigVO;
+	import playtiLib.model.vo.social.SocialRequestsListVO;
+	import playtiLib.model.vo.social.fb.SocialFriendsInfoListVo;
 	import playtiLib.utils.data.DataCallConfig;
 	import playtiLib.utils.data.DataStipulationVO;
 
@@ -47,6 +48,9 @@ package playtiLib.config.social
 		
 		public static const LOAD_APP_REQUESTS_COMMAND_NAME:String 	= 'social_get_requests_data';
 		public static const APP_REQUESTS:DataCallConfig		= new DataCallConfig(ServerModulesConfig.SOCIAL, LOAD_APP_REQUESTS_COMMAND_NAME , false, {}, SocialRequestsListVO);
+		
+		public static const GET_ALL_FRIENDS_IDS_AND_NAMES:String 	= 'social_get_friends_data';
+		public static const FRIENDS_IDS_AND_NAMES:DataCallConfig		= new DataCallConfig(ServerModulesConfig.SOCIAL, GET_ALL_FRIENDS_IDS_AND_NAMES , true, {}, SocialFriendsInfoListVo);
 		
 		public static function getSocialWallSavePostCallConfig(data : Object):DataCallConfig{
 			var callConfigVO:DataCallConfig = SOCIAL_WALL_SAVE_POST;

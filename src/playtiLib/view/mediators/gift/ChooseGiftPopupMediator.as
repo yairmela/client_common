@@ -4,10 +4,12 @@ package playtiLib.view.mediators.gift
 	import flash.events.MouseEvent;
 	import flash.external.ExternalInterface;
 	
+	import org.puremvc.as3.interfaces.INotification;
+	
 	import playtiLib.config.notifications.GeneralAppNotifications;
-	import playtiLib.model.VO.gift.ChooseGift;
-	import playtiLib.model.VO.gift.Gift;
-	import playtiLib.model.VO.popup.PopupDoActionVO;
+	import playtiLib.model.vo.gift.ChooseGift;
+	import playtiLib.model.vo.gift.Gift;
+	import playtiLib.model.vo.popup.PopupDoActionVO;
 	import playtiLib.view.components.gift.ChooseGiftsViewLogic;
 	import playtiLib.view.mediators.popups.PopupMediator;
 	 
@@ -33,6 +35,19 @@ package playtiLib.view.mediators.gift
 		private function registerListeners():void {
 			
 			send_gift_vlogic.addEventListener( Event.COMPLETE, sendHandler );
+		}
+		
+		public override function listNotificationInterests():Array{
+			return super.listNotificationInterests().concat([GeneralAppNotifications.CLOSE_POPUP]);
+		}
+		
+		public override function handleNotification(notification:INotification):void{
+			super.handleNotification(notification);
+			switch( notification.getName() ) {
+				case GeneralAppNotifications.CLOSE_POPUP:
+					closePopup();
+					break;
+			}
 		}
 		
 		public function sendHandler( giftTypeId:String ):void {

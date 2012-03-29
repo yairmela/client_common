@@ -11,7 +11,7 @@ package playtiLib.utils.server {
 	import mx.rpc.remoting.RemoteObject;
 	import mx.rpc.Responder;
 	import playtiLib.config.server.ServerConfig;
-	import playtiLib.model.VO.amf.request.ClientRequest;
+	import playtiLib.model.vo.amf.request.ClientRequest;
 	
 	use namespace mx_internal;
 	

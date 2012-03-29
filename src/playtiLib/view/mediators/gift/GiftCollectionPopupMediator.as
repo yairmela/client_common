@@ -1,7 +1,6 @@
 package playtiLib.view.mediators.gift
 {
 	import flash.display.MovieClip;
-	import flash.events.Event;
 	import flash.events.MouseEvent;
 	
 	import org.puremvc.as3.interfaces.INotification;
@@ -11,17 +10,15 @@ package playtiLib.view.mediators.gift
 	import playtiLib.config.notifications.GeneralAppNotifications;
 	import playtiLib.config.statistics.GeneralStatistics;
 	import playtiLib.controller.commands.popup.OpenPopupCommand;
-	import playtiLib.model.VO.amf.response.Coupon;
-	import playtiLib.model.VO.gift.ChooseGift;
-	import playtiLib.model.VO.gift.Gift;
-	import playtiLib.model.VO.popup.PopupDoActionVO;
-	import playtiLib.model.VO.social.SocialPostVO;
 	import playtiLib.model.proxies.coupon.UserCouponProxy;
 	import playtiLib.model.proxies.user.UserProxy;
 	import playtiLib.model.proxies.user.UserSocialInfoProxy;
+	import playtiLib.model.vo.amf.response.Coupon;
+	import playtiLib.model.vo.gift.ChooseGift;
+	import playtiLib.model.vo.popup.PopupDoActionVO;
+	import playtiLib.model.vo.social.SocialPostVO;
 	import playtiLib.utils.events.EventTrans;
 	import playtiLib.utils.locale.TextLib;
-	import playtiLib.view.components.btns.ButtonSimple;
 	import playtiLib.view.components.gift.GiftCollectionViewLogic;
 	import playtiLib.view.components.popups.PopupViewLogic;
 	import playtiLib.view.mediators.popups.PopupMediator;
@@ -46,21 +43,21 @@ package playtiLib.view.mediators.gift
 			super.onRegister();
 			
 			registerListeners();
-//			force updating the coupons
-			if( _forceUpdate ){
+			
+			if( _forceUpdate )
+			{
 				getUsersSocialInfoAndInsertToGCP();
 			}
 			
 			sendNotification(GeneralAppNotifications.TRACK, null, GeneralStatistics.OPEN_GCP);
 		}
 		
-		private function registerListeners():void {
-			
+		private function registerListeners():void
+		{
 			popupVLogic.addEventListener( CouponSystemConfig.SEND_BACK_BTN, giftBackHandler );
 			popupVLogic.addEventListener( CouponSystemConfig.COLLECT_COUPON_BTN, collectHandler );
 			popupVLogic.addEventListener( CouponSystemConfig.REMOVE_COUPON_BTN, removeHandler );
 			popupVLogic.addEventListener( CouponSystemConfig.SEND_COUPON_BTN, sendGiftHandler );
-			
 		}
 		
 		override public function listNotificationInterests():Array {
@@ -123,8 +120,8 @@ package playtiLib.view.mediators.gift
 			sendNotification( GeneralAppNotifications.OPEN_SEND_GIFT_POPUP, event.data as ChooseGift );
 		}
 		
-		private function collectHandler( event:EventTrans ):void {
-			
+		private function collectHandler( event:EventTrans ):void 
+		{
 			sendNotification( GeneralAppNotifications.PRE_COLLECT_COUPON_COMMAND, event.data as Coupon );
 		}
 		
@@ -161,7 +158,7 @@ package playtiLib.view.mediators.gift
 			
 			for each( var coupon:Coupon in coupons ){
 				coupon.message = SocialPostVO.injectUserParamsToString( TextLib.lib.retrive('wall_posts.gifts.gift_'+coupon.giftTypeId+'.user_msg'), 
-					user_proxy.user_level, user_proxy.userSocialInfo, null, [user_proxy.user_level.coinsGiftAmount] );
+					user_proxy.user_level, user_proxy.userSocialInfo, null, user_proxy.user_level.coinsGiftAmount );
 			}
 		}
 

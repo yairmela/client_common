@@ -2,9 +2,9 @@ package playtiLib.utils.warehouse
 {
 	import flash.events.EventDispatcher;
 	import playtiLib.config.content.LocaleContentConfig;
-	import playtiLib.model.VO.amf.response.helpers.LocaleCommandParams;
-	import playtiLib.model.VO.amf.response.helpers.LocalizedEntity;
-	import playtiLib.model.VO.amf.response.LocaleResponse;
+	import playtiLib.model.vo.amf.response.helpers.LocaleCommandParams;
+	import playtiLib.model.vo.amf.response.helpers.LocalizedEntity;
+	import playtiLib.model.vo.amf.response.LocaleResponse;
 	/**
 	 * Holds an array of all the localed contents
 	 */	

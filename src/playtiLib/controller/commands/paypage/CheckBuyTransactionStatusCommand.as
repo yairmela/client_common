@@ -13,8 +13,8 @@ package playtiLib.controller.commands.paypage
 	import playtiLib.config.server.GeneralCallsConfig;
 	import playtiLib.config.server.ServerCallConfig;
 	import playtiLib.config.server.ServerErrorsConfig;
-	import playtiLib.model.VO.amf.response.ClientResponse;
-	import playtiLib.model.VO.amf.response.TransactionStatusMessage;
+	import playtiLib.model.vo.amf.response.ClientResponse;
+	import playtiLib.model.vo.amf.response.TransactionStatusMessage;
 	import playtiLib.model.proxies.payment.CurrencyCostProxy;
 	import playtiLib.utils.data.DataCapsule;
 	import playtiLib.utils.data.DataCapsuleFactory;

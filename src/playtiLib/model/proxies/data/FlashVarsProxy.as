@@ -1,10 +1,10 @@
 package playtiLib.model.proxies.data
 {
 	import org.puremvc.as3.patterns.proxy.Proxy;
- 	import playtiLib.model.VO.FlashVarsVO;
+ 	import playtiLib.model.vo.FlashVarsVO;
 	/**
 	 * @see org.puremvc.as3.patterns.proxy.Proxy
-	 * @see playtiLib.model.VO.FlashVarsVO
+	 * @see playtiLib.model.vo.FlashVarsVO
 	 */ 	
 	public class FlashVarsProxy extends Proxy {
 		

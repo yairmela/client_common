@@ -44,8 +44,8 @@ package playtiLib.config.notifications
 		public static const SET_SOCIAL_BANNERS:String 				= 'social_set_banners';
 		public static const SOCIAL_ACCEPT_SURPRISE_GIFT:String		= 'social_accept_surprise_gift';
 		
-		//full screen
 		public static const FULLSCREEN_MODE:String 					= 'fullscreen_mode';
+		public static const FRAMERATE_CHANGED:String 				= 'framerate_changed';
 
 		//sounds
 		public static const MUTE_SOUNDS:String 						= 'mute_sounds';
@@ -102,7 +102,7 @@ package playtiLib.config.notifications
 		//enter frame for games heart beat
 		public static const ENTER_FRAME:String 						= 'enter_frame';
 
-		public static const COUPON_SYSTEM_UNAVIABLE:String 			= 'coupon_system_unaviable';
+		public static const COUPON_SYSTEM_UNAVAILABLE:String 		= 'coupon_system_unavailable';
 		
 		public static const LOAD_USER_GIFTS_FROM_GCP_HANDLER:String = 'load_user_gifts_from_gcp_handler';
 		public static const REJECT_COUPON:String					= 'reject_coupon';
@@ -150,8 +150,11 @@ package playtiLib.config.notifications
 		public static const SEND_COUPON_TO_FAKE_USERS:String 		= 'send_coupon_to_fake_users';
 		public static const CREATE_EVENT_COUPON_COMMAND:String 		= 'create_event_coupon_command';
 		public static const SHARE_EVENT_COUPON_COMMAND:String 		= 'share_event_coupon_command';
+		public static const CREATE_COUPON:String 					= 'create_coupon';
 		
 		public static const GOTO_GAME_TAB:String					= 'goto_game_tab';
+		public static const ON_SEND_BTN_CLICK:String				= 'on_send_btn_click';
+		
 		
 		//tasks
 		public static const GET_TASKS_COMMAND:String				= 'get_tasks_command';
@@ -173,5 +176,13 @@ package playtiLib.config.notifications
 		public static const ENGINE_PRELOADER_PROGRESS:String 		= 'engine_preloader_progress';
 		
 		public static const OPEN_URL:String							= 'open_url';
+		public static const CLOSE_POPUP:String						= 'close_popup';
+		public static const SHOW_GAME_TAB_COMMAND:String			= 'show_game_tab_command';
+		public static const SEND_SOCIAL_REQ_DATA_READY:String		= 'send_social_req_data_ready';
+		public static const UPDATE_AFTER_SOCIAL_REQ_SENT:String		= 'update_after_social_req_sent';
+		public static const OPEN_SOCIAL_INVITE_FRIENDS_DIALOG:String= 'open_social_invite_friends_dialog';
+		public static const CLOSE_INVITE_PROXY:String				= 'close_invite_proxy';
+		public static const CLOSE_SEND_GIFTS_PROXY:String			= 'close_send_gifts_proxy';
+		public static const INIT_ARENAS_PROXY_COMMAND:String		= 'init_arenas_proxy_command';
 	}
 }

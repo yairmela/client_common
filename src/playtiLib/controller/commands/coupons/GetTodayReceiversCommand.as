@@ -6,7 +6,7 @@ package playtiLib.controller.commands.coupons
 	
 	import playtiLib.config.gifts.CouponSystemConfig;
 	import playtiLib.config.server.AMFGeneralCallsConfig;
-	import playtiLib.model.VO.amf.response.CouponReceiversMessage;
+	import playtiLib.model.vo.amf.response.CouponReceiversMessage;
 	import playtiLib.model.proxies.coupon.TodayReceiversProxy;
 	import playtiLib.utils.data.DataCapsule;
 	import playtiLib.utils.data.DataCapsuleFactory;
@@ -27,9 +27,11 @@ package playtiLib.controller.commands.coupons
 			var dataCapsule:DataCapsule = event.currentTarget as DataCapsule;
 			dataCapsule.removeEventListener( Event.COMPLETE, onDataReady );
 			var receiversMessage:CouponReceiversMessage = dataCapsule.getDataHolderByIndex(0).data as CouponReceiversMessage;
-			var recrivers:String = receiversMessage.receivers;
-			//init the todayReceivers proxy
-			facade.registerProxy( new TodayReceiversProxy( recrivers ) );
+			if (receiversMessage){
+				var recrivers:String = receiversMessage.receivers;
+				//init the todayReceivers proxy
+				facade.registerProxy( new TodayReceiversProxy( recrivers ) );
+			}
 		}
 	}
 }

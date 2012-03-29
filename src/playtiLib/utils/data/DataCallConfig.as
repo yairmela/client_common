@@ -1,6 +1,6 @@
 package playtiLib.utils.data
 {
-	import playtiLib.model.VO.amf.request.ClientRequest;
+	import playtiLib.model.vo.amf.request.ClientRequest;
 	import playtiLib.utils.core.ObjectUtil;
 
 	/**

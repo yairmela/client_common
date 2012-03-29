@@ -8,7 +8,7 @@ package playtiLib.view.mediators.popups
 	import org.puremvc.as3.interfaces.INotification;
 	
 	import playtiLib.config.notifications.GeneralAppNotifications;
-	import playtiLib.model.VO.popup.PopupDoActionVO;
+	import playtiLib.model.vo.popup.PopupDoActionVO;
 	import playtiLib.model.proxies.popup.ActivePopupsProxy;
 	import playtiLib.utils.statistics.Tracker;
 	import playtiLib.view.components.btns.ButtonSimple;

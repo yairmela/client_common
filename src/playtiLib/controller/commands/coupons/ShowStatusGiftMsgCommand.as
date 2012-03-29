@@ -9,7 +9,7 @@ package playtiLib.controller.commands.coupons
 	import playtiLib.config.gifts.CouponSystemConfig;
 	import playtiLib.config.notifications.GeneralAppNotifications;
 	import playtiLib.controller.commands.popup.OpenPopupCommand;
-	import playtiLib.model.VO.popup.SystemMsgVO;
+	import playtiLib.model.vo.popup.SystemMsgVO;
 	import playtiLib.utils.locale.TextLib;
 	/**
 	 * This class handles the gift msg status by (in execute) different cases of the notification's body.  

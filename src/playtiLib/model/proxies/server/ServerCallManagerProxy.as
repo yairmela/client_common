@@ -14,8 +14,8 @@ package playtiLib.model.proxies.server
 	import playtiLib.config.server.ServerErrorsConfig;
 	import playtiLib.config.social.SocialConfig;
 	import playtiLib.config.statistics.GeneralStatistics;
-	import playtiLib.model.VO.FlashVarsVO;
-	import playtiLib.model.VO.server.ServerCallVO;
+	import playtiLib.model.vo.FlashVarsVO;
+	import playtiLib.model.vo.server.ServerCallVO;
 	import playtiLib.model.proxies.data.FlashVarsProxy;
 	import playtiLib.utils.data.DataCapsule;
 	import playtiLib.utils.data.DataCapsuleFactory;

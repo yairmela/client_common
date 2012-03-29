@@ -1,9 +1,9 @@
 package playtiLib.utils.statistics
 {
-	import playtiLib.model.VO.FlashVarsVO;
-	import playtiLib.model.VO.amf.response.TransactionStatusMessage;
-	import playtiLib.model.VO.amf.response.helpers.UserInfo;
-	import playtiLib.model.VO.amf.response.helpers.UserLevel;
+	import playtiLib.model.vo.FlashVarsVO;
+	import playtiLib.model.vo.amf.response.TransactionStatusMessage;
+	import playtiLib.model.vo.amf.response.helpers.UserInfo;
+	import playtiLib.model.vo.amf.response.helpers.UserLevel;
 	
 	public class GeneralTrackSnapshot
 	{

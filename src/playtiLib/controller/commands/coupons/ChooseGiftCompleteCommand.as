@@ -8,9 +8,9 @@ package playtiLib.controller.commands.coupons
 	import playtiLib.config.gifts.CouponSystemConfig;
 	import playtiLib.config.notifications.GeneralAppNotifications;
 	import playtiLib.config.server.ServerConfig;
-	import playtiLib.model.VO.gift.ChooseGift;
-	import playtiLib.model.VO.gift.Gift;
-	import playtiLib.model.VO.social.SocialPostVO;
+	import playtiLib.model.vo.gift.ChooseGift;
+	import playtiLib.model.vo.gift.Gift;
+	import playtiLib.model.vo.social.SocialPostVO;
 	import playtiLib.utils.locale.TextLib;
 	import playtiLib.utils.warehouse.GraphicsWarehouseList;
 	/**

@@ -5,9 +5,9 @@ package playtiLib.model.proxies.content
 	import playtiLib.config.content.LocaleContentConfig;
 	import playtiLib.config.notifications.GeneralAppNotifications;
 	import playtiLib.config.server.AMFGeneralCallsConfig;
-	import playtiLib.model.VO.amf.response.ClientResponse;
-	import playtiLib.model.VO.amf.response.helpers.LocaleCommandParams;
-	import playtiLib.model.VO.amf.response.LocaleResponse;
+	import playtiLib.model.vo.amf.response.ClientResponse;
+	import playtiLib.model.vo.amf.response.helpers.LocaleCommandParams;
+	import playtiLib.model.vo.amf.response.LocaleResponse;
 	import playtiLib.utils.data.ContentDataCallConfig;
 	import playtiLib.utils.data.DataCapsule;
 	import playtiLib.utils.data.DataCapsuleFactory;

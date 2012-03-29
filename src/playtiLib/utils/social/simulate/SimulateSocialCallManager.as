@@ -7,12 +7,27 @@ package playtiLib.utils.social.simulate
 	import playtiLib.config.social.SocialCallsConfig;
 	import playtiLib.utils.events.EventTrans;
 	import playtiLib.utils.server.IServerManager;
+	import playtiLib.utils.social.ISocialCallManager;
 	
-	public class SimulateSocialCallManager extends EventDispatcher implements IServerManager{
+	public class SimulateSocialCallManager extends EventDispatcher implements ISocialCallManager {
 		
-		public function SimulateSocialCallManager( target:IEventDispatcher=null )	{
+		private static var instance:SimulateSocialCallManager;
+		
+		public function SimulateSocialCallManager( singleton_key:SimulateSocialCallManagerSKey )	{
 			
-			super( target );
+			super();
+		}
+		
+		public static function getInstance():SimulateSocialCallManager {
+			
+			if( !instance )
+				instance = new SimulateSocialCallManager( new SimulateSocialCallManagerSKey )
+			return instance;
+		}
+		
+		public function get SNInaccessible() : Boolean {
+			
+			return false;
 		}
 		/**
 		 * Handles few complete social calls by dispatching an apropriate events.   
@@ -37,3 +52,5 @@ package playtiLib.utils.social.simulate
 		}
 	}
 }
+//the singleton private key
+class SimulateSocialCallManagerSKey {}

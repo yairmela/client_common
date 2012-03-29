@@ -15,7 +15,7 @@ package playtiLib.model.proxies.server {
 	import playtiLib.config.notifications.GeneralAppNotifications;
 	import playtiLib.config.server.ServerConfig;
 	import playtiLib.config.server.ServerErrorsConfig;
-	import playtiLib.model.VO.amf.request.ClientRequest;
+	import playtiLib.model.vo.amf.request.ClientRequest;
 	import playtiLib.utils.server.AMFServerCallManager;
 	
 	/**
@@ -43,10 +43,19 @@ package playtiLib.model.proxies.server {
 		private function onFault(event:FaultEvent):void {
 			
 			//server not available
-			if (event.fault.rootCause.faultCode){
+			if (event.fault.rootCause["faultCode"]){
 				sendNotification(GeneralAppNotifications.SYSTEM_ERROR, ServerErrorsConfig.ERROR_IOERROR);
 				
-				storedOperations = [];
+				clearOperationList();
+				return;
+			}
+			
+			var errorCode : Object = event.fault.rootCause["errorCode"];
+			
+			if (errorCode) {
+				sendNotification(GeneralAppNotifications.SYSTEM_ERROR, errorCode);
+				
+				clearOperationList();
 				return;
 			}
 			
@@ -74,6 +83,11 @@ package playtiLib.model.proxies.server {
 			sendNotification(GeneralAppNotifications.SERVER_FAULT_HANDLED, result);
 		}
 
+		public function clearOperationList():void {
+			
+			storedOperations = [];
+		}
+		
 		private function storeFailedOperation(token:AsyncToken):void {
 			
 			for each (var remoteObject:RemoteObject in serverCallManager.server_modules) {
@@ -102,8 +116,9 @@ package playtiLib.model.proxies.server {
 				}
 			}
 			
-			storedOperations = [];
-		}
+			clearOperationList();
+		}		
+		
 		
 		protected function get serverCallManager() : AMFServerCallManager {
 			

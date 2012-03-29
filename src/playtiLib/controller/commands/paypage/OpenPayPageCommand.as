@@ -18,7 +18,7 @@ package playtiLib.controller.commands.paypage
 	import playtiLib.config.server.ServerConfig;
 	import playtiLib.config.social.SocialConfig;
 	import playtiLib.config.statistics.GeneralStatistics;
-	import playtiLib.model.VO.user.UserSocialInfo;
+	import playtiLib.model.vo.user.UserSocialInfo;
 	import playtiLib.model.proxies.payment.CurrencyCostProxy;
 	import playtiLib.model.proxies.user.UserProxy;
 	import playtiLib.utils.data.DataCapsule;

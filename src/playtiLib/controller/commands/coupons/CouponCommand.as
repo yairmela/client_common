@@ -2,11 +2,11 @@ package playtiLib.controller.commands.coupons
 {
 	import org.puremvc.as3.patterns.command.SimpleCommand;
 	
-	import playtiLib.model.VO.FlashVarsVO;
+	import playtiLib.model.vo.FlashVarsVO;
 	import playtiLib.model.proxies.coupon.TodayReceiversProxy;
 	import playtiLib.model.proxies.coupon.UserCouponProxy;
 	import playtiLib.model.proxies.data.FlashVarsProxy;
-	import playtiLib.model.proxies.social.FBRequestsProxy;
+	import playtiLib.model.proxies.social.fb.FBRequestsProxy;
 	import playtiLib.model.proxies.user.UserProxy;
 	/**
 	 * Class that has some getter function that helps some other commands that use it.

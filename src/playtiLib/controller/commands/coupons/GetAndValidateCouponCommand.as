@@ -8,9 +8,9 @@ package playtiLib.controller.commands.coupons
 	import playtiLib.config.notifications.GeneralAppNotifications;
 	import playtiLib.config.server.AMFGeneralCallsConfig;
 	import playtiLib.config.social.SocialCallsConfig;
-	import playtiLib.model.VO.amf.response.Coupon;
-	import playtiLib.model.VO.amf.response.CouponsListMessage;
-	import playtiLib.model.VO.social.user.SocialUserIdsVO;
+	import playtiLib.model.vo.amf.response.Coupon;
+	import playtiLib.model.vo.amf.response.CouponsListMessage;
+	import playtiLib.model.vo.amf.social.user.SocialUserIdsVO;
 	import playtiLib.model.proxies.coupon.UserCouponProxy;
 	import playtiLib.model.proxies.user.UserSocialInfoProxy;
 	import playtiLib.utils.data.DataCapsule;
@@ -43,10 +43,10 @@ package playtiLib.controller.commands.coupons
 			var dataCapsule:DataCapsule = event.currentTarget as DataCapsule;
 			dataCapsule.removeEventListener( Event.COMPLETE, onDataReady );
 			if ( CouponSystemConfig.isCouponSystemUnavailable( dataCapsule.getDataHolderByIndex(0).server_response.service.errorCode ) ){
-				sendNotification( GeneralAppNotifications.COUPON_SYSTEM_UNAVIABLE );
-				if ( request_ids.length > 0 && !fb_request_proxy.isInviteRequestById( ( request_ids[0] ) ) ){
-					sendNotification( GeneralAppNotifications.SHOW_STATUS_GIFT_MSG, CouponSystemConfig.COUPON_SYSTEM_UNAVIABLE );
-				}
+				sendNotification( GeneralAppNotifications.COUPON_SYSTEM_UNAVAILABLE );
+//				if ( request_ids.length > 0 && !fb_request_proxy.isInviteRequestById( ( request_ids[0] ) ) ){
+//					sendNotification( GeneralAppNotifications.SHOW_STATUS_GIFT_MSG, CouponSystemConfig.COUPON_SYSTEM_UNAVIABLE );
+//				}
 				return;
 			}	
 			//get array of valid coupons
@@ -66,8 +66,7 @@ package playtiLib.controller.commands.coupons
 			}
 			if( !facade.hasProxy( UserCouponProxy.NAME ) ) {
 				//first load in this session, if there is a req id in the flash vars, force open the GCP
-				facade.registerProxy( new UserCouponProxy( validCoupons ) );
-				facade.registerProxy( new UserSocialInfoProxy() );
+				facade.registerProxy( new UserCouponProxy( validCoupons ) );	
 				sendNotification( GeneralAppNotifications.USER_COUPON_DATA_READY, validCoupons.length, ( request_ids.length > 0 ).toString() );
 			} else {
 				coupon_proxy.addCoupons( validCoupons );

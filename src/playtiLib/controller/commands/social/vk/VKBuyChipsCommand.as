@@ -9,19 +9,13 @@ package playtiLib.controller.commands.social.vk
 	
 	import playtiLib.config.notifications.GeneralAppNotifications;
 	import playtiLib.config.server.AMFGeneralCallsConfig;
-	import playtiLib.config.server.GeneralCallsConfig;
 	import playtiLib.config.server.ServerCallConfig;
 	import playtiLib.config.social.SocialCallsConfig;
-	import playtiLib.config.social.vk.VKNotifications;
-	import playtiLib.model.VO.amf.response.TransactionStatusMessage;
-	import playtiLib.model.VO.payment.CurrencyCost;
 	import playtiLib.model.proxies.payment.CurrencyCostProxy;
-	import playtiLib.utils.data.DataCallConfig;
+	import playtiLib.model.vo.amf.response.TransactionStatusMessage;
+	import playtiLib.model.vo.payment.CurrencyCost;
 	import playtiLib.utils.data.DataCapsule;
 	import playtiLib.utils.data.DataCapsuleFactory;
-	import playtiLib.utils.data.DataHolder;
-	import playtiLib.utils.data.DataServerResponseVO;
-	import playtiLib.utils.social.SocialCallManager;
 	import playtiLib.utils.social.vk.VkWrapperUtil;
 	import playtiLib.utils.tracing.Logger;
 	

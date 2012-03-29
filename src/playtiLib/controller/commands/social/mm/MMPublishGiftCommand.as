@@ -5,7 +5,7 @@ package playtiLib.controller.commands.social.mm
 	
 	import playtiLib.controller.commands.social.gift.PublishGiftUserSelectedCommand;
 	import playtiLib.config.notifications.GeneralAppNotifications;
-	import playtiLib.model.VO.social.SocialPostVO;
+	import playtiLib.model.vo.social.SocialPostVO;
 	/**
 	 * Gets a SocialPostVO object from notification's body and sends notification (CHOOSE_SN_USER) with the user SN id and registers 
 	 * command(CHOOSE_SN_USER_COMPLETE)

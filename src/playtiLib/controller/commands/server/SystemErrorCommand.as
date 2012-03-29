@@ -2,17 +2,19 @@ package playtiLib.controller.commands.server {
 	
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.command.SimpleCommand;
+	
+	import playtiLib.config.gifts.CouponSystemConfig;
 	import playtiLib.config.notifications.GeneralAppNotifications;
 	import playtiLib.config.server.ServerErrorsConfig;
 	import playtiLib.config.server.SystemErrorConfig;
 	import playtiLib.config.statistics.GeneralStatistics;
-	import playtiLib.model.VO.popup.SystemMsgVO;
+	import playtiLib.model.vo.popup.SystemMsgVO;
 	import playtiLib.utils.locale.TextLib;
 	
 	/**
 	 * Handles the system erors config. It gets the error code by the notification's body, make a new msg, sends notification(SYSTEM_MSG_POPUP)
 	 * and tracks the action.
-	 * @see playtiLib.model.VO.popup.SystemMsgVO
+	 * @see playtiLib.model.vo.popup.SystemMsgVO
 	 */
 	public class SystemErrorCommand extends SimpleCommand {
 		
@@ -23,8 +25,7 @@ package playtiLib.controller.commands.server {
 				case SystemErrorConfig.ERROR_GET_SWF_CONTENT: 
 				case SystemErrorConfig.ERROR_GET_CONTENT: 
 				case SystemErrorConfig.ERROR_RELOGIN: 
-				case SystemErrorConfig.ERROR_IOERROR:
-				
+				case SystemErrorConfig.ERROR_IOERROR:				
 				case SystemErrorConfig.ERROR_SERVER_SOME_ERROR: 
 				case SystemErrorConfig.ERROR_SERVER_SESSION_EXPIRE: 
 				case SystemErrorConfig.ERROR_SERVER_USER_NOT_FOUND: 
@@ -34,12 +35,16 @@ package playtiLib.controller.commands.server {
 				case SystemErrorConfig.LOGIN_NOT_ALLOWED_AT_THIS_MOMENT: 
 					showLoginNotAllowed();
 					break;
-				case ServerErrorsConfig.ERROR_SERVER_USER_HAS_FEW_SESSION: 
+				case ServerErrorsConfig.ERROR_SERVER_USER_HAS_FEW_SESSION:
+					showSimultaneouslySessionProblem();
+					break;
 				case ServerErrorsConfig.ERROR_SERVER_SESSION_IS_INVALID: 
 					showSessionProblem();
 					break;
+				case ServerErrorsConfig.ERROR_COUPONS_MAINTENANCE:
+					sendNotification( GeneralAppNotifications.COUPON_SYSTEM_UNAVAILABLE );
+					break;
 				case ServerErrorsConfig.ERROR_SERVER_MAINTENANCE: 
-				case ServerErrorsConfig.ERROR_COUPONS_MAINTENANCE: 
 				case ServerErrorsConfig.ERROR_PLUGIN_MAINTENANCE: 
 				case ServerErrorsConfig.ERROR_MISSIONS_MAINTENANCE: 
 					showMaintenance(error_code);
@@ -52,35 +57,20 @@ package playtiLib.controller.commands.server {
 		 *
 		 */
 		private function showLoginNotAllowed():void {
-			var sys_msg:SystemMsgVO = new SystemMsgVO();
-			sys_msg.title = TextLib.lib.retrive('system.login_not_allowed.title');
-			sys_msg.description = (TextLib.lib.retrive('system.login_not_allowed.description') as String).replace("[n]", String.fromCharCode(13));
-			sys_msg.description = sys_msg.description.replace("[n]", String.fromCharCode(13));
-			sys_msg.has_close_btn = false;
-			sys_msg.is_refresh_btn_needed = true;
-			sendNotification(GeneralAppNotifications.SYSTEM_MSG_POPUP, sys_msg);
+			showSystemMsgPopup('system.login_not_allowed.title', 'system.login_not_allowed.description', true, false );
 		}
 		
 		private function showServerConnection():void {
-			var sys_msg:SystemMsgVO = new SystemMsgVO();
-			sys_msg.title = TextLib.lib.retrive('system.connection_lost.title');
-			sys_msg.description = (TextLib.lib.retrive('system.connection_lost.description') as String).replace("[n]", String.fromCharCode(13));
-			sys_msg.description = sys_msg.description.replace("[n]", String.fromCharCode(13));
-			sys_msg.has_close_btn = false;
-			sys_msg.is_refresh_btn_needed = true;
-			sendNotification(GeneralAppNotifications.SYSTEM_MSG_POPUP, sys_msg);
+			showSystemMsgPopup('system.connection_lost.title', 'system.connection_lost.description', true, false );
 		}
 		
 		private function showSessionProblem():void {
-			var sys_msg:SystemMsgVO = new SystemMsgVO();
-			sys_msg.title = TextLib.lib.retrive('system.session_problem.title');
-			sys_msg.description = (TextLib.lib.retrive('system.session_problem.description') as String).replace("[n]", String.fromCharCode(13));
-			sys_msg.description = sys_msg.description.replace("[n]", String.fromCharCode(13));
-			sys_msg.has_close_btn = false;
-			sys_msg.is_refresh_btn_needed = true;
-			sys_msg.is_auto_fixable = true;
-			sendNotification(GeneralAppNotifications.SYSTEM_MSG_POPUP, sys_msg);
+			showSystemMsgPopup('system.session_problem.title', 'system.session_problem.description', true, false, true );
 		}
+		
+		private function showSimultaneouslySessionProblem():void {			
+			showSystemMsgPopup('system.simultaneously_session_problem.title', 'system.simultaneously_session_problem.description', true, false, true );
+		}		
 		
 		private function showMaintenance(error_code:int):void {
 			var type:String
@@ -99,11 +89,17 @@ package playtiLib.controller.commands.server {
 					break;
 			}
 			
+			showSystemMsgPopup('system.' + type + '.title', 'system.' + type + '.description', false, false );
+		}
+		
+		private function showSystemMsgPopup(title:String, description:String, hasRefreshBtn:Boolean, hasCloseBtn:Boolean, isAutoFixable:Boolean = false):void {
 			var sys_msg:SystemMsgVO = new SystemMsgVO();
-			sys_msg.title = TextLib.lib.retrive('system.' + type + '.title');
-			sys_msg.description = (TextLib.lib.retrive('system.' + type + '.description') as String).replace("[n]", String.fromCharCode(13));
+			sys_msg.title = TextLib.lib.retrive(title);
+			sys_msg.description = (TextLib.lib.retrive(description) as String).replace("[n]", String.fromCharCode(13));
 			sys_msg.description = sys_msg.description.replace("[n]", String.fromCharCode(13));
-			sys_msg.has_close_btn = false;
+			sys_msg.is_refresh_btn_needed = hasRefreshBtn;
+			sys_msg.has_close_btn = hasCloseBtn;			
+			sys_msg.is_auto_fixable = isAutoFixable;
 			sendNotification(GeneralAppNotifications.SYSTEM_MSG_POPUP, sys_msg);
 		}
 	}

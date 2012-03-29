@@ -3,7 +3,7 @@ package playtiLib.config.server
 	import flash.display.Sprite;
 	
 	import playtiLib.config.social.SocialConfig;
-	import playtiLib.model.VO.amf.request.SessionInfo;
+	import playtiLib.model.vo.amf.request.SessionInfo;
 	import playtiLib.utils.data.ContentDataCallConfig;
 	import playtiLib.utils.data.DataCallConfig;
 	import playtiLib.utils.server.AMFServerCallManager;

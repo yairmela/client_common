@@ -4,7 +4,7 @@ package playtiLib.controller.commands.social.mm
 	import org.puremvc.as3.patterns.command.SimpleCommand;
 	
 	import playtiLib.config.notifications.GeneralAppNotifications;
-	import playtiLib.model.VO.social.SocialPostVO;
+	import playtiLib.model.vo.social.SocialPostVO;
 	/**
 	 * Gets a SocialPostVO object and if it's is_gift property is true, it sends notification (PUBLISH_GIFT_COMPLETE) and if it 
 	 * is false, it sends notification (PUBLISH_TO_WALL_COMPLETE)

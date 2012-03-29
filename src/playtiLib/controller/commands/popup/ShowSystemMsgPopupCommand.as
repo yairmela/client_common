@@ -6,8 +6,8 @@ package playtiLib.controller.commands.popup
 	import playtiLib.config.display.GeneralDialogsConfig;
 	import playtiLib.config.notifications.GeneralAppNotifications;
 	import playtiLib.config.statistics.GeneralStatistics;
-	import playtiLib.model.VO.popup.PopupDoActionVO;
-	import playtiLib.model.VO.popup.SystemMsgVO;
+	import playtiLib.model.vo.popup.PopupDoActionVO;
+	import playtiLib.model.vo.popup.SystemMsgVO;
 	import playtiLib.view.components.popups.SystemMsgPopupViewLogic;
 	import playtiLib.view.mediators.popups.PopupMediator;
 	/**
