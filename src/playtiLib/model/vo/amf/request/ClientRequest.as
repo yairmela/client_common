@@ -7,6 +7,7 @@ package playtiLib.model.vo.amf.request
 		public var cmd:String;
 		public var cheat:String;
 		
+		public var isGuest:Boolean;
 		
 		public function ClientRequest()
 		{
