@@ -76,8 +76,9 @@ package playtiLib.view.components.user
 			}
 		}
 		
-		public function insertUsers( users_arr:Array, complete_to_on_scroll_num:Boolean = true , player_id:String = '' ):void {
+		public function insertUsers( users_arr:Array, complete_to_on_scroll_num:Boolean = true , player_id:String = '', isNotUse3Top:Boolean=false ):void {
 			
+			this.on_scrolled_num = isNotUse3Top ? 8 : this.on_scrolled_num;
 			//set data models
 			this.scrolled_users_data = users_arr;
 			//insert initial users
@@ -181,7 +182,6 @@ package playtiLib.view.components.user
 
 		private function insertUserItemPanels( new_users:Array, start_x:int=0 ):void {
 			
-//			start_x = start_x;
 			new_users = new_users.reverse();
 			for each( var user:User in new_users ) {
 				if( user && !user.userSocialInfo.isReady ){
