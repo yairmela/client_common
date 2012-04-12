@@ -90,7 +90,7 @@ package playtiLib.view.components.popups
 			//set do buttons
 			registerButton( container_mc, 'yes_btn', do_btns );
 			registerButton( container_mc, 'do_btn', do_btns );
-			var do_index:int = 2;
+			var do_index:int = 1;
 			while( registerButton( container_mc, 'do_btn_' + do_index, do_btns ) ) {
 				do_index++;
 			}
