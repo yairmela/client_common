@@ -9,6 +9,7 @@ package playtiLib.model.proxies.social {
 	import playtiLib.config.statistics.GeneralStatistics;
 	import playtiLib.controller.commands.paypage.CheckBuyTransactionStatusCommand;
 	import playtiLib.model.proxies.payment.CurrencyCostProxy;
+	import playtiLib.model.proxies.user.UserProxy;
 	import playtiLib.model.vo.payment.CurrencyCost;
 	
 	/**
@@ -43,6 +44,16 @@ package playtiLib.model.proxies.social {
 			addCallback("acceptSurpriseGiftCoupon", acceptSurpriseGiftCoupon);
 			addCallback("playTabClick", playTabClick);
 			addCallback("addSNRequests", addSNRequests);
+			addCallback("exportScreenshot", exportScreenshot);
+			addCallback("getTrialPayData", getTrialPayData);
+		}
+		
+		private function exportScreenshot(useFilter:Boolean):void {
+			sendNotification(GeneralAppNotifications.EXPORT_SCREENSHOT, useFilter);
+		}
+		
+		private function getTrialPayData():void {
+			sendNotification(GeneralAppNotifications.GET_TRIAL_PAY_DATA);
 		}
 		
 		private function playTabClick():void {

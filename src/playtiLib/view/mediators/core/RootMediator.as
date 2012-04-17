@@ -1,15 +1,21 @@
 package playtiLib.view.mediators.core
 {
+	import flash.display.BitmapData;
 	import flash.display.DisplayObject;
 	import flash.display.Sprite;
 	import flash.display.StageDisplayState;
 	import flash.display.StageScaleMode;
+	import flash.filters.BitmapFilterQuality;
+	import flash.filters.BlurFilter;
+	import flash.geom.Point;
+	import flash.utils.setTimeout;
 	
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.mediator.Mediator;
 	
 	import playtiLib.config.notifications.GeneralAppNotifications;
 	import playtiLib.utils.tracing.Logger;
+
 	/**
 	 * @see  org.puremvc.as3.patterns.mediator.Mediator
 	 */
@@ -39,6 +45,7 @@ package playtiLib.view.mediators.core
 		override public function listNotificationInterests():Array {
 			
 			return [ GeneralAppNotifications.FULLSCREEN_MODE,
+					 GeneralAppNotifications.EXPORT_SCREENSHOT,	
 					 GeneralAppNotifications.ADD_CHILD_TO_ROOT,
 					 GeneralAppNotifications.ADD_CHILD_TO_ROOT_AT,
 					 GeneralAppNotifications.ADD_CHILD_TO_ROOT_AT_BOTTOM,
@@ -54,6 +61,9 @@ package playtiLib.view.mediators.core
 		override public function handleNotification( notification:INotification ):void {
 			
 			switch( notification.getName() ) {
+				case GeneralAppNotifications.EXPORT_SCREENSHOT:
+					makeScreenshot( notification.getBody() as Boolean);
+					break;
 				case GeneralAppNotifications.FULLSCREEN_MODE:
 					fullscreen = notification.getBody() as Boolean;
 					break;
@@ -72,6 +82,30 @@ package playtiLib.view.mediators.core
 					break;
 			}
 		}
+		
+		private function makeScreenshot( useFilter:Boolean ):void {
+			if (root_view.stage.displayState==StageDisplayState.NORMAL)
+			{
+				var root_bitmapData:BitmapData = new BitmapData ( root_view.stage.stageWidth, root_view.stage.stageHeight );
+				try
+				{
+					root_bitmapData.draw( root_view.stage );
+					if (useFilter)
+					{
+						var blurFilter:BlurFilter = new BlurFilter (3,3,BitmapFilterQuality.HIGH);
+						root_bitmapData.applyFilter (root_bitmapData, root_bitmapData.rect, new Point (0,0), blurFilter);
+					}
+					sendNotification( GeneralAppNotifications.SCREENSHOT_MAKED, root_bitmapData );
+						
+				}
+				catch (event:Error)
+				{
+					setTimeout(makeScreenshot,1,useFilter);
+				}
+			}
+			else setTimeout(makeScreenshot,1,useFilter);
+		}
+		
 		/**
 		 * Adds a display object to the root and returns it. 
 		 * @param child The display object that added to root.

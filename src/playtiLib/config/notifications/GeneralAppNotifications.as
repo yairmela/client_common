@@ -184,5 +184,12 @@ package playtiLib.config.notifications
 		public static const CLOSE_INVITE_PROXY:String				= 'close_invite_proxy';
 		public static const CLOSE_SEND_GIFTS_PROXY:String			= 'close_send_gifts_proxy';
 		public static const INIT_ARENAS_PROXY_COMMAND:String		= 'init_arenas_proxy_command';
+		
+		/*wmode*/
+		public static const EXPORT_SCREENSHOT:String				= 'export_screenshot';
+		public static const SCREENSHOT_MAKED:String					= 'screenshot_maked';
+		
+		/*trial pay*/
+		public static const GET_TRIAL_PAY_DATA:String				= 'get_trial_pay_data';
 	}
 }

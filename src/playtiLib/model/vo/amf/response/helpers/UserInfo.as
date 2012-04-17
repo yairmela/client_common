@@ -74,6 +74,8 @@ package playtiLib.model.vo.amf.response.helpers
 		
 		public var accountToken:String;
 		
+		public var payer:Boolean;
+		
 		
 		public function UserInfo()
 		{
