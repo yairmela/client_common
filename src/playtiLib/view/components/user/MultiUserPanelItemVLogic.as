@@ -8,6 +8,9 @@ package playtiLib.view.components.user
 	import flash.events.EventDispatcher;
 	import flash.events.MouseEvent;
 	import flash.net.URLRequest;
+	import flash.system.ApplicationDomain;
+	import flash.system.LoaderContext;
+	import flash.system.SecurityDomain;
 	import flash.text.TextField;
 	import flash.text.TextFormat;
 	
@@ -68,7 +71,7 @@ package playtiLib.view.components.user
 					//set photo
 					if( user.userSocialInfo.photo ) {
 						user_photo_loader = person_mc['photo_holder'].addChild( new Loader ) as Loader;
-						user_photo_loader.load( new URLRequest( user.userSocialInfo.photo ) );
+						user_photo_loader.load( new URLRequest( user.userSocialInfo.photo ), new LoaderContext(true, new ApplicationDomain, SecurityDomain.currentDomain) );
 						user_photo_loader.contentLoaderInfo.addEventListener( Event.COMPLETE, photoLoaded );
 					}
 				}

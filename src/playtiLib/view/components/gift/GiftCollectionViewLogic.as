@@ -6,6 +6,8 @@ package playtiLib.view.components.gift
 	import flash.events.MouseEvent;
 	import flash.events.TimerEvent;
 	import flash.net.URLRequest;
+	import flash.text.TextField;
+	import flash.text.TextFormat;
 	import flash.utils.Timer;
 	import flash.utils.setTimeout;
 	
@@ -82,8 +84,19 @@ package playtiLib.view.components.gift
 						avatar.contentLoaderInfo.addEventListener( Event.COMPLETE, avatarLoaded );
 						gift_mc.avatar.addChild( avatar );
 					}
-					gift_mc.name_txt.text = coupon.sender.first_name + ' ' + coupon.sender.last_name;
+					var nameField:TextField;
 					
+					nameField = gift_mc.name_txt;
+					nameField.text = coupon.sender.first_name + ' ' + coupon.sender.last_name;
+					
+					var format:TextFormat = nameField.getTextFormat();
+					
+					while ((nameField.textWidth > nameField.width-3) && (int(format.size) >= 8)) {
+						format.size = int(format.size) - 1;
+						nameField.setTextFormat(format);
+						format = nameField.getTextFormat();				
+					}
+										
 					gift_mc.txt_info.text = coupon.message;
 					
 					gift_mc.gifts_generic_preloader.visible 	= false;
