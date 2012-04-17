@@ -28,6 +28,11 @@ package playtiLib.model.vo
 			
 			return getCastedProperty( "is_like", int ) == 1;
 		}
+		
+		public function get beta_mode():Boolean {
+			
+			return getCastedProperty( "beta_mode", int ) == 1;
+		}
 
 		public function get account_type():String {
 			
@@ -43,7 +48,7 @@ package playtiLib.model.vo
 			
 			return getCastedProperty( "session_id", String );
 		}
-		
+				
 		public function set viewer_id( id:String ):void {
 			
 //			params["vid"] = id;
