@@ -86,16 +86,16 @@ package playtiLib.view.mediators.core
 		private function makeScreenshot( useFilter:Boolean ):void {
 			if (root_view.stage.displayState==StageDisplayState.NORMAL)
 			{
-				var root_bitmapData:BitmapData = new BitmapData ( root_view.stage.stageWidth, root_view.stage.stageHeight );
+				var rootBitmapData:BitmapData = new BitmapData ( root_view.stage.stageWidth, root_view.stage.stageHeight );
 				try
 				{
-					root_bitmapData.draw( root_view.stage );
+					rootBitmapData.draw( root_view.stage );
 					if (useFilter)
 					{
-						var blurFilter:BlurFilter = new BlurFilter (3,3,BitmapFilterQuality.HIGH);
-						root_bitmapData.applyFilter (root_bitmapData, root_bitmapData.rect, new Point (0,0), blurFilter);
+						var blurFilter:BlurFilter = new BlurFilter(3, 3, BitmapFilterQuality.HIGH);
+						rootBitmapData.applyFilter (rootBitmapData, rootBitmapData.rect, new Point (0,0), blurFilter);
 					}
-					sendNotification( GeneralAppNotifications.SCREENSHOT_MAKED, root_bitmapData );
+					sendNotification( GeneralAppNotifications.SCREENSHOT_MADE, rootBitmapData );
 						
 				}
 				catch (event:Error)

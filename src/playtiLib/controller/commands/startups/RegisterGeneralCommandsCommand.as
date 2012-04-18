@@ -98,7 +98,7 @@ package playtiLib.controller.commands.startups
 			facade.registerCommand(GeneralAppNotifications.LOAD_NEW_LOCALE_CONTENT, GetLocaleContentCommand);
 			
 			//wmode
-			facade.registerCommand(GeneralAppNotifications.SCREENSHOT_MAKED, SendScreenshotCommand);
+			facade.registerCommand(GeneralAppNotifications.SCREENSHOT_MADE, SendScreenshotCommand);
 			
 			//trial pay
 			facade.registerCommand(GeneralAppNotifications.GET_TRIAL_PAY_DATA, GetTrialPayDataCommand);

@@ -187,7 +187,7 @@ package playtiLib.config.notifications
 		
 		/*wmode*/
 		public static const EXPORT_SCREENSHOT:String				= 'export_screenshot';
-		public static const SCREENSHOT_MAKED:String					= 'screenshot_maked';
+		public static const SCREENSHOT_MADE:String					= 'screenshot_made';
 		
 		/*trial pay*/
 		public static const GET_TRIAL_PAY_DATA:String				= 'get_trial_pay_data';
