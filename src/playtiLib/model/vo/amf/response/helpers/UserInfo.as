@@ -70,7 +70,7 @@ package playtiLib.model.vo.amf.response.helpers
 		
 		public var lastMegaBonusTs:Number;
 		
-		public var TRPromptChecked:Boolean;
+		public var trPromptChecked:Boolean;
 		
 		public var accountToken:String;
 		
