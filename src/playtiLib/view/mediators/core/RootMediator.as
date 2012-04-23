@@ -4,12 +4,14 @@ package playtiLib.view.mediators.core
 	import flash.display.Sprite;
 	import flash.display.StageDisplayState;
 	import flash.display.StageScaleMode;
+	import flash.utils.setTimeout;
 	
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.mediator.Mediator;
 	
 	import playtiLib.config.notifications.GeneralAppNotifications;
 	import playtiLib.utils.tracing.Logger;
+
 	/**
 	 * @see  org.puremvc.as3.patterns.mediator.Mediator
 	 */
@@ -95,7 +97,9 @@ package playtiLib.view.mediators.core
 		}
 
 		private function set fullscreen( value:Boolean ):void{
-			
+			if(!root_view.stage){
+				return;
+			}
 			if( value ) {
 				root_view.stage.scaleMode 		= StageScaleMode.NO_SCALE;
 				root_view.stage.displayState 	= StageDisplayState.FULL_SCREEN;
