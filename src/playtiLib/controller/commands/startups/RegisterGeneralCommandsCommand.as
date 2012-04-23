@@ -26,7 +26,6 @@ package playtiLib.controller.commands.startups
 	import playtiLib.controller.commands.paypage.BuyTransactionResultCommand;
 	import playtiLib.controller.commands.paypage.CheckBuyTransactionStatusCommand;
 	import playtiLib.controller.commands.paypage.GetTrialPayDataCommand;
-	import playtiLib.controller.commands.popup.GotoGameTabCommand;
 	import playtiLib.controller.commands.popup.OpenPopupCommand;
 	import playtiLib.controller.commands.popup.OpenURLCommand;
 	import playtiLib.controller.commands.popup.ShowNextPopupCommand;
@@ -86,9 +85,8 @@ package playtiLib.controller.commands.startups
 			facade.registerCommand( GeneralAppNotifications.COUPON_SYSTEM_UNAVAILABLE, CouponSystemUnavailableCommand);
 			//tasks
 			facade.registerCommand( GeneralAppNotifications.GET_TASKS_COMMAND, GetTasksCommand );
-			facade.registerCommand( GeneralAppNotifications.TASK_HANDLER, ClientTaskHandlerCommand );
+			facade.registerCommand( GeneralAppNotifications.TASK_HANDLER, ClientTaskHandlerCommand );			
 			
-			facade.registerCommand( GeneralAppNotifications.GOTO_GAME_TAB, GotoGameTabCommand );
 
 			facade.registerCommand( GeneralAppNotifications.EXECUTE_EXTERNAL_CALL, ExecuteGeneralExternalCallCommand );
 			

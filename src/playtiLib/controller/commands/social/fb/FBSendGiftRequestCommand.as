@@ -39,7 +39,7 @@ package playtiLib.controller.commands.social.fb
 			}
 			else{
 				sendNotification( GeneralAppNotifications.CREATE_COUPON, post_data );
-				ExternalInterface.call('showGiftsTab'); 
+				sendNotification( GeneralAppNotifications.SHOW_GIFTS_TAB_COMMAND );
 			}
 		}
 		
@@ -61,7 +61,7 @@ package playtiLib.controller.commands.social.fb
 				( facade.retrieveProxy( DisplaySettingsProxy.NAME ) as DisplaySettingsProxy ).fullscreen = false;
 				sendNotification( GeneralAppNotifications.CREATE_COUPON, post_data );
 			}
-			ExternalInterface.call('showGiftsTab'); 
+			sendNotification( GeneralAppNotifications.SHOW_GIFTS_TAB_COMMAND );
 		}
 	}
 }

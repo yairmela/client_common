@@ -150,9 +150,8 @@ package playtiLib.config.notifications
 		public static const SEND_COUPON_TO_FAKE_USERS:String 		= 'send_coupon_to_fake_users';
 		public static const CREATE_EVENT_COUPON_COMMAND:String 		= 'create_event_coupon_command';
 		public static const SHARE_EVENT_COUPON_COMMAND:String 		= 'share_event_coupon_command';
-		public static const CREATE_COUPON:String 					= 'create_coupon';
+		public static const CREATE_COUPON:String 					= 'create_coupon';		
 		
-		public static const GOTO_GAME_TAB:String					= 'goto_game_tab';
 		public static const ON_SEND_BTN_CLICK:String				= 'on_send_btn_click';
 		
 		
@@ -178,6 +177,8 @@ package playtiLib.config.notifications
 		public static const OPEN_URL:String							= 'open_url';
 		public static const CLOSE_POPUP:String						= 'close_popup';
 		public static const SHOW_GAME_TAB_COMMAND:String			= 'show_game_tab_command';
+		public static const SHOW_GIFTS_TAB_COMMAND:String			= 'show_gifts_tab_command';
+		public static const SHOW_INVITE_TAB_COMMAND:String			= 'show_invite_tab_command';
 		public static const SEND_SOCIAL_REQ_DATA_READY:String		= 'send_social_req_data_ready';
 		public static const UPDATE_AFTER_SOCIAL_REQ_SENT:String		= 'update_after_social_req_sent';
 		public static const OPEN_SOCIAL_INVITE_FRIENDS_DIALOG:String= 'open_social_invite_friends_dialog';
