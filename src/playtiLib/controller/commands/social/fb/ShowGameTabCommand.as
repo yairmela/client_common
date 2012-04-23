@@ -8,7 +8,10 @@ package playtiLib.controller.commands.social.fb
 	public class ShowGameTabCommand extends SimpleCommand
 	{
 		override public function execute( notification:INotification ):void {
-			ExternalInterface.call('showGameTab');
+			
+			if(ExternalInterface.available) {
+				ExternalInterface.call("showGameTab");
+			}
 		}
 	}
 }
