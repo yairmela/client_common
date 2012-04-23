@@ -187,7 +187,8 @@ package playtiLib.config.notifications
 		public static const EXPORT_SCREENSHOT:String				= 'export_screenshot';
 		public static const SCREENSHOT_MADE:String					= 'screenshot_made';
 		
-		/*trial pay*/
-		public static const GET_TRIAL_PAY_DATA:String				= 'get_trial_pay_data';
+		/*deal spot*/
+		public static const DEAL_SPOT_READY:String					= 'deal_spot_ready';
+		public static const SET_DEAL_SPOT:String					= 'set_deal_spot';
 	}
 }

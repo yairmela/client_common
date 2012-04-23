@@ -1,7 +1,10 @@
 
 package playtiLib.model.proxies.social {
 
+	import flash.events.Event;
+	import flash.events.TimerEvent;
 	import flash.external.ExternalInterface;
+	import flash.utils.Timer;
 	
 	import org.puremvc.as3.patterns.proxy.Proxy;
 	
@@ -45,15 +48,15 @@ package playtiLib.model.proxies.social {
 			addCallback("playTabClick", playTabClick);
 			addCallback("addSNRequests", addSNRequests);
 			addCallback("exportScreenshot", exportScreenshot);
-			addCallback("getTrialPayData", getTrialPayData);
+			addCallback("setDealSpotParams", setDealSpotParams);
 		}
 		
 		private function exportScreenshot(useFilter:Boolean):void {
 			sendNotification(GeneralAppNotifications.EXPORT_SCREENSHOT, useFilter);
 		}
 		
-		private function getTrialPayData():void {
-			sendNotification(GeneralAppNotifications.GET_TRIAL_PAY_DATA);
+		private function setDealSpotParams (url:String):void {
+			sendNotification (GeneralAppNotifications.SET_DEAL_SPOT, url);
 		}
 		
 		private function playTabClick():void {

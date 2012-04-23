@@ -15,7 +15,7 @@ package playtiLib.controller.commands.social.fb
 		override public function execute( notification:INotification ):void {
 			if (ExternalInterface.available)
 			{
-				var jpgBytes:ByteArray = JPEGEncoder.encode(notification.getBody() as BitmapData, 100 );
+				var jpgBytes:ByteArray = JPEGEncoder.encode( notification.getBody() as BitmapData, 100 );
 				var screenshotBase64:String = Base64.encode( jpgBytes );
 				ExternalInterface.call('setScreenshot', screenshotBase64);
 			}
