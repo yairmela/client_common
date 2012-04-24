@@ -36,6 +36,11 @@ package playtiLib.model.vo
 			return getCastedProperty( "beta_mode", int ) == 1;
 		}
 		
+		public function get tr_enabled():Boolean {
+			
+			return getCastedProperty( "tr_enabled", int ) == 1;
+		}
+		
 		public function get account_type():String {
 			
 			return getCastedProperty( "account_type", String );

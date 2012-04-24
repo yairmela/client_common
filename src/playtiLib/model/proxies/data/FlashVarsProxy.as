@@ -26,7 +26,13 @@ package playtiLib.model.proxies.data
 		}
 		
 		public function get account_typeA():Boolean {
+			
 			return flash_vars.account_type == FlashVarsVO.ACCOUNT_TYPE_A;
+		}
+		
+		public function get tr_enabled():Boolean {
+			
+			return !flash_vars.beta_mode || (flash_vars.beta_mode && flash_vars.tr_enabled);
 		}
 	}
 }
