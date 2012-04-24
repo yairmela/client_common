@@ -84,8 +84,8 @@ package playtiLib.controller.commands.startups
 			facade.registerCommand( GeneralAppNotifications.COUPON_SYSTEM_UNAVAILABLE, CouponSystemUnavailableCommand);
 			//tasks
 			facade.registerCommand( GeneralAppNotifications.GET_TASKS_COMMAND, GetTasksCommand );
-			facade.registerCommand( GeneralAppNotifications.TASK_HANDLER, ClientTaskHandlerCommand );
-			
+			facade.registerCommand( GeneralAppNotifications.TASK_HANDLER, ClientTaskHandlerCommand );			
+
 			facade.registerCommand( GeneralAppNotifications.EXECUTE_EXTERNAL_CALL, ExecuteGeneralExternalCallCommand );
 			
 			facade.registerCommand( GeneralAppNotifications.TRACK, GeneralStatisticsTrackingCommand );

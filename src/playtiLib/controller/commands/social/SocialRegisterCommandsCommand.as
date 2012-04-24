@@ -57,6 +57,8 @@ package playtiLib.controller.commands.social
 					facade.registerCommand( GeneralAppNotifications.CLOSE_INVITE_PROXY, CloseInviteProxyCommand );
 					facade.registerCommand( GeneralAppNotifications.CLOSE_SEND_GIFTS_PROXY, CloseSendGiftProxyCommand );
 					facade.registerCommand( GeneralAppNotifications.SHOW_GAME_TAB_COMMAND, ShowGameTabCommand );
+					facade.registerCommand( GeneralAppNotifications.SHOW_GIFTS_TAB_COMMAND, ShowGiftsTabCommand );
+					facade.registerCommand( GeneralAppNotifications.SHOW_INVITE_TAB_COMMAND, ShowInviteTabCommand );
 					facade.registerCommand( GeneralAppNotifications.OPEN_SOCIAL_INVITE_FRIENDS_DIALOG, SendSocialInvitesCommand );
 					break;
 
