@@ -1,7 +1,8 @@
 package playtiLib.model.proxies.data
 {
 	import org.puremvc.as3.patterns.proxy.Proxy;
- 	import playtiLib.model.vo.FlashVarsVO;
+	
+	import playtiLib.model.vo.FlashVarsVO;
 	/**
 	 * @see org.puremvc.as3.patterns.proxy.Proxy
 	 * @see playtiLib.model.vo.FlashVarsVO
@@ -22,6 +23,10 @@ package playtiLib.model.proxies.data
 		public function get flash_vars():FlashVarsVO {
 			
 			return getData() as FlashVarsVO;
+		}
+		
+		public function get account_typeA():Boolean {
+			return flash_vars.account_type == FlashVarsVO.ACCOUNT_TYPE_A;
 		}
 	}
 }

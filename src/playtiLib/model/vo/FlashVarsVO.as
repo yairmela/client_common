@@ -12,6 +12,8 @@ package playtiLib.model.vo
 		
 		private var params:Object;
 		private var resourceCacheIds:Object;
+		public static const ACCOUNT_TYPE_A:String = 'type_a';
+		public static const ACCOUNT_TYPE_B:String = 'type_b';
 		
 		public function get assets_server_path():String {
 			
@@ -33,7 +35,7 @@ package playtiLib.model.vo
 			
 			return getCastedProperty( "beta_mode", int ) == 1;
 		}
-
+		
 		public function get account_type():String {
 			
 			return getCastedProperty( "account_type", String );
