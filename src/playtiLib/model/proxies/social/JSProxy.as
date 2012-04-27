@@ -53,7 +53,7 @@ package playtiLib.model.proxies.social {
 		}
 		
 		private function dealSpotOfferComplete ():void {
-			sendNotification(GeneralAppNotifications.UPDATE_USER_INFO);
+			sendNotification(GeneralAppNotifications.HIDE_DEAL_SPOT);
 		}
 		
 		private function exportScreenshot(useFilter:Boolean):void {

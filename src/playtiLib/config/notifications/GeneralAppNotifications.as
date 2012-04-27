@@ -194,5 +194,6 @@ package playtiLib.config.notifications
 		/*deal spot*/
 		public static const DEAL_SPOT_READY:String					= 'deal_spot_ready';
 		public static const SET_DEAL_SPOT:String					= 'set_deal_spot';
+		public static const HIDE_DEAL_SPOT:String					= 'hide_deal_spot';
 	}
 }
