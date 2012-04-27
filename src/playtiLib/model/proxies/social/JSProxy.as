@@ -49,6 +49,11 @@ package playtiLib.model.proxies.social {
 			addCallback("addSNRequests", addSNRequests);
 			addCallback("exportScreenshot", exportScreenshot);
 			addCallback("setDealSpotParams", setDealSpotParams);
+			addCallback("dealSpotOfferComplete", dealSpotOfferComplete);
+		}
+		
+		private function dealSpotOfferComplete ():void {
+			sendNotification(GeneralAppNotifications.UPDATE_USER_INFO);
 		}
 		
 		private function exportScreenshot(useFilter:Boolean):void {
