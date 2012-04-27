@@ -30,7 +30,8 @@ package playtiLib.view.components.gift
 		public var send_gift_btn:ButtonSimple;
 		public var listWindow:ListWindowSimple;
 		private var preloader_mc:MovieClip;
-		private var loadAvatarIndex:int = -1;
+		private var vectorPhoto:Vector.<String> = new Vector.<String> ();
+		private var vectorGiftMC:Vector.<MovieClip> = new Vector.<MovieClip> ();
 		
 		public function GiftCollectionViewLogic( popup_name:String ) {
 			
@@ -73,13 +74,10 @@ package playtiLib.view.components.gift
 				
 		private function loadAvatar():void
 		{
-			loadAvatarIndex++;
-			if (loadAvatarIndex>=listWindow.length) return;
-			var coupon:Coupon = listWindow.GetItem(loadAvatarIndex).data as Coupon;
-			var gift_mc:MovieClip = listWindow.GetItem(loadAvatarIndex).content.parent as MovieClip ;
+			if (!vectorPhoto.length) return;
 			var avatar:Loader = new Loader();
-			avatar.load( new URLRequest( coupon.sender.photo ) );
-			gift_mc.avatar.addChild( avatar );
+			avatar.load( new URLRequest( vectorPhoto[0] ) );
+			vectorGiftMC[0].addChild( avatar );
 			avatar.contentLoaderInfo.addEventListener( Event.COMPLETE, onAvatarLoaded, false, 0, true );
 			avatar.contentLoaderInfo.addEventListener( IOErrorEvent.IO_ERROR, onError, false, 0, true );
 			avatar.contentLoaderInfo.addEventListener( SecurityErrorEvent.SECURITY_ERROR, onError, false, 0, true );
@@ -101,7 +99,9 @@ package playtiLib.view.components.gift
 				if ( coupon.senderSnId == userSocialInfo.sn_id  ){
 					coupon.sender = userSocialInfo;
 					if( userSocialInfo.photo ){
-						if (loadAvatarIndex<0) loadAvatar();
+						vectorPhoto.push(coupon.sender.photo);
+						vectorGiftMC.push(gift_mc.avatar);
+						if (vectorPhoto.length==1) loadAvatar();
 					}
 					var nameField:TextField;
 					
@@ -228,6 +228,8 @@ package playtiLib.view.components.gift
 		}
 
 		private function onAvatarLoaded( event:Event ):void {
+			vectorPhoto.shift();
+			vectorGiftMC.shift();
 			var loader:Loader 	= event.currentTarget.loader;
 			loader.y 			= ( 50-loader.height ) / 2;
 			loadAvatar ();
