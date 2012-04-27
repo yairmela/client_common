@@ -3,7 +3,9 @@ package playtiLib.view.components.gift
 	import flash.display.Loader;
 	import flash.display.MovieClip;
 	import flash.events.Event;
+	import flash.events.IOErrorEvent;
 	import flash.events.MouseEvent;
+	import flash.events.SecurityErrorEvent;
 	import flash.events.TimerEvent;
 	import flash.net.URLRequest;
 	import flash.text.TextField;
@@ -28,6 +30,7 @@ package playtiLib.view.components.gift
 		public var send_gift_btn:ButtonSimple;
 		public var listWindow:ListWindowSimple;
 		private var preloader_mc:MovieClip;
+		private var loadAvatarIndex:int = -1;
 		
 		public function GiftCollectionViewLogic( popup_name:String ) {
 			
@@ -67,6 +70,25 @@ package playtiLib.view.components.gift
 			( event.currentTarget as UserSocialInfo ).removeEventListener( GeneralAppNotifications.USER_SOCIAL_INFO_READY, onUserSocialInfoReady );
 			inserUserSocialInfoToGift( event.currentTarget as UserSocialInfo );
 		}
+				
+		private function loadAvatar():void
+		{
+			loadAvatarIndex++;
+			if (loadAvatarIndex>=listWindow.length) return;
+			var coupon:Coupon = listWindow.GetItem(loadAvatarIndex).data as Coupon;
+			var gift_mc:MovieClip = listWindow.GetItem(loadAvatarIndex).content.parent as MovieClip ;
+			var avatar:Loader = new Loader();
+			avatar.load( new URLRequest( coupon.sender.photo ) );
+			gift_mc.avatar.addChild( avatar );
+			avatar.contentLoaderInfo.addEventListener( Event.COMPLETE, onAvatarLoaded, false, 0, true );
+			avatar.contentLoaderInfo.addEventListener( IOErrorEvent.IO_ERROR, onError, false, 0, true );
+			avatar.contentLoaderInfo.addEventListener( SecurityErrorEvent.SECURITY_ERROR, onError, false, 0, true );
+		}
+		
+		private function onError (event:Event):void
+		{
+			loadAvatar();
+		}
 		
 		private function inserUserSocialInfoToGift( userSocialInfo:UserSocialInfo ):void{
 			
@@ -79,10 +101,7 @@ package playtiLib.view.components.gift
 				if ( coupon.senderSnId == userSocialInfo.sn_id  ){
 					coupon.sender = userSocialInfo;
 					if( userSocialInfo.photo ){
-						var avatar:Loader = new Loader();
-						avatar.load( new URLRequest( coupon.sender.photo ) );
-						avatar.contentLoaderInfo.addEventListener( Event.COMPLETE, avatarLoaded );
-						gift_mc.avatar.addChild( avatar );
+						if (loadAvatarIndex<0) loadAvatar();
 					}
 					var nameField:TextField;
 					
@@ -208,10 +227,10 @@ package playtiLib.view.components.gift
 			dispatchEvent( new EventTrans( CouponSystemConfig.SEND_COUPON_BTN, event ) );
 		}
 
-		private function avatarLoaded( event:Event ):void {
-			
+		private function onAvatarLoaded( event:Event ):void {
 			var loader:Loader 	= event.currentTarget.loader;
 			loader.y 			= ( 50-loader.height ) / 2;
+			loadAvatar ();
 		}
 	}
 }
