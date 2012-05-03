@@ -8,9 +8,10 @@ package playtiLib.controller.commands.paypage
 	import playtiLib.config.server.ServerCallConfig;
 	import playtiLib.config.statistics.GeneralStatistics;
 	import playtiLib.controller.commands.popup.OpenPopupCommand;
+	import playtiLib.model.proxies.task.ClientTasksProxy;
+	import playtiLib.model.proxies.user.UserProxy;
 	import playtiLib.model.vo.amf.response.TransactionStatusMessage;
 	import playtiLib.model.vo.popup.PopupDoActionVO;
-	import playtiLib.model.proxies.user.UserProxy;
 	import playtiLib.utils.statistics.Tracker;
 	import playtiLib.view.components.popups.PopupViewLogic;
 	import playtiLib.view.mediators.popups.PopupMediator;
@@ -29,7 +30,7 @@ package playtiLib.controller.commands.paypage
 			switch ( transactionResult.transactionStatus ) {
 				case ServerCallConfig.TRANSACTION_STATUS_COMPLETED:
 					userProxy.reloadAll();
-					
+					tasksProxy.reloadAll();
 					sendNotification( GeneralAppNotifications.TRACK, {transaction: transactionResult}, GeneralStatistics.BUY_TRANSACTION_SUCCESS );	
 					sendNotification( GeneralAppNotifications.UPDATE_TASKS_INFO );
 					return;
@@ -62,6 +63,11 @@ package playtiLib.controller.commands.paypage
 		protected function get userProxy():UserProxy {
 			
 			return facade.retrieveProxy( UserProxy.NAME ) as UserProxy;
+		}
+		
+		protected function get tasksProxy():ClientTasksProxy {
+			
+			return facade.retrieveProxy( ClientTasksProxy.NAME ) as ClientTasksProxy;
 		}
 	}
 }

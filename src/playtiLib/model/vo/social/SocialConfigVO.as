@@ -36,5 +36,9 @@ package playtiLib.model.vo.social
 			this.app_height 			= app_height;
 			this.app_frame_rate 		= app_frame_rate;
 		}
+		
+		public function get isHttpsProtocol():Boolean {		
+			return (main_view.loaderInfo.loaderURL.substr(0, 5) == 'https');
+		}
 	}
 }

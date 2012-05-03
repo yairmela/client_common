@@ -28,7 +28,7 @@ package playtiLib.controller.commands.coupons
 			this.notification = notification;
 			var coupon:Coupon = ( facade.retrieveProxy( SelectedCouponProxy.NAME) as SelectedCouponProxy ).coupon;
 			if( !coupon.isUserToUser ){
-				sendNotification( GeneralAppNotifications.AFTER_COLLECT_COUPON_COMMAND );
+				sendNotification( GeneralAppNotifications.AFTER_COLLECT_COUPON_COMMAND, this.notification.getBody() );
 				return;
 			}
 			var dataCapsule:DataCapsule = DataCapsuleFactory.getDataCapsule( [AMFGeneralCallsConfig.COLLECT_USER_COUPON.setRequestProperties( coupon )] );

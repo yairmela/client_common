@@ -8,6 +8,9 @@ package playtiLib.view.components.user
 	import flash.events.EventDispatcher;
 	import flash.events.MouseEvent;
 	import flash.net.URLRequest;
+	import flash.system.ApplicationDomain;
+	import flash.system.LoaderContext;
+	import flash.system.SecurityDomain;
 	import flash.text.TextField;
 	import flash.text.TextFormat;
 	
@@ -28,7 +31,7 @@ package playtiLib.view.components.user
 	 */	
 	public class MultiUserPanelItemVLogic extends EventDispatcher implements IViewLogic{
 		
-		protected const USER_NAME_TEXT_MAX_SIZE:uint = 8;
+		protected const USER_NAME_TEXT_MIN_SIZE:uint = 8;
 		
 		protected var user:User;
 		protected var panel_btn:ButtonSimple;
@@ -68,7 +71,7 @@ package playtiLib.view.components.user
 					//set photo
 					if( user.userSocialInfo.photo ) {
 						user_photo_loader = person_mc['photo_holder'].addChild( new Loader ) as Loader;
-						user_photo_loader.load( new URLRequest( user.userSocialInfo.photo ) );
+						user_photo_loader.load( new URLRequest( user.userSocialInfo.photo ), new LoaderContext(true, new ApplicationDomain, SecurityDomain.currentDomain) );
 						user_photo_loader.contentLoaderInfo.addEventListener( Event.COMPLETE, photoLoaded );
 					}
 				}
@@ -83,7 +86,7 @@ package playtiLib.view.components.user
 			nameField.text = userName;
 			var format:TextFormat = nameField.getTextFormat();
 				
-			while ((nameField.textWidth > nameField.width-3) && (int(format.size) >= USER_NAME_TEXT_MAX_SIZE)) {
+			while ((nameField.textWidth > nameField.width-3) && (int(format.size) >= USER_NAME_TEXT_MIN_SIZE)) {
 				format.size = int(format.size) - 1;
 				nameField.setTextFormat(format);
 				format = nameField.getTextFormat();				
