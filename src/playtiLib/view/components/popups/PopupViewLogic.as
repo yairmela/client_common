@@ -162,5 +162,9 @@ package playtiLib.view.components.popups
 			popup_content.x = x;
 			popup_content.y = y;
 		}
+		
+		public function onRemove():void {
+			
+		}
 	}
 }
