@@ -70,22 +70,6 @@ package playtiLib.controller.commands
 			facade.registerCommand( GeneralAppNotifications.SERVER_FAULT, ServerFaultHandlingCommand);
 		}
 		
-		/**
-		 * If the seeion is create outside of the game this function will set it instead of 
-		 * creating new session.
-		 * We pass sessionId and not take it from flash_vars_vo because sometimes when we 
-		 * load a module we prefare not to set the session_id in the url to prevent 
-		 * cache breaking.
-		 * 
-		 */	
-		protected function setExternalSession( sessionId:String ):void {
-			var session:SessionInfo = new SessionInfo();
-			session.sessionId = sessionId;
-			session.userSnId = flashVars.viewer_id;			
-			ServerConfig.session_info = session;
-			SocialConfig.viewer_sn_id = flashVars.viewer_id;
-		}
-		
 		protected function get flashVars():FlashVarsVO 
 		{
 			return facade.retrieveProxy( FlashVarsProxy.NAME ).getData() as FlashVarsVO;
