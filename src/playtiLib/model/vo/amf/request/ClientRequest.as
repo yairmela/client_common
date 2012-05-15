@@ -6,8 +6,9 @@ package playtiLib.model.vo.amf.request
 		
 		public var cmd:String;
 		public var cheat:String;
-		
-		public var isGuest:Boolean;
+				
+		// TODO: reset default value to vary
+		public var isGuest : Boolean = true;
 		
 		public function ClientRequest()
 		{
