@@ -16,6 +16,7 @@ package playtiLib.view.mediators.social.fb
 			
 			super( mc_name, new SelectFriendsToInviteVLogic( mc_name ) );
 			this.selectFriendsVLogic = popup_logic as SelectFriendsToInviteVLogic;
+			sendNotification( GeneralAppNotifications.SHOW_INVITE_TAB_COMMAND );
 		}
 		
 		protected override function onSendBtnClick(event:EventTrans):void{

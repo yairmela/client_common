@@ -16,7 +16,7 @@ package playtiLib.view.mediators.social.fb
 		public function SelectFriendsMediator( mc_name:String, selectFriendsVLogic:SelectFriendsVLogic=null )	{
 			this.selectFriendsVLogic = selectFriendsVLogic != null ? selectFriendsVLogic : new SelectFriendsVLogic(mc_name);
 			super( NAME, selectFriendsVLogic );
-			this.selectFriendsVLogic = popup_logic as SelectFriendsVLogic;
+			this.selectFriendsVLogic = popup_logic as SelectFriendsVLogic;			
 		}
 		
 		override public function listNotificationInterests():Array{

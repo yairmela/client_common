@@ -31,7 +31,7 @@ package playtiLib.controller.commands.social.fb
 				ExternalInterface.addCallback( 'OnCouponUnaviable', OnCouponUnaviable);
 				ExternalInterface.addCallback( 'OnLikeCallback', onLikeCallback);
 				ExternalInterface.addCallback( 'fbDataCallback',  FBSocialCallManager.getInstance().FBDataCallback );
-				ExternalInterface.addCallback( 'fbDataCallback',  FBSocialCallManager.getInstance().FBDataCallback );
+		//		ExternalInterface.addCallback( 'fbDataCallback',  FBSocialCallManager.getInstance().FBDataCallback );
             }
 		}
 		/**

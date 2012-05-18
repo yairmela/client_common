@@ -2,6 +2,7 @@ package playtiLib.config.server
 {	
 	import flash.net.getClassByAlias;
 	import flash.net.registerClassAlias;
+	import flash.utils.getDefinitionByName;
 	
 	import mx.collections.ArrayCollection;
 	import mx.collections.ArrayList;
@@ -106,6 +107,7 @@ package playtiLib.config.server
 			registerClassAlias( "com.playtika.casino.common.messages.responses.ClientResponse", ClientResponse );
 			registerClassAlias( "com.playtika.casino.common.messages.responses.ServiceMessage", ServiceMessage );
 			registerClassAlias( "com.playtika.casino.common.messages.responses.ResultMessage", ResultMessage );
+			
 			registerClassAlias( "com.playtika.casino.messages.response.LoginMessage", LoginMessage );
 			registerClassAlias( "com.playtika.casino.messages.response.RegisterMessage", RegisterMessage );
 			//user

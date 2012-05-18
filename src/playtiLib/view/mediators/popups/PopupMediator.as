@@ -189,6 +189,7 @@ package playtiLib.view.mediators.popups
 		override public function onRemove():void {
 			
 			super.onRemove();
+			popup_logic.onRemove();
 			//remove popup from active list
 			(facade.retrieveProxy( ActivePopupsProxy.NAME ) as ActivePopupsProxy).removePopup( this );
 			//remove modal background
