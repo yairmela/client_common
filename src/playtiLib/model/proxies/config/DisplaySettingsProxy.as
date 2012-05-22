@@ -19,6 +19,9 @@ package playtiLib.model.proxies.config
 		
 		private var stage : Stage;
 
+		private var _appHight:Number;
+		private var _appWidth:Number;
+		
 		public function DisplaySettingsProxy( stage:Stage )	{
 			
 			super( NAME, new DisplaySettings() );
@@ -59,8 +62,17 @@ package playtiLib.model.proxies.config
 			displaySettings.fullscreen = (stage.displayState == StageDisplayState.FULL_SCREEN);
 			displaySettings.defaultFramerate =
 			displaySettings.framerate = stage.frameRate;
+			
+			_appHight = stage.stageHeight;
+			_appWidth = stage.stageWidth;
+		}
+		public function get appHight():Number{
+			return _appHight
 		}
 		
+		public function get appWidth():Number{
+			return _appWidth
+		}
 		private function get displaySettings():DisplaySettings
 		{
 			return data as DisplaySettings;
