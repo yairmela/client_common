@@ -180,7 +180,8 @@ package playtiLib.config.notifications
 		public static const SHOW_GAME_TAB_COMMAND:String			= 'show_game_tab_command';
 		public static const SHOW_GIFTS_TAB_COMMAND:String			= 'show_gifts_tab_command';
 		public static const SHOW_INVITE_TAB_COMMAND:String			= 'show_invite_tab_command';
-		public static const SEND_SOCIAL_REQ_DATA_READY:String		= 'send_social_req_data_ready';
+		public static const INVITE_REQ_DATA_READY_COMMAND:String	= 'inite_req_data_ready_command';
+		public static const GIFTS_REQ_DATA_READY_COMMAND:String		= 'gifts_req_data_ready_command';
 		public static const UPDATE_AFTER_SOCIAL_REQ_SENT:String		= 'update_after_social_req_sent';
 		public static const OPEN_SOCIAL_INVITE_FRIENDS_DIALOG:String= 'open_social_invite_friends_dialog';
 		public static const CLOSE_INVITE_PROXY:String				= 'close_invite_proxy';
