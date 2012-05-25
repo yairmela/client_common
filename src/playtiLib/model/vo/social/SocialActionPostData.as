@@ -1,6 +1,6 @@
 package playtiLib.model.vo.social
 {
-	public class SocialActionPostVO
+	public class SocialActionPostData
 	{
 		public var og_action:String;
 		public var og_object:String;

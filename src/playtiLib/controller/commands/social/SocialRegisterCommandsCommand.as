@@ -60,6 +60,7 @@ package playtiLib.controller.commands.social
 					facade.registerCommand( GeneralAppNotifications.SHOW_GIFTS_TAB_COMMAND, ShowGiftsTabCommand );
 					facade.registerCommand( GeneralAppNotifications.SHOW_INVITE_TAB_COMMAND, ShowInviteTabCommand );
 					facade.registerCommand( GeneralAppNotifications.OPEN_SOCIAL_INVITE_FRIENDS_DIALOG, SendSocialInvitesCommand );
+					facade.registerCommand( GeneralAppNotifications.POST_SOCIAL_ACTION, FBPostActionCommand );
 					break;
 
 				case SocialConfig.MM:
