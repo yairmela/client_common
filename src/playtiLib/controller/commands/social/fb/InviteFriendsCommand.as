@@ -11,7 +11,8 @@ package playtiLib.controller.commands.social.fb
 	public class InviteFriendsCommand extends SimpleCommand	{
 						
 		override public function execute( notification:INotification ):void {
-			sendNotification( GeneralAppNotifications.SET_PAUSE_POPUP_WITH_LOADING, true );
+			
+//			sendNotification( GeneralAppNotifications.SET_PAUSE_POPUP_WITH_LOADING, true );
 			
 			if (!facade.retrieveProxy(SendSocialInviteReqProxy.NAME)) {
 				facade.registerProxy( new SendSocialInviteReqProxy() );

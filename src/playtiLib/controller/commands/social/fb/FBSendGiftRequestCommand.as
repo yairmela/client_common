@@ -28,7 +28,7 @@ package playtiLib.controller.commands.social.fb
 			
 			post_data = notification.getBody() as SocialPostVO;
 			
-			sendNotification( GeneralAppNotifications.SET_PAUSE_POPUP_WITH_LOADING, true );
+//			sendNotification( GeneralAppNotifications.SET_PAUSE_POPUP_WITH_LOADING, true );
 			
 			if ( post_data.user_sn_id == NO_FRIENDS ) {
 				var sendSocialGiftsReqProxy:SendSocialGiftsReqProxy = new SendSocialGiftsReqProxy();
