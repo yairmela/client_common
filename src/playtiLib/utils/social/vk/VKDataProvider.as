@@ -1,6 +1,6 @@
 package playtiLib.utils.social.vk {
 	
-	import api.serialization.json.JSON;
+	import com.adobe.serialization.json.JSON;
 	
 	import flash.errors.*;
 	import flash.events.*;

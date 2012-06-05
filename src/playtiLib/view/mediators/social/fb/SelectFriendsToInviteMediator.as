@@ -16,6 +16,7 @@ package playtiLib.view.mediators.social.fb
 			
 			super( mc_name, new SelectFriendsToInviteVLogic( mc_name ) );
 			this.selectFriendsVLogic = popup_logic as SelectFriendsToInviteVLogic;
+			sendNotification( GeneralAppNotifications.SHOW_INVITE_TAB_COMMAND );
 		}
 		
 		protected override function onSendBtnClick(event:EventTrans):void{
@@ -33,7 +34,7 @@ package playtiLib.view.mediators.social.fb
 			return facade.retrieveProxy( SendSocialInviteReqProxy.NAME ) as SendSocialInviteReqProxy;
 		}
 		
-		protected override function onSendSocialReqDataReady():void{
+		public override function fillFriendsList():void{
 			var usersArray:Array = [].concat(sendSocialReqProxy.allFriendsToInviteInfo );
 			selectFriendsVLogic.insertFriends( usersArray, SelectFriendsVLogic.ALL_FRIENDS_LIST );
 		}

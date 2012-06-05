@@ -1,6 +1,6 @@
 package playtiLib.controller.commands.social {
 	
-	import api.serialization.json.JSON;
+	import com.adobe.serialization.json.JSON;
 	
 	import flash.events.Event;
 	import flash.external.ExternalInterface;

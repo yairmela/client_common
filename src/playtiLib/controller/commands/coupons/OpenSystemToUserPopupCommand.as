@@ -29,6 +29,9 @@ package playtiLib.controller.commands.coupons
 					doAction = new PopupDoActionVO([GeneralAppNotifications.USER_DATA_READY],null,null,[true]);
 					closeAction = doAction;
 					break;
+				default:
+					return;
+					break;
 			}
 			if( !is_coupon_from_eng_bar ){
 				sendNotification(GeneralAppNotifications.OPEN_POPUP,

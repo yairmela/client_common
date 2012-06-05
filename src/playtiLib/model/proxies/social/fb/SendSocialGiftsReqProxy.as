@@ -11,13 +11,12 @@ package playtiLib.model.proxies.social.fb
 	import playtiLib.model.vo.social.fb.FBSelectUserVO;
 	import playtiLib.model.vo.social.fb.SocialFriendsInfoListVo;
 	
-	public class SendSocialGiftsReqProxy extends DataCapsuleProxy	{
+	public class SendSocialGiftsReqProxy extends SendSocialReqProxy	{
 		
 		public static const NAME:String  = 'SendSocialGiftsReqProxy';
 		
 		private var default_list:String;
-		private var allFriendsInfo:Array;
-		private var appFriendsInfo:Array;
+		
 		private var todayReceivers:Array;
 		
 		private var allFriendsToInviteArray:Array;
@@ -27,18 +26,16 @@ package playtiLib.model.proxies.social.fb
 		
 		public function SendSocialGiftsReqProxy(){
 			//add here all requests
-			super( NAME, [SocialCallsConfig.FRIENDS_IDS_AND_NAMES, SocialCallsConfig.SOCIAL_APP_FRIENDS_IDS] );
+			super(NAME);
 		}
 		
 		override protected function onDataReady(event:Event):void{
 			
 			super.onDataReady(event);
-			initInfo();
-			
-			sendNotification(GeneralAppNotifications.SEND_SOCIAL_REQ_DATA_READY );
+			sendNotification(GeneralAppNotifications.GIFTS_REQ_DATA_READY_COMMAND );
 		}
 		
-		private function initInfo():void{
+		override protected function initInfo():void{
 			
 			var receivers:String 	= facade.hasProxy( TodayReceiversProxy.NAME ) ? ( facade.retrieveProxy( TodayReceiversProxy.NAME ) as TodayReceiversProxy ).today_receivers : "";
 			todayReceivers  		= receivers != null && receivers != "" ? receivers.split(',') : [];
@@ -48,7 +45,7 @@ package playtiLib.model.proxies.social.fb
 				return todayReceivers.indexOf( id ) == -1;});
 		}
 		
-		public function get allFriends():Array{
+		override public function get allFriends():Array{
 			
 			var receivers:String 	= facade.hasProxy( TodayReceiversProxy.NAME ) ? ( facade.retrieveProxy( TodayReceiversProxy.NAME ) as TodayReceiversProxy ).today_receivers : "";
 			todayReceivers  		= receivers != null && receivers != "" ? receivers.split(',') : [];
@@ -58,7 +55,7 @@ package playtiLib.model.proxies.social.fb
 			return allFriendsInfo ? allFriendsInfo : [] ;
 		}
 		
-		public function get appFriends():Array{
+		override public function get appFriends():Array{
 			
 			if( (!appFriendsArray || appFriendsArray.length == 0) ){
 				if( allFriendsInfo && appFriendsInfo ){

@@ -16,13 +16,12 @@ package playtiLib.view.mediators.social.fb
 		public function SelectFriendsMediator( mc_name:String, selectFriendsVLogic:SelectFriendsVLogic=null )	{
 			this.selectFriendsVLogic = selectFriendsVLogic != null ? selectFriendsVLogic : new SelectFriendsVLogic(mc_name);
 			super( NAME, selectFriendsVLogic );
-			this.selectFriendsVLogic = popup_logic as SelectFriendsVLogic;
+			this.selectFriendsVLogic = popup_logic as SelectFriendsVLogic;			
 		}
 		
 		override public function listNotificationInterests():Array{
 			return super.listNotificationInterests().concat([GeneralAppNotifications.CLOSE_POPUP,
-				GeneralAppNotifications.UPDATE_AFTER_SOCIAL_REQ_SENT,
-				GeneralAppNotifications.SEND_SOCIAL_REQ_DATA_READY
+				GeneralAppNotifications.UPDATE_AFTER_SOCIAL_REQ_SENT
 			]);
 		}
 		
@@ -35,9 +34,6 @@ package playtiLib.view.mediators.social.fb
 				case GeneralAppNotifications.UPDATE_AFTER_SOCIAL_REQ_SENT:
 					var usersArray:Array = [].concat( ( notification.getBody() as String ).split(',') );
 					selectFriendsVLogic.updateAfterUsersSent( usersArray );
-					break;
-				case GeneralAppNotifications.SEND_SOCIAL_REQ_DATA_READY:
-					onSendSocialReqDataReady();
 					break;
 			}
 		}
@@ -62,7 +58,7 @@ package playtiLib.view.mediators.social.fb
 			//implement in each extended class
 		}
 		
-		protected function onSendSocialReqDataReady():void{
+		public function fillFriendsList():void{
 			//implement in each extended class
 		}
 	}

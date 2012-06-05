@@ -9,7 +9,14 @@ package playtiLib.controller.commands.popup
 	{
 		public override function execute(notification:INotification):void {
 			
-			URLUtil.openWindow( URLUtil.validateURL(notification.getBody() as String) );
+			var url : String = URLUtil.validateURL(notification.getBody() as String);
+			var window : String = notification.getType();
+			
+			if(!window) {
+				window = "_blank";
+			}
+			
+			URLUtil.openWindow(url, window);
 		}
 	}
 }

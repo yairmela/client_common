@@ -1,6 +1,6 @@
 package playtiLib.controller.commands.social.vk
 {
-	import api.serialization.json.JSON;
+	import com.adobe.serialization.json.JSON;
 	
 	import com.adobe.images.PNGEncoder;
 	

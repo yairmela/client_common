@@ -50,7 +50,7 @@ package playtiLib.model.proxies.user
 			normalizeLoadedData();
 			sendNotification( GeneralAppNotifications.USER_DATA_READY );			
 			if( ExternalInterface.available )
-				ExternalInterface.call( 'userDataReady' );
+				ExternalInterface.call( 'userDataReady', user_info.payer );
 		}
 		
 		private function normalizeLoadedData() : void {
