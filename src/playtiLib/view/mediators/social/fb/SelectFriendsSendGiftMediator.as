@@ -74,7 +74,7 @@ package playtiLib.view.mediators.social.fb
 			super.closePopup( event );
 		}	
 		
-		protected override function onSendSocialReqDataReady():void{
+		public override function fillFriendsList():void{
 			
 			var usersArray:Array = ( [].concat(sendSocialGiftsReqProxy.allFriends ) );
 			selectFriendsVLogic.insertFriends( usersArray, SelectFriendsVLogic.ALL_FRIENDS_LIST );

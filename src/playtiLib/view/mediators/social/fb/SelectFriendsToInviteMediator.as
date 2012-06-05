@@ -34,7 +34,7 @@ package playtiLib.view.mediators.social.fb
 			return facade.retrieveProxy( SendSocialInviteReqProxy.NAME ) as SendSocialInviteReqProxy;
 		}
 		
-		protected override function onSendSocialReqDataReady():void{
+		public override function fillFriendsList():void{
 			var usersArray:Array = [].concat(sendSocialReqProxy.allFriendsToInviteInfo );
 			selectFriendsVLogic.insertFriends( usersArray, SelectFriendsVLogic.ALL_FRIENDS_LIST );
 		}

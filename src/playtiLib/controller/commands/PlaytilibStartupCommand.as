@@ -14,6 +14,7 @@ package playtiLib.controller.commands
 	import playtiLib.controller.commands.popup.*;
 	import playtiLib.controller.commands.server.*;
 	import playtiLib.controller.commands.social.SocialRegisterCommandsCommand;
+	import playtiLib.controller.commands.social.fb.FBPostActionCommand;
 	import playtiLib.controller.commands.ui.SetupUIDisplayCommand;
 	import playtiLib.controller.commands.version.ShowVersionNumberCommand;
 	import playtiLib.model.proxies.config.AppConfigProxy;
@@ -36,7 +37,6 @@ package playtiLib.controller.commands
 
 		override public function execute( notification:INotification ):void 
 		{
-			
 			Logger.log("SocialStartupCommand");
 			var main_view:Sprite = notification.getBody() as Sprite;
 			
@@ -60,6 +60,8 @@ package playtiLib.controller.commands
 			facade.registerCommand( GeneralAppNotifications.SYSTEM_ERROR, SystemErrorCommand );
 			facade.registerCommand( GeneralAppNotifications.SYSTEM_MSG_POPUP, ShowSystemMsgPopupCommand );
 			facade.registerCommand( GeneralAppNotifications.REFRESH_IFRAME, RefreshIframeCommand );
+			
+			facade.registerCommand( GeneralAppNotifications.POST_SOCIAL_ACTION, FBPostActionCommand );
 
 			facade.registerMediator( new RootMediator( main_view ) );
 						

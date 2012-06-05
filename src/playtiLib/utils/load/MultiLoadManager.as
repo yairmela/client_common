@@ -23,7 +23,7 @@ package playtiLib.utils.load
 		
 		public function load():void {}
 
-		public function addLoadingProcess( instance:IEventDispatcher, constructor:Class, loadedEventType:String ):void 
+		public function addLoadingProcess( instance:IEventDispatcher, constructor:Class, loadedEventType:String, progressEventType:String = ProgressEvent.PROGRESS ):void 
 		{
 			if( loading_hash[constructor] == null )
 				loading_hash[constructor] = [];
@@ -31,7 +31,7 @@ package playtiLib.utils.load
 			instance.addEventListener( loadedEventType, loadedAsset );
 			instance.addEventListener( IOErrorEvent.IO_ERROR, IO_Error );
 			progress_hash[instance] = [0,0];
-			instance.addEventListener( ProgressEvent.PROGRESS, loadProgress );
+			instance.addEventListener( progressEventType, loadProgress );
 		}
 
 		private function IO_Error( event:IOErrorEvent ):void{

@@ -9,13 +9,12 @@ package playtiLib.model.proxies.social.fb
 	import playtiLib.model.vo.social.fb.FBSelectUserVO;
 	import playtiLib.model.vo.social.fb.SocialFriendsInfoListVo;
 	
-	public class SendSocialInviteReqProxy extends DataCapsuleProxy
+	public class SendSocialInviteReqProxy extends SendSocialReqProxy
 	{
 		public static const NAME:String  = 'SendSocialInviteReqProxy';
 		
 		private var default_list:String;
-		private var allFriendsInfo:Array;
-		private var appFriendsInfo:Array;
+		
 		private var commonGamesFriendsInfo:Array;
 		
 		private var allFriendsToInviteArray:Array;
@@ -24,18 +23,16 @@ package playtiLib.model.proxies.social.fb
 		
 		public function SendSocialInviteReqProxy(){
 			//add here all requests
-			super( NAME, [SocialCallsConfig.FRIENDS_IDS_AND_NAMES, SocialCallsConfig.SOCIAL_APP_FRIENDS_IDS] );
+			super(NAME);
 		}
 		
 		override protected function onDataReady(event:Event):void{
 			
 			super.onDataReady(event);
-			initInfo();
-			
-			sendNotification(GeneralAppNotifications.SEND_SOCIAL_REQ_DATA_READY );
+			sendNotification(GeneralAppNotifications.INVITE_REQ_DATA_READY_COMMAND );
 		}
 		
-		private function initInfo():void{
+		override protected function initInfo():void{
 			
 			allFriendsToInviteArray = new Array();
 			allFriendsInfo 			= (data_capsule.getDataHolderByIndex(0).data as SocialFriendsInfoListVo).list;
@@ -51,6 +48,23 @@ package playtiLib.model.proxies.social.fb
 				}); 
 			}
 			return allFriendsToInviteArray;
+		}
+		
+		public function get allFriendsToInviteIds():Array{
+
+			var arrIds:Array = [];
+			if( ( !allFriendsToInviteArray || allFriendsToInviteArray.length == 0 ) &&  allFriendsInfo && appFriendsInfo ){
+				
+				var userId : String;
+				for (var i:uint = 0; i < allFriendsInfo.length; i++)
+				{
+					userId = allFriendsInfo[i].id;
+					if (appFriendsInfo.indexOf( userId ) > -1) {
+						arrIds.push(userId);
+					}
+				}
+			}
+			return arrIds;
 		}
 	}
 }
