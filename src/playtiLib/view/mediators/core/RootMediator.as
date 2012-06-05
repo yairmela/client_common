@@ -5,6 +5,9 @@ package playtiLib.view.mediators.core
 	import flash.display.Sprite;
 	import flash.display.StageDisplayState;
 	import flash.display.StageScaleMode;
+	import flash.filters.BitmapFilterQuality;
+	import flash.filters.BlurFilter;
+	import flash.geom.Point;
 	import flash.utils.setTimeout;
 	
 	import org.puremvc.as3.interfaces.INotification;
@@ -90,7 +93,7 @@ package playtiLib.view.mediators.core
 					if (useFilter)
 					{
 						var blurFilter:BlurFilter = new BlurFilter(3, 3, BitmapFilterQuality.HIGH);
-						rootBitmapData.applyFilter (rootBitmapData, rootBitmapData.rect, new Point (0,0), blurFilter);
+						rootBitmapData.applyFilter (rootBitmapData, rootBitmapData.rect, new Point(0,0), blurFilter);
 					}
 					sendNotification( GeneralAppNotifications.SCREENSHOT_MADE, rootBitmapData );
 						
