@@ -14,6 +14,7 @@ package playtiLib.controller.commands
 	import playtiLib.controller.commands.popup.*;
 	import playtiLib.controller.commands.server.*;
 	import playtiLib.controller.commands.social.SocialRegisterCommandsCommand;
+	import playtiLib.controller.commands.social.fb.FBPostActionCommand;
 	import playtiLib.controller.commands.ui.SetupUIDisplayCommand;
 	import playtiLib.controller.commands.version.ShowVersionNumberCommand;
 	import playtiLib.model.proxies.config.AppConfigProxy;
@@ -36,7 +37,6 @@ package playtiLib.controller.commands
 
 		override public function execute( notification:INotification ):void 
 		{
-			
 			Logger.log("SocialStartupCommand");
 			var main_view:Sprite = notification.getBody() as Sprite;
 			
@@ -60,6 +60,8 @@ package playtiLib.controller.commands
 			facade.registerCommand( GeneralAppNotifications.SYSTEM_ERROR, SystemErrorCommand );
 			facade.registerCommand( GeneralAppNotifications.SYSTEM_MSG_POPUP, ShowSystemMsgPopupCommand );
 			facade.registerCommand( GeneralAppNotifications.REFRESH_IFRAME, RefreshIframeCommand );
+			
+			facade.registerCommand( GeneralAppNotifications.POST_SOCIAL_ACTION, FBPostActionCommand );
 
 			facade.registerMediator( new RootMediator( main_view ) );
 						
@@ -87,6 +89,22 @@ package playtiLib.controller.commands
 			sendNotification( GeneralAppNotifications.SOCIAL_INIT_CONNECTIONS, sociaConfigVO );
 
 			SocialCallManager.init( SocialConfig.current_social_network );
+		}
+		
+		/**
+		 * If the seeion is create outside of the game this function will set it instead of 
+		 * creating new session.
+		 * We pass sessionId and not take it from flash_vars_vo because sometimes when we 
+		 * load a module we prefare not to set the session_id in the url to prevent 
+		 * cache breaking.
+		 * 
+		 */	
+		protected function setExternalSession( sessionId:String ):void {
+			var session:SessionInfo = new SessionInfo();
+			session.sessionId = sessionId;
+			session.userSnId = flashVars.viewer_id;			
+			ServerConfig.session_info = session;
+			SocialConfig.viewer_sn_id = flashVars.viewer_id;
 		}
 	
 		protected function loadExternals( initialAssetsLoadConfigPath:String ):void 

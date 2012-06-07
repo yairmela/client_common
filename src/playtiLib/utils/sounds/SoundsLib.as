@@ -31,6 +31,7 @@ package playtiLib.utils.sounds
 	 **/
 	public class SoundsLib extends EventDispatcher	{
 		
+		public static const MAX_LOOPS:uint = 999999;
 		private static var _lib:SoundsLib = new SoundsLib;
 		
 		public static function get lib():SoundsLib { 
@@ -111,11 +112,11 @@ package playtiLib.utils.sounds
 				return null;
 			var trans:SoundTransform = new SoundTransform( volume );
 			if( sound == null ) 
-				return null;
-			
+				return null;				
+				
 			var channel:SoundChannel = sound.play( startTime, loops, trans );
-			if( channel != null ) {//will happen when there are no more channels
-				channel.addEventListener( Event.SOUND_COMPLETE, removeSoundAfterComplete, false, 0, true );
+			if ( channel != null ) {//will happen when there are no more channels				
+				channel.addEventListener( Event.SOUND_COMPLETE, removeSoundAfterComplete, false, 0, true );				
 				active_sounds_cash.push( {sndChannel:channel, volume:volume, name:name} );
 			}
 			return channel;

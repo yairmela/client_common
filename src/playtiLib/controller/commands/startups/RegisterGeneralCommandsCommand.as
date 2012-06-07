@@ -25,7 +25,6 @@ package playtiLib.controller.commands.startups
 	import playtiLib.controller.commands.load.ShowLoadingDialogByNameCommand;
 	import playtiLib.controller.commands.paypage.BuyTransactionResultCommand;
 	import playtiLib.controller.commands.paypage.CheckBuyTransactionStatusCommand;
-	import playtiLib.controller.commands.popup.GotoGameTabCommand;
 	import playtiLib.controller.commands.popup.OpenPopupCommand;
 	import playtiLib.controller.commands.popup.OpenURLCommand;
 	import playtiLib.controller.commands.popup.ShowNextPopupCommand;
@@ -33,11 +32,12 @@ package playtiLib.controller.commands.startups
 	import playtiLib.controller.commands.social.ExecuteGeneralExternalCallCommand;
 	import playtiLib.controller.commands.social.fb.CloseSendGiftProxyCommand;
 	import playtiLib.controller.commands.social.fb.FBLoadSocialRequestsCommand;
+	import playtiLib.controller.commands.social.fb.SendScreenshotCommand;
 	import playtiLib.controller.commands.social.fb.ShowGameTabCommand;
 	import playtiLib.controller.commands.sound.MuteSoundsCommand;
 	import playtiLib.controller.commands.statistics.GeneralStatisticsTrackingCommand;
-	import playtiLib.controller.commands.task.GetTasksCommand;
 	import playtiLib.controller.commands.task.ClientTaskHandlerCommand;
+	import playtiLib.controller.commands.task.GetTasksCommand;
 	import playtiLib.controller.commands.user.RegisterNewUserCommand;
 	import playtiLib.controller.commands.user.UpdateUserInfoCommand;
 	import playtiLib.controller.commands.user.UserDataReadyCoreCommand;
@@ -84,9 +84,7 @@ package playtiLib.controller.commands.startups
 			facade.registerCommand( GeneralAppNotifications.COUPON_SYSTEM_UNAVAILABLE, CouponSystemUnavailableCommand);
 			//tasks
 			facade.registerCommand( GeneralAppNotifications.GET_TASKS_COMMAND, GetTasksCommand );
-			facade.registerCommand( GeneralAppNotifications.TASK_HANDLER, ClientTaskHandlerCommand );
-			
-			facade.registerCommand( GeneralAppNotifications.GOTO_GAME_TAB, GotoGameTabCommand );
+			facade.registerCommand( GeneralAppNotifications.TASK_HANDLER, ClientTaskHandlerCommand );			
 
 			facade.registerCommand( GeneralAppNotifications.EXECUTE_EXTERNAL_CALL, ExecuteGeneralExternalCallCommand );
 			
@@ -94,6 +92,8 @@ package playtiLib.controller.commands.startups
 			
 			facade.registerCommand( GeneralAppNotifications.OPEN_URL, OpenURLCommand );
 			facade.registerCommand(GeneralAppNotifications.LOAD_NEW_LOCALE_CONTENT, GetLocaleContentCommand);
+			
+			facade.registerCommand(GeneralAppNotifications.SCREENSHOT_MADE, SendScreenshotCommand);
 		}
 	}
 }

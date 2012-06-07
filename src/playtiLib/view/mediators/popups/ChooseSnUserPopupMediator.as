@@ -77,6 +77,7 @@ package playtiLib.view.mediators.popups
 			var selected_friend:ListItemSimple = choose_user_vlogic.friends_list.list.GetListWindow().currentItem;
 			sendNotification( GeneralAppNotifications.CHOOSE_SN_USER_COMPLETE, {additional_data:additional_data, user_sn_id:selected_friend.data.sn_id} );
 			
+			sendNotification( GeneralAppNotifications.SHOW_GAME_TAB_COMMAND );
 			closePopup();
 		}
 		/**

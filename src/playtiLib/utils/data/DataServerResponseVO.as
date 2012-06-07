@@ -1,6 +1,6 @@
 package playtiLib.utils.data
 {
-	import api.serialization.json.JSON;
+	import com.adobe.serialization.json.JSON;
 	
 	import playtiLib.config.server.ServerCallConfig;
 

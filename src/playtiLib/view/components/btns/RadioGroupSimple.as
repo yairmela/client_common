@@ -138,7 +138,7 @@ package playtiLib.view.components.btns
 			
 			for( var i : uint = 0; i < radio_buttons_arr.length; i++ ) {
 				var radio_btn : RadioButtonSimple = radio_buttons_arr[i];
-				radio_btn.checked = ( i == current_index );
+				radio_btn.checked = ( i == current_index );			
 			}
 		}
 		
@@ -146,5 +146,12 @@ package playtiLib.view.components.btns
 			
 			return current_index;
 		}
+		
+		public function set radioButtonsMouseEnable(value:Boolean):void {
+			for each(var btn:RadioButtonSimple in radio_buttons_arr) {
+			   btn.content.mouseEnabled = value;
+			}			
+		}
+
 	}
 }

@@ -3,9 +3,13 @@ package playtiLib.view.components.gift
 	import flash.display.Loader;
 	import flash.display.MovieClip;
 	import flash.events.Event;
+	import flash.events.IOErrorEvent;
 	import flash.events.MouseEvent;
+	import flash.events.SecurityErrorEvent;
 	import flash.events.TimerEvent;
 	import flash.net.URLRequest;
+	import flash.text.TextField;
+	import flash.text.TextFormat;
 	import flash.utils.Timer;
 	import flash.utils.setTimeout;
 	
@@ -26,6 +30,8 @@ package playtiLib.view.components.gift
 		public var send_gift_btn:ButtonSimple;
 		public var listWindow:ListWindowSimple;
 		private var preloader_mc:MovieClip;
+		private var vectorPhoto:Vector.<String> = new Vector.<String> ();
+		private var vectorGiftMC:Vector.<MovieClip> = new Vector.<MovieClip> ();
 		
 		public function GiftCollectionViewLogic( popup_name:String ) {
 			
@@ -65,6 +71,22 @@ package playtiLib.view.components.gift
 			( event.currentTarget as UserSocialInfo ).removeEventListener( GeneralAppNotifications.USER_SOCIAL_INFO_READY, onUserSocialInfoReady );
 			inserUserSocialInfoToGift( event.currentTarget as UserSocialInfo );
 		}
+				
+		private function loadAvatar():void
+		{
+			if (!vectorPhoto.length) return;
+			var avatar:Loader = new Loader();
+			avatar.load( new URLRequest( vectorPhoto[0] ) );
+			vectorGiftMC[0].addChild( avatar );
+			avatar.contentLoaderInfo.addEventListener( Event.COMPLETE, onAvatarLoaded, false, 0, true );
+			avatar.contentLoaderInfo.addEventListener( IOErrorEvent.IO_ERROR, onError, false, 0, true );
+			avatar.contentLoaderInfo.addEventListener( SecurityErrorEvent.SECURITY_ERROR, onError, false, 0, true );
+		}
+		
+		private function onError (event:Event):void
+		{
+			loadAvatar();
+		}
 		
 		private function inserUserSocialInfoToGift( userSocialInfo:UserSocialInfo ):void{
 			
@@ -77,13 +99,23 @@ package playtiLib.view.components.gift
 				if ( coupon.senderSnId == userSocialInfo.sn_id  ){
 					coupon.sender = userSocialInfo;
 					if( userSocialInfo.photo ){
-						var avatar:Loader = new Loader();
-						avatar.load( new URLRequest( coupon.sender.photo ) );
-						avatar.contentLoaderInfo.addEventListener( Event.COMPLETE, avatarLoaded );
-						gift_mc.avatar.addChild( avatar );
+						vectorPhoto.push(coupon.sender.photo);
+						vectorGiftMC.push(gift_mc.avatar);
+						if (vectorPhoto.length==1) loadAvatar();
 					}
-					gift_mc.name_txt.text = coupon.sender.first_name + ' ' + coupon.sender.last_name;
+					var nameField:TextField;
 					
+					nameField = gift_mc.name_txt;
+					nameField.text = coupon.sender.first_name + ' ' + coupon.sender.last_name;
+					
+					var format:TextFormat = nameField.getTextFormat();
+					
+					while ((nameField.textWidth > nameField.width-3) && (int(format.size) >= 8)) {
+						format.size = int(format.size) - 1;
+						nameField.setTextFormat(format);
+						format = nameField.getTextFormat();				
+					}
+										
 					gift_mc.txt_info.text = coupon.message;
 					
 					gift_mc.gifts_generic_preloader.visible 	= false;
@@ -195,10 +227,12 @@ package playtiLib.view.components.gift
 			dispatchEvent( new EventTrans( CouponSystemConfig.SEND_COUPON_BTN, event ) );
 		}
 
-		private function avatarLoaded( event:Event ):void {
-			
+		private function onAvatarLoaded( event:Event ):void {
+			vectorPhoto.shift();
+			vectorGiftMC.shift();
 			var loader:Loader 	= event.currentTarget.loader;
 			loader.y 			= ( 50-loader.height ) / 2;
+			loadAvatar ();
 		}
 	}
 }

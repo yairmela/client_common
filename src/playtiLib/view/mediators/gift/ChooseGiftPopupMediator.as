@@ -30,6 +30,7 @@ package playtiLib.view.mediators.gift
 			this.pre_gift = pre_gift;
 			
 			registerListeners();
+			sendNotification( GeneralAppNotifications.SHOW_GIFTS_TAB_COMMAND );
 		}
 		
 		private function registerListeners():void {
@@ -58,7 +59,12 @@ package playtiLib.view.mediators.gift
 			//sends notification to the game engine for converting the chosen radio_btn to gift_type_id 
 			//and sends choose_gift_complete notification
 			sendNotification( GeneralAppNotifications.CHOOSE_GIFT_FROM_MEDIATOR_COMMAND, choose_gift, send_gift_vlogic.gift_radio_group.current.toString() );
-			closePopup();
+			super.closePopup();
 		}
+		
+		public override function closePopup(event:Event=null):void{
+			sendNotification( GeneralAppNotifications.SHOW_GAME_TAB_COMMAND );
+			super.closePopup(event);
+		} 
 	}
 }

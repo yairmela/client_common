@@ -1,6 +1,6 @@
 package playtiLib.model.vo.server
 {
-	import api.serialization.json.JSON;
+	import com.adobe.serialization.json.JSON;
 	import playtiLib.utils.core.ObjectUtil;
 
 	public class DeserializedJSONModel implements IDeserializedModel {

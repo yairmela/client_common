@@ -1,8 +1,10 @@
 package playtiLib.model.vo.amf.social.fb
 {
-	import api.serialization.json.JSON;
+	
+	import com.adobe.serialization.json.JSON;
 	
 	import playtiLib.model.vo.social.SNRequestDataVO;
+
 	/**
 	 * Gets an object and enters it's properties to the FB coupon object (id, date, message, sender info, reciever info) 
 	 */

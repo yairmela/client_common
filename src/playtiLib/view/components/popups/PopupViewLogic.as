@@ -52,10 +52,10 @@ package playtiLib.view.components.popups
 				popup_content['popup_con'].addChild( display );
 				display.x = 0- (display.getBounds(display).width/2 + display.getBounds(display).x);
 				display.y = 0- (display.getBounds(display).height*55/100 + display.getBounds(display).y);
-				display.addEventListener( Event.ADDED_TO_STAGE, startPopupAnim );
-			} else  
-				popup_content = display;
-
+				display.addEventListener( Event.ADDED_TO_STAGE, onAddedToStage );
+			} else
+			    popup_content = display;
+			    
 			if( !popup_mc ) {
 				popup_main_area = popup_content;
 			}else {
@@ -113,10 +113,22 @@ package playtiLib.view.components.popups
 				btns_list.push( btn );
 			return true;
 		}
-
-		protected function startPopupAnim( event:Event ):void {
-			
+		
+		protected function onAddedToStage( event:Event ):void {
+			startPopupAnim ();			
+		}
+		
+		protected function startPopupAnim():void {
 			( popup_content as MovieClip ).gotoAndPlay(1);
+			( popup_content as MovieClip ).addEventListener(Event.ENTER_FRAME, onEnterFrame);
+		}
+		
+		private function onEnterFrame ( event:Event ):void {
+			if (event.currentTarget.currentFrame==event.currentTarget.totalFrames) popupAnimComplete();
+		}
+		
+		protected function popupAnimComplete ():void {
+			( popup_content as MovieClip ).removeEventListener(Event.ENTER_FRAME, onEnterFrame);
 		}
 
 		public function get close_btns_list():Array {
@@ -149,6 +161,10 @@ package playtiLib.view.components.popups
 			
 			popup_content.x = x;
 			popup_content.y = y;
+		}
+		
+		public function onRemove():void {
+			
 		}
 	}
 }
