@@ -11,11 +11,18 @@ package playtiLib.controller.commands.social.fb
 	{
 		public override function execute(notification:INotification):void
 		{
+			var actionPostData : SocialActionPostData = notification.getBody() as SocialActionPostData;
+			
+			if(!actionPostData) {
+				return;
+			}
+			
 			if(!ExternalInterface.available) {
 				return;
 			}
 			
-			ExternalInterface.call( "postOGAction", (notification.getBody() as SocialActionPostData) );
+			
+			ExternalInterface.call("postOGAction", actionPostData);
 		}
 	}
 }
