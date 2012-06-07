@@ -27,19 +27,20 @@ package playtiLib.controller.commands.social.fb
 			sendNotification( GeneralAppNotifications.FULLSCREEN_MODE, false );
 		}
 		
-		private function openFacebookPopup():void
-		{
+		private function openFacebookPopup():void {
+			
 			sendNotification( GeneralAppNotifications.CREATE_COUPON, sendSocialGiftsReqProxy.current_post_vo );
 		}
 		
-		private function openFlashPopup():void
-		{
+		private function openFlashPopup():void {
+			
 			var selectFriendsToInviteMediator:SelectFriendsSendGiftMediator = new SelectFriendsSendGiftMediator( GeneralDialogsConfig.POPUP_SEND_GIFTS );
 			facade.registerMediator( selectFriendsToInviteMediator );
 			selectFriendsToInviteMediator.fillFriendsList ();			
 		}
 			
 		private function get sendSocialGiftsReqProxy():SendSocialGiftsReqProxy {
+			
 			return facade.retrieveProxy( SendSocialGiftsReqProxy.NAME ) as SendSocialGiftsReqProxy;
 		}
 	}
