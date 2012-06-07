@@ -62,9 +62,11 @@ package playtiLib.view.mediators.gift
 			super.closePopup();
 		}
 		
-		public override function closePopup(event:Event=null):void{
+		public override function closePopup():void{
+			
 			sendNotification( GeneralAppNotifications.SHOW_GAME_TAB_COMMAND );
-			super.closePopup(event);
+			
+			super.closePopup();
 		} 
 	}
 }
