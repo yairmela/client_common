@@ -4,12 +4,7 @@ package playtiLib.model.vo.amf.response.helpers
 
 	public class UserStatus extends RestrictedUserStatus
 	{
-//		public var balanceInCoins:Number;
-//		public var balanceInDiamonds:Number;
 		public var experience:Number;
 		
-		public function UserStatus()
-		{
-		}
 	}
 }
