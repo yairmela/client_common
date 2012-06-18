@@ -23,29 +23,12 @@ package playtiLib.config.social
 		public static const FB:String 			= 'FB';
 		public static const MM:String 			= 'MM';
 		public static const FB_CH:String 		= 'FB_CH';
-			
-		private static const SIMULATE_ID:uint 	= 0;
-		private static const VK_ID:uint 		= 1 ///< vk 
-		private static const FB_ID:uint 		= 2 ///< FB
-		private static const MM_ID:uint 		= 3 ///< MM (moj mir)
-		private static const FB_CH_ID:uint 		= 4 ///< FB chinese
 		
 		// Like status
 		public static const LIKE_STATUS_UNKNOWN:uint		= 0;
 		public static const LIKE_STATUS_LIKED:uint			= 1;
 		public static const LIKE_STATUS_UNLIKED:uint		= 2;
-		
-		public static function get current_social_network_id():int {
-			
-			switch( current_social_network ) {
-				case VK: return VK_ID;
-				case FB: return FB_ID;
-				case MM: return MM_ID;
-				case FB_CH: return FB_CH_ID;
-			}
-			return SIMULATE_ID;
-		}
-		
+				
 		public static function get social_parser_params():SocialUserProfileParser {
 			
 			switch( SocialConfig.current_social_network ) {
