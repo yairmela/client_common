@@ -108,7 +108,7 @@ package playtiLib.model.proxies.server {
 			for (var i:int = 0; i < storedOperations.length; i++){
 				var asyncToken:AsyncToken = (storedOperations[i].asyncToken as AsyncToken);
 				for (var j:int = 0; j < asyncToken.message.body.length; j++){
-					(asyncToken.message.body[j] as ClientRequest).sessionInfo = ServerConfig.session_info;
+					(asyncToken.message.body[j] as ClientRequest).sessionInfo = ServerConfig.sessionInfo;
 					var remote_call:AsyncToken = (storedOperations[i].operation as Operation).send(asyncToken.message.body[j]);
 					remote_call.addResponder(asyncToken.responders[j]);
 					//TODO:delete after complete testing

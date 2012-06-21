@@ -71,7 +71,7 @@ package playtiLib.controller.commands.user
 			
 			switch( response.service.errorCode ) {// TODO: needs to add cases for server response code
 				case ServerCallConfig.SRC_SUCCESS:
-					ServerConfig.session_info = ( response.result as LoginMessage ).sessionInfo;
+					ServerConfig.sessionInfo = ( response.result as LoginMessage ).sessionInfo;
 					trackAppRegistered();
 					sendNotification( GeneralAppNotifications.SERVER_LOGIN_COMPLETE, false );					
 					sendNotification( GeneralAppNotifications.UPDATE_USER_INFO );

@@ -23,6 +23,7 @@ package playtiLib.controller.commands
 	import playtiLib.model.proxies.server.AMFServerCallManagerProxy;
 	import playtiLib.model.proxies.server.ServerCallManagerProxy;
 	import playtiLib.model.proxies.social.JSProxy;
+	import playtiLib.model.proxies.user.DeviceGUIDProxy;
 	import playtiLib.model.vo.FlashVarsVO;
 	import playtiLib.model.vo.amf.request.SessionInfo;
 	import playtiLib.model.vo.social.SocialConfigVO;
@@ -66,10 +67,23 @@ package playtiLib.controller.commands
 			facade.registerMediator( new RootMediator( main_view ) );
 						
 			facade.registerProxy( new DisplaySettingsProxy( main_view.stage ) );
-						
+			
 			facade.registerProxy( new AMFServerCallManagerProxy() );
 			
 			facade.registerCommand( GeneralAppNotifications.SERVER_FAULT, ServerFaultHandlingCommand);
+						
+			initSessionInfo();
+		}
+
+		private function initSessionInfo():void
+		{
+			var deviceGUIDProxy : DeviceGUIDProxy = new DeviceGUIDProxy( flashVars.viewer_id );
+			facade.registerProxy(deviceGUIDProxy);
+			
+			var sessionInfo : SessionInfo = ServerConfig.sessionInfo;
+			sessionInfo.guid = deviceGUIDProxy.GUID;
+			
+			ServerConfig.sessionInfo = sessionInfo;
 		}
 		
 		protected function get flashVars():FlashVarsVO 
@@ -90,23 +104,7 @@ package playtiLib.controller.commands
 
 			SocialCallManager.init( SocialConfig.current_social_network );
 		}
-		
-		/**
-		 * If the seeion is create outside of the game this function will set it instead of 
-		 * creating new session.
-		 * We pass sessionId and not take it from flash_vars_vo because sometimes when we 
-		 * load a module we prefare not to set the session_id in the url to prevent 
-		 * cache breaking.
-		 * 
-		 */	
-		protected function setExternalSession( sessionId:String ):void {
-			var session:SessionInfo = new SessionInfo();
-			session.sessionId = sessionId;
-			session.userSnId = flashVars.viewer_id;			
-			ServerConfig.session_info = session;
-			SocialConfig.viewer_sn_id = flashVars.viewer_id;
-		}
-	
+
 		protected function loadExternals( initialAssetsLoadConfigPath:String ):void 
 		{
 			sendNotification( GeneralAppNotifications.LOAD_EXTERNAL_ASSETS, initialAssetsLoadConfigPath );

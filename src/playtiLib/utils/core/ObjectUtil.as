@@ -47,7 +47,7 @@ package playtiLib.utils.core
 			} else {
 				for each( var prop:XML in info.variable ) {
 					result += ( result.length < 3 ) ? "" : ", ";
-					if( !obj[prop.@name] || isSimple( obj[prop.@name] ) ) {
+					if( !obj[prop.@name] || isTypeSimple( prop.@type ) ) {
 						result += prop.@name+":"+ obj[prop.@name];
 					} else {
 						result += propertiesToString( obj[prop.@name] );
@@ -99,8 +99,9 @@ package playtiLib.utils.core
 			var info:XML = describeType(obj);
 			var clazz:Class = getDefinitionByName(convertFullyQualifiedName(info.@name)) as Class;
 			var result:* = new clazz();
-			for each( var prop:XML in info.variable ) {
-				if( !obj[prop.@name] || isSimple( result[prop.@name] ) ) {
+			var prop:XML;
+			for each( prop in info.variable ) {
+				if( !obj[prop.@name] || isTypeSimple( prop.@type ) ) {
 					result[prop.@name] = obj[prop.@name];
 				} else {
 					result[prop.@name] = toInstance( obj[prop.@name] );
@@ -128,14 +129,15 @@ package playtiLib.utils.core
 			});
 		}
 		
-		private static function isSimple(object:Object):Boolean {
-			switch (typeof(object)) {
-				case "number":
-				case "string":
-				case "boolean":
+		private static function isTypeSimple(typeName:String):Boolean {
+			switch ( typeName ) {
+				case "int":
+				case "Number":
+				case "String":
+				case "Boolean":
+				case "Date":
+//				case "Array":
 					return true;
-				case "object":
-					return (object is Date) || (object is Array);
 			}
 			
 			return false;

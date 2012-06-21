@@ -28,7 +28,7 @@ package playtiLib.utils.server {
 			if (!client_request)
 				client_request = new ClientRequest;
 			if (!client_request.sessionInfo)
-				client_request.sessionInfo = ServerConfig.session_info;
+				client_request.sessionInfo = ServerConfig.sessionInfo;
 			
 			var plugin_module:RemoteObject = server_modules[module] as RemoteObject;
 			if (!plugin_module){

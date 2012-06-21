@@ -4,6 +4,7 @@ package playtiLib.config.server
 	
 	import playtiLib.config.social.SocialConfig;
 	import playtiLib.model.vo.amf.request.SessionInfo;
+	import playtiLib.utils.core.ObjectUtil;
 	import playtiLib.utils.data.ContentDataCallConfig;
 	import playtiLib.utils.data.DataCallConfig;
 	import playtiLib.utils.server.AMFServerCallManager;
@@ -20,8 +21,22 @@ package playtiLib.config.server
 		public static var ASSETS_SERVER_IP:String;
 		public static var ASSETS_CACHE_ID:String;
 		public static var PAYPAGE_CACHE_ID:String;
-		//server session
-		public static var session_info:SessionInfo;
+		
+		private static var _sessionInfo:SessionInfo = new SessionInfo();
+
+		public static function get sessionInfo():SessionInfo {
+			
+			return _sessionInfo.clone();
+		}
+
+		public static function set sessionInfo(value:SessionInfo):void	{
+			
+			var guid : String = value.guid;
+						
+			ObjectUtil.setMatchingProperties(value, _sessionInfo);
+			
+			_sessionInfo.guid = guid;
+		}
 		
 		/**
 		 * Sets properties of the server from flash vars.

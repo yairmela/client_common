@@ -141,10 +141,7 @@ package playtiLib.model.vo
 			}
 		}
 
-		[Deprecated(message="Don't use on prosuction")]
 		public function getResourceCacheId(id:String):String {			
-			//this line is temp line for developing and it should take off on production \ stage
-			resourceCacheIds[id]  = resourceCacheIds[id] as String ? resourceCacheIds[id] as String : ( Math.ceil( Math.random() * 1000) ).toString();
 			return resourceCacheIds[id] as String;
 		}
 		

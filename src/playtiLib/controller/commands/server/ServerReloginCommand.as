@@ -60,9 +60,9 @@ package playtiLib.controller.commands.server
 			
 			var response:ClientResponse = data_capsule.getDataHolderByIndex(0).server_response as ClientResponse;
 			
-			ServerConfig.session_info = (response.result as LoginMessage).sessionInfo;
+			ServerConfig.sessionInfo = (response.result as LoginMessage).sessionInfo;
 		
-			sendNotification(GeneralAppNotifications.SERVER_RELOGIN_COMPLETE, ServerConfig.session_info);
+			sendNotification(GeneralAppNotifications.SERVER_RELOGIN_COMPLETE, ServerConfig.sessionInfo);
 		}
 	}
 }

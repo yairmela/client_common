@@ -55,11 +55,11 @@ package playtiLib.controller.commands.server {
 					sendNotification(GeneralAppNotifications.REGISTER_NEW_USER);
 					break;
 				case ServerCallConfig.SRC_SUCCESS: //if login success
-					ServerConfig.session_info = (response.result as LoginMessage).sessionInfo;
+					ServerConfig.sessionInfo = (response.result as LoginMessage).sessionInfo;
 					Logger.log("login result - success");
 					loginComplete();
 					break;
-				case SystemErrorConfig.LOGIN_NOT_ALLOWED_AT_THIS_MOMENT: 
+				case SystemErrorConfig.LOGIN_NOT_ALLOWED_AT_THIS_MOMENT:
 					Logger.log("login not allowed");
 					ExternalInterface.call('disableTabMenu');
 					sendNotification(GeneralAppNotifications.SYSTEM_ERROR, SystemErrorConfig.LOGIN_NOT_ALLOWED_AT_THIS_MOMENT);
