@@ -46,12 +46,19 @@ package playtiLib.view.mediators.social.fb
 		protected function registerListeners():void{
 			
 			selectFriendsVLogic.addEventListener( GeneralAppNotifications.ON_SEND_BTN_CLICK, onSendBtnClick );
-			selectFriendsVLogic.addEventListener( SelectFriendsVLogic.NO_MORE_FRIENDS_TO_SEND, closePopup );
+			selectFriendsVLogic.addEventListener( SelectFriendsVLogic.NO_MORE_FRIENDS_TO_SEND, onNoMoreFriendsToSend );
 		}
 		
-		public override function closePopup(event:Event=null):void{
+		protected function onNoMoreFriendsToSend(event:Event):void{
+			
+			closePopup();
+		}
+		
+		public override function closePopup():void{
+			
 			sendNotification( GeneralAppNotifications.SHOW_GAME_TAB_COMMAND );
-			super.closePopup(event);
+			
+			super.closePopup();
 		} 
 		
 		protected function onSendBtnClick( event:EventTrans ):void{

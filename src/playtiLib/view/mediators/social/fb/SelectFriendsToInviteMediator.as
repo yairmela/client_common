@@ -25,9 +25,11 @@ package playtiLib.view.mediators.social.fb
 			sendNotification( GeneralAppNotifications.OPEN_SOCIAL_INVITE_FRIENDS_DIALOG, selectedFriendsIds );
 		}
 		
-		public override function closePopup(event:Event=null):void{
+		public override function closePopup():void{
+			
 			sendNotification( GeneralAppNotifications.CLOSE_INVITE_PROXY );
-			super.closePopup( event );
+			
+			super.closePopup();
 		}
 		
 		private function get sendSocialReqProxy():SendSocialInviteReqProxy{

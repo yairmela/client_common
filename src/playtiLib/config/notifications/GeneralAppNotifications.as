@@ -152,9 +152,7 @@ package playtiLib.config.notifications
 		public static const SHARE_EVENT_COUPON_COMMAND:String 		= 'share_event_coupon_command';
 		public static const CREATE_COUPON:String 					= 'create_coupon';		
 		
-
 		public static const ON_SEND_BTN_CLICK:String				= 'on_send_btn_click';
-
 		
 		//tasks
 		public static const GET_TASKS_COMMAND:String				= 'get_tasks_command';
@@ -196,7 +194,8 @@ package playtiLib.config.notifications
 		public static const DEAL_SPOT_READY:String					= 'deal_spot_ready';
 		public static const SET_DEAL_SPOT:String					= 'set_deal_spot';
 		public static const HIDE_DEAL_SPOT:String					= 'hide_deal_spot';
-
-		public static const POST_SOCIAL_ACTION:String				= 'post_social_action';
+		
+		public static const SOCIAL_ACTION:String					= 'socialAction';
+		public static const POST_SOCIAL_ACTION:String				= 'postSocialAction';
 	}
 }

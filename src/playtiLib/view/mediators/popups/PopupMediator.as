@@ -74,7 +74,7 @@ package playtiLib.view.mediators.popups
 		protected function registerCloseDoListeners():void {
 			
 			for each( var close_btn:ButtonSimple in popup_logic.close_btns_list ) {
-				close_btn.addEventListener( MouseEvent.CLICK, closePopup, false, 0, true );
+				close_btn.addEventListener( MouseEvent.CLICK, closeActionHandler, false, 0, true );
 			}
 			if( do_action_vo != null ) {
 				for each( var do_btn:ButtonSimple in popup_logic.do_btns_list ) {
@@ -82,6 +82,11 @@ package playtiLib.view.mediators.popups
 				}
 			}
 		}
+		
+		protected function closeActionHandler(event:Event):void	{
+			
+			closePopup();
+		}		
 		/**
 		 * Handles the mouse event ( CLICK ) on the do button.
 		 * @param event
@@ -105,7 +110,7 @@ package playtiLib.view.mediators.popups
 		 * @param event
 		 * 
 		 */		
-		public function closePopup( event:Event = null ):void {
+		public function closePopup():void {
 			
 			//close popup
 			facade.removeMediator( mediatorName );

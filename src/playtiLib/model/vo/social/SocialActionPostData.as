@@ -10,5 +10,6 @@ package playtiLib.model.vo.social
 		public var game_title:String;
 		public var lvl:uint;
 		public var next_lvl_xp:uint;
+		public var sent_gifts_number:uint;
 	}
 }

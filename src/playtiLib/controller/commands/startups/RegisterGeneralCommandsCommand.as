@@ -30,6 +30,7 @@ package playtiLib.controller.commands.startups
 	import playtiLib.controller.commands.popup.ShowNextPopupCommand;
 	import playtiLib.controller.commands.server.ServerLoginCompleteCommand;
 	import playtiLib.controller.commands.social.ExecuteGeneralExternalCallCommand;
+	import playtiLib.controller.commands.social.SocialActionCommand;
 	import playtiLib.controller.commands.social.fb.CloseSendGiftProxyCommand;
 	import playtiLib.controller.commands.social.fb.FBLoadSocialRequestsCommand;
 	import playtiLib.controller.commands.social.fb.SendScreenshotCommand;
@@ -94,6 +95,8 @@ package playtiLib.controller.commands.startups
 			facade.registerCommand(GeneralAppNotifications.LOAD_NEW_LOCALE_CONTENT, GetLocaleContentCommand);
 			
 			facade.registerCommand(GeneralAppNotifications.SCREENSHOT_MADE, SendScreenshotCommand);
+			
+			facade.registerCommand( GeneralAppNotifications.SOCIAL_ACTION, SocialActionCommand );
 		}
 	}
 }
