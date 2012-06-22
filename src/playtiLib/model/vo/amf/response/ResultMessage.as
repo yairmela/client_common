@@ -9,24 +9,28 @@ package playtiLib.model.vo.amf.response {
 		public function ResultMessage(){
 		}
 		
-		protected function convertArrayCollectionToArray( collection : ArrayCollection ) : Array {
+		// TODO: remove after all server data types will use Arrays instead of ArrayCollections
+		protected function convertToArray( collection : * ) : Array {
 			
 			if(!collection) {
 				return [];
-			}
-			
-			var array : Array = collection.toArray();
-			
-			var item : *;
-			for(var i : int = 0; i < array.length; i++) {
-				item = array[i];
+			}			
+			else if(collection is ArrayCollection) {
+				var array : Array = collection.toArray();
 				
-				if(item is ArrayCollection) {
-					array[i] = convertArrayCollectionToArray(item);
-				}	
+				var item : *;
+				for(var i : int = 0; i < array.length; i++) {
+					item = array[i];
+					
+					if(item is ArrayCollection) {
+						array[i] = convertToArray(item);
+					}	
+				}
+				
+				return array;
 			}
-			
-			return array;
+
+			return collection as Array;
 		}
 	}
 }
