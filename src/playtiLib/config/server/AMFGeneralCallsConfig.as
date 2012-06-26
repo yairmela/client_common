@@ -41,6 +41,8 @@ package playtiLib.config.server
 		private static const GET_TODAY_RECEIVERS:String 				= 'getTodayRecievers';
 		private static const UPDATE_CLIENT_TASK_STATUS_COMMAND:String 	= 'updateClientTaskStatus';
 		
+		private static const GET_USER_INVENTORY_ITEMS :String 			= 'getUserInventoryItems';
+		private static const GET_USER_PENDING_ITEMS :String 			= 'getUserPendingItems';
 		//payments
 		private static const BUY_COINS_COMMAND:String 					= 'buyCoins';
 		private static const GET_CURRENCY_COSTS_COMMAND:String 			= 'getCurrencyCosts';
@@ -62,6 +64,9 @@ package playtiLib.config.server
 		
 		public static const TODAY_RECEIVERS:DataCallConfig 				= new DataCallConfig( LOBBY_SERVICE, GET_TODAY_RECEIVERS, false, new ClientRequest );
 		public static const LOCALIZATION:ContentDataCallConfig 			= new ContentDataCallConfig( LOCALIZATION_SERVICE, GET_LOCALIZATION_COMMAND ,false, new LocalizationRequest());
+	
+		public static const USER_INVENTORY_ITEMS:DataCallConfig 		= new DataCallConfig( LOBBY_SERVICE, GET_USER_INVENTORY_ITEMS );
+		public static const USER_PENDING_ITEMS:DataCallConfig 		= new DataCallConfig( LOBBY_SERVICE, GET_USER_PENDING_ITEMS );
 		//tasks
 		public static const GET_CLIENT_TASKS:DataCallConfig 			= new DataCallConfig(LOBBY_SERVICE, GET_CLIENT_TASKS_COMMAND);
 		public static const UPDATE_CLIENT_TASK_STATUS:DataCallConfig 	= new DataCallConfig(LOBBY_SERVICE, UPDATE_CLIENT_TASK_STATUS_COMMAND, false, new UpdateClientTaskRequest());
