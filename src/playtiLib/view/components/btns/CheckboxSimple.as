@@ -12,9 +12,9 @@ package playtiLib.view.components.btns
 		
 		protected var state_checked:Boolean;
 		
-		public function CheckboxSimple( content:MovieClip ):void{
+		public function CheckboxSimple( content:MovieClip, click_sound_name:String=null, over_sound_name:String=null ):void{
 			
-			super( content );
+			super( content, click_sound_name, over_sound_name );
 			checked = false;
 		}
 		

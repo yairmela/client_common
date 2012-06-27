@@ -50,7 +50,9 @@ package playtiLib.utils.sounds
 		
 		private var is_muted:Boolean;
 		
-		public function SoundsLib():void {}
+		public function SoundsLib():void {
+		
+		}
 		
 		public function set load_prefix( loadPathPrefix:String ):void {
 			
