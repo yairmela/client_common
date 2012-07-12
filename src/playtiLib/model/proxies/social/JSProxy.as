@@ -52,6 +52,15 @@ package playtiLib.model.proxies.social {
 			addCallback("dealSpotOfferComplete", dealSpotOfferComplete);
 		}
 		
+		public function callExternalMethod(methodName:String, ...parameters):void {
+			
+			if (!ExternalInterface.available) {
+				return;
+			}
+			
+			ExternalInterface.call(methodName, parameters);
+		}
+		
 		private function dealSpotOfferComplete ():void {
 			sendNotification(GeneralAppNotifications.HIDE_DEAL_SPOT);
 		}
@@ -163,8 +172,9 @@ package playtiLib.model.proxies.social {
 		
 		protected function addCallback( closure : String, callback : Function ) : void
 		{
-			if (!ExternalInterface.available)
+			if (!ExternalInterface.available) {
 				return;
+			}
 			
 			ExternalInterface.addCallback(closure, callback);
 		}
