@@ -1,25 +1,34 @@
 package playtiLib.view.components.preloaders
 {
+	import flash.display.DisplayObject;
+	import flash.display.MovieClip;
 	import flash.display.Sprite;
 	import flash.events.Event;
- 	import flash.geom.Point;
+	import flash.geom.Point;
 	
-	public class MainPreloader extends Sprite	{
+	public class MainPreloader extends MovieClip	{
 		//if this params will not set the logic will use stage height and width
 		public static var PRELOADER_CENTER_TO_WIDTH:Number;
 		public static var PRELOADER_CENTER_TO_HEIGHT:Number;
 		
-		private var offset:Point = new Point();
+		private var offset:Point;
 		protected var progress_width:int = 200;
 		protected var progress_height:int = 8;
+		private var isOffsetPositionWasSet:Boolean;
 		
 		public function MainPreloader()	{
 			
 			super();
-			offset = new Point( Math.floor( ( PRELOADER_CENTER_TO_WIDTH - progress_width ) / 2 ), 
-								Math.floor( ( PRELOADER_CENTER_TO_HEIGHT - progress_height ) / 2 ) );
 		}
 
+		private function setOffsetPosition():void
+		{
+			if( !isOffsetPositionWasSet ){
+				isOffsetPositionWasSet = true;
+				this.offset = new Point( Math.floor( (  stage.stageWidth - progress_width ) / 2 ), 
+					Math.floor( ( stage.stageHeight - progress_height ) / 2 ) );
+			}
+		}
 		
 		public function set progress( ratio:Number ):void {
 			
@@ -27,7 +36,7 @@ package playtiLib.view.components.preloaders
 		}
 		
 		protected function drawProgress(ratio:Number):void {
-			
+			setOffsetPosition();
 			with( graphics ) {
 				clear();
 				beginFill(0x282828);

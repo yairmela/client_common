@@ -87,5 +87,11 @@ package playtiLib.utils.warehouse
 			}
 			warehouses_map.splice( warehouses_map.indexOf( warehouse ), 1 );
 		}
+//		public static function removeAllWarehouse( ):void {
+//			for(var i:int;i<warehouses_map.length;i++){
+//				warehouses_map.splice( 0, 1 );
+//				i--;
+//			}
+//		}
 	}
 }

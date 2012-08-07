@@ -50,6 +50,18 @@ package playtiLib.model.proxies.social {
 			addCallback("exportScreenshot", exportScreenshot);
 			addCallback("setDealSpotParams", setDealSpotParams);
 			addCallback("dealSpotOfferComplete", dealSpotOfferComplete);
+			addCallback("openBuyPowerupsPopup", openBuyPowerupsPopup);
+			addCallback("openCollectiblesPopup", openCollectiblesPopup);
+		}
+		
+		private function openCollectiblesPopup():void
+		{
+			sendNotification( GeneralAppNotifications.OPEN_COLLECTIBLE_POPUP );
+		}
+		
+		private function openBuyPowerupsPopup():void
+		{
+			sendNotification( GeneralAppNotifications.OPEN_BUY_POWERUPS_POPUP );
 		}
 		
 		public function callExternalMethod(methodName:String, ...parameters):void {

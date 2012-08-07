@@ -22,6 +22,12 @@ package playtiLib.view.mediators.social.fb
 			this.selectFriendsVLogic = popup_logic as SelectFriendsSendGiftVLogic;
 		}
 		
+		override public function onRegister():void{
+			super.onRegister();
+			var chosenGiftId:int = sendSocialGiftsReqProxy.current_post_vo.gift_type;
+			(selectFriendsVLogic as SelectFriendsSendGiftVLogic).registerChosenGift(chosenGiftId)
+		}
+		
 		override public function listNotificationInterests():Array{
 			return super.listNotificationInterests().concat([GeneralAppNotifications.TODAY_RECEIVERS_READY]);
 		}

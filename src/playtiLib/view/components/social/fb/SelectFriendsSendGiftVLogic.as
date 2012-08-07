@@ -1,5 +1,6 @@
 package playtiLib.view.components.social.fb
 {
+	import flash.display.MovieClip;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	
@@ -11,6 +12,8 @@ package playtiLib.view.components.social.fb
 	{
 		public static const APP_FRIENDS_TAB_CLICK:String = 'appFriendsTabClick';
 		public static const ALL_FRIENDS_TAB_CLICK:String = 'allFriendsTabClick';
+		
+		private var chosenGiftMc:MovieClip;
 		public var appFriendsBtn:ButtonSimple;
 		public var allFriendsBtn:ButtonSimple;
 		
@@ -22,7 +25,16 @@ package playtiLib.view.components.social.fb
 			
 			appFriendsBtn 		= new ButtonSimple( popup_mc['app_friends_btn'] );
 			allFriendsBtn 		= new ButtonSimple( popup_mc['all_btn'] );
+			
+			chosenGiftMc 		= popup_mc.getChildByName('chosen_gift') as MovieClip;
 			super.registerComponents();
+		}
+		
+		public function registerChosenGift(chosenGiftId:int):void
+		{
+			if(chosenGiftMc){
+				chosenGiftMc.gotoAndStop(chosenGiftId);
+			}		
 		}
 		
 		protected override function initComponents():void{

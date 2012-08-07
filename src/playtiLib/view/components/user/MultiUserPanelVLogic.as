@@ -195,6 +195,10 @@ package playtiLib.view.components.user
 				       var movie:MovieClip 	= userItem.content as MovieClip;
 					   movie.mouseChildren 	= false;
 					   movie.mouseEnabled 	= false;
+					   var currentUserMc:MovieClip = (userItem.content['person_mc'] as MovieClip).getChildByName('currentUserMc') as MovieClip;
+					   if(currentUserMc && player_id == user.userSocialInfo.sn_id){
+						   currentUserMc.alpha = 1;
+					   }
 				   }
 				}
 				index++;

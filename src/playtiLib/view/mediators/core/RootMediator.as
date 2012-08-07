@@ -137,7 +137,7 @@ package playtiLib.view.mediators.core
 				root_view.stage.displayState 	= StageDisplayState.FULL_SCREEN;
 			}
 			else {
-				root_view.stage.scaleMode 		= StageScaleMode.EXACT_FIT;
+				root_view.stage.scaleMode 		= StageScaleMode.NO_SCALE; 
 				root_view.stage.displayState 	= StageDisplayState.NORMAL;
 			}
 		}

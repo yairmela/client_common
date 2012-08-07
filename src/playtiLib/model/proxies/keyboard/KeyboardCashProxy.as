@@ -19,6 +19,15 @@ package playtiLib.model.proxies.keyboard
 		public function KeyboardCashProxy( informer:InteractiveObject ) {
 			
 			super( NAME, new Object() );
+			if(informer.stage.hasEventListener(KeyboardEvent.KEY_DOWN)){
+				informer.stage.removeEventListener( KeyboardEvent.KEY_DOWN, keyDownHandler );
+			}
+			if(informer.stage.hasEventListener(KeyboardEvent.KEY_UP)){
+				informer.stage.removeEventListener( KeyboardEvent.KEY_UP, keyUpHandler );
+			}
+			if(informer.stage.hasEventListener(FocusEvent.FOCUS_IN)){
+				informer.stage.removeEventListener( FocusEvent.FOCUS_IN, onFocusChange );
+			}
 			informer.stage.addEventListener( KeyboardEvent.KEY_DOWN, keyDownHandler, false, 0, true );
 			informer.stage.addEventListener( KeyboardEvent.KEY_UP, keyUpHandler, false, 0, true );
 			informer.stage.addEventListener( FocusEvent.FOCUS_IN, onFocusChange, false, 0, true );

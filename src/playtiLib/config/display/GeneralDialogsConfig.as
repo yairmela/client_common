@@ -18,6 +18,6 @@ package playtiLib.config.display
 		public static const POPUP_REJECT_CONFIRM:String			= 'pop_up_reject_confirm';
 		public static const POPUP_ENGAGEMENT_GIFT:String		= 'pop_up_engagement_gift';
 		public static const POPUP_INVITE_FRIENDS:String 		= 'invite_friends_popup';
-		public static const POPUP_SEND_GIFTS:String 			= 'pop_up_send_gifts';
+		public static const POPUP_SEND_GIFTS:String 			= 'pop_up_send_gifts_new';
 	}
 }

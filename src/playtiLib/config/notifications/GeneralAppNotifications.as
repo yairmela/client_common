@@ -197,5 +197,8 @@ package playtiLib.config.notifications
 		
 		public static const SOCIAL_ACTION:String					= 'socialAction';
 		public static const POST_SOCIAL_ACTION:String				= 'postSocialAction';
+		public static const OPEN_BUY_POWERUPS_POPUP:String 			= 'OPEN_BUY_POWERUPS_POPUP';
+		public static const OPEN_COLLECTIBLE_POPUP:String 			= 'OPEN_COLLECTIBLE_POPUP';
+		public static const GET_INVENTORY_DATA:String 				= 'GET_INVENTORY_DATA';
 	}
 }
