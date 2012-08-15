@@ -200,6 +200,7 @@ package playtiLib.config.notifications
 		public static const OPEN_BUY_POWERUPS_POPUP:String 			= 'OPEN_BUY_POWERUPS_POPUP';
 		public static const OPEN_COLLECTIBLE_POPUP:String 			= 'OPEN_COLLECTIBLE_POPUP';
 		public static const GET_INVENTORY_DATA:String 				= 'GET_INVENTORY_DATA';
-		public static const POWERUP_USED:String 		    		  = 'POWERUP_USED';
+		public static const POWERUP_USED:String 		    		= 'POWERUP_USED';
+		public static const COLLAPSE_BOTTOM_PANEL:String   			= 'COLLAPSE_BOTTOM_PANEL';
 	}
 }

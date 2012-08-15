@@ -31,6 +31,7 @@ package playtiLib.view.mediators.gift
 			
 			registerListeners();
 			sendNotification( GeneralAppNotifications.SHOW_GIFTS_TAB_COMMAND );
+			sendNotification( GeneralAppNotifications.COLLAPSE_BOTTOM_PANEL, true );
 		}
 		
 		private function registerListeners():void {
@@ -65,7 +66,7 @@ package playtiLib.view.mediators.gift
 		public override function closePopup():void{
 			
 			sendNotification( GeneralAppNotifications.SHOW_GAME_TAB_COMMAND );
-			
+			sendNotification( GeneralAppNotifications.COLLAPSE_BOTTOM_PANEL, false )
 			super.closePopup();
 		} 
 	}
