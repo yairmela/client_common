@@ -66,8 +66,17 @@ package playtiLib.view.components.user
 				panel_btn = new ButtonSimple( person_mc );
 				panel_btn.addEventListener( MouseEvent.CLICK, panelClickHandler );
 				if( user.userSocialInfo.isReady ){
-					//set name					
-					setUserName(person_mc['name_txt'], user.userSocialInfo.first_name);					
+					//set name
+					var txtName:TextField = person_mc['name_txt'] as TextField;
+					if(!txtName)
+					{
+						txtName = person_mc['name_uppercase_txt'] as TextField;
+						setUserName(txtName, user.userSocialInfo.first_name.toLocaleUpperCase());
+					}
+					else
+					{
+						setUserName(txtName, user.userSocialInfo.first_name);
+					}
 					//set photo
 					if( user.userSocialInfo.photo ) {
 						user_photo_loader = person_mc['photo_holder'].addChild( new Loader ) as Loader;
@@ -83,6 +92,7 @@ package playtiLib.view.components.user
 		}
 		
 		private function setUserName(nameField:TextField, userName:String):void {
+			
 			nameField.text = userName;
 			var format:TextFormat = nameField.getTextFormat();
 				
