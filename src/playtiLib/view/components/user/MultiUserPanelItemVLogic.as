@@ -59,24 +59,21 @@ package playtiLib.view.components.user
 		 */		
 		protected function setUserParams():void {
 			
+			var isUpperCase:Boolean;
+			person_mc = item_mc['person_mc'] as MovieClip;
+			var txtName:TextField = person_mc['name_txt'] as TextField;
+			if(!txtName){
+				isUpperCase = true;
+				txtName = person_mc['name_uppercase_txt'] as TextField;
+			}
 			if( user ) {
 				//set user photo
-				person_mc = item_mc['person_mc'] as MovieClip;
 				//check if the userSocialInfo is loaded and if not dispatch event to proxy
 				panel_btn = new ButtonSimple( person_mc );
 				panel_btn.addEventListener( MouseEvent.CLICK, panelClickHandler );
 				if( user.userSocialInfo.isReady ){
 					//set name
-					var txtName:TextField = person_mc['name_txt'] as TextField;
-					if(!txtName)
-					{
-						txtName = person_mc['name_uppercase_txt'] as TextField;
-						setUserName(txtName, user.userSocialInfo.first_name.toLocaleUpperCase());
-					}
-					else
-					{
-						setUserName(txtName, user.userSocialInfo.first_name);
-					}
+					setUserName(txtName, isUpperCase ? user.userSocialInfo.first_name.toLocaleUpperCase() : user.userSocialInfo.first_name);
 					//set photo
 					if( user.userSocialInfo.photo ) {
 						user_photo_loader = person_mc['photo_holder'].addChild( new Loader ) as Loader;
@@ -87,7 +84,7 @@ package playtiLib.view.components.user
 			}
 			if( user && !user.userSocialInfo.isReady ){
 				user.userSocialInfo.addEventListener( GeneralAppNotifications.USER_SOCIAL_INFO_READY, onUserSocialReady );
-				person_mc['name_txt'].text = "";
+				setUserName(txtName, "");
 			}
 		}
 		
