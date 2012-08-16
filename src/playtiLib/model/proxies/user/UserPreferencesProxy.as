@@ -15,7 +15,6 @@ package playtiLib.model.proxies.user
 		public function UserPreferencesProxy( viewerId:String )	{
 			
 			super(NAME);
-//			deleteAll();
 			this.viewerId = viewerId;
 			userPreferences = new UserPreferences();
 			shared.data[viewerId] = shared.data[viewerId] ? shared.data[viewerId] : new UserPreferences();

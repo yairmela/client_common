@@ -5,9 +5,10 @@ package playtiLib.model.vo.user
 	public class UserPreferences extends DeserializedJSONModel	{
 		
 		public var mute:Boolean;
+		public var pluginGames:Array;
 		
 		public function UserPreferences(){
-			
+			pluginGames=[];
 		}
 	}
 }
